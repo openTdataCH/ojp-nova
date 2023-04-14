@@ -1,0 +1,33 @@
+from enum import Enum
+
+__NAMESPACE__ = "http://datex2.eu/schema/2_0RC1/2_0"
+
+
+class ObstructionTypeEnum(Enum):
+    AIR_CRASH = "airCrash"
+    CHILDREN_ON_ROADWAY = "childrenOnRoadway"
+    CLEARANCE_WORK = "clearanceWork"
+    CRANE_OPERATING = "craneOperating"
+    CYCLISTS_ON_ROADWAY = "cyclistsOnRoadway"
+    DEBRIS = "debris"
+    EXPLOSION = "explosion"
+    EXPLOSION_HAZARD = "explosionHazard"
+    HAZARDS_ON_THE_ROAD = "hazardsOnTheRoad"
+    HIGH_SPEED_CHASE = "highSpeedChase"
+    HOUSE_FIRE = "houseFire"
+    INCIDENT = "incident"
+    INDUSTRIAL_ACCIDENT = "industrialAccident"
+    OBJECT_ON_THE_ROAD = "objectOnTheRoad"
+    OBJECTS_FALLING_FROM_MOVING_VEHICLE = "objectsFallingFromMovingVehicle"
+    OBSTRUCTION_ON_THE_ROAD = "obstructionOnTheRoad"
+    PEOPLE_ON_ROADWAY = "peopleOnRoadway"
+    RAIL_CRASH = "railCrash"
+    RECKLESS_DRIVER = "recklessDriver"
+    RESCUE_AND_RECOVERY_WORK = "rescueAndRecoveryWork"
+    SEVERE_FROST_DAMAGED_ROADWAY = "severeFrostDamagedRoadway"
+    SHED_LOAD = "shedLoad"
+    SNOW_AND_ICE_DEBRIS = "snowAndIceDebris"
+    SPILLAGE_OCCURRING_FROM_MOVING_VEHICLE = "spillageOccurringFromMovingVehicle"
+    SPILLAGE_ON_THE_ROAD = "spillageOnTheRoad"
+    UNPROTECTED_ACCIDENT_AREA = "unprotectedAccidentArea"
+    OTHER = "other"
