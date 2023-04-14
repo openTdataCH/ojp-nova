@@ -1,0 +1,11 @@
+from enum import Enum
+
+__NAMESPACE__ = "http://nova.voev.ch/services/v14/vertrieb"
+
+
+class PruefStatus(Enum):
+    GUELTIG_HINREICHEND = "GUELTIG_HINREICHEND"
+    GUELTIG_NICHT_HINREICHEND = "GUELTIG_NICHT_HINREICHEND"
+    UNGUELTIG = "UNGUELTIG"
+    MANUELL_ZU_PRUEFEN = "MANUELL_ZU_PRUEFEN"
+    NICHT_GEPRUEFT = "NICHT_GEPRUEFT"
