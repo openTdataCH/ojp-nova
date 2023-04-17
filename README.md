@@ -1,5 +1,5 @@
 # OJPFARE 2 NOVA
-This repositoryy contains the necessary code integrate OJP into the NOVA Preisauskunft.
+This repository contains the necessary code integrate OJP into the NOVA Preisauskunft.
 
 ## Requirements
 1. Check out the code
