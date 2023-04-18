@@ -1,3 +1,4 @@
 xsdata[cli,lxml,soap]
 requests
 fastapi[all]
+uvicorn
