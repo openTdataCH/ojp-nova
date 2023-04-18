@@ -7,6 +7,11 @@ This repository contains the necessary code integrate OJP into the NOVA Preisaus
 
 Necessary libraries are named in requirements.txt.
 
+## generation of code from the XSD
+
+```
+xsdata -p ojp -ss clusters path-to-ojp.xsd
+```
 ## Configuration
 The repository is missing the relevant configuration.
 The configuration is only handed out, when necessary. Contact opendata@sbb.ch, if necessary. However, the access is and will remain limited.
@@ -20,14 +25,15 @@ NOVA_URL_API = ""
 OJP_URL_API = "https://api.opentransportdata.swiss/ojp2020"
 OJP_TOKEN = ''
 ```
-
 ## Starting the server
 run server.py 
 starts a server on: http://127.0.0.1:8000 
 
+## First connection test
 run test_client.py 
 This will result in a TripRequest/TripDelivery to the OJP service. 
 
+## Processing the whole flow
 run network_flow.py 
 The following should happen 
 1. client: Builds an OJPTripRequest from "Bern" to "Zürich" with departure time now
@@ -46,4 +52,3 @@ Everything is written to xml files for inspection
 * wrap the flow in a container to run
 * Add some logging/restart check capabilites
 * Add heart beat
-
