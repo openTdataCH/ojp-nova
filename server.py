@@ -8,6 +8,8 @@ from map_nova_to_ojp import test_nova_to_ojp
 from map_ojp_to_ojp import map_ojp_trip_result_to_ojp_fare_request, parse_ojp
 from network_flow import test_nova_request_reply, call_ojp_2000
 
+from configuration import HTTP_HOST, HTTP_PORT
+
 app = FastAPI(title="OJP2NOVA")
 
 serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
@@ -21,7 +23,6 @@ async def post_request(fastapi_req: Request):
 
     ojp_fare_request = parse_ojp(body.decode('utf-8'))
     if ojp_fare_request.ojprequest.service_request.ojpfare_request:
-        ojp_fare_request = map_ojp_trip_result_to_ojp_fare_request(ojp_fare_request)
         nova_response = test_nova_request_reply(ojp_fare_request)
         if nova_response:
             ojp_fare_result = test_nova_to_ojp(nova_response)
@@ -35,4 +36,4 @@ async def post_request(fastapi_req: Request):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run(app, host=HTTP_HOST, port=HTTP_PORT)

@@ -20,7 +20,7 @@ def parse_ojp(body: str) -> Ojp:
     parser = XmlParser(config)
     return parser.from_string(body, Ojp)
 
-def map_to_inidividual_ojpfarerequest(trip: TripStructure, now: XmlDateTime) -> OjpfareRequest:
+def map_to_individual_ojpfarerequest(trip: TripStructure, now: XmlDateTime) -> OjpfareRequest:
     return OjpfareRequest(
         request_timestamp=now,
         params=FareParamStructure(fare_authority_filter=["ch:1:NOVA"],
