@@ -23,7 +23,6 @@ async def post_request(fastapi_req: Request):
 
     ojp_fare_request = parse_ojp(body.decode('utf-8'))
     if ojp_fare_request.ojprequest.service_request.ojpfare_request:
-        ojp_fare_request = map_ojp_trip_result_to_ojp_fare_request(ojp_fare_request)
         nova_response = test_nova_request_reply(ojp_fare_request)
         if nova_response:
             ojp_fare_result = test_nova_to_ojp(nova_response)
