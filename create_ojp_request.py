@@ -27,7 +27,7 @@ def test_create_ojp_trip_request() -> Ojp:
                                                                                            location_name=InternationalTextStructure(text=NaturalLanguageStringStructure("Zurich"))))
                                                                          ],
                                       params=TripParamStructure(number_of_results=5,
-                                                                include_track_sections=True,
+                                                                include_track_sections=False,
                                                                 include_leg_projection=False,
                                                                 include_turn_description=False,
-                                                                include_intermediate_stops=False))])))
+                                                                include_intermediate_stops=True))])))
