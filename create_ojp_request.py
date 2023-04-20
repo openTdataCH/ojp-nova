@@ -8,7 +8,7 @@ from ojp import Ojp, Ojprequest, ServiceRequest, OjptripRequest, PlaceContextStr
     PlaceRefStructure, InternationalTextStructure, NaturalLanguageStringStructure
 
 def test_create_ojp_trip_request()-> Ojp:
-    origin = '8500050'
+    origin = '8500023'
     #origin = '8503000'
     destination = '8507000'
     now = datetime.datetime.utcnow().isoformat() + "Z"
