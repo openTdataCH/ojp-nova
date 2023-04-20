@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <ns1:erstellePreisAuskunftResponse xmlns:ns1="http://nova.voev.ch/services/v14/preisauskunft">
+      <ns1:preisAuskunftResponse>
+        <ns1:meldungen/>
+        <ns1:preisAuspraegung ns1:externeVerbindungsReferenzID="ID-96E95D74-5004-4245-AFE9-3C34228BD7DA_1_1" ns1:externeReisendenReferenzId="1234" ns1:produktNummer="7725">
+          <ns1:produktEinflussFaktoren xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" ns2:traegerMedium="SICHERHEITSPAPIER" ns2:fahrArt="EINFACH" ns2:klasse="KLASSENWECHSEL">
+            <ns2:kundenSegment ns2:kundenSegmentCode="PERSON_16+">
+              <ns2:bezeichnung xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:defaultWert="Erwachsene" ns3:de="Erwachsene" ns3:en="Adults" ns3:fr="Adulte" ns3:it="Adulti"/>
+            </ns2:kundenSegment>
+            <ns2:geltungsDauer>
+              <ns2:nutzungsGeltungsDauer>
+                <ns3:wert xmlns:ns3="http://nova.voev.ch/services/v14/base">1</ns3:wert>
+                <ns3:einheit xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:code="TAGE">
+                  <ns3:bezeichnung ns3:defaultWert="Kalendertag(e)" ns3:de="Kalendertag(e)" ns3:en="calendar day(s)" ns3:fr="jour(s) cal." ns3:it="giorno/i cal."/>
+                </ns3:einheit>
+              </ns2:nutzungsGeltungsDauer>
+            </ns2:geltungsDauer>
+          </ns1:produktEinflussFaktoren>
+          <ns1:preis xmlns:ns2="http://nova.voev.ch/services/v14/base" ns2:betrag="39.00" ns2:waehrung="CHF"/>
+          <ns1:nutzungsZeitraum>
+            <ns2:tarifierbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:von="2023-04-20T00:00:00+02:00" ns3:bis="2023-04-21T05:00:00+02:00"/>
+            <ns2:ausweisbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/vertriebsbase" ns3:von="2023-04-20" ns3:bis="2023-04-21" ns3:vonZeit="00:00:00" ns3:bisZeit="05:00:00"/>
+          </ns1:nutzungsZeitraum>
+        </ns1:preisAuspraegung>
+        <ns1:preisAuspraegung ns1:externeVerbindungsReferenzID="ID-F2053F22-1F95-4F1F-B48C-92BE76DED28F_1_5" ns1:externeReisendenReferenzId="1234" ns1:produktNummer="50125">
+          <ns1:produktEinflussFaktoren xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" ns2:traegerMedium="SICHERHEITSPAPIER" ns2:fahrArt="EINFACH" ns2:klasse="KLASSE_2">
+            <ns2:kundenSegment ns2:kundenSegmentCode="PERSON_16+">
+              <ns2:bezeichnung xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:defaultWert="Erwachsene" ns3:de="Erwachsene" ns3:en="Adults" ns3:fr="Adulte" ns3:it="Adulti"/>
+            </ns2:kundenSegment>
+            <ns2:geltungsDauer>
+              <ns2:nutzungsGeltungsDauer>
+                <ns3:wert xmlns:ns3="http://nova.voev.ch/services/v14/base">2</ns3:wert>
+                <ns3:einheit xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:code="TAGE">
+                  <ns3:bezeichnung ns3:defaultWert="Kalendertag(e)" ns3:de="Kalendertag(e)" ns3:en="calendar day(s)" ns3:fr="jour(s) cal." ns3:it="giorno/i cal."/>
+                </ns3:einheit>
+              </ns2:nutzungsGeltungsDauer>
+            </ns2:geltungsDauer>
+          </ns1:produktEinflussFaktoren>
+          <ns1:preis xmlns:ns2="http://nova.voev.ch/services/v14/base" ns2:betrag="47.40" ns2:waehrung="CHF"/>
+          <ns1:nutzungsZeitraum>
+            <ns2:tarifierbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:von="2023-04-20T00:00:00+02:00" ns3:bis="2023-04-22T05:00:00+02:00"/>
+            <ns2:ausweisbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/vertriebsbase" ns3:von="2023-04-20" ns3:bis="2023-04-22" ns3:vonZeit="00:00:00" ns3:bisZeit="05:00:00"/>
+          </ns1:nutzungsZeitraum>
+        </ns1:preisAuspraegung>
+        <ns1:preisAuspraegung ns1:externeVerbindungsReferenzID="ID-91C7084B-B766-4840-BB56-7823B3FBB534_1_3" ns1:externeReisendenReferenzId="1234" ns1:produktNummer="7725">
+          <ns1:produktEinflussFaktoren xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" ns2:traegerMedium="SICHERHEITSPAPIER" ns2:fahrArt="EINFACH" ns2:klasse="KLASSENWECHSEL">
+            <ns2:kundenSegment ns2:kundenSegmentCode="PERSON_16+">
+              <ns2:bezeichnung xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:defaultWert="Erwachsene" ns3:de="Erwachsene" ns3:en="Adults" ns3:fr="Adulte" ns3:it="Adulti"/>
+            </ns2:kundenSegment>
+            <ns2:geltungsDauer>
+              <ns2:nutzungsGeltungsDauer>
+                <ns3:wert xmlns:ns3="http://nova.voev.ch/services/v14/base">1</ns3:wert>
+                <ns3:einheit xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:code="TAGE">
+                  <ns3:bezeichnung ns3:defaultWert="Kalendertag(e)" ns3:de="Kalendertag(e)" ns3:en="calendar day(s)" ns3:fr="jour(s) cal." ns3:it="giorno/i cal."/>
+                </ns3:einheit>
+              </ns2:nutzungsGeltungsDauer>
+            </ns2:geltungsDauer>
+          </ns1:produktEinflussFaktoren>
+          <ns1:preis xmlns:ns2="http://nova.voev.ch/services/v14/base" ns2:betrag="39.00" ns2:waehrung="CHF"/>
+          <ns1:nutzungsZeitraum>
+            <ns2:tarifierbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:von="2023-04-20T00:00:00+02:00" ns3:bis="2023-04-21T05:00:00+02:00"/>
+            <ns2:ausweisbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/vertriebsbase" ns3:von="2023-04-20" ns3:bis="2023-04-21" ns3:vonZeit="00:00:00" ns3:bisZeit="05:00:00"/>
+          </ns1:nutzungsZeitraum>
+        </ns1:preisAuspraegung>
+        <ns1:preisAuspraegung ns1:externeVerbindungsReferenzID="ID-00A595F4-58E0-432A-8BB6-E9BF2AF49B74_1_1" ns1:externeReisendenReferenzId="1234" ns1:produktNummer="7725">
+          <ns1:produktEinflussFaktoren xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" ns2:traegerMedium="SICHERHEITSPAPIER" ns2:fahrArt="EINFACH" ns2:klasse="KLASSENWECHSEL">
+            <ns2:kundenSegment ns2:kundenSegmentCode="PERSON_16+">
+              <ns2:bezeichnung xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:defaultWert="Erwachsene" ns3:de="Erwachsene" ns3:en="Adults" ns3:fr="Adulte" ns3:it="Adulti"/>
+            </ns2:kundenSegment>
+            <ns2:geltungsDauer>
+              <ns2:nutzungsGeltungsDauer>
+                <ns3:wert xmlns:ns3="http://nova.voev.ch/services/v14/base">1</ns3:wert>
+                <ns3:einheit xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:code="TAGE">
+                  <ns3:bezeichnung ns3:defaultWert="Kalendertag(e)" ns3:de="Kalendertag(e)" ns3:en="calendar day(s)" ns3:fr="jour(s) cal." ns3:it="giorno/i cal."/>
+                </ns3:einheit>
+              </ns2:nutzungsGeltungsDauer>
+            </ns2:geltungsDauer>
+          </ns1:produktEinflussFaktoren>
+          <ns1:preis xmlns:ns2="http://nova.voev.ch/services/v14/base" ns2:betrag="39.00" ns2:waehrung="CHF"/>
+          <ns1:nutzungsZeitraum>
+            <ns2:tarifierbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:von="2023-04-20T00:00:00+02:00" ns3:bis="2023-04-21T05:00:00+02:00"/>
+            <ns2:ausweisbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/vertriebsbase" ns3:von="2023-04-20" ns3:bis="2023-04-21" ns3:vonZeit="00:00:00" ns3:bisZeit="05:00:00"/>
+          </ns1:nutzungsZeitraum>
+        </ns1:preisAuspraegung>
+        <ns1:preisAuspraegung ns1:externeVerbindungsReferenzID="ID-0736C15C-5B51-4D2E-B383-1C658C25DA41_1_1" ns1:externeReisendenReferenzId="1234" ns1:produktNummer="7725">
+          <ns1:produktEinflussFaktoren xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" ns2:traegerMedium="SICHERHEITSPAPIER" ns2:fahrArt="EINFACH" ns2:klasse="KLASSENWECHSEL">
+            <ns2:kundenSegment ns2:kundenSegmentCode="PERSON_16+">
+              <ns2:bezeichnung xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:defaultWert="Erwachsene" ns3:de="Erwachsene" ns3:en="Adults" ns3:fr="Adulte" ns3:it="Adulti"/>
+            </ns2:kundenSegment>
+            <ns2:geltungsDauer>
+              <ns2:nutzungsGeltungsDauer>
+                <ns3:wert xmlns:ns3="http://nova.voev.ch/services/v14/base">1</ns3:wert>
+                <ns3:einheit xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:code="TAGE">
+                  <ns3:bezeichnung ns3:defaultWert="Kalendertag(e)" ns3:de="Kalendertag(e)" ns3:en="calendar day(s)" ns3:fr="jour(s) cal." ns3:it="giorno/i cal."/>
+                </ns3:einheit>
+              </ns2:nutzungsGeltungsDauer>
+            </ns2:geltungsDauer>
+          </ns1:produktEinflussFaktoren>
+          <ns1:preis xmlns:ns2="http://nova.voev.ch/services/v14/base" ns2:betrag="39.00" ns2:waehrung="CHF"/>
+          <ns1:nutzungsZeitraum>
+            <ns2:tarifierbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:von="2023-04-20T00:00:00+02:00" ns3:bis="2023-04-21T05:00:00+02:00"/>
+            <ns2:ausweisbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/vertriebsbase" ns3:von="2023-04-20" ns3:bis="2023-04-21" ns3:vonZeit="00:00:00" ns3:bisZeit="05:00:00"/>
+          </ns1:nutzungsZeitraum>
+        </ns1:preisAuspraegung>
+        <ns1:preisAuspraegung ns1:externeVerbindungsReferenzID="ID-96E95D74-5004-4245-AFE9-3C34228BD7DA_1_1" ns1:externeReisendenReferenzId="1234" ns1:produktNummer="50125">
+          <ns1:produktEinflussFaktoren xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" ns2:traegerMedium="SICHERHEITSPAPIER" ns2:fahrArt="EINFACH" ns2:klasse="KLASSE_2">
+            <ns2:kundenSegment ns2:kundenSegmentCode="PERSON_16+">
+              <ns2:bezeichnung xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:defaultWert="Erwachsene" ns3:de="Erwachsene" ns3:en="Adults" ns3:fr="Adulte" ns3:it="Adulti"/>
+            </ns2:kundenSegment>
+            <ns2:geltungsDauer>
+              <ns2:nutzungsGeltungsDauer>
+                <ns3:wert xmlns:ns3="http://nova.voev.ch/services/v14/base">2</ns3:wert>
+                <ns3:einheit xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:code="TAGE">
+                  <ns3:bezeichnung ns3:defaultWert="Kalendertag(e)" ns3:de="Kalendertag(e)" ns3:en="calendar day(s)" ns3:fr="jour(s) cal." ns3:it="giorno/i cal."/>
+                </ns3:einheit>
+              </ns2:nutzungsGeltungsDauer>
+            </ns2:geltungsDauer>
+          </ns1:produktEinflussFaktoren>
+          <ns1:preis xmlns:ns2="http://nova.voev.ch/services/v14/base" ns2:betrag="47.40" ns2:waehrung="CHF"/>
+          <ns1:nutzungsZeitraum>
+            <ns2:tarifierbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:von="2023-04-20T00:00:00+02:00" ns3:bis="2023-04-22T05:00:00+02:00"/>
+            <ns2:ausweisbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/vertriebsbase" ns3:von="2023-04-20" ns3:bis="2023-04-22" ns3:vonZeit="00:00:00" ns3:bisZeit="05:00:00"/>
+          </ns1:nutzungsZeitraum>
+        </ns1:preisAuspraegung>
+        <ns1:preisAuspraegung ns1:externeVerbindungsReferenzID="ID-EA32E16B-FF55-41A4-A605-5945486B6046_1_1" ns1:externeReisendenReferenzId="1234" ns1:produktNummer="7725">
+          <ns1:produktEinflussFaktoren xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" ns2:traegerMedium="SICHERHEITSPAPIER" ns2:fahrArt="EINFACH" ns2:klasse="KLASSENWECHSEL">
+            <ns2:kundenSegment ns2:kundenSegmentCode="PERSON_16+">
+              <ns2:bezeichnung xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:defaultWert="Erwachsene" ns3:de="Erwachsene" ns3:en="Adults" ns3:fr="Adulte" ns3:it="Adulti"/>
+            </ns2:kundenSegment>
+            <ns2:geltungsDauer>
+              <ns2:nutzungsGeltungsDauer>
+                <ns3:wert xmlns:ns3="http://nova.voev.ch/services/v14/base">1</ns3:wert>
+                <ns3:einheit xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:code="TAGE">
+                  <ns3:bezeichnung ns3:defaultWert="Kalendertag(e)" ns3:de="Kalendertag(e)" ns3:en="calendar day(s)" ns3:fr="jour(s) cal." ns3:it="giorno/i cal."/>
+                </ns3:einheit>
+              </ns2:nutzungsGeltungsDauer>
+            </ns2:geltungsDauer>
+          </ns1:produktEinflussFaktoren>
+          <ns1:preis xmlns:ns2="http://nova.voev.ch/services/v14/base" ns2:betrag="39.00" ns2:waehrung="CHF"/>
+          <ns1:nutzungsZeitraum>
+            <ns2:tarifierbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:von="2023-04-20T00:00:00+02:00" ns3:bis="2023-04-21T05:00:00+02:00"/>
+            <ns2:ausweisbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/vertriebsbase" ns3:von="2023-04-20" ns3:bis="2023-04-21" ns3:vonZeit="00:00:00" ns3:bisZeit="05:00:00"/>
+          </ns1:nutzungsZeitraum>
+        </ns1:preisAuspraegung>
+        <ns1:preisAuspraegung ns1:externeVerbindungsReferenzID="ID-00A595F4-58E0-432A-8BB6-E9BF2AF49B74_1_1" ns1:externeReisendenReferenzId="1234" ns1:produktNummer="50125">
+          <ns1:produktEinflussFaktoren xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" ns2:traegerMedium="SICHERHEITSPAPIER" ns2:fahrArt="EINFACH" ns2:klasse="KLASSE_2">
+            <ns2:kundenSegment ns2:kundenSegmentCode="PERSON_16+">
+              <ns2:bezeichnung xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:defaultWert="Erwachsene" ns3:de="Erwachsene" ns3:en="Adults" ns3:fr="Adulte" ns3:it="Adulti"/>
+            </ns2:kundenSegment>
+            <ns2:geltungsDauer>
+              <ns2:nutzungsGeltungsDauer>
+                <ns3:wert xmlns:ns3="http://nova.voev.ch/services/v14/base">2</ns3:wert>
+                <ns3:einheit xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:code="TAGE">
+                  <ns3:bezeichnung ns3:defaultWert="Kalendertag(e)" ns3:de="Kalendertag(e)" ns3:en="calendar day(s)" ns3:fr="jour(s) cal." ns3:it="giorno/i cal."/>
+                </ns3:einheit>
+              </ns2:nutzungsGeltungsDauer>
+            </ns2:geltungsDauer>
+          </ns1:produktEinflussFaktoren>
+          <ns1:preis xmlns:ns2="http://nova.voev.ch/services/v14/base" ns2:betrag="47.40" ns2:waehrung="CHF"/>
+          <ns1:nutzungsZeitraum>
+            <ns2:tarifierbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:von="2023-04-20T00:00:00+02:00" ns3:bis="2023-04-22T05:00:00+02:00"/>
+            <ns2:ausweisbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/vertriebsbase" ns3:von="2023-04-20" ns3:bis="2023-04-22" ns3:vonZeit="00:00:00" ns3:bisZeit="05:00:00"/>
+          </ns1:nutzungsZeitraum>
+        </ns1:preisAuspraegung>
+        <ns1:preisAuspraegung ns1:externeVerbindungsReferenzID="ID-EA32E16B-FF55-41A4-A605-5945486B6046_1_1" ns1:externeReisendenReferenzId="1234" ns1:produktNummer="50125">
+          <ns1:produktEinflussFaktoren xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" ns2:traegerMedium="SICHERHEITSPAPIER" ns2:fahrArt="EINFACH" ns2:klasse="KLASSE_1">
+            <ns2:kundenSegment ns2:kundenSegmentCode="PERSON_16+">
+              <ns2:bezeichnung xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:defaultWert="Erwachsene" ns3:de="Erwachsene" ns3:en="Adults" ns3:fr="Adulte" ns3:it="Adulti"/>
+            </ns2:kundenSegment>
+            <ns2:geltungsDauer>
+              <ns2:nutzungsGeltungsDauer>
+                <ns3:wert xmlns:ns3="http://nova.voev.ch/services/v14/base">2</ns3:wert>
+                <ns3:einheit xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:code="TAGE">
+                  <ns3:bezeichnung ns3:defaultWert="Kalendertag(e)" ns3:de="Kalendertag(e)" ns3:en="calendar day(s)" ns3:fr="jour(s) cal." ns3:it="giorno/i cal."/>
+                </ns3:einheit>
+              </ns2:nutzungsGeltungsDauer>
+            </ns2:geltungsDauer>
+          </ns1:produktEinflussFaktoren>
+          <ns1:preis xmlns:ns2="http://nova.voev.ch/services/v14/base" ns2:betrag="83.60" ns2:waehrung="CHF"/>
+          <ns1:nutzungsZeitraum>
+            <ns2:tarifierbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:von="2023-04-20T00:00:00+02:00" ns3:bis="2023-04-22T05:00:00+02:00"/>
+            <ns2:ausweisbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/vertriebsbase" ns3:von="2023-04-20" ns3:bis="2023-04-22" ns3:vonZeit="00:00:00" ns3:bisZeit="05:00:00"/>
+          </ns1:nutzungsZeitraum>
+        </ns1:preisAuspraegung>
+        <ns1:preisAuspraegung ns1:externeVerbindungsReferenzID="ID-F2053F22-1F95-4F1F-B48C-92BE76DED28F_1_5" ns1:externeReisendenReferenzId="1234" ns1:produktNummer="7725">
+          <ns1:produktEinflussFaktoren xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" ns2:traegerMedium="SICHERHEITSPAPIER" ns2:fahrArt="EINFACH" ns2:klasse="KLASSENWECHSEL">
+            <ns2:kundenSegment ns2:kundenSegmentCode="PERSON_16+">
+              <ns2:bezeichnung xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:defaultWert="Erwachsene" ns3:de="Erwachsene" ns3:en="Adults" ns3:fr="Adulte" ns3:it="Adulti"/>
+            </ns2:kundenSegment>
+            <ns2:geltungsDauer>
+              <ns2:nutzungsGeltungsDauer>
+                <ns3:wert xmlns:ns3="http://nova.voev.ch/services/v14/base">1</ns3:wert>
+                <ns3:einheit xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:code="TAGE">
+                  <ns3:bezeichnung ns3:defaultWert="Kalendertag(e)" ns3:de="Kalendertag(e)" ns3:en="calendar day(s)" ns3:fr="jour(s) cal." ns3:it="giorno/i cal."/>
+                </ns3:einheit>
+              </ns2:nutzungsGeltungsDauer>
+            </ns2:geltungsDauer>
+          </ns1:produktEinflussFaktoren>
+          <ns1:preis xmlns:ns2="http://nova.voev.ch/services/v14/base" ns2:betrag="39.00" ns2:waehrung="CHF"/>
+          <ns1:nutzungsZeitraum>
+            <ns2:tarifierbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:von="2023-04-20T00:00:00+02:00" ns3:bis="2023-04-21T05:00:00+02:00"/>
+            <ns2:ausweisbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/vertriebsbase" ns3:von="2023-04-20" ns3:bis="2023-04-21" ns3:vonZeit="00:00:00" ns3:bisZeit="05:00:00"/>
+          </ns1:nutzungsZeitraum>
+        </ns1:preisAuspraegung>
+        <ns1:preisAuspraegung ns1:externeVerbindungsReferenzID="ID-0736C15C-5B51-4D2E-B383-1C658C25DA41_1_1" ns1:externeReisendenReferenzId="1234" ns1:produktNummer="50125">
+          <ns1:produktEinflussFaktoren xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" ns2:traegerMedium="SICHERHEITSPAPIER" ns2:fahrArt="EINFACH" ns2:klasse="KLASSE_2">
+            <ns2:kundenSegment ns2:kundenSegmentCode="PERSON_16+">
+              <ns2:bezeichnung xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:defaultWert="Erwachsene" ns3:de="Erwachsene" ns3:en="Adults" ns3:fr="Adulte" ns3:it="Adulti"/>
+            </ns2:kundenSegment>
+            <ns2:geltungsDauer>
+              <ns2:nutzungsGeltungsDauer>
+                <ns3:wert xmlns:ns3="http://nova.voev.ch/services/v14/base">2</ns3:wert>
+                <ns3:einheit xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:code="TAGE">
+                  <ns3:bezeichnung ns3:defaultWert="Kalendertag(e)" ns3:de="Kalendertag(e)" ns3:en="calendar day(s)" ns3:fr="jour(s) cal." ns3:it="giorno/i cal."/>
+                </ns3:einheit>
+              </ns2:nutzungsGeltungsDauer>
+            </ns2:geltungsDauer>
+          </ns1:produktEinflussFaktoren>
+          <ns1:preis xmlns:ns2="http://nova.voev.ch/services/v14/base" ns2:betrag="47.40" ns2:waehrung="CHF"/>
+          <ns1:nutzungsZeitraum>
+            <ns2:tarifierbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:von="2023-04-20T00:00:00+02:00" ns3:bis="2023-04-22T05:00:00+02:00"/>
+            <ns2:ausweisbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/vertriebsbase" ns3:von="2023-04-20" ns3:bis="2023-04-22" ns3:vonZeit="00:00:00" ns3:bisZeit="05:00:00"/>
+          </ns1:nutzungsZeitraum>
+        </ns1:preisAuspraegung>
+        <ns1:preisAuspraegung ns1:externeVerbindungsReferenzID="ID-91C7084B-B766-4840-BB56-7823B3FBB534_1_3" ns1:externeReisendenReferenzId="1234" ns1:produktNummer="50125">
+          <ns1:produktEinflussFaktoren xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" ns2:traegerMedium="SICHERHEITSPAPIER" ns2:fahrArt="EINFACH" ns2:klasse="KLASSE_1">
+            <ns2:kundenSegment ns2:kundenSegmentCode="PERSON_16+">
+              <ns2:bezeichnung xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:defaultWert="Erwachsene" ns3:de="Erwachsene" ns3:en="Adults" ns3:fr="Adulte" ns3:it="Adulti"/>
+            </ns2:kundenSegment>
+            <ns2:geltungsDauer>
+              <ns2:nutzungsGeltungsDauer>
+                <ns3:wert xmlns:ns3="http://nova.voev.ch/services/v14/base">2</ns3:wert>
+                <ns3:einheit xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:code="TAGE">
+                  <ns3:bezeichnung ns3:defaultWert="Kalendertag(e)" ns3:de="Kalendertag(e)" ns3:en="calendar day(s)" ns3:fr="jour(s) cal." ns3:it="giorno/i cal."/>
+                </ns3:einheit>
+              </ns2:nutzungsGeltungsDauer>
+            </ns2:geltungsDauer>
+          </ns1:produktEinflussFaktoren>
+          <ns1:preis xmlns:ns2="http://nova.voev.ch/services/v14/base" ns2:betrag="83.60" ns2:waehrung="CHF"/>
+          <ns1:nutzungsZeitraum>
+            <ns2:tarifierbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:von="2023-04-20T00:00:00+02:00" ns3:bis="2023-04-22T05:00:00+02:00"/>
+            <ns2:ausweisbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/vertriebsbase" ns3:von="2023-04-20" ns3:bis="2023-04-22" ns3:vonZeit="00:00:00" ns3:bisZeit="05:00:00"/>
+          </ns1:nutzungsZeitraum>
+        </ns1:preisAuspraegung>
+        <ns1:preisAuspraegung ns1:externeVerbindungsReferenzID="ID-00A595F4-58E0-432A-8BB6-E9BF2AF49B74_1_1" ns1:externeReisendenReferenzId="1234" ns1:produktNummer="50125">
+          <ns1:produktEinflussFaktoren xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" ns2:traegerMedium="SICHERHEITSPAPIER" ns2:fahrArt="EINFACH" ns2:klasse="KLASSE_1">
+            <ns2:kundenSegment ns2:kundenSegmentCode="PERSON_16+">
+              <ns2:bezeichnung xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:defaultWert="Erwachsene" ns3:de="Erwachsene" ns3:en="Adults" ns3:fr="Adulte" ns3:it="Adulti"/>
+            </ns2:kundenSegment>
+            <ns2:geltungsDauer>
+              <ns2:nutzungsGeltungsDauer>
+                <ns3:wert xmlns:ns3="http://nova.voev.ch/services/v14/base">2</ns3:wert>
+                <ns3:einheit xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:code="TAGE">
+                  <ns3:bezeichnung ns3:defaultWert="Kalendertag(e)" ns3:de="Kalendertag(e)" ns3:en="calendar day(s)" ns3:fr="jour(s) cal." ns3:it="giorno/i cal."/>
+                </ns3:einheit>
+              </ns2:nutzungsGeltungsDauer>
+            </ns2:geltungsDauer>
+          </ns1:produktEinflussFaktoren>
+          <ns1:preis xmlns:ns2="http://nova.voev.ch/services/v14/base" ns2:betrag="83.60" ns2:waehrung="CHF"/>
+          <ns1:nutzungsZeitraum>
+            <ns2:tarifierbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:von="2023-04-20T00:00:00+02:00" ns3:bis="2023-04-22T05:00:00+02:00"/>
+            <ns2:ausweisbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/vertriebsbase" ns3:von="2023-04-20" ns3:bis="2023-04-22" ns3:vonZeit="00:00:00" ns3:bisZeit="05:00:00"/>
+          </ns1:nutzungsZeitraum>
+        </ns1:preisAuspraegung>
+        <ns1:preisAuspraegung ns1:externeVerbindungsReferenzID="ID-EA32E16B-FF55-41A4-A605-5945486B6046_1_1" ns1:externeReisendenReferenzId="1234" ns1:produktNummer="50125">
+          <ns1:produktEinflussFaktoren xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" ns2:traegerMedium="SICHERHEITSPAPIER" ns2:fahrArt="EINFACH" ns2:klasse="KLASSE_2">
+            <ns2:kundenSegment ns2:kundenSegmentCode="PERSON_16+">
+              <ns2:bezeichnung xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:defaultWert="Erwachsene" ns3:de="Erwachsene" ns3:en="Adults" ns3:fr="Adulte" ns3:it="Adulti"/>
+            </ns2:kundenSegment>
+            <ns2:geltungsDauer>
+              <ns2:nutzungsGeltungsDauer>
+                <ns3:wert xmlns:ns3="http://nova.voev.ch/services/v14/base">2</ns3:wert>
+                <ns3:einheit xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:code="TAGE">
+                  <ns3:bezeichnung ns3:defaultWert="Kalendertag(e)" ns3:de="Kalendertag(e)" ns3:en="calendar day(s)" ns3:fr="jour(s) cal." ns3:it="giorno/i cal."/>
+                </ns3:einheit>
+              </ns2:nutzungsGeltungsDauer>
+            </ns2:geltungsDauer>
+          </ns1:produktEinflussFaktoren>
+          <ns1:preis xmlns:ns2="http://nova.voev.ch/services/v14/base" ns2:betrag="47.40" ns2:waehrung="CHF"/>
+          <ns1:nutzungsZeitraum>
+            <ns2:tarifierbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:von="2023-04-20T00:00:00+02:00" ns3:bis="2023-04-22T05:00:00+02:00"/>
+            <ns2:ausweisbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/vertriebsbase" ns3:von="2023-04-20" ns3:bis="2023-04-22" ns3:vonZeit="00:00:00" ns3:bisZeit="05:00:00"/>
+          </ns1:nutzungsZeitraum>
+        </ns1:preisAuspraegung>
+        <ns1:preisAuspraegung ns1:externeVerbindungsReferenzID="ID-96E95D74-5004-4245-AFE9-3C34228BD7DA_1_1" ns1:externeReisendenReferenzId="1234" ns1:produktNummer="50125">
+          <ns1:produktEinflussFaktoren xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" ns2:traegerMedium="SICHERHEITSPAPIER" ns2:fahrArt="EINFACH" ns2:klasse="KLASSE_1">
+            <ns2:kundenSegment ns2:kundenSegmentCode="PERSON_16+">
+              <ns2:bezeichnung xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:defaultWert="Erwachsene" ns3:de="Erwachsene" ns3:en="Adults" ns3:fr="Adulte" ns3:it="Adulti"/>
+            </ns2:kundenSegment>
+            <ns2:geltungsDauer>
+              <ns2:nutzungsGeltungsDauer>
+                <ns3:wert xmlns:ns3="http://nova.voev.ch/services/v14/base">2</ns3:wert>
+                <ns3:einheit xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:code="TAGE">
+                  <ns3:bezeichnung ns3:defaultWert="Kalendertag(e)" ns3:de="Kalendertag(e)" ns3:en="calendar day(s)" ns3:fr="jour(s) cal." ns3:it="giorno/i cal."/>
+                </ns3:einheit>
+              </ns2:nutzungsGeltungsDauer>
+            </ns2:geltungsDauer>
+          </ns1:produktEinflussFaktoren>
+          <ns1:preis xmlns:ns2="http://nova.voev.ch/services/v14/base" ns2:betrag="83.60" ns2:waehrung="CHF"/>
+          <ns1:nutzungsZeitraum>
+            <ns2:tarifierbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:von="2023-04-20T00:00:00+02:00" ns3:bis="2023-04-22T05:00:00+02:00"/>
+            <ns2:ausweisbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/vertriebsbase" ns3:von="2023-04-20" ns3:bis="2023-04-22" ns3:vonZeit="00:00:00" ns3:bisZeit="05:00:00"/>
+          </ns1:nutzungsZeitraum>
+        </ns1:preisAuspraegung>
+        <ns1:preisAuspraegung ns1:externeVerbindungsReferenzID="ID-F2053F22-1F95-4F1F-B48C-92BE76DED28F_1_5" ns1:externeReisendenReferenzId="1234" ns1:produktNummer="50125">
+          <ns1:produktEinflussFaktoren xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" ns2:traegerMedium="SICHERHEITSPAPIER" ns2:fahrArt="EINFACH" ns2:klasse="KLASSE_1">
+            <ns2:kundenSegment ns2:kundenSegmentCode="PERSON_16+">
+              <ns2:bezeichnung xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:defaultWert="Erwachsene" ns3:de="Erwachsene" ns3:en="Adults" ns3:fr="Adulte" ns3:it="Adulti"/>
+            </ns2:kundenSegment>
+            <ns2:geltungsDauer>
+              <ns2:nutzungsGeltungsDauer>
+                <ns3:wert xmlns:ns3="http://nova.voev.ch/services/v14/base">2</ns3:wert>
+                <ns3:einheit xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:code="TAGE">
+                  <ns3:bezeichnung ns3:defaultWert="Kalendertag(e)" ns3:de="Kalendertag(e)" ns3:en="calendar day(s)" ns3:fr="jour(s) cal." ns3:it="giorno/i cal."/>
+                </ns3:einheit>
+              </ns2:nutzungsGeltungsDauer>
+            </ns2:geltungsDauer>
+          </ns1:produktEinflussFaktoren>
+          <ns1:preis xmlns:ns2="http://nova.voev.ch/services/v14/base" ns2:betrag="83.60" ns2:waehrung="CHF"/>
+          <ns1:nutzungsZeitraum>
+            <ns2:tarifierbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:von="2023-04-20T00:00:00+02:00" ns3:bis="2023-04-22T05:00:00+02:00"/>
+            <ns2:ausweisbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/vertriebsbase" ns3:von="2023-04-20" ns3:bis="2023-04-22" ns3:vonZeit="00:00:00" ns3:bisZeit="05:00:00"/>
+          </ns1:nutzungsZeitraum>
+        </ns1:preisAuspraegung>
+        <ns1:preisAuspraegung ns1:externeVerbindungsReferenzID="ID-0736C15C-5B51-4D2E-B383-1C658C25DA41_1_1" ns1:externeReisendenReferenzId="1234" ns1:produktNummer="50125">
+          <ns1:produktEinflussFaktoren xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" ns2:traegerMedium="SICHERHEITSPAPIER" ns2:fahrArt="EINFACH" ns2:klasse="KLASSE_1">
+            <ns2:kundenSegment ns2:kundenSegmentCode="PERSON_16+">
+              <ns2:bezeichnung xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:defaultWert="Erwachsene" ns3:de="Erwachsene" ns3:en="Adults" ns3:fr="Adulte" ns3:it="Adulti"/>
+            </ns2:kundenSegment>
+            <ns2:geltungsDauer>
+              <ns2:nutzungsGeltungsDauer>
+                <ns3:wert xmlns:ns3="http://nova.voev.ch/services/v14/base">2</ns3:wert>
+                <ns3:einheit xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:code="TAGE">
+                  <ns3:bezeichnung ns3:defaultWert="Kalendertag(e)" ns3:de="Kalendertag(e)" ns3:en="calendar day(s)" ns3:fr="jour(s) cal." ns3:it="giorno/i cal."/>
+                </ns3:einheit>
+              </ns2:nutzungsGeltungsDauer>
+            </ns2:geltungsDauer>
+          </ns1:produktEinflussFaktoren>
+          <ns1:preis xmlns:ns2="http://nova.voev.ch/services/v14/base" ns2:betrag="83.60" ns2:waehrung="CHF"/>
+          <ns1:nutzungsZeitraum>
+            <ns2:tarifierbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:von="2023-04-20T00:00:00+02:00" ns3:bis="2023-04-22T05:00:00+02:00"/>
+            <ns2:ausweisbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/vertriebsbase" ns3:von="2023-04-20" ns3:bis="2023-04-22" ns3:vonZeit="00:00:00" ns3:bisZeit="05:00:00"/>
+          </ns1:nutzungsZeitraum>
+        </ns1:preisAuspraegung>
+        <ns1:preisAuspraegung ns1:externeVerbindungsReferenzID="ID-91C7084B-B766-4840-BB56-7823B3FBB534_1_3" ns1:externeReisendenReferenzId="1234" ns1:produktNummer="50125">
+          <ns1:produktEinflussFaktoren xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" ns2:traegerMedium="SICHERHEITSPAPIER" ns2:fahrArt="EINFACH" ns2:klasse="KLASSE_2">
+            <ns2:kundenSegment ns2:kundenSegmentCode="PERSON_16+">
+              <ns2:bezeichnung xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:defaultWert="Erwachsene" ns3:de="Erwachsene" ns3:en="Adults" ns3:fr="Adulte" ns3:it="Adulti"/>
+            </ns2:kundenSegment>
+            <ns2:geltungsDauer>
+              <ns2:nutzungsGeltungsDauer>
+                <ns3:wert xmlns:ns3="http://nova.voev.ch/services/v14/base">2</ns3:wert>
+                <ns3:einheit xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:code="TAGE">
+                  <ns3:bezeichnung ns3:defaultWert="Kalendertag(e)" ns3:de="Kalendertag(e)" ns3:en="calendar day(s)" ns3:fr="jour(s) cal." ns3:it="giorno/i cal."/>
+                </ns3:einheit>
+              </ns2:nutzungsGeltungsDauer>
+            </ns2:geltungsDauer>
+          </ns1:produktEinflussFaktoren>
+          <ns1:preis xmlns:ns2="http://nova.voev.ch/services/v14/base" ns2:betrag="47.40" ns2:waehrung="CHF"/>
+          <ns1:nutzungsZeitraum>
+            <ns2:tarifierbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/base" ns3:von="2023-04-20T00:00:00+02:00" ns3:bis="2023-04-22T05:00:00+02:00"/>
+            <ns2:ausweisbarerZeitraum xmlns:ns2="http://nova.voev.ch/services/v14/vertrieb" xmlns:ns3="http://nova.voev.ch/services/v14/vertriebsbase" ns3:von="2023-04-20" ns3:bis="2023-04-22" ns3:vonZeit="00:00:00" ns3:bisZeit="05:00:00"/>
+          </ns1:nutzungsZeitraum>
+        </ns1:preisAuspraegung>
+      </ns1:preisAuskunftResponse>
+    </ns1:erstellePreisAuskunftResponse>
+  </soapenv:Body>
+</soapenv:Envelope>
