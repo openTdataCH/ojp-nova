@@ -6,4 +6,5 @@ NOVA_URL_API = "https://nova-inte-int.api.sbb.ch/novaan/vertrieb/public/v14/Prei
 OJP_URL_API = "https://api.opentransportdata.swiss/ojp2020"
 OJP_TOKEN = ""
 DEBUGGING = True
-PORT = 8000
+HTTP_HOST = '127.0.0.1'
+HTTP_PORT = 8000
