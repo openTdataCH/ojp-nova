@@ -10,7 +10,7 @@ from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
 from configuration import *
-from create_ojp_request import test_create_ojp_trip_request_simple_2
+from create_ojp_request import test_create_ojp_trip_request_simple_3
 from map_nova_to_ojp import test_nova_to_ojp
 from map_ojp_to_nova import test_ojp_fare_request_to_nova_request
 from map_ojp_to_ojp import parse_ojp, map_ojp_trip_result_to_ojp_fare_request, \
@@ -73,7 +73,6 @@ def test_nova_request_reply(ojp: Ojp):
     oauth_helper = OAuth2Helper(client_id=NOVA_CLIENT_ID, client_secret=NOVA_CLIENT_SECRET)
     access_token = oauth_helper.get_token()
     headers = {'Authorization': 'Bearer ' + access_token, "User-Agent": "OJP2NOVA/0.2"}
-
     nova_request = test_ojp_fare_request_to_nova_request(ojp)
     nova_client = get_nova_client()
     nova_response = nova_client.send(nova_request, headers=headers)
@@ -85,14 +84,14 @@ def test_nova_request_reply(ojp: Ojp):
         return nova_response
 
 if __name__ == '__main__':
-    ojp_trip_request = test_create_ojp_trip_request_simple_2()
+    ojp_trip_request = test_create_ojp_trip_request_simple_3()
     serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
     serializer = XmlSerializer(serializer_config)
     ojp_trip_request_xml = serializer.render(ojp_trip_request, ns_map=ns_map)
     log('generated/ojp_trip_request.xml',ojp_trip_request_xml)
     r = call_ojp_2000(ojp_trip_request_xml)
-
     ojp_trip_result = parse_ojp(r)
+    # TODO ojp_trip_result.ojpresponse.service_delivery.ojptrip_delivery.status== false => error. However, I do only get to ojptrip_delivery.
     ojp_trip_result_xml = serializer.render(ojp_trip_result, ns_map=ns_map)
     log('generated/ojp_trip_reply.xml', ojp_trip_result_xml)
 

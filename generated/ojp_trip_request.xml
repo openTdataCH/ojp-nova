@@ -2,10 +2,10 @@
 <OJP xmlns="http://www.siri.org.uk/siri" xmlns:ojp="http://www.vdv.de/ojp" version="1.0">
   <OJPRequest>
     <ServiceRequest>
-      <RequestTimestamp>2023-05-01T14:25:53.922685Z</RequestTimestamp>
+      <RequestTimestamp>2023-05-01T15:56:31.703814Z</RequestTimestamp>
       <RequestorRef>OJP2NOVA</RequestorRef>
       <ojp:OJPTripRequest>
-        <RequestTimestamp>2023-05-01T14:25:53.922685Z</RequestTimestamp>
+        <RequestTimestamp>2023-05-01T15:56:31.703814Z</RequestTimestamp>
         <ojp:Origin>
           <ojp:PlaceRef>
             <StopPointRef>8507000</StopPointRef>
@@ -13,11 +13,11 @@
               <ojp:Text>origin</ojp:Text>
             </ojp:LocationName>
           </ojp:PlaceRef>
-          <ojp:DepArrTime>2023-05-01T14:25:53.922685Z</ojp:DepArrTime>
+          <ojp:DepArrTime>2023-05-01T15:56:31.703814Z</ojp:DepArrTime>
         </ojp:Origin>
         <ojp:Destination>
           <ojp:PlaceRef>
-            <StopPointRef>8503000</StopPointRef>
+            <StopPointRef>8504221</StopPointRef>
             <ojp:LocationName>
               <ojp:Text>destination</ojp:Text>
             </ojp:LocationName>

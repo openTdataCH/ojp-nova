@@ -7,19 +7,28 @@ from xsdata.models.datatype import XmlDateTime
 from ojp import Ojp, Ojprequest, ServiceRequest, OjptripRequest, PlaceContextStructure, TripParamStructure, \
     PlaceRefStructure, InternationalTextStructure, NaturalLanguageStringStructure
 
+# simple test
 def test_create_ojp_trip_request_simple_1() -> Ojp:
     origin='8507000'
     destination='8503000'
     starttime=datetime.datetime.utcnow()+ datetime.timedelta(days=10) #10 days in the future
     return test_create_ojp_trip_request_long(origin,destination,starttime)
 
+# very long trip. Currently offers no result
 def test_create_ojp_trip_request_simple_2() -> Ojp:
     origin='857868'
     destination='8574945'
     starttime=datetime.datetime.utcnow()+ datetime.timedelta(days=10) #10 days in the future
     return test_create_ojp_trip_request_long(origin,destination,starttime)
 
+# train splitting example
+def test_create_ojp_trip_request_simple_3() -> Ojp:
+    origin='8507000' #Bern
+    destination='8504221' # Neuchâtel
+    starttime=datetime.datetime.utcnow()+ datetime.timedelta(days=10) #10 days in the future
+    return test_create_ojp_trip_request_long(origin,destination,starttime)
 
+# builds the requests
 def test_create_ojp_trip_request_long(origin,destination,starttime) -> Ojp:
     starttime = starttime.isoformat() + "Z"
     starttime = XmlDateTime.from_string(starttime)
