@@ -24,9 +24,9 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
     # TODO: Maybe the PublicThing from Extension should be used.
     verwaltungs_code = "{:06}".format(int(operator_ref.split(':')[1]))
 
-    tracksections = timed_leg.leg_track.track_section
-    zwischenhalten = [section.track_start.stop_point_ref
-                      for section in tracksections] + [tracksections[-1].track_end.stop_point_ref]
+    leg_intermediates = timed_leg.leg_intermediates
+    zwischenhalten = [timed_leg.leg_board.stop_point_ref] + [leg_intermediate.stop_point_ref
+                      for leg_intermediate in leg_intermediates] + [timed_leg.leg_alight.stop_point_ref]
 
     return FahrplanVerbindungsSegment(einstieg=int(einstieg), ausstieg=int(ausstieg),
                                verwaltungs_code=verwaltungs_code,
