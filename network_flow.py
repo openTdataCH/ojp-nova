@@ -17,6 +17,7 @@ from map_ojp_to_ojp import parse_ojp, map_ojp_trip_result_to_ojp_fare_request, \
     map_ojp_trip_result_to_ojp_refine_request
 from nova import PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunft
 from ojp import Ojp
+from logger import log
 
 ns_map = {'': 'http://www.siri.org.uk/siri', 'ojp': 'http://www.vdv.de/ojp'}
 
@@ -80,7 +81,7 @@ def test_nova_request_reply(ojp: Ojp):
         serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
         serializer = XmlSerializer(serializer_config)
         nova_response_xml = serializer.render(nova_response)
-        open('nova_response.xml', 'w').write(nova_response_xml)
+        log('generated/nova_response.xml',nova_response_xml)
         return nova_response
 
 if __name__ == '__main__':
@@ -88,12 +89,12 @@ if __name__ == '__main__':
     serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
     serializer = XmlSerializer(serializer_config)
     ojp_trip_request_xml = serializer.render(ojp_trip_request, ns_map=ns_map)
-    open('ojp_trip_request.xml', 'w').write(ojp_trip_request_xml)
+    log('generated/ojp_trip_request.xml',ojp_trip_request_xml)
     r = call_ojp_2000(ojp_trip_request_xml)
 
     ojp_trip_result = parse_ojp(r)
     ojp_trip_result_xml = serializer.render(ojp_trip_result, ns_map=ns_map)
-    open('ojp_trip_reply.xml', 'w').write(ojp_trip_result_xml)
+    log('generated/ojp_trip_reply.xml', ojp_trip_result_xml)
 
     # TODO: This would only work in OJP v1.1
     # ojp_refine_request = map_ojp_trip_result_to_ojp_refine_request(ojp_trip_result)
@@ -107,10 +108,10 @@ if __name__ == '__main__':
 
     ojp_fare_request = map_ojp_trip_result_to_ojp_fare_request(ojp_trip_result)
     ojp_fare_request_xml = serializer.render(ojp_fare_request, ns_map=ns_map)
-    open('ojp_fare_request.xml', 'w').write(ojp_fare_request_xml)
+    log('generated/ojp_fare_request.xml',ojp_fare_request_xml)
 
     nova_response = test_nova_request_reply(ojp_fare_request)
     if nova_response:
         ojp_fare_result = test_nova_to_ojp(nova_response)
         ojp_fare_result_xml = serializer.render(ojp_fare_result, ns_map=ns_map)
-        open('ojp_fare_result.xml', 'w').write(ojp_fare_result_xml)
+        log('generated/ojp_fare_result.xml', ojp_fare_result_xml)

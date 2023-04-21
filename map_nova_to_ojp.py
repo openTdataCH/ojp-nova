@@ -9,6 +9,7 @@ from nova import ErstellePreisAuskunftResponse, KlassenTypCode, PreisAuspraegung
     PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput
 from ojp import OjpfareDelivery, FareResultStructure, FareProductStructure, TripFareResultStructure, \
     TypeOfFareClassEnumeration
+from logger import log
 
 def map_klasse_to_fareclass(klasse: KlassenTypCode) -> TypeOfFareClassEnumeration:
     if klasse == KlassenTypCode.KLASSE_1:
@@ -81,5 +82,5 @@ if __name__ == '__main__':
     if soap:
         ojp_fare_delivery = test_nova_to_ojp(soap)
         ojp_fare_delivery_xml = serializer.render(ojp_fare_delivery)
-        open('ojp_fare_reply.xml', 'w').write(ojp_fare_delivery_xml)
+        log('generated/ojp_fare_reply.xml', ojp_fare_delivery_xml)
         print(ojp_fare_delivery_xml)
