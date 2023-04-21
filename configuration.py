@@ -5,7 +5,7 @@
 NOVA_URL_TOKEN = ""
 NOVA_CLIENT_ID = ''
 NOVA_CLIENT_SECRET = ''
-NOVA_URL_API = "https://novsT~8Q~iY1GOcKeefbkWQJSJDeot6PleJnI5aRc~1a-inte-int.api.sbb.ch/novaan/vertrieb/public/v14/PreisauskunftService"
+NOVA_URL_API = ""
 OJP_URL_API = "https://api.opentransportdata.swiss/ojp2020"
 OJP_TOKEN = ""
 HTTP_HOST = '127.0.0.1'
