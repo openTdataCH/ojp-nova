@@ -10,7 +10,7 @@ from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
 from configuration import *
-from create_ojp_request import test_create_ojp_trip_request
+from create_ojp_request import test_create_ojp_trip_request_simple_2
 from map_nova_to_ojp import test_nova_to_ojp
 from map_ojp_to_nova import test_ojp_fare_request_to_nova_request
 from map_ojp_to_ojp import parse_ojp, map_ojp_trip_result_to_ojp_fare_request, \
@@ -85,7 +85,7 @@ def test_nova_request_reply(ojp: Ojp):
         return nova_response
 
 if __name__ == '__main__':
-    ojp_trip_request = test_create_ojp_trip_request()
+    ojp_trip_request = test_create_ojp_trip_request_simple_2()
     serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
     serializer = XmlSerializer(serializer_config)
     ojp_trip_request_xml = serializer.render(ojp_trip_request, ns_map=ns_map)
