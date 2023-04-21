@@ -13,7 +13,8 @@ from configuration import *
 from create_ojp_request import test_create_ojp_trip_request
 from map_nova_to_ojp import test_nova_to_ojp
 from map_ojp_to_nova import test_ojp_fare_request_to_nova_request
-from map_ojp_to_ojp import parse_ojp, map_ojp_trip_result_to_ojp_fare_request
+from map_ojp_to_ojp import parse_ojp, map_ojp_trip_result_to_ojp_fare_request, \
+    map_ojp_trip_result_to_ojp_refine_request
 from nova import PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunft
 from ojp import Ojp
 
@@ -93,6 +94,16 @@ if __name__ == '__main__':
     ojp_trip_result = parse_ojp(r)
     ojp_trip_result_xml = serializer.render(ojp_trip_result, ns_map=ns_map)
     open('ojp_trip_reply.xml', 'w').write(ojp_trip_result_xml)
+
+    # TODO: This would only work in OJP v1.1
+    # ojp_refine_request = map_ojp_trip_result_to_ojp_refine_request(ojp_trip_result)
+    # ojp_refine_request_xml = serializer.render(ojp_refine_request, ns_map=ns_map)
+    # open('ojp_trip_refine_request.xml', 'w').write(ojp_refine_request_xml)
+    # r = call_ojp_2000(ojp_refine_request_xml)
+
+    ojp_trip_result = parse_ojp(r)
+    ojp_trip_result_xml = serializer.render(ojp_trip_result, ns_map=ns_map)
+    open('ojp_trip_refine_reply.xml', 'w').write(ojp_trip_result_xml)
 
     ojp_fare_request = map_ojp_trip_result_to_ojp_fare_request(ojp_trip_result)
     ojp_fare_request_xml = serializer.render(ojp_fare_request, ns_map=ns_map)
