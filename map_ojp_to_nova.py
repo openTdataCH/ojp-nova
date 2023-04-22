@@ -22,8 +22,25 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
     _, verkehrs_mittel_nummer, _ = line_ref.split(':')
     # This is an other hack.
     verkehrs_mittel_nummer = ''.join(filter(lambda x: x.isdigit(), verkehrs_mittel_nummer))
-    #TODO could you set verkehrs_mittel_nummer to timed_leg.extension.publishedjourneynumber?
-    #verkehrs_mittel_nummber = xxxx
+    #Set verkehrs_mittel_nummer to timed_leg.extension.publishedjourneynumber?
+    #TODO improve the following hack
+    e=timed_leg.extension
+    p=e.__getattribute__('children')
+    i=0
+    t=""
+    while (i<len(p)):
+        qn=p[i].__getattribute__('qname')
+        if (qn=='{http://www.vdv.de/ojp}PublishedJourneyNumber'):
+            le=p[i].__getattribute__('children')
+            j=0
+            while (j<len(le)):
+                t=le[j].__getattribute__('text')
+                j=j+1
+        i=i+1
+    if (len(t)==0):
+        print('extraction of Extension/PublishedJourneyName went wrong')
+        exit(1)
+    verkehrs_mittel_nummer=t
 
     # Uses ojp:OperatorRef in service
     verwaltungs_code = "{:06}".format(int(operator_ref.split(':')[1])) # takes e.g. ojp:11 and makes 000011 out of it
