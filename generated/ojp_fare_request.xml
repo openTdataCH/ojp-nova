@@ -2,18 +2,18 @@
 <OJP xmlns="http://www.siri.org.uk/siri" xmlns:ojp="http://www.vdv.de/ojp" version="1.0">
   <OJPRequest>
     <ServiceRequest>
-      <RequestTimestamp>2023-04-21T15:56:32.622073</RequestTimestamp>
+      <RequestTimestamp>2023-04-22T13:39:31.413497</RequestTimestamp>
       <RequestorRef>OJP2NOVA</RequestorRef>
       <ojp:OJPFareRequest>
-        <RequestTimestamp>2023-04-21T15:56:32.622073</RequestTimestamp>
+        <RequestTimestamp>2023-04-22T13:39:31.413497</RequestTimestamp>
         <ojp:TripFareRequest>
           <ojp:Trip>
-            <ojp:TripId>ID-B21CADB1-34CA-4698-B18B-BF055C34A027</ojp:TripId>
-            <ojp:Duration>PT34M</ojp:Duration>
-            <ojp:StartTime>2023-05-01T15:53:00Z</ojp:StartTime>
-            <ojp:EndTime>2023-05-01T16:27:00Z</ojp:EndTime>
-            <ojp:Transfers>0</ojp:Transfers>
-            <ojp:Distance>42690</ojp:Distance>
+            <ojp:TripId>ID-E46EF5E2-82A4-4043-B16C-457838B16936</ojp:TripId>
+            <ojp:Duration>PT1H20M</ojp:Duration>
+            <ojp:StartTime>2023-04-24T13:36:00Z</ojp:StartTime>
+            <ojp:EndTime>2023-04-24T14:56:00Z</ojp:EndTime>
+            <ojp:Transfers>1</ojp:Transfers>
+            <ojp:Distance>118235</ojp:Distance>
             <ojp:TripLeg>
               <ojp:LegId>1</ojp:LegId>
               <ojp:TimedLeg>
@@ -21,303 +21,94 @@
                   <StopPointRef>8507000</StopPointRef>
                   <ojp:StopPointName>
                     <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Bern</ojp:Text>
-                  </ojp:StopPointName>
-                  <ojp:PlannedQuay>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">5</ojp:Text>
-                  </ojp:PlannedQuay>
-                  <ojp:ServiceDeparture>
-                    <ojp:TimetabledTime>2023-05-01T15:53:00Z</ojp:TimetabledTime>
-                  </ojp:ServiceDeparture>
-                  <ojp:Order>1</ojp:Order>
-                </ojp:LegBoard>
-                <ojp:LegAlight>
-                  <StopPointRef>8504221</StopPointRef>
-                  <ojp:StopPointName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Neuchâtel</ojp:Text>
                   </ojp:StopPointName>
                   <ojp:PlannedQuay>
                     <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">4</ojp:Text>
                   </ojp:PlannedQuay>
-                  <ojp:ServiceArrival>
-                    <ojp:TimetabledTime>2023-05-01T16:27:00Z</ojp:TimetabledTime>
-                  </ojp:ServiceArrival>
-                  <ojp:Order>4</ojp:Order>
-                </ojp:LegAlight>
-                <ojp:Service>
-                  <ojp:OperatingDayRef>2023-05-01</ojp:OperatingDayRef>
-                  <ojp:JourneyRef>ojp:91066:A:H:j23:59:3234</ojp:JourneyRef>
-                  <LineRef>ojp:91066:A</LineRef>
-                  <DirectionRef>H</DirectionRef>
-                  <ojp:Mode>
-                    <ojp:PtMode>rail</ojp:PtMode>
-                    <RailSubmode>regionalRail</RailSubmode>
-                    <ojp:Name>
-                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Zug</ojp:Text>
-                    </ojp:Name>
-                    <ojp:ShortName>
-                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">IR</ojp:Text>
-                    </ojp:ShortName>
-                  </ojp:Mode>
-                  <ojp:PublishedLineName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">IR66</ojp:Text>
-                  </ojp:PublishedLineName>
-                  <ojp:OperatorRef>ojp:33</ojp:OperatorRef>
-                  <ojp:Attribute>
-                    <ojp:Text>
-                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Cateringzone / Automaten</ojp:Text>
-                    </ojp:Text>
-                    <ojp:Code>A__SN</ojp:Code>
-                    <RefreshmentFacility>foodVendingMachine</RefreshmentFacility>
-                  </ojp:Attribute>
-                  <ojp:DestinationStopPointRef>8504314</ojp:DestinationStopPointRef>
-                  <ojp:DestinationText>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">La Chaux-de-Fonds</ojp:Text>
-                  </ojp:DestinationText>
-                </ojp:Service>
-                <ojp:LegTrack>
-                  <ojp:TrackSection>
-                    <ojp:TrackStart>
-                      <StopPointRef>8507000</StopPointRef>
-                      <ojp:LocationName>
-                        <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Bern</ojp:Text>
-                      </ojp:LocationName>
-                    </ojp:TrackStart>
-                    <ojp:TrackEnd>
-                      <StopPointRef>8504221</StopPointRef>
-                      <ojp:LocationName>
-                        <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Neuchâtel</ojp:Text>
-                      </ojp:LocationName>
-                    </ojp:TrackEnd>
-                    <ojp:Duration>PT34M</ojp:Duration>
-                    <ojp:Length>42690</ojp:Length>
-                  </ojp:TrackSection>
-                </ojp:LegTrack>
-                <ojp:Extension>
-                  <ojp:TransportTypeName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">InterRegio</ojp:Text>
-                  </ojp:TransportTypeName>
-                  <ojp:PublishedJourneyNumber>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">3234</ojp:Text>
-                  </ojp:PublishedJourneyNumber>
-                  <ojp:OperatorName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">BLS AG (bls)</ojp:Text>
-                  </ojp:OperatorName>
-                </ojp:Extension>
-              </ojp:TimedLeg>
-            </ojp:TripLeg>
-          </ojp:Trip>
-        </ojp:TripFareRequest>
-        <ojp:Params>
-          <ojp:FareAuthorityFilter>ch:1:NOVA</ojp:FareAuthorityFilter>
-          <ojp:PassengerCategory>Adult</ojp:PassengerCategory>
-          <ojp:TravelClass>second</ojp:TravelClass>
-          <ojp:Traveller>
-            <ojp:Age>25</ojp:Age>
-            <ojp:PassengerCategory>Adult</ojp:PassengerCategory>
-          </ojp:Traveller>
-        </ojp:Params>
-      </ojp:OJPFareRequest>
-      <ojp:OJPFareRequest>
-        <RequestTimestamp>2023-04-21T15:56:32.622073</RequestTimestamp>
-        <ojp:TripFareRequest>
-          <ojp:Trip>
-            <ojp:TripId>ID-48AD66EF-B080-4D31-BB10-061FE9B41FF0</ojp:TripId>
-            <ojp:Duration>PT48M</ojp:Duration>
-            <ojp:StartTime>2023-05-01T16:08:00Z</ojp:StartTime>
-            <ojp:EndTime>2023-05-01T16:56:00Z</ojp:EndTime>
-            <ojp:Transfers>0</ojp:Transfers>
-            <ojp:Distance>0</ojp:Distance>
-            <ojp:TripLeg>
-              <ojp:LegId>1</ojp:LegId>
-              <ojp:TimedLeg>
-                <ojp:LegBoard>
-                  <StopPointRef>8507000</StopPointRef>
-                  <ojp:StopPointName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Bern</ojp:Text>
-                  </ojp:StopPointName>
-                  <ojp:PlannedQuay>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">13A-C</ojp:Text>
-                  </ojp:PlannedQuay>
                   <ojp:ServiceDeparture>
-                    <ojp:TimetabledTime>2023-05-01T16:08:00Z</ojp:TimetabledTime>
+                    <ojp:TimetabledTime>2023-04-24T13:36:00Z</ojp:TimetabledTime>
                   </ojp:ServiceDeparture>
                   <ojp:Order>1</ojp:Order>
                 </ojp:LegBoard>
                 <ojp:LegAlight>
-                  <StopPointRef>8504221</StopPointRef>
+                  <StopPointRef>8500218</StopPointRef>
                   <ojp:StopPointName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Neuchâtel</ojp:Text>
-                  </ojp:StopPointName>
-                  <ojp:PlannedQuay>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">1</ojp:Text>
-                  </ojp:PlannedQuay>
-                  <ojp:ServiceArrival>
-                    <ojp:TimetabledTime>2023-05-01T16:56:00Z</ojp:TimetabledTime>
-                  </ojp:ServiceArrival>
-                  <ojp:Order>13</ojp:Order>
-                </ojp:LegAlight>
-                <ojp:Service>
-                  <ojp:OperatingDayRef>2023-05-01</ojp:OperatingDayRef>
-                  <ojp:JourneyRef>ojp:91005::R:j23:209:15568</ojp:JourneyRef>
-                  <LineRef>ojp:91005:</LineRef>
-                  <DirectionRef>R</DirectionRef>
-                  <ojp:Mode>
-                    <ojp:PtMode>rail</ojp:PtMode>
-                    <RailSubmode>regionalRail</RailSubmode>
-                    <ojp:Name>
-                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Zug</ojp:Text>
-                    </ojp:Name>
-                    <ojp:ShortName>
-                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">S</ojp:Text>
-                    </ojp:ShortName>
-                  </ojp:Mode>
-                  <ojp:PublishedLineName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">S5</ojp:Text>
-                  </ojp:PublishedLineName>
-                  <ojp:OperatorRef>ojp:33</ojp:OperatorRef>
-                  <ojp:Attribute>
-                    <ojp:Text>
-                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Zug mit mehreren Zielen: Bitte Anschriften am Zug beachten</ojp:Text>
-                    </ojp:Text>
-                    <ojp:Code>A__FL</ojp:Code>
-                  </ojp:Attribute>
-                  <ojp:DestinationStopPointRef>8504221</ojp:DestinationStopPointRef>
-                  <ojp:DestinationText>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Neuchâtel</ojp:Text>
-                  </ojp:DestinationText>
-                </ojp:Service>
-                <ojp:LegTrack>
-                  <ojp:TrackSection>
-                    <ojp:TrackStart>
-                      <StopPointRef>8507000</StopPointRef>
-                      <ojp:LocationName>
-                        <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Bern</ojp:Text>
-                      </ojp:LocationName>
-                    </ojp:TrackStart>
-                    <ojp:TrackEnd>
-                      <StopPointRef>8504221</StopPointRef>
-                      <ojp:LocationName>
-                        <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Neuchâtel</ojp:Text>
-                      </ojp:LocationName>
-                    </ojp:TrackEnd>
-                    <ojp:Duration>PT48M</ojp:Duration>
-                  </ojp:TrackSection>
-                </ojp:LegTrack>
-                <ojp:Extension>
-                  <ojp:TransportTypeName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">S-Bahn</ojp:Text>
-                  </ojp:TransportTypeName>
-                  <ojp:PublishedJourneyNumber>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">15568</ojp:Text>
-                  </ojp:PublishedJourneyNumber>
-                  <ojp:OperatorName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">BLS AG (bls)</ojp:Text>
-                  </ojp:OperatorName>
-                </ojp:Extension>
-              </ojp:TimedLeg>
-            </ojp:TripLeg>
-          </ojp:Trip>
-        </ojp:TripFareRequest>
-        <ojp:Params>
-          <ojp:FareAuthorityFilter>ch:1:NOVA</ojp:FareAuthorityFilter>
-          <ojp:PassengerCategory>Adult</ojp:PassengerCategory>
-          <ojp:TravelClass>second</ojp:TravelClass>
-          <ojp:Traveller>
-            <ojp:Age>25</ojp:Age>
-            <ojp:PassengerCategory>Adult</ojp:PassengerCategory>
-          </ojp:Traveller>
-        </ojp:Params>
-      </ojp:OJPFareRequest>
-      <ojp:OJPFareRequest>
-        <RequestTimestamp>2023-04-21T15:56:32.622073</RequestTimestamp>
-        <ojp:TripFareRequest>
-          <ojp:Trip>
-            <ojp:TripId>ID-7E27B56B-EA42-4E82-B197-2C2B78496DA9</ojp:TripId>
-            <ojp:Duration>PT49M</ojp:Duration>
-            <ojp:StartTime>2023-05-01T16:12:00Z</ojp:StartTime>
-            <ojp:EndTime>2023-05-01T17:01:00Z</ojp:EndTime>
-            <ojp:Transfers>1</ojp:Transfers>
-            <ojp:Distance>62762</ojp:Distance>
-            <ojp:TripLeg>
-              <ojp:LegId>1</ojp:LegId>
-              <ojp:TimedLeg>
-                <ojp:LegBoard>
-                  <StopPointRef>8507000</StopPointRef>
-                  <ojp:StopPointName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Bern</ojp:Text>
-                  </ojp:StopPointName>
-                  <ojp:PlannedQuay>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">49</ojp:Text>
-                  </ojp:PlannedQuay>
-                  <ojp:ServiceDeparture>
-                    <ojp:TimetabledTime>2023-05-01T16:12:00Z</ojp:TimetabledTime>
-                  </ojp:ServiceDeparture>
-                  <ojp:Order>1</ojp:Order>
-                </ojp:LegBoard>
-                <ojp:LegAlight>
-                  <StopPointRef>8504300</StopPointRef>
-                  <ojp:StopPointName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Biel/Bienne</ojp:Text>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Olten</ojp:Text>
                   </ojp:StopPointName>
                   <ojp:PlannedQuay>
                     <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">7</ojp:Text>
                   </ojp:PlannedQuay>
                   <ojp:ServiceArrival>
-                    <ojp:TimetabledTime>2023-05-01T16:38:00Z</ojp:TimetabledTime>
+                    <ojp:TimetabledTime>2023-04-24T14:03:00Z</ojp:TimetabledTime>
                   </ojp:ServiceArrival>
-                  <ojp:Order>3</ojp:Order>
+                  <ojp:Order>2</ojp:Order>
                 </ojp:LegAlight>
                 <ojp:Service>
-                  <ojp:OperatingDayRef>2023-05-01</ojp:OperatingDayRef>
-                  <ojp:JourneyRef>ojp:91065::H:j23:73:3369</ojp:JourneyRef>
-                  <LineRef>ojp:91065:</LineRef>
+                  <ojp:OperatingDayRef>2023-04-24</ojp:OperatingDayRef>
+                  <ojp:JourneyRef>ojp:91061:A:H:j23:99:1074</ojp:JourneyRef>
+                  <LineRef>ojp:91061:A</LineRef>
                   <DirectionRef>H</DirectionRef>
                   <ojp:Mode>
                     <ojp:PtMode>rail</ojp:PtMode>
-                    <RailSubmode>regionalRail</RailSubmode>
+                    <RailSubmode>interRegionalRailService</RailSubmode>
                     <ojp:Name>
                       <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Zug</ojp:Text>
                     </ojp:Name>
                     <ojp:ShortName>
-                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">IR</ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">IC</ojp:Text>
                     </ojp:ShortName>
                   </ojp:Mode>
                   <ojp:PublishedLineName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">IR65</ojp:Text>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">IC61</ojp:Text>
                   </ojp:PublishedLineName>
-                  <ojp:OperatorRef>ojp:33</ojp:OperatorRef>
-                  <ojp:DestinationStopPointRef>8504300</ojp:DestinationStopPointRef>
+                  <ojp:OperatorRef>ojp:11</ojp:OperatorRef>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Businesszone in 1. Klasse</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__BZ</ojp:Code>
+                    <FareClassFacility>firstClass</FareClassFacility>
+                    <PassengerCommsFacility>businessServices</PassengerCommsFacility>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Ruhezone in 1. Klasse</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__RZ</ojp:Code>
+                    <NuisanceFacility>mobilePhoneFreeZone</NuisanceFacility>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Gratis-Internet mit der App SBB FreeSurf</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__FS</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Familienzone ohne Spielplatz</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__FZ</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Platzreservierung möglich</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A___R</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:DestinationStopPointRef>8500010</ojp:DestinationStopPointRef>
                   <ojp:DestinationText>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Biel/Bienne</ojp:Text>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Basel SBB</ojp:Text>
                   </ojp:DestinationText>
                 </ojp:Service>
-                <ojp:LegTrack>
-                  <ojp:TrackSection>
-                    <ojp:TrackStart>
-                      <StopPointRef>8507000</StopPointRef>
-                      <ojp:LocationName>
-                        <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Bern</ojp:Text>
-                      </ojp:LocationName>
-                    </ojp:TrackStart>
-                    <ojp:TrackEnd>
-                      <StopPointRef>8504300</StopPointRef>
-                      <ojp:LocationName>
-                        <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Biel/Bienne</ojp:Text>
-                      </ojp:LocationName>
-                    </ojp:TrackEnd>
-                    <ojp:Duration>PT26M</ojp:Duration>
-                    <ojp:Length>33634</ojp:Length>
-                  </ojp:TrackSection>
-                </ojp:LegTrack>
                 <ojp:Extension>
                   <ojp:TransportTypeName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">InterRegio</ojp:Text>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">InterCity</ojp:Text>
                   </ojp:TransportTypeName>
                   <ojp:PublishedJourneyNumber>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">3369</ojp:Text>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">1074</ojp:Text>
                   </ojp:PublishedJourneyNumber>
                   <ojp:OperatorName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">BLS AG (bls)</ojp:Text>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Schweizerische Bundesbahnen SBB</ojp:Text>
                   </ojp:OperatorName>
                 </ojp:Extension>
               </ojp:TimedLeg>
@@ -327,58 +118,74 @@
               <ojp:TransferLeg>
                 <ojp:TransferMode>walk</ojp:TransferMode>
                 <ojp:LegStart>
-                  <StopPointRef>8504300</StopPointRef>
+                  <StopPointRef>8500218</StopPointRef>
                   <ojp:LocationName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Biel/Bienne</ojp:Text>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Olten</ojp:Text>
                   </ojp:LocationName>
                 </ojp:LegStart>
                 <ojp:LegEnd>
-                  <StopPointRef>8504300</StopPointRef>
+                  <StopPointRef>8500218</StopPointRef>
                   <ojp:LocationName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Biel/Bienne</ojp:Text>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Olten</ojp:Text>
                   </ojp:LocationName>
                 </ojp:LegEnd>
-                <ojp:TimeWindowStart>2023-05-01T16:38:00Z</ojp:TimeWindowStart>
-                <ojp:TimeWindowEnd>2023-05-01T16:45:00Z</ojp:TimeWindowEnd>
-                <ojp:Duration>PT7M</ojp:Duration>
-                <ojp:WalkDuration>PT4M</ojp:WalkDuration>
-                <ojp:BufferTime>PT3M</ojp:BufferTime>
+                <ojp:TimeWindowStart>2023-04-24T14:03:00Z</ojp:TimeWindowStart>
+                <ojp:TimeWindowEnd>2023-04-24T14:20:00Z</ojp:TimeWindowEnd>
+                <ojp:Duration>PT17M</ojp:Duration>
+                <ojp:WalkDuration>PT5M</ojp:WalkDuration>
+                <ojp:BufferTime>PT12M</ojp:BufferTime>
               </ojp:TransferLeg>
             </ojp:TripLeg>
             <ojp:TripLeg>
               <ojp:LegId>3</ojp:LegId>
               <ojp:TimedLeg>
                 <ojp:LegBoard>
-                  <StopPointRef>8504300</StopPointRef>
+                  <StopPointRef>8500218</StopPointRef>
                   <ojp:StopPointName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Biel/Bienne</ojp:Text>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Olten</ojp:Text>
                   </ojp:StopPointName>
                   <ojp:PlannedQuay>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">5</ojp:Text>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">7</ojp:Text>
                   </ojp:PlannedQuay>
                   <ojp:ServiceDeparture>
-                    <ojp:TimetabledTime>2023-05-01T16:45:00Z</ojp:TimetabledTime>
+                    <ojp:TimetabledTime>2023-04-24T14:20:00Z</ojp:TimetabledTime>
                   </ojp:ServiceDeparture>
                   <ojp:Order>1</ojp:Order>
                 </ojp:LegBoard>
-                <ojp:LegAlight>
-                  <StopPointRef>8504221</StopPointRef>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8502113</StopPointRef>
                   <ojp:StopPointName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Neuchâtel</ojp:Text>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Aarau</ojp:Text>
                   </ojp:StopPointName>
                   <ojp:PlannedQuay>
                     <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">3</ojp:Text>
                   </ojp:PlannedQuay>
                   <ojp:ServiceArrival>
-                    <ojp:TimetabledTime>2023-05-01T17:01:00Z</ojp:TimetabledTime>
+                    <ojp:TimetabledTime>2023-04-24T14:29:00Z</ojp:TimetabledTime>
                   </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2023-04-24T14:31:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
                   <ojp:Order>2</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegAlight>
+                  <StopPointRef>8503000</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Zürich HB</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:PlannedQuay>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">33</ojp:Text>
+                  </ojp:PlannedQuay>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2023-04-24T14:56:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:Order>3</ojp:Order>
                 </ojp:LegAlight>
                 <ojp:Service>
-                  <ojp:OperatingDayRef>2023-05-01</ojp:OperatingDayRef>
-                  <ojp:JourneyRef>ojp:91005:A:R:j23:1231:1530</ojp:JourneyRef>
+                  <ojp:OperatingDayRef>2023-04-24</ojp:OperatingDayRef>
+                  <ojp:JourneyRef>ojp:91005:A:H:j23:391:527</ojp:JourneyRef>
                   <LineRef>ojp:91005:A</LineRef>
-                  <DirectionRef>R</DirectionRef>
+                  <DirectionRef>H</DirectionRef>
                   <ojp:Mode>
                     <ojp:PtMode>rail</ojp:PtMode>
                     <RailSubmode>interRegionalRailService</RailSubmode>
@@ -395,9 +202,22 @@
                   <ojp:OperatorRef>ojp:11</ojp:OperatorRef>
                   <ojp:Attribute>
                     <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Restaurant</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__WR</ojp:Code>
+                    <RefreshmentFacility>restaurantService</RefreshmentFacility>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
                       <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Platzreservierung möglich</ojp:Text>
                     </ojp:Text>
                     <ojp:Code>A___R</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">VELOS: Reservierung obligatorisch</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__VR</ojp:Code>
                   </ojp:Attribute>
                   <ojp:Attribute>
                     <ojp:Text>
@@ -432,48 +252,17 @@
                     </ojp:Text>
                     <ojp:Code>A__TT</ojp:Code>
                   </ojp:Attribute>
-                  <ojp:Attribute>
-                    <ojp:Text>
-                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Restaurant</ojp:Text>
-                    </ojp:Text>
-                    <ojp:Code>A__WR</ojp:Code>
-                    <RefreshmentFacility>restaurantService</RefreshmentFacility>
-                  </ojp:Attribute>
-                  <ojp:Attribute>
-                    <ojp:Text>
-                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">VELOS: Reservierung obligatorisch</ojp:Text>
-                    </ojp:Text>
-                    <ojp:Code>A__VR</ojp:Code>
-                  </ojp:Attribute>
-                  <ojp:DestinationStopPointRef>8501120</ojp:DestinationStopPointRef>
+                  <ojp:DestinationStopPointRef>8506311</ojp:DestinationStopPointRef>
                   <ojp:DestinationText>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Lausanne</ojp:Text>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Rorschach</ojp:Text>
                   </ojp:DestinationText>
                 </ojp:Service>
-                <ojp:LegTrack>
-                  <ojp:TrackSection>
-                    <ojp:TrackStart>
-                      <StopPointRef>8504300</StopPointRef>
-                      <ojp:LocationName>
-                        <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Biel/Bienne</ojp:Text>
-                      </ojp:LocationName>
-                    </ojp:TrackStart>
-                    <ojp:TrackEnd>
-                      <StopPointRef>8504221</StopPointRef>
-                      <ojp:LocationName>
-                        <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Neuchâtel</ojp:Text>
-                      </ojp:LocationName>
-                    </ojp:TrackEnd>
-                    <ojp:Duration>PT16M</ojp:Duration>
-                    <ojp:Length>29128</ojp:Length>
-                  </ojp:TrackSection>
-                </ojp:LegTrack>
                 <ojp:Extension>
                   <ojp:TransportTypeName>
                     <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">InterCity</ojp:Text>
                   </ojp:TransportTypeName>
                   <ojp:PublishedJourneyNumber>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">1530</ojp:Text>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">527</ojp:Text>
                   </ojp:PublishedJourneyNumber>
                   <ojp:OperatorName>
                     <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Schweizerische Bundesbahnen SBB</ojp:Text>
@@ -494,15 +283,15 @@
         </ojp:Params>
       </ojp:OJPFareRequest>
       <ojp:OJPFareRequest>
-        <RequestTimestamp>2023-04-21T15:56:32.622073</RequestTimestamp>
+        <RequestTimestamp>2023-04-22T13:39:31.413497</RequestTimestamp>
         <ojp:TripFareRequest>
           <ojp:Trip>
-            <ojp:TripId>ID-ED31C304-C2A8-4009-BE5D-F8931DDEC711</ojp:TripId>
-            <ojp:Duration>PT51M</ojp:Duration>
-            <ojp:StartTime>2023-05-01T16:34:00Z</ojp:StartTime>
-            <ojp:EndTime>2023-05-01T17:25:00Z</ojp:EndTime>
-            <ojp:Transfers>1</ojp:Transfers>
-            <ojp:Distance>42704</ojp:Distance>
+            <ojp:TripId>ID-B085410C-8136-4BB2-BF4A-01F09240C397</ojp:TripId>
+            <ojp:Duration>PT56M</ojp:Duration>
+            <ojp:StartTime>2023-04-24T14:02:00Z</ojp:StartTime>
+            <ojp:EndTime>2023-04-24T14:58:00Z</ojp:EndTime>
+            <ojp:Transfers>0</ojp:Transfers>
+            <ojp:Distance>118216</ojp:Distance>
             <ojp:TripLeg>
               <ojp:LegId>1</ojp:LegId>
               <ojp:TimedLeg>
@@ -512,181 +301,99 @@
                     <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Bern</ojp:Text>
                   </ojp:StopPointName>
                   <ojp:PlannedQuay>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">13D-F</ojp:Text>
-                  </ojp:PlannedQuay>
-                  <ojp:ServiceDeparture>
-                    <ojp:TimetabledTime>2023-05-01T16:34:00Z</ojp:TimetabledTime>
-                  </ojp:ServiceDeparture>
-                  <ojp:Order>1</ojp:Order>
-                </ojp:LegBoard>
-                <ojp:LegAlight>
-                  <StopPointRef>8504483</StopPointRef>
-                  <ojp:StopPointName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Ins</ojp:Text>
-                  </ojp:StopPointName>
-                  <ojp:PlannedQuay>
                     <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">2</ojp:Text>
                   </ojp:PlannedQuay>
-                  <ojp:ServiceArrival>
-                    <ojp:TimetabledTime>2023-05-01T17:08:00Z</ojp:TimetabledTime>
-                  </ojp:ServiceArrival>
-                  <ojp:Order>10</ojp:Order>
-                </ojp:LegAlight>
-                <ojp:Service>
-                  <ojp:OperatingDayRef>2023-05-01</ojp:OperatingDayRef>
-                  <ojp:JourneyRef>ojp:91052::R:j23:54:16270</ojp:JourneyRef>
-                  <LineRef>ojp:91052:</LineRef>
-                  <DirectionRef>R</DirectionRef>
-                  <ojp:Mode>
-                    <ojp:PtMode>rail</ojp:PtMode>
-                    <RailSubmode>regionalRail</RailSubmode>
-                    <ojp:Name>
-                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Zug</ojp:Text>
-                    </ojp:Name>
-                    <ojp:ShortName>
-                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">S</ojp:Text>
-                    </ojp:ShortName>
-                  </ojp:Mode>
-                  <ojp:PublishedLineName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">S52</ojp:Text>
-                  </ojp:PublishedLineName>
-                  <ojp:OperatorRef>ojp:33</ojp:OperatorRef>
-                  <ojp:DestinationStopPointRef>8504483</ojp:DestinationStopPointRef>
-                  <ojp:DestinationText>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Ins</ojp:Text>
-                  </ojp:DestinationText>
-                </ojp:Service>
-                <ojp:LegTrack>
-                  <ojp:TrackSection>
-                    <ojp:TrackStart>
-                      <StopPointRef>8507000</StopPointRef>
-                      <ojp:LocationName>
-                        <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Bern</ojp:Text>
-                      </ojp:LocationName>
-                    </ojp:TrackStart>
-                    <ojp:TrackEnd>
-                      <StopPointRef>8504483</StopPointRef>
-                      <ojp:LocationName>
-                        <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Ins</ojp:Text>
-                      </ojp:LocationName>
-                    </ojp:TrackEnd>
-                    <ojp:Duration>PT34M</ojp:Duration>
-                    <ojp:Length>29586</ojp:Length>
-                  </ojp:TrackSection>
-                </ojp:LegTrack>
-                <ojp:Extension>
-                  <ojp:TransportTypeName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">S-Bahn</ojp:Text>
-                  </ojp:TransportTypeName>
-                  <ojp:PublishedJourneyNumber>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">16270</ojp:Text>
-                  </ojp:PublishedJourneyNumber>
-                  <ojp:OperatorName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">BLS AG (bls)</ojp:Text>
-                  </ojp:OperatorName>
-                </ojp:Extension>
-              </ojp:TimedLeg>
-            </ojp:TripLeg>
-            <ojp:TripLeg>
-              <ojp:LegId>2</ojp:LegId>
-              <ojp:TransferLeg>
-                <ojp:TransferMode>walk</ojp:TransferMode>
-                <ojp:LegStart>
-                  <StopPointRef>8504483</StopPointRef>
-                  <ojp:LocationName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Ins</ojp:Text>
-                  </ojp:LocationName>
-                </ojp:LegStart>
-                <ojp:LegEnd>
-                  <StopPointRef>8504483</StopPointRef>
-                  <ojp:LocationName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Ins</ojp:Text>
-                  </ojp:LocationName>
-                </ojp:LegEnd>
-                <ojp:TimeWindowStart>2023-05-01T17:08:00Z</ojp:TimeWindowStart>
-                <ojp:TimeWindowEnd>2023-05-01T17:12:00Z</ojp:TimeWindowEnd>
-                <ojp:Duration>PT4M</ojp:Duration>
-                <ojp:WalkDuration>PT3M</ojp:WalkDuration>
-                <ojp:BufferTime>PT1M</ojp:BufferTime>
-              </ojp:TransferLeg>
-            </ojp:TripLeg>
-            <ojp:TripLeg>
-              <ojp:LegId>3</ojp:LegId>
-              <ojp:TimedLeg>
-                <ojp:LegBoard>
-                  <StopPointRef>8504483</StopPointRef>
-                  <ojp:StopPointName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Ins</ojp:Text>
-                  </ojp:StopPointName>
                   <ojp:ServiceDeparture>
-                    <ojp:TimetabledTime>2023-05-01T17:12:00Z</ojp:TimetabledTime>
+                    <ojp:TimetabledTime>2023-04-24T14:02:00Z</ojp:TimetabledTime>
                   </ojp:ServiceDeparture>
                   <ojp:Order>1</ojp:Order>
                 </ojp:LegBoard>
                 <ojp:LegAlight>
-                  <StopPointRef>8504221</StopPointRef>
+                  <StopPointRef>8503000</StopPointRef>
                   <ojp:StopPointName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Neuchâtel</ojp:Text>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Zürich HB</ojp:Text>
                   </ojp:StopPointName>
                   <ojp:PlannedQuay>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">1</ojp:Text>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">34</ojp:Text>
                   </ojp:PlannedQuay>
                   <ojp:ServiceArrival>
-                    <ojp:TimetabledTime>2023-05-01T17:25:00Z</ojp:TimetabledTime>
+                    <ojp:TimetabledTime>2023-04-24T14:58:00Z</ojp:TimetabledTime>
                   </ojp:ServiceArrival>
-                  <ojp:Order>4</ojp:Order>
+                  <ojp:Order>2</ojp:Order>
                 </ojp:LegAlight>
                 <ojp:Service>
-                  <ojp:OperatingDayRef>2023-05-01</ojp:OperatingDayRef>
-                  <ojp:JourneyRef>ojp:91020:B:H:j23:82:14761</ojp:JourneyRef>
-                  <LineRef>ojp:91020:B</LineRef>
+                  <ojp:OperatingDayRef>2023-04-24</ojp:OperatingDayRef>
+                  <ojp:JourneyRef>ojp:91008:E:H:j23:188:825</ojp:JourneyRef>
+                  <LineRef>ojp:91008:E</LineRef>
                   <DirectionRef>H</DirectionRef>
                   <ojp:Mode>
                     <ojp:PtMode>rail</ojp:PtMode>
-                    <RailSubmode>regionalRail</RailSubmode>
+                    <RailSubmode>interRegionalRailService</RailSubmode>
                     <ojp:Name>
                       <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Zug</ojp:Text>
                     </ojp:Name>
                     <ojp:ShortName>
-                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">S</ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">IC</ojp:Text>
                     </ojp:ShortName>
                   </ojp:Mode>
                   <ojp:PublishedLineName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">S20</ojp:Text>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">IC8</ojp:Text>
                   </ojp:PublishedLineName>
-                  <ojp:OperatorRef>ojp:53</ojp:OperatorRef>
-                  <ojp:DestinationStopPointRef>8504221</ojp:DestinationStopPointRef>
+                  <ojp:OperatorRef>ojp:11</ojp:OperatorRef>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Platzreservierung möglich</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A___R</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Gratis-Internet mit der App SBB FreeSurf</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__FS</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Businesszone in 1. Klasse</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__BZ</ojp:Code>
+                    <FareClassFacility>firstClass</FareClassFacility>
+                    <PassengerCommsFacility>businessServices</PassengerCommsFacility>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Ruhezone in 1. Klasse</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__RZ</ojp:Code>
+                    <NuisanceFacility>mobilePhoneFreeZone</NuisanceFacility>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Familienwagen mit Spielplatz</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__FA</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Restaurant</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__WR</ojp:Code>
+                    <RefreshmentFacility>restaurantService</RefreshmentFacility>
+                  </ojp:Attribute>
+                  <ojp:DestinationStopPointRef>8506121</ojp:DestinationStopPointRef>
                   <ojp:DestinationText>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Neuchâtel</ojp:Text>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Romanshorn</ojp:Text>
                   </ojp:DestinationText>
                 </ojp:Service>
-                <ojp:LegTrack>
-                  <ojp:TrackSection>
-                    <ojp:TrackStart>
-                      <StopPointRef>8504483</StopPointRef>
-                      <ojp:LocationName>
-                        <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Ins</ojp:Text>
-                      </ojp:LocationName>
-                    </ojp:TrackStart>
-                    <ojp:TrackEnd>
-                      <StopPointRef>8504221</StopPointRef>
-                      <ojp:LocationName>
-                        <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Neuchâtel</ojp:Text>
-                      </ojp:LocationName>
-                    </ojp:TrackEnd>
-                    <ojp:Duration>PT13M</ojp:Duration>
-                    <ojp:Length>13118</ojp:Length>
-                  </ojp:TrackSection>
-                </ojp:LegTrack>
                 <ojp:Extension>
                   <ojp:TransportTypeName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">S-Bahn</ojp:Text>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">InterCity</ojp:Text>
                   </ojp:TransportTypeName>
                   <ojp:PublishedJourneyNumber>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">14761</ojp:Text>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">825</ojp:Text>
                   </ojp:PublishedJourneyNumber>
                   <ojp:OperatorName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Transports publics fribourgeois</ojp:Text>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Schweizerische Bundesbahnen SBB</ojp:Text>
                   </ojp:OperatorName>
                 </ojp:Extension>
               </ojp:TimedLeg>
@@ -704,15 +411,15 @@
         </ojp:Params>
       </ojp:OJPFareRequest>
       <ojp:OJPFareRequest>
-        <RequestTimestamp>2023-04-21T15:56:32.622073</RequestTimestamp>
+        <RequestTimestamp>2023-04-22T13:39:31.413497</RequestTimestamp>
         <ojp:TripFareRequest>
           <ojp:Trip>
-            <ojp:TripId>ID-873D381B-889F-4BED-97D6-2C9E268674CA</ojp:TripId>
-            <ojp:Duration>PT34M</ojp:Duration>
-            <ojp:StartTime>2023-05-01T16:53:00Z</ojp:StartTime>
-            <ojp:EndTime>2023-05-01T17:27:00Z</ojp:EndTime>
+            <ojp:TripId>ID-E59D7D3A-07DD-405C-A458-A605319BE9E9</ojp:TripId>
+            <ojp:Duration>PT60M</ojp:Duration>
+            <ojp:StartTime>2023-04-24T14:10:00Z</ojp:StartTime>
+            <ojp:EndTime>2023-04-24T15:10:00Z</ojp:EndTime>
             <ojp:Transfers>0</ojp:Transfers>
-            <ojp:Distance>42690</ojp:Distance>
+            <ojp:Distance>118183</ojp:Distance>
             <ojp:TripLeg>
               <ojp:LegId>1</ojp:LegId>
               <ojp:TimedLeg>
@@ -722,31 +429,282 @@
                     <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Bern</ojp:Text>
                   </ojp:StopPointName>
                   <ojp:PlannedQuay>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">5</ojp:Text>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">13</ojp:Text>
                   </ojp:PlannedQuay>
                   <ojp:ServiceDeparture>
-                    <ojp:TimetabledTime>2023-05-01T16:53:00Z</ojp:TimetabledTime>
+                    <ojp:TimetabledTime>2023-04-24T14:10:00Z</ojp:TimetabledTime>
                   </ojp:ServiceDeparture>
                   <ojp:Order>1</ojp:Order>
                 </ojp:LegBoard>
                 <ojp:LegAlight>
-                  <StopPointRef>8504221</StopPointRef>
+                  <StopPointRef>8503000</StopPointRef>
                   <ojp:StopPointName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Neuchâtel</ojp:Text>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Zürich HB</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:PlannedQuay>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">10</ojp:Text>
+                  </ojp:PlannedQuay>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2023-04-24T15:10:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:Order>2</ojp:Order>
+                </ojp:LegAlight>
+                <ojp:Service>
+                  <ojp:OperatingDayRef>2023-04-24</ojp:OperatingDayRef>
+                  <ojp:JourneyRef>ojp:9102H:Y:R:j23:44:1429</ojp:JourneyRef>
+                  <LineRef>ojp:9102H:Y</LineRef>
+                  <DirectionRef>R</DirectionRef>
+                  <ojp:Mode>
+                    <ojp:PtMode>rail</ojp:PtMode>
+                    <RailSubmode>interRegionalRailService</RailSubmode>
+                    <ojp:Name>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Zug</ojp:Text>
+                    </ojp:Name>
+                    <ojp:ShortName>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">IC</ojp:Text>
+                    </ojp:ShortName>
+                  </ojp:Mode>
+                  <ojp:PublishedLineName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">IC</ojp:Text>
+                  </ojp:PublishedLineName>
+                  <ojp:OperatorRef>ojp:11</ojp:OperatorRef>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Ruhezone in 1. Klasse</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__RZ</ojp:Code>
+                    <NuisanceFacility>mobilePhoneFreeZone</NuisanceFacility>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Gratis-Internet mit der App SBB FreeSurf</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__FS</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Familienzone ohne Spielplatz</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__FZ</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:DestinationStopPointRef>8503000</ojp:DestinationStopPointRef>
+                  <ojp:DestinationText>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Zürich HB</ojp:Text>
+                  </ojp:DestinationText>
+                </ojp:Service>
+                <ojp:Extension>
+                  <ojp:TransportTypeName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">InterCity</ojp:Text>
+                  </ojp:TransportTypeName>
+                  <ojp:PublishedJourneyNumber>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">1429</ojp:Text>
+                  </ojp:PublishedJourneyNumber>
+                  <ojp:OperatorName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Schweizerische Bundesbahnen SBB</ojp:Text>
+                  </ojp:OperatorName>
+                </ojp:Extension>
+              </ojp:TimedLeg>
+            </ojp:TripLeg>
+          </ojp:Trip>
+        </ojp:TripFareRequest>
+        <ojp:Params>
+          <ojp:FareAuthorityFilter>ch:1:NOVA</ojp:FareAuthorityFilter>
+          <ojp:PassengerCategory>Adult</ojp:PassengerCategory>
+          <ojp:TravelClass>second</ojp:TravelClass>
+          <ojp:Traveller>
+            <ojp:Age>25</ojp:Age>
+            <ojp:PassengerCategory>Adult</ojp:PassengerCategory>
+          </ojp:Traveller>
+        </ojp:Params>
+      </ojp:OJPFareRequest>
+      <ojp:OJPFareRequest>
+        <RequestTimestamp>2023-04-22T13:39:31.413497</RequestTimestamp>
+        <ojp:TripFareRequest>
+          <ojp:Trip>
+            <ojp:TripId>ID-07D024C4-4B05-4417-B03D-041476720801</ojp:TripId>
+            <ojp:Duration>PT57M</ojp:Duration>
+            <ojp:StartTime>2023-04-24T14:31:00Z</ojp:StartTime>
+            <ojp:EndTime>2023-04-24T15:28:00Z</ojp:EndTime>
+            <ojp:Transfers>0</ojp:Transfers>
+            <ojp:Distance>118215</ojp:Distance>
+            <ojp:TripLeg>
+              <ojp:LegId>1</ojp:LegId>
+              <ojp:TimedLeg>
+                <ojp:LegBoard>
+                  <StopPointRef>8507000</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Bern</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:PlannedQuay>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">6</ojp:Text>
+                  </ojp:PlannedQuay>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2023-04-24T14:31:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>1</ojp:Order>
+                </ojp:LegBoard>
+                <ojp:LegAlight>
+                  <StopPointRef>8503000</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Zürich HB</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:PlannedQuay>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">33</ojp:Text>
+                  </ojp:PlannedQuay>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2023-04-24T15:28:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:Order>2</ojp:Order>
+                </ojp:LegAlight>
+                <ojp:Service>
+                  <ojp:OperatingDayRef>2023-04-24</ojp:OperatingDayRef>
+                  <ojp:JourneyRef>ojp:91001:D:H:j23:313:725</ojp:JourneyRef>
+                  <LineRef>ojp:91001:D</LineRef>
+                  <DirectionRef>H</DirectionRef>
+                  <ojp:Mode>
+                    <ojp:PtMode>rail</ojp:PtMode>
+                    <RailSubmode>interRegionalRailService</RailSubmode>
+                    <ojp:Name>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Zug</ojp:Text>
+                    </ojp:Name>
+                    <ojp:ShortName>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">IC</ojp:Text>
+                    </ojp:ShortName>
+                  </ojp:Mode>
+                  <ojp:PublishedLineName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">IC1</ojp:Text>
+                  </ojp:PublishedLineName>
+                  <ojp:OperatorRef>ojp:11</ojp:OperatorRef>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Businesszone in 1. Klasse</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__BZ</ojp:Code>
+                    <FareClassFacility>firstClass</FareClassFacility>
+                    <PassengerCommsFacility>businessServices</PassengerCommsFacility>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Ruhezone in 1. Klasse</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__RZ</ojp:Code>
+                    <NuisanceFacility>mobilePhoneFreeZone</NuisanceFacility>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Gratis-Internet mit der App SBB FreeSurf</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__FS</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Familienwagen mit Spielplatz</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__FA</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Restaurant</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__WR</ojp:Code>
+                    <RefreshmentFacility>restaurantService</RefreshmentFacility>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Platzreservierung möglich</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A___R</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:DestinationStopPointRef>8506302</ojp:DestinationStopPointRef>
+                  <ojp:DestinationText>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">St. Gallen</ojp:Text>
+                  </ojp:DestinationText>
+                </ojp:Service>
+                <ojp:Extension>
+                  <ojp:TransportTypeName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">InterCity</ojp:Text>
+                  </ojp:TransportTypeName>
+                  <ojp:PublishedJourneyNumber>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">725</ojp:Text>
+                  </ojp:PublishedJourneyNumber>
+                  <ojp:OperatorName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Schweizerische Bundesbahnen SBB</ojp:Text>
+                  </ojp:OperatorName>
+                </ojp:Extension>
+              </ojp:TimedLeg>
+            </ojp:TripLeg>
+          </ojp:Trip>
+        </ojp:TripFareRequest>
+        <ojp:Params>
+          <ojp:FareAuthorityFilter>ch:1:NOVA</ojp:FareAuthorityFilter>
+          <ojp:PassengerCategory>Adult</ojp:PassengerCategory>
+          <ojp:TravelClass>second</ojp:TravelClass>
+          <ojp:Traveller>
+            <ojp:Age>25</ojp:Age>
+            <ojp:PassengerCategory>Adult</ojp:PassengerCategory>
+          </ojp:Traveller>
+        </ojp:Params>
+      </ojp:OJPFareRequest>
+      <ojp:OJPFareRequest>
+        <RequestTimestamp>2023-04-22T13:39:31.413497</RequestTimestamp>
+        <ojp:TripFareRequest>
+          <ojp:Trip>
+            <ojp:TripId>ID-2B68E161-862C-49C1-9A45-CBB594C941AD</ojp:TripId>
+            <ojp:Duration>PT1H19M</ojp:Duration>
+            <ojp:StartTime>2023-04-24T14:33:00Z</ojp:StartTime>
+            <ojp:EndTime>2023-04-24T15:52:00Z</ojp:EndTime>
+            <ojp:Transfers>1</ojp:Transfers>
+            <ojp:Distance>118208</ojp:Distance>
+            <ojp:TripLeg>
+              <ojp:LegId>1</ojp:LegId>
+              <ojp:TimedLeg>
+                <ojp:LegBoard>
+                  <StopPointRef>8507000</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Bern</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:PlannedQuay>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">12</ojp:Text>
+                  </ojp:PlannedQuay>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2023-04-24T14:33:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>1</ojp:Order>
+                </ojp:LegBoard>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8500218</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Olten</ojp:Text>
                   </ojp:StopPointName>
                   <ojp:PlannedQuay>
                     <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">4</ojp:Text>
                   </ojp:PlannedQuay>
                   <ojp:ServiceArrival>
-                    <ojp:TimetabledTime>2023-05-01T17:27:00Z</ojp:TimetabledTime>
+                    <ojp:TimetabledTime>2023-04-24T15:00:00Z</ojp:TimetabledTime>
                   </ojp:ServiceArrival>
-                  <ojp:Order>4</ojp:Order>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2023-04-24T15:02:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>2</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegAlight>
+                  <StopPointRef>8502113</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Aarau</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:PlannedQuay>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">2</ojp:Text>
+                  </ojp:PlannedQuay>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2023-04-24T15:11:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:Order>3</ojp:Order>
                 </ojp:LegAlight>
                 <ojp:Service>
-                  <ojp:OperatingDayRef>2023-05-01</ojp:OperatingDayRef>
-                  <ojp:JourneyRef>ojp:91066:A:H:j23:63:3236</ojp:JourneyRef>
-                  <LineRef>ojp:91066:A</LineRef>
-                  <DirectionRef>H</DirectionRef>
+                  <ojp:OperatingDayRef>2023-04-24</ojp:OperatingDayRef>
+                  <ojp:JourneyRef>ojp:91016:B:R:j23:395:2181</ojp:JourneyRef>
+                  <LineRef>ojp:91016:B</LineRef>
+                  <DirectionRef>R</DirectionRef>
                   <ojp:Mode>
                     <ojp:PtMode>rail</ojp:PtMode>
                     <RailSubmode>regionalRail</RailSubmode>
@@ -758,48 +716,326 @@
                     </ojp:ShortName>
                   </ojp:Mode>
                   <ojp:PublishedLineName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">IR66</ojp:Text>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">IR16</ojp:Text>
                   </ojp:PublishedLineName>
-                  <ojp:OperatorRef>ojp:33</ojp:OperatorRef>
+                  <ojp:OperatorRef>ojp:11</ojp:OperatorRef>
                   <ojp:Attribute>
                     <ojp:Text>
-                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Cateringzone / Automaten</ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Gratis-Internet mit der App SBB FreeSurf</ojp:Text>
                     </ojp:Text>
-                    <ojp:Code>A__SN</ojp:Code>
-                    <RefreshmentFacility>foodVendingMachine</RefreshmentFacility>
+                    <ojp:Code>A__FS</ojp:Code>
                   </ojp:Attribute>
-                  <ojp:DestinationStopPointRef>8504314</ojp:DestinationStopPointRef>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Businesszone in 1. Klasse</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__BZ</ojp:Code>
+                    <FareClassFacility>firstClass</FareClassFacility>
+                    <PassengerCommsFacility>businessServices</PassengerCommsFacility>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Familienwagen mit Spielplatz</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__FA</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:DestinationStopPointRef>8503000</ojp:DestinationStopPointRef>
                   <ojp:DestinationText>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">La Chaux-de-Fonds</ojp:Text>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Zürich HB</ojp:Text>
                   </ojp:DestinationText>
                 </ojp:Service>
-                <ojp:LegTrack>
-                  <ojp:TrackSection>
-                    <ojp:TrackStart>
-                      <StopPointRef>8507000</StopPointRef>
-                      <ojp:LocationName>
-                        <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Bern</ojp:Text>
-                      </ojp:LocationName>
-                    </ojp:TrackStart>
-                    <ojp:TrackEnd>
-                      <StopPointRef>8504221</StopPointRef>
-                      <ojp:LocationName>
-                        <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Neuchâtel</ojp:Text>
-                      </ojp:LocationName>
-                    </ojp:TrackEnd>
-                    <ojp:Duration>PT34M</ojp:Duration>
-                    <ojp:Length>42690</ojp:Length>
-                  </ojp:TrackSection>
-                </ojp:LegTrack>
                 <ojp:Extension>
                   <ojp:TransportTypeName>
                     <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">InterRegio</ojp:Text>
                   </ojp:TransportTypeName>
                   <ojp:PublishedJourneyNumber>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">3236</ojp:Text>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">2181</ojp:Text>
                   </ojp:PublishedJourneyNumber>
                   <ojp:OperatorName>
-                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">BLS AG (bls)</ojp:Text>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Schweizerische Bundesbahnen SBB</ojp:Text>
+                  </ojp:OperatorName>
+                </ojp:Extension>
+              </ojp:TimedLeg>
+            </ojp:TripLeg>
+            <ojp:TripLeg>
+              <ojp:LegId>2</ojp:LegId>
+              <ojp:TransferLeg>
+                <ojp:TransferMode>walk</ojp:TransferMode>
+                <ojp:LegStart>
+                  <StopPointRef>8502113</StopPointRef>
+                  <ojp:LocationName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Aarau</ojp:Text>
+                  </ojp:LocationName>
+                </ojp:LegStart>
+                <ojp:LegEnd>
+                  <StopPointRef>8502113</StopPointRef>
+                  <ojp:LocationName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Aarau</ojp:Text>
+                  </ojp:LocationName>
+                </ojp:LegEnd>
+                <ojp:TimeWindowStart>2023-04-24T15:11:00Z</ojp:TimeWindowStart>
+                <ojp:TimeWindowEnd>2023-04-24T15:23:00Z</ojp:TimeWindowEnd>
+                <ojp:Duration>PT12M</ojp:Duration>
+                <ojp:WalkDuration>PT4M</ojp:WalkDuration>
+                <ojp:BufferTime>PT8M</ojp:BufferTime>
+              </ojp:TransferLeg>
+            </ojp:TripLeg>
+            <ojp:TripLeg>
+              <ojp:LegId>3</ojp:LegId>
+              <ojp:TimedLeg>
+                <ojp:LegBoard>
+                  <StopPointRef>8502113</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Aarau</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:PlannedQuay>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">3</ojp:Text>
+                  </ojp:PlannedQuay>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2023-04-24T15:23:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>1</ojp:Order>
+                </ojp:LegBoard>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8502119</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Lenzburg</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:PlannedQuay>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">2</ojp:Text>
+                  </ojp:PlannedQuay>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2023-04-24T15:30:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2023-04-24T15:30:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>2</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegAlight>
+                  <StopPointRef>8503000</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Zürich HB</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:PlannedQuay>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">14</ojp:Text>
+                  </ojp:PlannedQuay>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2023-04-24T15:52:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:Order>3</ojp:Order>
+                </ojp:LegAlight>
+                <ojp:Service>
+                  <ojp:OperatingDayRef>2023-04-24</ojp:OperatingDayRef>
+                  <ojp:JourneyRef>ojp:91037::R:j23:344:2279</ojp:JourneyRef>
+                  <LineRef>ojp:91037:</LineRef>
+                  <DirectionRef>R</DirectionRef>
+                  <ojp:Mode>
+                    <ojp:PtMode>rail</ojp:PtMode>
+                    <RailSubmode>regionalRail</RailSubmode>
+                    <ojp:Name>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Zug</ojp:Text>
+                    </ojp:Name>
+                    <ojp:ShortName>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">IR</ojp:Text>
+                    </ojp:ShortName>
+                  </ojp:Mode>
+                  <ojp:PublishedLineName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">IR37</ojp:Text>
+                  </ojp:PublishedLineName>
+                  <ojp:OperatorRef>ojp:11</ojp:OperatorRef>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Gratis-Internet mit der App SBB FreeSurf</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__FS</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:DestinationStopPointRef>8503000</ojp:DestinationStopPointRef>
+                  <ojp:DestinationText>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Zürich HB</ojp:Text>
+                  </ojp:DestinationText>
+                </ojp:Service>
+                <ojp:Extension>
+                  <ojp:TransportTypeName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">InterRegio</ojp:Text>
+                  </ojp:TransportTypeName>
+                  <ojp:PublishedJourneyNumber>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">2279</ojp:Text>
+                  </ojp:PublishedJourneyNumber>
+                  <ojp:OperatorName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Schweizerische Bundesbahnen SBB</ojp:Text>
+                  </ojp:OperatorName>
+                </ojp:Extension>
+              </ojp:TimedLeg>
+            </ojp:TripLeg>
+          </ojp:Trip>
+        </ojp:TripFareRequest>
+        <ojp:Params>
+          <ojp:FareAuthorityFilter>ch:1:NOVA</ojp:FareAuthorityFilter>
+          <ojp:PassengerCategory>Adult</ojp:PassengerCategory>
+          <ojp:TravelClass>second</ojp:TravelClass>
+          <ojp:Traveller>
+            <ojp:Age>25</ojp:Age>
+            <ojp:PassengerCategory>Adult</ojp:PassengerCategory>
+          </ojp:Traveller>
+        </ojp:Params>
+      </ojp:OJPFareRequest>
+      <ojp:OJPFareRequest>
+        <RequestTimestamp>2023-04-22T13:39:31.413497</RequestTimestamp>
+        <ojp:TripFareRequest>
+          <ojp:Trip>
+            <ojp:TripId>ID-04F7F051-0CEE-4C9A-970E-F45610B95E98</ojp:TripId>
+            <ojp:Duration>PT1H21M</ojp:Duration>
+            <ojp:StartTime>2023-04-24T14:33:00Z</ojp:StartTime>
+            <ojp:EndTime>2023-04-24T15:54:00Z</ojp:EndTime>
+            <ojp:Transfers>0</ojp:Transfers>
+            <ojp:Distance>127477</ojp:Distance>
+            <ojp:TripLeg>
+              <ojp:LegId>1</ojp:LegId>
+              <ojp:TimedLeg>
+                <ojp:LegBoard>
+                  <StopPointRef>8507000</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Bern</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:PlannedQuay>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">12</ojp:Text>
+                  </ojp:PlannedQuay>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2023-04-24T14:33:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>1</ojp:Order>
+                </ojp:LegBoard>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8500218</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Olten</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:PlannedQuay>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">4</ojp:Text>
+                  </ojp:PlannedQuay>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2023-04-24T15:00:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2023-04-24T15:02:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>2</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8502113</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Aarau</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:PlannedQuay>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">2</ojp:Text>
+                  </ojp:PlannedQuay>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2023-04-24T15:11:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2023-04-24T15:14:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>3</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8500309</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Brugg AG</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:PlannedQuay>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">3</ojp:Text>
+                  </ojp:PlannedQuay>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2023-04-24T15:28:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2023-04-24T15:30:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>4</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8503504</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Baden</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:PlannedQuay>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">1</ojp:Text>
+                  </ojp:PlannedQuay>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2023-04-24T15:37:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2023-04-24T15:38:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>5</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegAlight>
+                  <StopPointRef>8503000</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Zürich HB</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:PlannedQuay>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">13</ojp:Text>
+                  </ojp:PlannedQuay>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2023-04-24T15:54:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:Order>6</ojp:Order>
+                </ojp:LegAlight>
+                <ojp:Service>
+                  <ojp:OperatingDayRef>2023-04-24</ojp:OperatingDayRef>
+                  <ojp:JourneyRef>ojp:91016:B:R:j23:395:2181</ojp:JourneyRef>
+                  <LineRef>ojp:91016:B</LineRef>
+                  <DirectionRef>R</DirectionRef>
+                  <ojp:Mode>
+                    <ojp:PtMode>rail</ojp:PtMode>
+                    <RailSubmode>regionalRail</RailSubmode>
+                    <ojp:Name>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Zug</ojp:Text>
+                    </ojp:Name>
+                    <ojp:ShortName>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">IR</ojp:Text>
+                    </ojp:ShortName>
+                  </ojp:Mode>
+                  <ojp:PublishedLineName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">IR16</ojp:Text>
+                  </ojp:PublishedLineName>
+                  <ojp:OperatorRef>ojp:11</ojp:OperatorRef>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Gratis-Internet mit der App SBB FreeSurf</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__FS</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Businesszone in 1. Klasse</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__BZ</ojp:Code>
+                    <FareClassFacility>firstClass</FareClassFacility>
+                    <PassengerCommsFacility>businessServices</PassengerCommsFacility>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Familienwagen mit Spielplatz</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__FA</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:DestinationStopPointRef>8503000</ojp:DestinationStopPointRef>
+                  <ojp:DestinationText>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Zürich HB</ojp:Text>
+                  </ojp:DestinationText>
+                </ojp:Service>
+                <ojp:Extension>
+                  <ojp:TransportTypeName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">InterRegio</ojp:Text>
+                  </ojp:TransportTypeName>
+                  <ojp:PublishedJourneyNumber>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">2181</ojp:Text>
+                  </ojp:PublishedJourneyNumber>
+                  <ojp:OperatorName>
+                    <ojp:Text xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="de">Schweizerische Bundesbahnen SBB</ojp:Text>
                   </ojp:OperatorName>
                 </ojp:Extension>
               </ojp:TimedLeg>

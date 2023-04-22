@@ -15,49 +15,74 @@
           </ns3:taxonomieKlassePfad>
         </ns1:angebotsFilter>
         <ns1:reisender ns1:alter="25" ns1:externeReisendenReferenzId="1234" ns1:reisendenTyp="PERSON"/>
-        <ns1:verbindung ns1:externeVerbindungsReferenzId="ID-B21CADB1-34CA-4698-B18B-BF055C34A027_1_1">
-          <ns1:segmentHinFahrt xmlns:ns3="http://nova.voev.ch/services/v14/vertrieb" ns3:einstieg="8507000" ns3:ausstieg="8504221" ns3:verwaltungsCode="000033" ns3:abfahrtsZeit="2023-05-01T15:53:00Z" ns3:ankunftsZeit="2023-05-01T16:27:00Z">
-            <ns3:verkehrsMittel ns3:gattungsCode="IR" ns3:verkehrsMittelNummer="91066"/>
+        <ns1:verbindung ns1:externeVerbindungsReferenzId="ID-43B2D490-EA13-423E-B9C7-32EAA3277069_1_3">
+          <ns1:segmentHinFahrt xmlns:ns3="http://nova.voev.ch/services/v14/vertrieb" ns3:einstieg="8507000" ns3:ausstieg="8500218" ns3:verwaltungsCode="000011" ns3:abfahrtsZeit="2023-04-24T12:36:00Z" ns3:ankunftsZeit="2023-04-24T13:03:00Z">
+            <ns3:verkehrsMittel ns3:gattungsCode="EC" ns3:verkehrsMittelNummer="9102"/>
             <ns3:zwischenHaltContext ns3:uicCode="8507000" ns3:tripContext="PLANNED"/>
-            <ns3:zwischenHaltContext ns3:uicCode="8504221" ns3:tripContext="PLANNED"/>
+            <ns3:zwischenHaltContext ns3:uicCode="8500218" ns3:tripContext="PLANNED"/>
           </ns1:segmentHinFahrt>
-        </ns1:verbindung>
-        <ns1:verbindung ns1:externeVerbindungsReferenzId="ID-48AD66EF-B080-4D31-BB10-061FE9B41FF0_1_1">
-          <ns1:segmentHinFahrt xmlns:ns3="http://nova.voev.ch/services/v14/vertrieb" ns3:einstieg="8507000" ns3:ausstieg="8504221" ns3:verwaltungsCode="000033" ns3:abfahrtsZeit="2023-05-01T16:08:00Z" ns3:ankunftsZeit="2023-05-01T16:56:00Z">
-            <ns3:verkehrsMittel ns3:gattungsCode="S" ns3:verkehrsMittelNummer="91005"/>
-            <ns3:zwischenHaltContext ns3:uicCode="8507000" ns3:tripContext="PLANNED"/>
-            <ns3:zwischenHaltContext ns3:uicCode="8504221" ns3:tripContext="PLANNED"/>
-          </ns1:segmentHinFahrt>
-        </ns1:verbindung>
-        <ns1:verbindung ns1:externeVerbindungsReferenzId="ID-7E27B56B-EA42-4E82-B197-2C2B78496DA9_1_3">
-          <ns1:segmentHinFahrt xmlns:ns3="http://nova.voev.ch/services/v14/vertrieb" ns3:einstieg="8507000" ns3:ausstieg="8504300" ns3:verwaltungsCode="000033" ns3:abfahrtsZeit="2023-05-01T16:12:00Z" ns3:ankunftsZeit="2023-05-01T16:38:00Z">
-            <ns3:verkehrsMittel ns3:gattungsCode="IR" ns3:verkehrsMittelNummer="91065"/>
-            <ns3:zwischenHaltContext ns3:uicCode="8507000" ns3:tripContext="PLANNED"/>
-            <ns3:zwischenHaltContext ns3:uicCode="8504300" ns3:tripContext="PLANNED"/>
-          </ns1:segmentHinFahrt>
-          <ns1:segmentHinFahrt xmlns:ns3="http://nova.voev.ch/services/v14/vertrieb" ns3:einstieg="8504300" ns3:ausstieg="8504221" ns3:verwaltungsCode="000011" ns3:abfahrtsZeit="2023-05-01T16:45:00Z" ns3:ankunftsZeit="2023-05-01T17:01:00Z">
+          <ns1:segmentHinFahrt xmlns:ns3="http://nova.voev.ch/services/v14/vertrieb" ns3:einstieg="8500218" ns3:ausstieg="8503000" ns3:verwaltungsCode="000011" ns3:abfahrtsZeit="2023-04-24T13:20:00Z" ns3:ankunftsZeit="2023-04-24T13:56:00Z">
             <ns3:verkehrsMittel ns3:gattungsCode="IC" ns3:verkehrsMittelNummer="91005"/>
-            <ns3:zwischenHaltContext ns3:uicCode="8504300" ns3:tripContext="PLANNED"/>
-            <ns3:zwischenHaltContext ns3:uicCode="8504221" ns3:tripContext="PLANNED"/>
+            <ns3:zwischenHaltContext ns3:uicCode="8500218" ns3:tripContext="PLANNED"/>
+            <ns3:zwischenHaltContext ns3:uicCode="8502113" ns3:tripContext="PLANNED"/>
+            <ns3:zwischenHaltContext ns3:uicCode="8503000" ns3:tripContext="PLANNED"/>
           </ns1:segmentHinFahrt>
         </ns1:verbindung>
-        <ns1:verbindung ns1:externeVerbindungsReferenzId="ID-ED31C304-C2A8-4009-BE5D-F8931DDEC711_1_3">
-          <ns1:segmentHinFahrt xmlns:ns3="http://nova.voev.ch/services/v14/vertrieb" ns3:einstieg="8507000" ns3:ausstieg="8504483" ns3:verwaltungsCode="000033" ns3:abfahrtsZeit="2023-05-01T16:34:00Z" ns3:ankunftsZeit="2023-05-01T17:08:00Z">
-            <ns3:verkehrsMittel ns3:gattungsCode="S" ns3:verkehrsMittelNummer="91052"/>
+        <ns1:verbindung ns1:externeVerbindungsReferenzId="ID-1B893C03-E88E-4176-AF55-9EDEB01DE07C_1_1">
+          <ns1:segmentHinFahrt xmlns:ns3="http://nova.voev.ch/services/v14/vertrieb" ns3:einstieg="8507000" ns3:ausstieg="8503000" ns3:verwaltungsCode="000011" ns3:abfahrtsZeit="2023-04-24T13:02:00Z" ns3:ankunftsZeit="2023-04-24T13:58:00Z">
+            <ns3:verkehrsMittel ns3:gattungsCode="IC" ns3:verkehrsMittelNummer="91081"/>
             <ns3:zwischenHaltContext ns3:uicCode="8507000" ns3:tripContext="PLANNED"/>
-            <ns3:zwischenHaltContext ns3:uicCode="8504483" ns3:tripContext="PLANNED"/>
-          </ns1:segmentHinFahrt>
-          <ns1:segmentHinFahrt xmlns:ns3="http://nova.voev.ch/services/v14/vertrieb" ns3:einstieg="8504483" ns3:ausstieg="8504221" ns3:verwaltungsCode="000053" ns3:abfahrtsZeit="2023-05-01T17:12:00Z" ns3:ankunftsZeit="2023-05-01T17:25:00Z">
-            <ns3:verkehrsMittel ns3:gattungsCode="S" ns3:verkehrsMittelNummer="91020"/>
-            <ns3:zwischenHaltContext ns3:uicCode="8504483" ns3:tripContext="PLANNED"/>
-            <ns3:zwischenHaltContext ns3:uicCode="8504221" ns3:tripContext="PLANNED"/>
+            <ns3:zwischenHaltContext ns3:uicCode="8503000" ns3:tripContext="PLANNED"/>
           </ns1:segmentHinFahrt>
         </ns1:verbindung>
-        <ns1:verbindung ns1:externeVerbindungsReferenzId="ID-873D381B-889F-4BED-97D6-2C9E268674CA_1_1">
-          <ns1:segmentHinFahrt xmlns:ns3="http://nova.voev.ch/services/v14/vertrieb" ns3:einstieg="8507000" ns3:ausstieg="8504221" ns3:verwaltungsCode="000033" ns3:abfahrtsZeit="2023-05-01T16:53:00Z" ns3:ankunftsZeit="2023-05-01T17:27:00Z">
-            <ns3:verkehrsMittel ns3:gattungsCode="IR" ns3:verkehrsMittelNummer="91066"/>
+        <ns1:verbindung ns1:externeVerbindungsReferenzId="ID-AAE7EAF2-7093-4831-8E6E-CB14752A6EB1_1_5">
+          <ns1:segmentHinFahrt xmlns:ns3="http://nova.voev.ch/services/v14/vertrieb" ns3:einstieg="8507000" ns3:ausstieg="8500218" ns3:verwaltungsCode="000011" ns3:abfahrtsZeit="2023-04-24T13:04:00Z" ns3:ankunftsZeit="2023-04-24T13:30:00Z">
+            <ns3:verkehrsMittel ns3:gattungsCode="IC" ns3:verkehrsMittelNummer="91006"/>
             <ns3:zwischenHaltContext ns3:uicCode="8507000" ns3:tripContext="PLANNED"/>
-            <ns3:zwischenHaltContext ns3:uicCode="8504221" ns3:tripContext="PLANNED"/>
+            <ns3:zwischenHaltContext ns3:uicCode="8500218" ns3:tripContext="PLANNED"/>
+          </ns1:segmentHinFahrt>
+          <ns1:segmentHinFahrt xmlns:ns3="http://nova.voev.ch/services/v14/vertrieb" ns3:einstieg="8500218" ns3:ausstieg="8502113" ns3:verwaltungsCode="000011" ns3:abfahrtsZeit="2023-04-24T13:35:00Z" ns3:ankunftsZeit="2023-04-24T13:44:00Z">
+            <ns3:verkehrsMittel ns3:gattungsCode="RE" ns3:verkehrsMittelNummer="9101"/>
+            <ns3:zwischenHaltContext ns3:uicCode="8500218" ns3:tripContext="PLANNED"/>
+            <ns3:zwischenHaltContext ns3:uicCode="8502113" ns3:tripContext="PLANNED"/>
+          </ns1:segmentHinFahrt>
+          <ns1:segmentHinFahrt xmlns:ns3="http://nova.voev.ch/services/v14/vertrieb" ns3:einstieg="8502113" ns3:ausstieg="8503000" ns3:verwaltungsCode="000011" ns3:abfahrtsZeit="2023-04-24T13:54:00Z" ns3:ankunftsZeit="2023-04-24T14:22:00Z">
+            <ns3:verkehrsMittel ns3:gattungsCode="RE" ns3:verkehrsMittelNummer="9101"/>
+            <ns3:zwischenHaltContext ns3:uicCode="8502113" ns3:tripContext="PLANNED"/>
+            <ns3:zwischenHaltContext ns3:uicCode="8502119" ns3:tripContext="PLANNED"/>
+            <ns3:zwischenHaltContext ns3:uicCode="8503000" ns3:tripContext="PLANNED"/>
+          </ns1:segmentHinFahrt>
+        </ns1:verbindung>
+        <ns1:verbindung ns1:externeVerbindungsReferenzId="ID-1AA815E8-666F-47ED-9272-6E22E2AE33AC_1_1">
+          <ns1:segmentHinFahrt xmlns:ns3="http://nova.voev.ch/services/v14/vertrieb" ns3:einstieg="8507000" ns3:ausstieg="8503000" ns3:verwaltungsCode="000011" ns3:abfahrtsZeit="2023-04-24T13:31:00Z" ns3:ankunftsZeit="2023-04-24T14:28:00Z">
+            <ns3:verkehrsMittel ns3:gattungsCode="IC" ns3:verkehrsMittelNummer="91001"/>
+            <ns3:zwischenHaltContext ns3:uicCode="8507000" ns3:tripContext="PLANNED"/>
+            <ns3:zwischenHaltContext ns3:uicCode="8503000" ns3:tripContext="PLANNED"/>
+          </ns1:segmentHinFahrt>
+        </ns1:verbindung>
+        <ns1:verbindung ns1:externeVerbindungsReferenzId="ID-66ADF40F-9A91-4A75-8D19-FAE5CD661F2C_1_3">
+          <ns1:segmentHinFahrt xmlns:ns3="http://nova.voev.ch/services/v14/vertrieb" ns3:einstieg="8507000" ns3:ausstieg="8502113" ns3:verwaltungsCode="000011" ns3:abfahrtsZeit="2023-04-24T13:33:00Z" ns3:ankunftsZeit="2023-04-24T14:11:00Z">
+            <ns3:verkehrsMittel ns3:gattungsCode="IR" ns3:verkehrsMittelNummer="91016"/>
+            <ns3:zwischenHaltContext ns3:uicCode="8507000" ns3:tripContext="PLANNED"/>
+            <ns3:zwischenHaltContext ns3:uicCode="8500218" ns3:tripContext="PLANNED"/>
+            <ns3:zwischenHaltContext ns3:uicCode="8502113" ns3:tripContext="PLANNED"/>
+          </ns1:segmentHinFahrt>
+          <ns1:segmentHinFahrt xmlns:ns3="http://nova.voev.ch/services/v14/vertrieb" ns3:einstieg="8502113" ns3:ausstieg="8503000" ns3:verwaltungsCode="000011" ns3:abfahrtsZeit="2023-04-24T14:23:00Z" ns3:ankunftsZeit="2023-04-24T14:52:00Z">
+            <ns3:verkehrsMittel ns3:gattungsCode="IR" ns3:verkehrsMittelNummer="91037"/>
+            <ns3:zwischenHaltContext ns3:uicCode="8502113" ns3:tripContext="PLANNED"/>
+            <ns3:zwischenHaltContext ns3:uicCode="8502119" ns3:tripContext="PLANNED"/>
+            <ns3:zwischenHaltContext ns3:uicCode="8503000" ns3:tripContext="PLANNED"/>
+          </ns1:segmentHinFahrt>
+        </ns1:verbindung>
+        <ns1:verbindung ns1:externeVerbindungsReferenzId="ID-B90CE393-6F7E-497A-8FC2-08F44EA04A01_1_1">
+          <ns1:segmentHinFahrt xmlns:ns3="http://nova.voev.ch/services/v14/vertrieb" ns3:einstieg="8507000" ns3:ausstieg="8503000" ns3:verwaltungsCode="000011" ns3:abfahrtsZeit="2023-04-24T13:33:00Z" ns3:ankunftsZeit="2023-04-24T14:54:00Z">
+            <ns3:verkehrsMittel ns3:gattungsCode="IR" ns3:verkehrsMittelNummer="91016"/>
+            <ns3:zwischenHaltContext ns3:uicCode="8507000" ns3:tripContext="PLANNED"/>
+            <ns3:zwischenHaltContext ns3:uicCode="8500218" ns3:tripContext="PLANNED"/>
+            <ns3:zwischenHaltContext ns3:uicCode="8502113" ns3:tripContext="PLANNED"/>
+            <ns3:zwischenHaltContext ns3:uicCode="8500309" ns3:tripContext="PLANNED"/>
+            <ns3:zwischenHaltContext ns3:uicCode="8503504" ns3:tripContext="PLANNED"/>
+            <ns3:zwischenHaltContext ns3:uicCode="8503000" ns3:tripContext="PLANNED"/>
           </ns1:segmentHinFahrt>
         </ns1:verbindung>
       </ns1:PreisAuskunftRequest>

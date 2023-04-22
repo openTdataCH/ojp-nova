@@ -7,6 +7,7 @@ from nova import ErstellePreisAuskunft, VerbindungPreisAuskunftRequest, ClientId
 from logger import log
 from ojp import Ojp, TimedLegStructure
 
+
 def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindungsSegment:
     einstieg = timed_leg.leg_board.stop_point_ref
     ausstieg = timed_leg.leg_alight.stop_point_ref
@@ -14,15 +15,18 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
     ankunfts_zeit = timed_leg.leg_alight.service_arrival.timetabled_time
 
     line_ref = timed_leg.service.line_ref
-    operator_ref = timed_leg.service.operator_ref  # TODO
-    gattungs_code = timed_leg.service.mode.short_name.text.value  # TODO
-    _, verkehrs_mittel_nummer, _ = line_ref.split(':')
+    operator_ref = timed_leg.service.operator_ref  # needs to be processed afterwards to get the verwaltungs_code
+    gattungs_code = timed_leg.service.mode.short_name.text.value  # is correct, but a bit of a hack
 
+    # unfortunately it is not in line_ref, but in Extension/ojp:PublishedJourneyNumber
+    _, verkehrs_mittel_nummer, _ = line_ref.split(':')
     # This is an other hack.
     verkehrs_mittel_nummer = ''.join(filter(lambda x: x.isdigit(), verkehrs_mittel_nummer))
+    #TODO could you set verkehrs_mittel_nummer to timed_leg.extension.publishedjourneynumber?
+    #verkehrs_mittel_nummber = xxxx
 
-    # TODO: Maybe the PublicThing from Extension should be used.
-    verwaltungs_code = "{:06}".format(int(operator_ref.split(':')[1]))
+    # Uses ojp:OperatorRef in service
+    verwaltungs_code = "{:06}".format(int(operator_ref.split(':')[1])) # takes e.g. ojp:11 and makes 000011 out of it
 
     leg_intermediates = timed_leg.leg_intermediates
     zwischenhalten = [timed_leg.leg_board.stop_point_ref] + [leg_intermediate.stop_point_ref
@@ -117,7 +121,7 @@ if __name__ == '__main__':
         fail_on_unknown_attributes=False,
     )
     parser = XmlParser(parser_config)
-    ojp = parser.parse('ojp_fare_request.xml', Ojp)
+    ojp = parser.parse('genrated/ojp_fare_request.xml', Ojp)
 
     if ojp:
         print(test_ojp_fare_request_to_nova_request(ojp))

@@ -1,9 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ojp:OJPFareDelivery xmlns="http://www.siri.org.uk/siri" xmlns:ojp="http://www.vdv.de/ojp">
-  <ResponseTimestamp>2023-04-21T15:56:33.554532</ResponseTimestamp>
+  <ResponseTimestamp>2023-04-22T12:46:39.013008</ResponseTimestamp>
   <Status>true</Status>
   <ojp:FareResult>
-    <ojp:ResultId>ID-ED31C304-C2A8-4009-BE5D-F8931DDEC711</ojp:ResultId>
+    <ojp:ResultId>ID-1AA815E8-666F-47ED-9272-6E22E2AE33AC</ojp:ResultId>
+    <ojp:TripFareResult>
+      <ojp:FromTripLegIdRef>1</ojp:FromTripLegIdRef>
+      <ojp:ToTripLegIdRef>1</ojp:ToTripLegIdRef>
+      <ojp:FareProduct>
+        <ojp:FareProductId>50125</ojp:FareProductId>
+        <ojp:FareProductName>TODO</ojp:FareProductName>
+        <ojp:FareAuthorityRef>TODO</ojp:FareAuthorityRef>
+        <ojp:FareAuthorityText>NOVA</ojp:FareAuthorityText>
+        <ojp:NetPrice>83.60</ojp:NetPrice>
+        <ojp:Currency>CHF</ojp:Currency>
+        <ojp:TravelClass>first</ojp:TravelClass>
+      </ojp:FareProduct>
+    </ojp:TripFareResult>
+    <ojp:TripFareResult>
+      <ojp:FromTripLegIdRef>1</ojp:FromTripLegIdRef>
+      <ojp:ToTripLegIdRef>1</ojp:ToTripLegIdRef>
+      <ojp:FareProduct>
+        <ojp:FareProductId>50125</ojp:FareProductId>
+        <ojp:FareProductName>TODO</ojp:FareProductName>
+        <ojp:FareAuthorityRef>TODO</ojp:FareAuthorityRef>
+        <ojp:FareAuthorityText>NOVA</ojp:FareAuthorityText>
+        <ojp:NetPrice>47.40</ojp:NetPrice>
+        <ojp:Currency>CHF</ojp:Currency>
+        <ojp:TravelClass>second</ojp:TravelClass>
+      </ojp:FareProduct>
+    </ojp:TripFareResult>
+  </ojp:FareResult>
+  <ojp:FareResult>
+    <ojp:ResultId>ID-B90CE393-6F7E-497A-8FC2-08F44EA04A01</ojp:ResultId>
+    <ojp:TripFareResult>
+      <ojp:FromTripLegIdRef>1</ojp:FromTripLegIdRef>
+      <ojp:ToTripLegIdRef>1</ojp:ToTripLegIdRef>
+      <ojp:FareProduct>
+        <ojp:FareProductId>50125</ojp:FareProductId>
+        <ojp:FareProductName>TODO</ojp:FareProductName>
+        <ojp:FareAuthorityRef>TODO</ojp:FareAuthorityRef>
+        <ojp:FareAuthorityText>NOVA</ojp:FareAuthorityText>
+        <ojp:NetPrice>47.40</ojp:NetPrice>
+        <ojp:Currency>CHF</ojp:Currency>
+        <ojp:TravelClass>second</ojp:TravelClass>
+      </ojp:FareProduct>
+    </ojp:TripFareResult>
+    <ojp:TripFareResult>
+      <ojp:FromTripLegIdRef>1</ojp:FromTripLegIdRef>
+      <ojp:ToTripLegIdRef>1</ojp:ToTripLegIdRef>
+      <ojp:FareProduct>
+        <ojp:FareProductId>50125</ojp:FareProductId>
+        <ojp:FareProductName>TODO</ojp:FareProductName>
+        <ojp:FareAuthorityRef>TODO</ojp:FareAuthorityRef>
+        <ojp:FareAuthorityText>NOVA</ojp:FareAuthorityText>
+        <ojp:NetPrice>83.60</ojp:NetPrice>
+        <ojp:Currency>CHF</ojp:Currency>
+        <ojp:TravelClass>first</ojp:TravelClass>
+      </ojp:FareProduct>
+    </ojp:TripFareResult>
+  </ojp:FareResult>
+  <ojp:FareResult>
+    <ojp:ResultId>ID-1B893C03-E88E-4176-AF55-9EDEB01DE07C</ojp:ResultId>
+    <ojp:TripFareResult>
+      <ojp:FromTripLegIdRef>1</ojp:FromTripLegIdRef>
+      <ojp:ToTripLegIdRef>1</ojp:ToTripLegIdRef>
+      <ojp:FareProduct>
+        <ojp:FareProductId>50125</ojp:FareProductId>
+        <ojp:FareProductName>TODO</ojp:FareProductName>
+        <ojp:FareAuthorityRef>TODO</ojp:FareAuthorityRef>
+        <ojp:FareAuthorityText>NOVA</ojp:FareAuthorityText>
+        <ojp:NetPrice>83.60</ojp:NetPrice>
+        <ojp:Currency>CHF</ojp:Currency>
+        <ojp:TravelClass>first</ojp:TravelClass>
+      </ojp:FareProduct>
+    </ojp:TripFareResult>
+    <ojp:TripFareResult>
+      <ojp:FromTripLegIdRef>1</ojp:FromTripLegIdRef>
+      <ojp:ToTripLegIdRef>1</ojp:ToTripLegIdRef>
+      <ojp:FareProduct>
+        <ojp:FareProductId>50125</ojp:FareProductId>
+        <ojp:FareProductName>TODO</ojp:FareProductName>
+        <ojp:FareAuthorityRef>TODO</ojp:FareAuthorityRef>
+        <ojp:FareAuthorityText>NOVA</ojp:FareAuthorityText>
+        <ojp:NetPrice>47.40</ojp:NetPrice>
+        <ojp:Currency>CHF</ojp:Currency>
+        <ojp:TravelClass>second</ojp:TravelClass>
+      </ojp:FareProduct>
+    </ojp:TripFareResult>
+  </ojp:FareResult>
+  <ojp:FareResult>
+    <ojp:ResultId>ID-43B2D490-EA13-423E-B9C7-32EAA3277069</ojp:ResultId>
     <ojp:TripFareResult>
       <ojp:FromTripLegIdRef>1</ojp:FromTripLegIdRef>
       <ojp:ToTripLegIdRef>3</ojp:ToTripLegIdRef>
@@ -12,9 +99,9 @@
         <ojp:FareProductName>TODO</ojp:FareProductName>
         <ojp:FareAuthorityRef>TODO</ojp:FareAuthorityRef>
         <ojp:FareAuthorityText>NOVA</ojp:FareAuthorityText>
-        <ojp:NetPrice>18.80</ojp:NetPrice>
+        <ojp:NetPrice>83.60</ojp:NetPrice>
         <ojp:Currency>CHF</ojp:Currency>
-        <ojp:TravelClass>second</ojp:TravelClass>
+        <ojp:TravelClass>first</ojp:TravelClass>
       </ojp:FareProduct>
     </ojp:TripFareResult>
     <ojp:TripFareResult>
@@ -25,9 +112,67 @@
         <ojp:FareProductName>TODO</ojp:FareProductName>
         <ojp:FareAuthorityRef>TODO</ojp:FareAuthorityRef>
         <ojp:FareAuthorityText>NOVA</ojp:FareAuthorityText>
-        <ojp:NetPrice>32.90</ojp:NetPrice>
+        <ojp:NetPrice>47.40</ojp:NetPrice>
+        <ojp:Currency>CHF</ojp:Currency>
+        <ojp:TravelClass>second</ojp:TravelClass>
+      </ojp:FareProduct>
+    </ojp:TripFareResult>
+  </ojp:FareResult>
+  <ojp:FareResult>
+    <ojp:ResultId>ID-AAE7EAF2-7093-4831-8E6E-CB14752A6EB1</ojp:ResultId>
+    <ojp:TripFareResult>
+      <ojp:FromTripLegIdRef>1</ojp:FromTripLegIdRef>
+      <ojp:ToTripLegIdRef>5</ojp:ToTripLegIdRef>
+      <ojp:FareProduct>
+        <ojp:FareProductId>50125</ojp:FareProductId>
+        <ojp:FareProductName>TODO</ojp:FareProductName>
+        <ojp:FareAuthorityRef>TODO</ojp:FareAuthorityRef>
+        <ojp:FareAuthorityText>NOVA</ojp:FareAuthorityText>
+        <ojp:NetPrice>83.60</ojp:NetPrice>
         <ojp:Currency>CHF</ojp:Currency>
         <ojp:TravelClass>first</ojp:TravelClass>
+      </ojp:FareProduct>
+    </ojp:TripFareResult>
+    <ojp:TripFareResult>
+      <ojp:FromTripLegIdRef>1</ojp:FromTripLegIdRef>
+      <ojp:ToTripLegIdRef>5</ojp:ToTripLegIdRef>
+      <ojp:FareProduct>
+        <ojp:FareProductId>50125</ojp:FareProductId>
+        <ojp:FareProductName>TODO</ojp:FareProductName>
+        <ojp:FareAuthorityRef>TODO</ojp:FareAuthorityRef>
+        <ojp:FareAuthorityText>NOVA</ojp:FareAuthorityText>
+        <ojp:NetPrice>47.40</ojp:NetPrice>
+        <ojp:Currency>CHF</ojp:Currency>
+        <ojp:TravelClass>second</ojp:TravelClass>
+      </ojp:FareProduct>
+    </ojp:TripFareResult>
+  </ojp:FareResult>
+  <ojp:FareResult>
+    <ojp:ResultId>ID-66ADF40F-9A91-4A75-8D19-FAE5CD661F2C</ojp:ResultId>
+    <ojp:TripFareResult>
+      <ojp:FromTripLegIdRef>1</ojp:FromTripLegIdRef>
+      <ojp:ToTripLegIdRef>3</ojp:ToTripLegIdRef>
+      <ojp:FareProduct>
+        <ojp:FareProductId>50125</ojp:FareProductId>
+        <ojp:FareProductName>TODO</ojp:FareProductName>
+        <ojp:FareAuthorityRef>TODO</ojp:FareAuthorityRef>
+        <ojp:FareAuthorityText>NOVA</ojp:FareAuthorityText>
+        <ojp:NetPrice>83.60</ojp:NetPrice>
+        <ojp:Currency>CHF</ojp:Currency>
+        <ojp:TravelClass>first</ojp:TravelClass>
+      </ojp:FareProduct>
+    </ojp:TripFareResult>
+    <ojp:TripFareResult>
+      <ojp:FromTripLegIdRef>1</ojp:FromTripLegIdRef>
+      <ojp:ToTripLegIdRef>3</ojp:ToTripLegIdRef>
+      <ojp:FareProduct>
+        <ojp:FareProductId>50125</ojp:FareProductId>
+        <ojp:FareProductName>TODO</ojp:FareProductName>
+        <ojp:FareAuthorityRef>TODO</ojp:FareAuthorityRef>
+        <ojp:FareAuthorityText>NOVA</ojp:FareAuthorityText>
+        <ojp:NetPrice>47.40</ojp:NetPrice>
+        <ojp:Currency>CHF</ojp:Currency>
+        <ojp:TravelClass>second</ojp:TravelClass>
       </ojp:FareProduct>
     </ojp:TripFareResult>
   </ojp:FareResult>

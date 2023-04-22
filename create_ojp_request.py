@@ -11,7 +11,7 @@ from ojp import Ojp, Ojprequest, ServiceRequest, OjptripRequest, PlaceContextStr
 def test_create_ojp_trip_request_simple_1() -> Ojp:
     origin='8507000'
     destination='8503000'
-    starttime=datetime.datetime.utcnow()+ datetime.timedelta(days=10) #10 days in the future
+    starttime=datetime.datetime.utcnow()+ datetime.timedelta(days=2) #10 days in the future
     return test_create_ojp_trip_request_long(origin,destination,starttime)
 
 # very long trip. Currently offers no result
