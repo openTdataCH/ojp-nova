@@ -4,7 +4,7 @@ from nova import ErstellePreisAuskunft, VerbindungPreisAuskunftRequest, ClientId
     TaxonomieFilter, TaxonomieKlassePfad, ReisendenInfoPreisAuskunft, ReisendenTypCode, VerbindungPreisAuskunft, \
     FahrplanVerbindungsSegment, VerkehrsMittelGattung, ZwischenHaltContextTripContext, \
     PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput
-from logger import log
+from logger import log,log_entry
 from ojp import Ojp, TimedLegStructure
 
 
@@ -13,7 +13,6 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
     ausstieg = timed_leg.leg_alight.stop_point_ref
     abfahrts_zeit = timed_leg.leg_board.service_departure.timetabled_time
     ankunfts_zeit = timed_leg.leg_alight.service_arrival.timetabled_time
-
     line_ref = timed_leg.service.line_ref
     operator_ref = timed_leg.service.operator_ref  # needs to be processed afterwards to get the verwaltungs_code
     gattungs_code = timed_leg.service.mode.short_name.text.value  # is correct, but a bit of a hack
@@ -138,7 +137,7 @@ if __name__ == '__main__':
         fail_on_unknown_attributes=False,
     )
     parser = XmlParser(parser_config)
-    ojp = parser.parse('genrated/ojp_fare_request.xml', Ojp)
+    ojp = parser.parse('generated/ojp_fare_request.xml', Ojp)
 
     if ojp:
         print(test_ojp_fare_request_to_nova_request(ojp))

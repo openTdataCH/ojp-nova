@@ -10,5 +10,7 @@ OJP_URL_API = "https://api.opentransportdata.swiss/ojp2020"
 OJP_TOKEN = ""
 HTTP_HOST = '127.0.0.1'
 HTTP_PORT = 8000
+HTTP_SLUG = "ojp2023"
 DEBUGGING = True
+LOGFILE = "generated/my_log.log"
 

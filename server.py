@@ -6,7 +6,7 @@ from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
 from map_nova_to_ojp import test_nova_to_ojp
 from map_ojp_to_ojp import map_ojp_trip_result_to_ojp_fare_request, parse_ojp
-from network_flow import test_nova_request_reply, call_ojp_2000
+from test_network_flow import test_nova_request_reply, call_ojp_2000
 
 from configuration import HTTP_HOST, HTTP_PORT
 
@@ -17,7 +17,7 @@ serializer = XmlSerializer(serializer_config)
 
 ns_map = {'': 'http://www.siri.org.uk/siri', 'ojp': 'http://www.vdv.de/ojp'}
 
-@app.post("/ojp2023", tags=["Open Journey Planner"])
+@app.post("/"+HTTP_SLUG, tags=["Open Journey Planner"])
 async def post_request(fastapi_req: Request):
     body = await fastapi_req.body()
 
