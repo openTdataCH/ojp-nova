@@ -78,7 +78,7 @@ if __name__ == '__main__':
     serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
     serializer = XmlSerializer(serializer_config)
 
-    soap = parser.parse('nova_response.xml', PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput)
+    soap = parser.parse('generated/nova_response.xml', PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput)
     if soap:
         ojp_fare_delivery = test_nova_to_ojp(soap)
         ojp_fare_delivery_xml = serializer.render(ojp_fare_delivery)

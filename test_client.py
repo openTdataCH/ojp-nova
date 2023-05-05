@@ -14,15 +14,18 @@ if __name__ == '__main__':
     ojp_trip_request = test_create_ojp_trip_request_simple_3()
     serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
     serializer = XmlSerializer(serializer_config)
-    url="http://"+HTTP_HOST+":"+str(HTTP_PORT)+"/"+HTTP_SLUG
+    if (HTTPS):
+        url="https://"+HTTP_HOST+":"+str(HTTP_PORT)+"/"+HTTP_SLUG
+    else:
+        url="http://"+HTTP_HOST+":"+str(HTTP_PORT)+"/"+HTTP_SLUG
     ojp_trip_request_xml = serializer.render(ojp_trip_request, ns_map=ns_map)
-    r = requests.post("http://127.0.0.1:8000/ojp2023", data=ojp_trip_request_xml.encode("utf-8"), verify=False)
+    r = requests.post(url, data=ojp_trip_request_xml.encode("utf-8"), verify=False)
     r.encoding = r.apparent_encoding
     print(r.text)
 
     ojp_trip_result = parse_ojp(r.text)
     ojp_fare_request = map_ojp_trip_result_to_ojp_fare_request(ojp_trip_result)
     ojp_fare_request_xml = serializer.render(ojp_fare_request, ns_map=ns_map)
-    r = requests.post("http://127.0.0.1:8000/ojp2023", data=ojp_fare_request_xml.encode("utf-8"), verify=False)
+    r = requests.post(url, data=ojp_fare_request_xml.encode("utf-8"), verify=False)
     r.encoding = r.apparent_encoding
     print(r.text)

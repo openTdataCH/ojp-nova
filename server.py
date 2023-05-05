@@ -8,7 +8,7 @@ from map_nova_to_ojp import test_nova_to_ojp
 from map_ojp_to_ojp import map_ojp_trip_result_to_ojp_fare_request, parse_ojp
 from test_network_flow import test_nova_request_reply, call_ojp_2000
 
-from configuration import HTTP_HOST, HTTP_PORT
+from configuration import HTTP_HOST, HTTP_PORT, HTTPS, SSL_CERTFILE, SSL_KEYFILE, HTTP_SLUG
 
 app = FastAPI(title="OJP2NOVA")
 
@@ -36,4 +36,7 @@ async def post_request(fastapi_req: Request):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host=HTTP_HOST, port=HTTP_PORT)
+    if (HTTPS):
+        uvicorn.run(app, host=HTTP_HOST, port=HTTP_PORT, ssl_keyfile=SSL_KEYFILE, ssl_certfile=SSL_CERTFILE)
+    else:
+        uvicorn.run(app, host=HTTP_HOST, port=HTTP_PORT)
