@@ -29,3 +29,11 @@ if __name__ == '__main__':
     r = requests.post(url, data=ojp_fare_request_xml.encode("utf-8"), verify=False)
     r.encoding = r.apparent_encoding
     print(r.text)
+
+    # faulty file sent to OJPFare must be handled gracefully
+    print("Testing faulty OJPFare request")
+    ojp_fare_request_xml = "<xml></xml>"
+    r = requests.post(url, data=ojp_fare_request_xml.encode("utf-8"), verify=False)
+    r.encoding = r.apparent_encoding
+    print(r.text)
+
