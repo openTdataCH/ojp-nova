@@ -22,17 +22,23 @@ async def post_request(fastapi_req: Request):
     body = await fastapi_req.body()
 
     ojp_fare_request = parse_ojp(body.decode('utf-8'))
-    if ojp_fare_request.ojprequest.service_request.ojpfare_request:
-        nova_response = test_nova_request_reply(ojp_fare_request)
-        if nova_response:
-            ojp_fare_result = test_nova_to_ojp(nova_response)
-            ojp_fare_result_xml = serializer.render(ojp_fare_result, ns_map=ns_map)
-            return Response(ojp_fare_result_xml, media_type="application/xml; charset=utf-8")
+    if ojp_fare_request.ojprequest:
+        if ojp_fare_request.ojprequest.service_request.ojpfare_request:
+            nova_response = test_nova_request_reply(ojp_fare_request)
+            if nova_response:
+                ojp_fare_result = test_nova_to_ojp(nova_response)
+                ojp_fare_result_xml = serializer.render(ojp_fare_result, ns_map=ns_map)
+                return Response(ojp_fare_result_xml, media_type="application/xml; charset=utf-8")
 
-        raise HTTPException(status_code=400, detail="There was no NOVA response")
+            # TODO: In band error error reply?
+            raise HTTPException(status_code=400, detail="There was no NOVA response")
 
-    elif ojp_fare_request.ojprequest:
-        return Response(call_ojp_2000(body.decode('utf-8')), media_type="application/xml; charset=utf-8")
+        else:
+            return Response(call_ojp_2000(body.decode('utf-8')), media_type="application/xml; charset=utf-8")
+
+    else:
+        # TODO: In band error error reply?
+        raise HTTPException(status_code=400, detail="There was no OJP request")
 
 if __name__ == "__main__":
     import uvicorn
