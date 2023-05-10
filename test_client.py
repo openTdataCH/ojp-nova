@@ -14,10 +14,12 @@ if __name__ == '__main__':
     ojp_trip_request = test_create_ojp_trip_request_simple_3()
     serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
     serializer = XmlSerializer(serializer_config)
+
     if (HTTPS):
-        url="https://"+HTTP_HOST+":"+str(HTTP_PORT)+"/"+HTTP_SLUG
+        url = f"https://{HTTP_HOST}:{HTTP_PORT}/{HTTP_SLUG}"
     else:
-        url="http://"+HTTP_HOST+":"+str(HTTP_PORT)+"/"+HTTP_SLUG
+        url = f"http://{HTTP_HOST}:{HTTP_PORT}/{HTTP_SLUG}"
+
     ojp_trip_request_xml = serializer.render(ojp_trip_request, ns_map=ns_map)
     r = requests.post(url, data=ojp_trip_request_xml.encode("utf-8"), verify=False)
     r.encoding = r.apparent_encoding
