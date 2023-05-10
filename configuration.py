@@ -19,3 +19,8 @@ HTTP_PORT = 8000
 HTTP_SLUG = "ojp2023"
 DEBUGGING = True
 LOGFILE = "generated/my_log.log"
+
+try:
+    from local_configuration import *
+except:
+    pass

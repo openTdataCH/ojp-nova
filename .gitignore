@@ -1,4 +1,4 @@
-configuration.py
+local_configuration.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
