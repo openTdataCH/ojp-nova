@@ -80,24 +80,26 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
 
         verbindungen += [VerbindungPreisAuskunft(externe_verbindungs_referenz_id=externeVerbindungsReferenzId + "_" + leg_start + "_" + leg_end, segment_hin_fahrt=segments)]
 
-    return PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput(body=PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput.Body(erstelle_preis_auskunft=ErstellePreisAuskunft(
-        preis_auskunft_request=VerbindungPreisAuskunftRequest(kunden_segmente_gruppieren=False,
-                                                              client_identifier=ClientIdentifier(
-                                                                  leistungs_vermittler=11, kanal_code=41,
-                                                                  verkaufs_stelle=16437, vertriebs_punkt=16437,
-                                                                  verkaufs_geraete_id="236"),
-                                                              correlation_kontext=CorrelationKontext(
-                                                                  correlation_id="87482634-560b-4da3-b6a1-155c37490fed",
-                                                                  geschaefts_prozess_id="1781786f-57ba-4e9a-bc29-287e2aa97f9a"),
-                                                              angebots_filter=[TaxonomieFilter(
-                                                                  produkt_taxonomie="Basistaxonomie",
-                                                                  taxonomie_klasse_pfad=[TaxonomieKlassePfad(
-                                                                      klassen_name="Einzelbillette")])],
-                                                              reisender=[ReisendenInfoPreisAuskunft(alter=age,
-                                                                                                    externe_reisenden_referenz_id="1234",
-                                                                                                    reisenden_typ=ReisendenTypCode.PERSON)],
-                                                              verbindung=verbindungen
-                                                              ))))
+    return PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput(
+        body=PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput.Body(
+            erstelle_preis_auskunft=ErstellePreisAuskunft(
+                preis_auskunft_request=VerbindungPreisAuskunftRequest(kunden_segmente_gruppieren=False,
+                                                                      client_identifier=ClientIdentifier(
+                                                                          leistungs_vermittler=11, kanal_code=41,
+                                                                          verkaufs_stelle=16437, vertriebs_punkt=16437,
+                                                                          verkaufs_geraete_id="236"),
+                                                                      correlation_kontext=CorrelationKontext(
+                                                                          correlation_id="87482634-560b-4da3-b6a1-155c37490fed",
+                                                                          geschaefts_prozess_id="1781786f-57ba-4e9a-bc29-287e2aa97f9a"),
+                                                                      angebots_filter=[TaxonomieFilter(
+                                                                          produkt_taxonomie="Basistaxonomie",
+                                                                          taxonomie_klasse_pfad=[TaxonomieKlassePfad(
+                                                                              klassen_name="Einzelbillette")])],
+                                                                      reisender=[ReisendenInfoPreisAuskunft(alter=age,
+                                                                                                            externe_reisenden_referenz_id="1234",
+                                                                                                            reisenden_typ=ReisendenTypCode.PERSON)],
+                                                                      verbindung=verbindungen
+                                                                      ))))
 
 def test_ojp_fare_request_to_nova_request(ojp: Ojp) -> PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput:
     from xsdata.formats.dataclass.serializers import XmlSerializer
