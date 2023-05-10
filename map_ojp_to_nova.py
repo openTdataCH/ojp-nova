@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
-
 from nova import ErstellePreisAuskunft, VerbindungPreisAuskunftRequest, ClientIdentifier, CorrelationKontext, \
     TaxonomieFilter, TaxonomieKlassePfad, ReisendenInfoPreisAuskunft, ReisendenTypCode, VerbindungPreisAuskunft, \
     FahrplanVerbindungsSegment, VerkehrsMittelGattung, ZwischenHaltContextTripContext, \
     PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput
-from logger import log,log_entry
+from logger import log
 from ojp import Ojp, TimedLegStructure
-
 
 def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindungsSegment:
     einstieg = timed_leg.leg_board.stop_point_ref
@@ -21,25 +19,12 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
     _, verkehrs_mittel_nummer, _ = line_ref.split(':')
     # This is an other hack.
     verkehrs_mittel_nummer = ''.join(filter(lambda x: x.isdigit(), verkehrs_mittel_nummer))
-    #Set verkehrs_mittel_nummer to timed_leg.extension.publishedjourneynumber?
-    #TODO improve the following hack
-    e=timed_leg.extension
-    p=e.__getattribute__('children')
-    i=0
-    t=""
-    while (i<len(p)):
-        qn=p[i].__getattribute__('qname')
-        if (qn=='{http://www.vdv.de/ojp}PublishedJourneyNumber'):
-            le=p[i].__getattribute__('children')
-            j=0
-            while (j<len(le)):
-                t=le[j].__getattribute__('text')
-                j=j+1
-        i=i+1
-    if (len(t)==0):
-        print('extraction of Extension/PublishedJourneyName went wrong')
-        exit(1)
-    verkehrs_mittel_nummer=t
+
+    try:
+        # Set verkehrs_mittel_nummer to timed_leg.extension.publishedjourneynumber?
+        verkehrs_mittel_nummer = [x.children[0].text for x in timed_leg.extension.children if x.qname == '{http://www.vdv.de/ojp}PublishedJourneyNumber'][0]
+    except:
+        pass
 
     # Uses ojp:OperatorRef in service
     verwaltungs_code = "{:06}".format(int(operator_ref.split(':')[1])) # takes e.g. ojp:11 and makes 000011 out of it
