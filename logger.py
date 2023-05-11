@@ -22,6 +22,7 @@ def log_entry(origin, destination, starttime,stoptime):
     logstr='"'+t+'";"'+origin+'";"'+destination+"';"+starttime+"';"+stoptime
     logger.info(logstr)
 
+# sets up the logger
 def setup_custom_logger():
     formatter = logging.Formatter(fmt='%(asctime)s %(levelname)-8s %(message)s',
                                   datefmt='%Y-%m-%d %H:%M:%S')
@@ -39,6 +40,7 @@ def setup_custom_logger():
 
     return logger
 
+# makes sure the log path exists
 import pathlib
 pathlib.Path("generated").mkdir(parents=True, exist_ok=True)
 logger = setup_custom_logger()

@@ -20,6 +20,7 @@ HTTP_SLUG = "ojp2023"
 DEBUGGING = True
 LOGFILE = "generated/my_log.log"
 
+# if there exists a local_configuration it is used.
 try:
     from local_configuration import *
 except:
