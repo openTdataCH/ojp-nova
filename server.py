@@ -9,7 +9,7 @@ from xsdata.models.datatype import XmlDateTime
 from map_nova_to_ojp import test_nova_to_ojp
 from map_ojp_to_ojp import parse_ojp
 from ojp import Ojp, Ojpresponse, ServiceDelivery, ServiceDeliveryStructure, \
-    OtherError
+    OtherError, OjpfareDelivery
 from test_network_flow import test_nova_request_reply, call_ojp_2000
 
 from configuration import HTTP_HOST, HTTP_PORT, HTTPS, SSL_CERTFILE, SSL_KEYFILE, HTTP_SLUG
@@ -37,9 +37,13 @@ async def post_request(fastapi_req: Request):
         if ojp_fare_request.ojprequest.service_request.ojpfare_request:
             nova_response = test_nova_request_reply(ojp_fare_request)
             if nova_response:
-                ojp_fare_result = test_nova_to_ojp(nova_response)
-                ojp_fare_result_xml = serializer.render(ojp_fare_result, ns_map=ns_map)
-                return Response(ojp_fare_result_xml, media_type="application/xml; charset=utf-8")
+                ojp_fare_delivery = test_nova_to_ojp(nova_response)
+                xml = serializer.render(Ojp(ojpresponse=
+                                            Ojpresponse(service_delivery=
+                                                        ServiceDelivery(response_timestamp=ojp_fare_delivery.response_timestamp,
+                                                                        producer_ref="OJP2NOVA",
+                                                                        ojpfare_delivery=[ojp_fare_delivery]))), ns_map=ns_map)
+                return Response(xml, media_type="application/xml; charset=utf-8")
 
             return Response(serializer.render(error_response("There was no NOVA response"), ns_map=ns_map), status_code=400, media_type="application/xml; charset=utf-8")
 
