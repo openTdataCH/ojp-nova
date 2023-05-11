@@ -33,7 +33,7 @@ starts a server on: http://127.0.0.1:8000
 run test_client.py 
 This will result in a TripRequest/TripDelivery to the OJP service. 
 
-## Processing the whole flow
+## Processing the whole flow (as an example)
 run network_flow.py 
 The following should happen 
 1. client: Builds an OJPTripRequest from "Bern" to "Zürich" with departure time now
@@ -46,9 +46,53 @@ The following should happen
 
 Everything is written to xml files for inspection
 
+## How the actual service is built
+### Component diagram
+![image](https://github.com/openTdataCH/ojp-nova/assets/24227470/b20eb8c9-6c94-4e77-8f5e-e870d59b16cf)
+```
+@startuml
+() OJP - [tyk API manager]
+[tyk API manager] - () OJP_int
+node "The new service" {
+  [https proxy] -   [OJPFare2Nova]
+}
+() OJP_int - [https proxy]
+[OJPFare2Nova] - () OJPTrip
+() OJPTrip - ["OJP Service (opentransportdata.swiss)"]
+[OJPFare2Nova] -- () "Preisauskunft"
+() "Preisauskunft" - [Nova service]
+@enduml
+```
 
-## TODO
-* Testing and debugging
-* wrap the flow in a container to run
-* Add some logging/restart check capabilites
-* Add heart beat
+
+## Sequence diagram
+
+![image](https://github.com/openTdataCH/ojp-nova/assets/24227470/ffc5e9be-bac9-4ca3-8da2-1dbd16516b02)
+
+```
+@startuml
+Client -> "tyk": OJPTripRequest
+tyk -> "https proxy": OJPTripRequest
+"https proxy" -> OJPFare2Nova: OJPTripRequest
+OJPFare2Nova -> "OJP Service": OJPTripRequest
+"OJP Service" --> OJPFare2Nova: OJPTripDelivery
+OJPFare2Nova --> "https proxy": OJPTripDelivery
+"https proxy" --> tyk: OJPTripDelivery
+tyk --> Client: OJPTripDelivery
+Client -> Client: "Wrap trips into OJPFare Request"
+Client -> tyk: OJPFareRequest
+tyk -> "https proxy": OJPFareRequest
+"https proxy" -> OJPFare2Nova: OJPFareRequest
+OJPFare2Nova -> OJPFare2Nova: MapOJP2Nova
+OJPFare2Nova -> Nova: "Nova Preisauskunft"
+Nova --> OJPFare2Nova : "Nova Preisauskunft"
+OJPFare2Nova -> OJPFare2Nova: "MapNova2OJP"
+OJPFare2Nova --> "https proxy": OJPFareDelivery
+"https proxy" --> tyk: OJPFareDelivery
+tyk --> Client: OJPFareDelivery
+@enduml
+```
+# License 
+The code is made available as MIT license. The generated code in the "nova" folder based on the WSDL is property of SBB (www.sbb.ch) and not part of the license.
+# Assistance
+If you need something about this project, just use the issue tracker: https://github.com/openTdataCH/ojp-nova/issues
