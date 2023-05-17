@@ -1,0 +1,9 @@
+from enum import Enum
+
+__NAMESPACE__ = "http://nova.voev.ch/services/v14/vertrieb"
+
+
+class Paketbedingung(Enum):
+    NUR_ZUSAMMEN_KAUFBAR = "NUR_ZUSAMMEN_KAUFBAR"
+    SEPARATER_KAUF_MOEGLICH = "SEPARATER_KAUF_MOEGLICH"
+    NUR_MIT_BESTEHENDEM_FAHRAUSWEIS = "NUR_MIT_BESTEHENDEM_FAHRAUSWEIS"
