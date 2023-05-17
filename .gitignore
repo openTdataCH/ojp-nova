@@ -1,5 +1,9 @@
-configuration.py
+local_configuration.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+/venv/*
+/.idea/*
+/generated/*.log
+/generated/*.xml

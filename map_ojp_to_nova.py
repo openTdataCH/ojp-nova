@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
-
 from nova import ErstellePreisAuskunft, VerbindungPreisAuskunftRequest, ClientIdentifier, CorrelationKontext, \
     TaxonomieFilter, TaxonomieKlassePfad, ReisendenInfoPreisAuskunft, ReisendenTypCode, VerbindungPreisAuskunft, \
     FahrplanVerbindungsSegment, VerkehrsMittelGattung, ZwischenHaltContextTripContext, \
     PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput
-
+from logger import log
 from ojp import Ojp, TimedLegStructure
 
 def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindungsSegment:
@@ -12,17 +11,23 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
     ausstieg = timed_leg.leg_alight.stop_point_ref
     abfahrts_zeit = timed_leg.leg_board.service_departure.timetabled_time
     ankunfts_zeit = timed_leg.leg_alight.service_arrival.timetabled_time
-
     line_ref = timed_leg.service.line_ref
-    operator_ref = timed_leg.service.operator_ref  # TODO
-    gattungs_code = timed_leg.service.mode.short_name.text.value  # TODO
-    _, verkehrs_mittel_nummer, _ = line_ref.split(':')
+    operator_ref = timed_leg.service.operator_ref  # needs to be processed afterwards to get the verwaltungs_code
+    gattungs_code = timed_leg.service.mode.short_name.text.value  # is correct, but a bit of a hack
 
+    # unfortunately it is not in line_ref, but in Extension/ojp:PublishedJourneyNumber
+    _, verkehrs_mittel_nummer, _ = line_ref.split(':')
     # This is an other hack.
     verkehrs_mittel_nummer = ''.join(filter(lambda x: x.isdigit(), verkehrs_mittel_nummer))
 
-    # TODO: Maybe the PublicThing from Extension should be used.
-    verwaltungs_code = "{:06}".format(int(operator_ref.split(':')[1]))
+    try:
+        # Set verkehrs_mittel_nummer to timed_leg.extension.publishedjourneynumber?
+        verkehrs_mittel_nummer = [x.children[0].text for x in timed_leg.extension.children if x.qname == '{http://www.vdv.de/ojp}PublishedJourneyNumber'][0]
+    except:
+        pass
+
+    # Uses ojp:OperatorRef in service
+    verwaltungs_code = "{:06}".format(int(operator_ref.split(':')[1])) # takes e.g. ojp:11 and makes 000011 out of it
 
     leg_intermediates = timed_leg.leg_intermediates
     zwischenhalten = [timed_leg.leg_board.stop_point_ref] + [leg_intermediate.stop_point_ref
@@ -75,24 +80,26 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
 
         verbindungen += [VerbindungPreisAuskunft(externe_verbindungs_referenz_id=externeVerbindungsReferenzId + "_" + leg_start + "_" + leg_end, segment_hin_fahrt=segments)]
 
-    return PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput(body=PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput.Body(erstelle_preis_auskunft=ErstellePreisAuskunft(
-        preis_auskunft_request=VerbindungPreisAuskunftRequest(kunden_segmente_gruppieren=False,
-                                                              client_identifier=ClientIdentifier(
-                                                                  leistungs_vermittler=11, kanal_code=41,
-                                                                  verkaufs_stelle=16437, vertriebs_punkt=16437,
-                                                                  verkaufs_geraete_id="236"),
-                                                              correlation_kontext=CorrelationKontext(
-                                                                  correlation_id="87482634-560b-4da3-b6a1-155c37490fed",
-                                                                  geschaefts_prozess_id="1781786f-57ba-4e9a-bc29-287e2aa97f9a"),
-                                                              angebots_filter=[TaxonomieFilter(
-                                                                  produkt_taxonomie="Basistaxonomie",
-                                                                  taxonomie_klasse_pfad=[TaxonomieKlassePfad(
-                                                                      klassen_name="Einzelbillette")])],
-                                                              reisender=[ReisendenInfoPreisAuskunft(alter=age,
-                                                                                                    externe_reisenden_referenz_id="1234",
-                                                                                                    reisenden_typ=ReisendenTypCode.PERSON)],
-                                                              verbindung=verbindungen
-                                                              ))))
+    return PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput(
+        body=PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput.Body(
+            erstelle_preis_auskunft=ErstellePreisAuskunft(
+                preis_auskunft_request=VerbindungPreisAuskunftRequest(kunden_segmente_gruppieren=False,
+                                                                      client_identifier=ClientIdentifier(
+                                                                          leistungs_vermittler=11, kanal_code=41,
+                                                                          verkaufs_stelle=16437, vertriebs_punkt=16437,
+                                                                          verkaufs_geraete_id="236"),
+                                                                      correlation_kontext=CorrelationKontext(
+                                                                          correlation_id="87482634-560b-4da3-b6a1-155c37490fed",
+                                                                          geschaefts_prozess_id="1781786f-57ba-4e9a-bc29-287e2aa97f9a"),
+                                                                      angebots_filter=[TaxonomieFilter(
+                                                                          produkt_taxonomie="Basistaxonomie",
+                                                                          taxonomie_klasse_pfad=[TaxonomieKlassePfad(
+                                                                              klassen_name="Einzelbillette")])],
+                                                                      reisender=[ReisendenInfoPreisAuskunft(alter=age,
+                                                                                                            externe_reisenden_referenz_id="1234",
+                                                                                                            reisenden_typ=ReisendenTypCode.PERSON)],
+                                                                      verbindung=verbindungen
+                                                                      ))))
 
 def test_ojp_fare_request_to_nova_request(ojp: Ojp) -> PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput:
     from xsdata.formats.dataclass.serializers import XmlSerializer
@@ -103,7 +110,7 @@ def test_ojp_fare_request_to_nova_request(ojp: Ojp) -> PreisAuskunftServicePortT
 
     nova_request = map_fare_request_to_nova_request(ojp)
     nova_request_xml = serializer.render(nova_request)
-    open('nova_request.xml', 'w').write(nova_request_xml)
+    log('generated/nova_request.xml',nova_request_xml)
     return nova_request
 
 if __name__ == '__main__':
@@ -117,7 +124,7 @@ if __name__ == '__main__':
         fail_on_unknown_attributes=False,
     )
     parser = XmlParser(parser_config)
-    ojp = parser.parse('ojp_fare_request.xml', Ojp)
+    ojp = parser.parse('generated/ojp_fare_request.xml', Ojp)
 
     if ojp:
         print(test_ojp_fare_request_to_nova_request(ojp))

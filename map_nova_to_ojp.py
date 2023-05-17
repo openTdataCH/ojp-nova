@@ -9,6 +9,7 @@ from nova import ErstellePreisAuskunftResponse, KlassenTypCode, PreisAuspraegung
     PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput
 from ojp import OjpfareDelivery, FareResultStructure, FareProductStructure, TripFareResultStructure, \
     TypeOfFareClassEnumeration
+from logger import log
 
 def map_klasse_to_fareclass(klasse: KlassenTypCode) -> TypeOfFareClassEnumeration:
     if klasse == KlassenTypCode.KLASSE_1:
@@ -27,8 +28,8 @@ def map_preis_auspraegung_to_trip_fare_result(preis_auspraegungen: List[PreisAus
         _, from_leg_id, to_leg_id = preis_auspraegung.externe_verbindungs_referenz_id.split('_')
         tripfareresults.append(TripFareResultStructure(from_trip_leg_id_ref=from_leg_id, to_trip_leg_id_ref=to_leg_id,
                                 fare_product=[FareProductStructure(fare_product_id=preis_auspraegung.produkt_nummer,
-                                                                   fare_product_name='TODO',
-                                                                   fare_authority_ref='TODO',
+                                                                   fare_product_name=preis_auspraegung.produkt_nummer,
+                                                                   fare_authority_ref='NOVA',
                                                                    fare_authority_text='NOVA',
                                                                    net_price=preis_auspraegung.preis.betrag,
                                                                    currency=preis_auspraegung.preis.waehrung,
@@ -77,9 +78,9 @@ if __name__ == '__main__':
     serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
     serializer = XmlSerializer(serializer_config)
 
-    soap = parser.parse('nova_response.xml', PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput)
+    soap = parser.parse('generated/nova_response.xml', PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput)
     if soap:
         ojp_fare_delivery = test_nova_to_ojp(soap)
         ojp_fare_delivery_xml = serializer.render(ojp_fare_delivery)
-        open('ojp_fare_reply.xml', 'w').write(ojp_fare_delivery_xml)
+        log('generated/ojp_fare_reply.xml', ojp_fare_delivery_xml)
         print(ojp_fare_delivery_xml)
