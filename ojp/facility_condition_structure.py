@@ -14,8 +14,8 @@ __NAMESPACE__ = "http://www.siri.org.uk/siri"
 @dataclass
 class FacilityConditionStructure:
     """
-    Description of any change concerning a MONITORED FACILITY New structure
-    defined in SIRI XSD 1.1 for Faclities Management.
+    Description of any change concerning a MONITORED FACILITY New structure defined
+    in SIRI XSD 1.1 for Faclities Management.
 
     :ivar facility: Facility affected by condition.
     :ivar facility_ref:

@@ -9,8 +9,7 @@ __NAMESPACE__ = "http://www.siri.org.uk/siri"
 @dataclass
 class TerminateSubscriptionResponseStructure(ResponseEndpointStructure):
     """
-    Type for Response to a request to terminate a subscription or
-    subscriptions.
+    Type for Response to a request to terminate a subscription or subscriptions.
 
     :ivar termination_response_status: Status of each subscription
         termnination response.

@@ -9,7 +9,7 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 @dataclass
 class CallAtNearStopStructure:
     """
-    indication of the walk distance and time to a nearby stop where relevant.
+    Indication of the walk distance and time to a nearby stop where relevant.
 
     :ivar call_at_stop: [same as CALL in SIRI] the meeting of a VEHICLE
         JOURNEY with a specific SCHEDULED STOP POINT .

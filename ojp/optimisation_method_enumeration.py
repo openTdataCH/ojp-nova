@@ -5,8 +5,8 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 
 class OptimisationMethodEnumeration(Enum):
     """
-    the types of algorithm that can be used for planning a journey (fastest,
-    least walking, etc).
+    The types of algorithm that can be used for planning a journey (fastest, least
+    walking, etc).
     """
     FASTEST = "fastest"
     MIN_CHANGES = "minChanges"

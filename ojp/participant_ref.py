@@ -6,8 +6,8 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 @dataclass
 class ParticipantRef:
     """
-    Reference to a Participant ([equivalent of PARTICIPANT in SIRI] IT system
-    that is participating in a communication with other participant(s))
+    Reference to a Participant ([equivalent of PARTICIPANT in SIRI] IT system that
+    is participating in a communication with other participant(s))
     """
     class Meta:
         namespace = "http://www.vdv.de/ojp"

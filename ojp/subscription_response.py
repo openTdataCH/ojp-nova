@@ -6,8 +6,8 @@ __NAMESPACE__ = "http://www.siri.org.uk/siri"
 
 @dataclass
 class SubscriptionResponse(SubscriptionResponseStructure):
-    """Response from Producer to Consumer to inform whether subscriptions have
-    been created.
+    """Response from Producer to Consumer to inform whether subscriptions have been
+    created.
 
     Answers a previous SubscriptionRequest.
     """

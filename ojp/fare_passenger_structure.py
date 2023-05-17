@@ -9,9 +9,8 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 @dataclass
 class FarePassengerStructure:
     """
-    [a specialised form of USER PROFILE in TM and NeTEx] attributes of a
-    passenger that influence the price to be paid by that passenger for a FARE
-    PRODUCT.
+    [a specialised form of USER PROFILE in TM and NeTEx] attributes of a passenger
+    that influence the price to be paid by that passenger for a FARE PRODUCT.
 
     :ivar age: Age of the passenger on the day of travel.
     :ivar passenger_category: sequence of all passenger categories, for

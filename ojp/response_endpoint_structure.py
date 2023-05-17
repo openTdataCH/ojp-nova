@@ -7,8 +7,10 @@ __NAMESPACE__ = "http://www.siri.org.uk/siri"
 
 @dataclass
 class ResponseEndpointStructure(ResponseStructure):
-    """Type for Unique reference to reponse. May be used to reference request in subsequent interactions. Used for WSDL
-    .
+    """Type for Unique reference to reponse.
+
+    May be used to reference request in subsequent interactions. Used
+    for WSDL .
 
     :ivar address: Address for further interaction.
     :ivar responder_ref: Participant reference that identifies

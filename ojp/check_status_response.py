@@ -6,8 +6,7 @@ __NAMESPACE__ = "http://www.siri.org.uk/siri"
 
 @dataclass
 class CheckStatusResponse(CheckStatusResponseStructure):
-    """Response from Producer to Consumer to inform whether services is
-    working.
+    """Response from Producer to Consumer to inform whether services is working.
 
     Answers a CheckStatusRequest.
     """

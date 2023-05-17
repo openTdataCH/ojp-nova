@@ -6,8 +6,8 @@ __NAMESPACE__ = "http://www.siri.org.uk/siri"
 
 @dataclass
 class EndpointDeniedAccessError(EndpointDeniedAccessStructure):
-    """Error:Endpoint to which a message is to be distributed did not allow
-    access by the cloient.
+    """Error:Endpoint to which a message is to be distributed did not allow access
+    by the cloient.
 
     +SIRI v2.0
     """

@@ -16,8 +16,8 @@ __NAMESPACE__ = "http://www.siri.org.uk/siri"
 
 @dataclass
 class OptionalTrafficElementStructure:
-    """An event which is not planned by the traffic OPERATOR, which is
-    affecting, or has the potential to affect traffic flow.
+    """An event which is not planned by the traffic OPERATOR, which is affecting,
+    or has the potential to affect traffic flow.
 
     This SIRI-SX element embeds the Datex2 TrafficElement, making all
     elements optional because they may alternatvielky be specified by

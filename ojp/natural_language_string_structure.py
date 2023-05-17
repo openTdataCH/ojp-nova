@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
-from typing import Optional
+from typing import Optional, Union
+from ojp.lang_value import LangValue
 
 __NAMESPACE__ = "http://www.siri.org.uk/siri"
 
@@ -16,7 +17,7 @@ class NaturalLanguageStringStructure:
             "min_length": 1,
         }
     )
-    lang: Optional[str] = field(
+    lang: Optional[Union[str, LangValue]] = field(
         default=None,
         metadata={
             "type": "Attribute",

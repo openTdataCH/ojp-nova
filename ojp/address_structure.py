@@ -8,9 +8,8 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 
 @dataclass
 class AddressStructure:
-    """descriptive data associated with a PLACE that can be used to describe
-    the unique geographical context of a PLACE for the purposes of identifying
-    it.
+    """Descriptive data associated with a PLACE that can be used to describe the
+    unique geographical context of a PLACE for the purposes of identifying it.
 
     May be refined as either a ROAD ADDRESS, a POSTAL ADDRESS or both
 

@@ -4,8 +4,8 @@ __NAMESPACE__ = "http://www.siri.org.uk/siri"
 
 
 class QualityIndexEnumeration(Enum):
-    """Classification of the quality of the prediction of the CALL, according
-    to a fixed list of values.
+    """Classification of the quality of the prediction of the CALL, according to a
+    fixed list of values.
 
     This may reflect a presentation policy, for example CALLs less than
     one minute behind target time are stiull classified as on-time.

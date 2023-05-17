@@ -13,8 +13,7 @@ from configuration import *
 from test_create_ojp_request import *
 from map_nova_to_ojp import test_nova_to_ojp
 from map_ojp_to_nova import test_ojp_fare_request_to_nova_request
-from map_ojp_to_ojp import parse_ojp, map_ojp_trip_result_to_ojp_fare_request, \
-    map_ojp_trip_result_to_ojp_refine_request
+from map_ojp_to_ojp import parse_ojp, map_ojp_trip_result_to_ojp_fare_request #, map_ojp_trip_result_to_ojp_refine_request
 from nova import PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunft
 from ojp import Ojp
 from logger import log

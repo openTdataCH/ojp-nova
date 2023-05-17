@@ -17,8 +17,8 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 @dataclass
 class PtModeFilterStructure:
     """
-    List of public transport modes ([from SIRI] mode of public transport
-    service, corresponds to VEHICLE MODE) to include or exclude.
+    List of public transport modes ([from SIRI] mode of public transport service,
+    corresponds to VEHICLE MODE) to include or exclude.
 
     :ivar exclude: Whether modes in list are to include or exclude from
         search. Default is exclude.

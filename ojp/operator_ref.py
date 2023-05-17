@@ -6,8 +6,7 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 @dataclass
 class OperatorRef:
     """
-    Reference to an Operator ([TMv6] company  providing public transport
-    services.)
+    Reference to an Operator ([TMv6] company  providing public transport services.)
     """
     class Meta:
         namespace = "http://www.vdv.de/ojp"

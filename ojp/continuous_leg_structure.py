@@ -14,8 +14,8 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 @dataclass
 class ContinuousLegStructure:
     """
-    [relates to a specific type of RIDE in TM and NeTEx] leg of a journey that
-    is not bound to a timetable.
+    [relates to a specific type of RIDE in TM and NeTEx] leg of a journey that is
+    not bound to a timetable.
 
     :ivar leg_start: Stop/Station where boarding is done
     :ivar leg_end: Stop/Station to alight

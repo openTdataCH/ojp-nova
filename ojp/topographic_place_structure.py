@@ -9,9 +9,9 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 
 @dataclass
 class TopographicPlaceStructure:
-    """[TMv6] A type of PLACE providing the topographical context when
-    searching for or presenting travel information, for example as the origin
-    or destination of a trip.
+    """[TMv6] A type of PLACE providing the topographical context when searching
+    for or presenting travel information, for example as the origin or destination
+    of a trip.
 
     It may be of any size (e.g. County,City, Town, Village) and of
     different specificity (e.g. Greater London, London, West End,

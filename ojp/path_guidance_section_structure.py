@@ -12,8 +12,8 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 
 @dataclass
 class PathGuidanceSectionStructure:
-    """[an extended definition of a NAVIGATION PATH in TMv6 to include the
-    textual navigation instructions] description of a piece of a TRIP.
+    """[an extended definition of a NAVIGATION PATH in TMv6 to include the textual
+    navigation instructions] description of a piece of a TRIP.
 
     May include geographic information, turn instructions and
     accessibility information

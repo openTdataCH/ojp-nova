@@ -9,8 +9,7 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 class OperatingDaysStructure:
     """
     [TMv6] day of public transport operation of which the characteristics are
-    defined in a specific SERVICE CALENDAR and which may last more than 24
-    hours.
+    defined in a specific SERVICE CALENDAR and which may last more than 24 hours.
 
     :ivar from_value: Start date of period.
     :ivar to: End date of period.

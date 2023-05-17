@@ -14,7 +14,7 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 
 @dataclass
 class TimedLegStructure:
-    """passenger TRIP LEG with timetabled schedule.
+    """Passenger TRIP LEG with timetabled schedule.
 
     Corresponds to a RIDE.
 

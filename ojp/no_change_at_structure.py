@@ -7,8 +7,8 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 @dataclass
 class NoChangeAtStructure:
     """
-    no-change-at restrictions for a TRIP, i.e. SCHEDULED STOP POINTs or STOP
-    PLACEs at which no TRANSFER is allowed within a TRIP.
+    No-change-at restrictions for a TRIP, i.e. SCHEDULED STOP POINTs or STOP PLACEs
+    at which no TRANSFER is allowed within a TRIP.
     """
     stop_point_ref: Optional[str] = field(
         default=None,

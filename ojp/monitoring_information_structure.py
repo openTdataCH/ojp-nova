@@ -11,9 +11,9 @@ __NAMESPACE__ = "http://www.siri.org.uk/siri"
 @dataclass
 class MonitoringInformationStructure:
     """
-    Allowed values for the monitoring conditions (frequency of mesurement,
-    etc): an automatic monitoring of the satus of a lift with pushed alert in
-    case of incident is very different from a daily manual/visual check.
+    Allowed values for the monitoring conditions (frequency of mesurement, etc): an
+    automatic monitoring of the satus of a lift with pushed alert in case of
+    incident is very different from a daily manual/visual check.
 
     :ivar monitoring_interval: Mean time interval between two
         measurements.
