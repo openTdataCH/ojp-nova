@@ -10,8 +10,8 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 @dataclass
 class TripLegStructure:
     """
-    a single stage of a TRIP that is made without change of MODE or service
-    (ie: between each interchange)
+    A single stage of a TRIP that is made without change of MODE or service (ie:
+    between each interchange)
 
     :ivar leg_id: Id of this trip leg. Unique within trip result.
     :ivar participant_ref: [equivalent of PARTICIPANT in SIRI] IT system

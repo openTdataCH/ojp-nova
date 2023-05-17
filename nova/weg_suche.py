@@ -9,8 +9,8 @@ __NAMESPACE__ = "http://nova.voev.ch/services/v14/vertrieb"
 
 @dataclass
 class WegSuche(Strecke):
-    """Die Klasse dient zur Formulierung von streckenbasierten Angebotsanfragen
-    auf Basis eines Wegs.
+    """Die Klasse dient zur Formulierung von streckenbasierten Angebotsanfragen auf
+    Basis eines Wegs.
 
     In diesem Fall führt die öV-Plattform selbst eine Wegsuche basierend
     auf dem übergebenen Weg durch.

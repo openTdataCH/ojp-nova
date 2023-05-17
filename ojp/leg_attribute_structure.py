@@ -8,10 +8,9 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 @dataclass
 class LegAttributeStructure(GeneralAttributeStructure):
     """
-    Attributes that are not valid on the whole service, but only on section of
-    a TRIP made on a single MODE without interchange between boarding and
-    alighting (facilities available on a specified (part of a) Leg of a VEHICLE
-    JOURNEY)
+    Attributes that are not valid on the whole service, but only on section of a
+    TRIP made on a single MODE without interchange between boarding and alighting
+    (facilities available on a specified (part of a) Leg of a VEHICLE JOURNEY)
 
     :ivar from_stop_seq_number: The attribute is valid from the stop
         point with this sequence number within the leg. If missing it is

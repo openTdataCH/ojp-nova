@@ -8,8 +8,7 @@ __NAMESPACE__ = "http://www.siri.org.uk/siri"
 @dataclass
 class AimedArrivalTime:
     """
-    Target arrival time of VEHICLE at stop according to latest working
-    timetable.
+    Target arrival time of VEHICLE at stop according to latest working timetable.
     """
     class Meta:
         namespace = "http://www.siri.org.uk/siri"

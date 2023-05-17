@@ -1,7 +1,6 @@
 from nova.abstract_angebot import AbstractAngebot
 from nova.abstract_leistung import AbstractLeistung
 from nova.abstract_rabatt_type import AbstractRabattType
-from nova.abteil_art import AbteilArt
 from nova.adresse import Adresse
 from nova.aktivierungs_angebots_request import AktivierungsAngebotsRequest
 from nova.anfrage_protokoll_level import AnfrageProtokollLevel
@@ -164,10 +163,6 @@ from nova.paketbedingung import Paketbedingung
 from nova.parkplatz import Parkplatz
 from nova.ping import Ping
 from nova.ping_response import PingResponse
-from nova.platz import Platz
-from nova.platz_lage import PlatzLage
-from nova.platz_verfuegbarkeit import PlatzVerfuegbarkeit
-from nova.platz_vergabe_kriterien import PlatzVergabeKriterien
 from nova.preis import Preis
 from nova.preis_auskunft_request import PreisAuskunftRequest
 from nova.preis_auskunft_response import PreisAuskunftResponse
@@ -194,9 +189,6 @@ from nova.reisenden_info import ReisendenInfo
 from nova.reisenden_info_preis_auskunft import ReisendenInfoPreisAuskunft
 from nova.reisenden_typ_code import ReisendenTypCode
 from nova.reisender import Reisender
-from nova.reservations_info import ReservationsInfo
-from nova.reservations_moeglichkeit import ReservationsMoeglichkeit
-from nova.reservierter_verbindungs_abschnitt import ReservierterVerbindungsAbschnitt
 from nova.sav_typ import SavTyp
 from nova.savaktion import Savaktion
 from nova.savangebot import Savangebot
@@ -239,8 +231,6 @@ from nova.verbindung_preis_auskunft import VerbindungPreisAuskunft
 from nova.verbindung_preis_auskunft_request import VerbindungPreisAuskunftRequest
 from nova.verbindung_tarifierbarkeits_request import VerbindungTarifierbarkeitsRequest
 from nova.verbindung_tarifierbarkeits_response import VerbindungTarifierbarkeitsResponse
-from nova.verbindungs_abschnitt import VerbindungsAbschnitt
-from nova.verbindungs_info import VerbindungsInfo
 from nova.verbund_leistungs_info import VerbundLeistungsInfo
 from nova.verbund_strecken_request import VerbundStreckenRequest
 from nova.verbund_strecken_typ import VerbundStreckenTyp
@@ -258,7 +248,6 @@ from nova.vertrags_daten import VertragsDaten
 from nova.vertrags_info import VertragsInfo
 from nova.vertriebs_request import VertriebsRequest
 from nova.vertriebs_response import VertriebsResponse
-from nova.wagen_art import WagenArt
 from nova.weg_angabe import WegAngabe
 from nova.weg_position import WegPosition
 from nova.weg_suche import WegSuche
@@ -287,7 +276,6 @@ __all__ = [
     "AbstractAngebot",
     "AbstractLeistung",
     "AbstractRabattType",
-    "AbteilArt",
     "Adresse",
     "AktivierungsAngebotsRequest",
     "AnfrageProtokollLevel",
@@ -450,10 +438,6 @@ __all__ = [
     "Parkplatz",
     "Ping",
     "PingResponse",
-    "Platz",
-    "PlatzLage",
-    "PlatzVerfuegbarkeit",
-    "PlatzVergabeKriterien",
     "Preis",
     "PreisAuskunftRequest",
     "PreisAuskunftResponse",
@@ -480,9 +464,6 @@ __all__ = [
     "ReisendenInfoPreisAuskunft",
     "ReisendenTypCode",
     "Reisender",
-    "ReservationsInfo",
-    "ReservationsMoeglichkeit",
-    "ReservierterVerbindungsAbschnitt",
     "SavTyp",
     "Savaktion",
     "Savangebot",
@@ -525,8 +506,6 @@ __all__ = [
     "VerbindungPreisAuskunftRequest",
     "VerbindungTarifierbarkeitsRequest",
     "VerbindungTarifierbarkeitsResponse",
-    "VerbindungsAbschnitt",
-    "VerbindungsInfo",
     "VerbundLeistungsInfo",
     "VerbundStreckenRequest",
     "VerbundStreckenTyp",
@@ -544,7 +523,6 @@ __all__ = [
     "VertragsInfo",
     "VertriebsRequest",
     "VertriebsResponse",
-    "WagenArt",
     "WegAngabe",
     "WegPosition",
     "WegSuche",

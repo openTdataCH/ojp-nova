@@ -5,7 +5,7 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 
 class IndividualModesEnumeration(Enum):
     """
-    modes which an individual powers themselves (such as walk, cycle)
+    Modes which an individual powers themselves (such as walk, cycle)
     """
     WALK = "walk"
     CYCLE = "cycle"

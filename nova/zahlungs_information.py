@@ -9,8 +9,8 @@ __NAMESPACE__ = "http://nova.voev.ch/services/v14/vertrieb"
 
 @dataclass
 class ZahlungsInformation:
-    """Die ZahlungsInformation beinhaltet Angaben zum Zahlungsmittel, mit dem
-    eine Leistung bezahlt wurde.
+    """Die ZahlungsInformation beinhaltet Angaben zum Zahlungsmittel, mit dem eine
+    Leistung bezahlt wurde.
 
     ZahlungsInformationen beinhalten zum heutigen Stand nur die
     Zahlungsart (bar, Visa, Master,...). Nicht enthalten ist das

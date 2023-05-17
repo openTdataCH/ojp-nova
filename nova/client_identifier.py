@@ -7,8 +7,8 @@ __NAMESPACE__ = "http://nova.voev.ch/services/v14/base"
 @dataclass
 class ClientIdentifier:
     """
-    Ein ClientIdentfier identifiziert den anfragenden Client (Serviceaufrufer)
-    aus fachlicher Sicht.
+    Ein ClientIdentfier identifiziert den anfragenden Client (Serviceaufrufer) aus
+    fachlicher Sicht.
 
     :ivar leistungs_vermittler:
     :ivar kanal_code:

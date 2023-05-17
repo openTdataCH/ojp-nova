@@ -15,9 +15,9 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 
 @dataclass
 class DatedJourneyStructure:
-    """[equivalent to  DATED VEHICLE JOURNEY in TMv6]  passenger carrying
-    VEHICLE JOURNEY for one specified DAY TYPE for which the pattern of working
-    is in principle defined by a SERVICE JOURNEY PATTERN.
+    """[equivalent to  DATED VEHICLE JOURNEY in TMv6]  passenger carrying VEHICLE
+    JOURNEY for one specified DAY TYPE for which the pattern of working is in
+    principle defined by a SERVICE JOURNEY PATTERN.
 
     DatedJourney details of a service include its operating days.
 

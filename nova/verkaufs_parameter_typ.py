@@ -10,8 +10,8 @@ __NAMESPACE__ = "http://nova.voev.ch/services/v14/vertriebsbase"
 @dataclass
 class VerkaufsParameterTyp:
     """
-    VerkaufsParameterTypen geben dem Leistungsvermittler an, welche Daten für
-    die Offerte einer Leistung zwingend anzugeben sind.
+    VerkaufsParameterTypen geben dem Leistungsvermittler an, welche Daten für die
+    Offerte einer Leistung zwingend anzugeben sind.
     """
     bezeichnung: Optional[LocalizedString] = field(
         default=None,

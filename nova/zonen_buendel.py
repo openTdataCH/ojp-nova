@@ -10,8 +10,8 @@ __NAMESPACE__ = "http://nova.voev.ch/services/v14/vertrieb"
 
 @dataclass
 class ZonenBuendel:
-    """Ein Zonenbündel beinhaltet Zonen, die gemeinsam (im Bündel) angeboten
-    werden (z.B.
+    """Ein Zonenbündel beinhaltet Zonen, die gemeinsam (im Bündel) angeboten werden
+    (z.B.
 
     die Libero Zonen 100+101 [Kern- und Ringzone Bern])
 

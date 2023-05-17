@@ -10,8 +10,8 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 class StopPointStructure:
     """
     [an extended view of SCHEDULED STOP POINT in TMv6] a SCHEDULED STOP POINT
-    extended by ACCESSIBILITY LIMITATION attributes and with identifier and
-    name where passengers can board or alight from vehicles.
+    extended by ACCESSIBILITY LIMITATION attributes and with identifier and name
+    where passengers can board or alight from vehicles.
 
     :ivar stop_point_ref:
     :ivar stop_point_name: Name or description of stop point for use in

@@ -11,9 +11,9 @@ class StopPlaceStructure:
     """
     [an extended view of STOP PLACE in TMv6] a PLACE extended by ACCESSIBILITY
     LIMITATION properties and some attributes of the associated equipment,
-    comprising one or more locations where vehicles may stop and where
-    passengers may board or leave vehicles or prepare their trip, and which
-    will usually have one or more wellknown names.
+    comprising one or more locations where vehicles may stop and where passengers
+    may board or leave vehicles or prepare their trip, and which will usually have
+    one or more wellknown names.
 
     :ivar stop_place_ref:
     :ivar stop_place_name: Name of this stop place for use in passenger

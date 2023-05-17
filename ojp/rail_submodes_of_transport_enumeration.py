@@ -5,8 +5,7 @@ __NAMESPACE__ = "http://www.siri.org.uk/siri"
 
 class RailSubmodesOfTransportEnumeration(Enum):
     """
-    Values for Rail ModesOfTransport: TPEG pti_table_02, train link
-    loc_table_13.
+    Values for Rail ModesOfTransport: TPEG pti_table_02, train link loc_table_13.
     """
     PTI2_0 = "pti2_0"
     LOC13_0 = "loc13_0"

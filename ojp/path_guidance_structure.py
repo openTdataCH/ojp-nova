@@ -7,7 +7,7 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 
 @dataclass
 class PathGuidanceStructure:
-    """description of a piece of a TRIP.
+    """Description of a piece of a TRIP.
 
     May include geographic information, turn instructions and
     accessibility information

@@ -6,8 +6,7 @@ __NAMESPACE__ = "http://www.siri.org.uk/siri"
 
 @dataclass
 class TerminateSubscriptionRequest1(TerminateSubscriptionRequestStructure):
-    """Request from Subscriber to Subscription Manager to terminate a
-    subscription.
+    """Request from Subscriber to Subscription Manager to terminate a subscription.
 
     Answered with a TerminateSubscriptionResponse.
     """

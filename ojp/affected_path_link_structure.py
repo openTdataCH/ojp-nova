@@ -12,8 +12,7 @@ __NAMESPACE__ = "http://www.siri.org.uk/siri"
 @dataclass
 class AffectedPathLinkStructure:
     """
-    Information about a CONNECTION link from a given stop affected by a
-    SITUATION.
+    Information about a CONNECTION link from a given stop affected by a SITUATION.
 
     :ivar link_ref: Identifier of CONNECTION link.
     :ivar link_name: Description of Link.  (Unbounded since SIRI 2.0)

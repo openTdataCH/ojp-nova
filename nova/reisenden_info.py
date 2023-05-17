@@ -12,8 +12,8 @@ __NAMESPACE__ = "http://nova.voev.ch/services/v14/vertrieb"
 @dataclass
 class ReisendenInfo:
     """
-    Dieses Objekt enthält Informationen zum Reisenden, die einen Einfluss auf
-    die Angebotsbestimmung haben.
+    Dieses Objekt enthält Informationen zum Reisenden, die einen Einfluss auf die
+    Angebotsbestimmung haben.
 
     :ivar mit_tkid:
     :ivar ohne_tkid:

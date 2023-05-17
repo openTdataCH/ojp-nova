@@ -15,7 +15,7 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 @dataclass
 class PlaceStructure:
     """
-    geographic PLACE of any type which may be specified as the origin or
+    Geographic PLACE of any type which may be specified as the origin or
     destination of a trip.
 
     :ivar stop_point:

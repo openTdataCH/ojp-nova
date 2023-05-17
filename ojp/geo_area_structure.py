@@ -8,8 +8,8 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 @dataclass
 class GeoAreaStructure:
     """
-    [specialisation of ZONE in TMv6] a LINK SEQUENCE (one-dimensional) forming
-    the boundary of a ZONE.
+    [specialisation of ZONE in TMv6] a LINK SEQUENCE (one-dimensional) forming the
+    boundary of a ZONE.
     """
     polyline_point: List[LocationStructure] = field(
         default_factory=list,

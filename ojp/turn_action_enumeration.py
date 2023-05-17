@@ -5,7 +5,7 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 
 class TurnActionEnumeration(Enum):
     """
-    the range of alternative turns that can be described.
+    The range of alternative turns that can be described.
     """
     SHARP_LEFT = "sharp left"
     LEFT = "left"

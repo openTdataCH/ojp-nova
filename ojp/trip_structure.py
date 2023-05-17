@@ -12,9 +12,9 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 @dataclass
 class TripStructure:
     """
-    [an extended form of PT TRIP in TM and NeTEx as it also includes the
-    initial and final access legs to and from public transport] whole journey
-    from passenger origin to passenger destination in one or more trip LEGs.
+    [an extended form of PT TRIP in TM and NeTEx as it also includes the initial
+    and final access legs to and from public transport] whole journey from
+    passenger origin to passenger destination in one or more trip LEGs.
 
     :ivar trip_id: Id of this trip for referencing purposes. Unique
         within trip response.
@@ -28,6 +28,15 @@ class TripStructure:
     :ivar operating_days_description: Textual description of the
         operation days, e.g. "monday to friday" or "not on holidays".
     :ivar situation_full_ref:
+    :ivar unplanned: Whether this trip is an additional one that has not
+        been planned. Default is false.
+    :ivar cancelled: Whether this trip is cancelled and will not be run.
+        Default is false.
+    :ivar deviation: Whether this trip deviates from the planned service
+        pattern. Default is false.
+    :ivar delayed: Whether this trip is delayed. Default is false.
+    :ivar unable: Whether this trip cannot be used, due to operational
+        delays and impossible transfers. Default is false.
     :ivar extension:
     """
     trip_id: Optional[str] = field(
@@ -112,6 +121,46 @@ class TripStructure:
         default_factory=list,
         metadata={
             "name": "SituationFullRef",
+            "type": "Element",
+            "namespace": "http://www.vdv.de/ojp",
+        }
+    )
+    unplanned: Optional[bool] = field(
+        default=None,
+        metadata={
+            "name": "Unplanned",
+            "type": "Element",
+            "namespace": "http://www.vdv.de/ojp",
+        }
+    )
+    cancelled: Optional[bool] = field(
+        default=None,
+        metadata={
+            "name": "Cancelled",
+            "type": "Element",
+            "namespace": "http://www.vdv.de/ojp",
+        }
+    )
+    deviation: Optional[bool] = field(
+        default=None,
+        metadata={
+            "name": "Deviation",
+            "type": "Element",
+            "namespace": "http://www.vdv.de/ojp",
+        }
+    )
+    delayed: Optional[bool] = field(
+        default=None,
+        metadata={
+            "name": "Delayed",
+            "type": "Element",
+            "namespace": "http://www.vdv.de/ojp",
+        }
+    )
+    unable: Optional[bool] = field(
+        default=None,
+        metadata={
+            "name": "Unable",
             "type": "Element",
             "namespace": "http://www.vdv.de/ojp",
         }

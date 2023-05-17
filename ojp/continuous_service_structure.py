@@ -16,8 +16,8 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 @dataclass
 class ContinuousServiceStructure:
     """
-    [a special form of SERVICE JOURNEY in TMv6] a vehicle movement on a
-    continuous, non-timetabled service.
+    [a special form of SERVICE JOURNEY in TMv6] a vehicle movement on a continuous,
+    non-timetabled service.
 
     :ivar continuous_mode: Continuous transport options.
     :ivar individual_mode: Individual transport options.

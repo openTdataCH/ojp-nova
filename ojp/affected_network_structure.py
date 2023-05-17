@@ -20,8 +20,7 @@ __NAMESPACE__ = "http://www.siri.org.uk/siri"
 
 @dataclass
 class AffectedNetworkStructure:
-    """Type for information about the parts of the network affected by an
-    incident.
+    """Type for information about the parts of the network affected by an incident.
 
     If not explclitly overrided Modes and submodes will be defaulted to
     any values present in the general Context.

@@ -4,8 +4,8 @@ __NAMESPACE__ = "http://www.siri.org.uk/siri"
 
 
 class VehicleStatusEnumeration(Enum):
-    """Classification of the State of the VEHICLE JORUNEY according to a fixed
-    list of values.
+    """Classification of the State of the VEHICLE JORUNEY according to a fixed list
+    of values.
 
     This may reflect a presentation policy, for example CALLs less than
     one minute behind target time are still classified as on-time.

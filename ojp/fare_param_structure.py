@@ -10,9 +10,8 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 @dataclass
 class FareParamStructure:
     """
-    [related to the FARE parameter model in TM and NeTEx] parameters which are
-    used to determine the price to be paid for a FARE PRODUCT by a specific
-    passenger.
+    [related to the FARE parameter model in TM and NeTEx] parameters which are used
+    to determine the price to be paid for a FARE PRODUCT by a specific passenger.
 
     :ivar fare_authority_filter: Fare authority for which to retrieve
         Fare information.

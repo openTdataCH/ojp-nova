@@ -7,8 +7,8 @@ __NAMESPACE__ = "http://nova.voev.ch/services/v14/base"
 
 @dataclass
 class TimeShift:
-    """Ein TimeShift kann optional einer VertriebsAnfrage mitgegeben werden, um
-    den Anfragezeitpunkt künstlich zu verschieben. Ein TimeShift besteht aus:
+    """Ein TimeShift kann optional einer VertriebsAnfrage mitgegeben werden, um den
+    Anfragezeitpunkt künstlich zu verschieben. Ein TimeShift besteht aus:
 
     - einer optionalen Anfragezeit, welche festgelegt werden kann
     - einem optionalen AnfrageDatumShift, welches das Anfragedatum entweder fix, oder per Delta festlegen kann

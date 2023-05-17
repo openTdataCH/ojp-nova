@@ -14,8 +14,7 @@ __NAMESPACE__ = "http://nova.voev.ch/services/v14/vertrieb"
 @dataclass
 class NutzungsInfo:
     """
-    Liefert Informationen zur Nutzung eines Angebots wie Geltungstage und
-    -zeiten.
+    Liefert Informationen zur Nutzung eines Angebots wie Geltungstage und -zeiten.
 
     :ivar tarif_stufe: @Deprecated Ersetzt durch
         AbstractAngebot/AbstractLeistung.tarifStufe. Wird in NOVA 15

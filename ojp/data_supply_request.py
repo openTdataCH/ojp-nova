@@ -6,8 +6,8 @@ __NAMESPACE__ = "http://www.siri.org.uk/siri"
 
 @dataclass
 class DataSupplyRequest(DataSupplyRequestStructure):
-    """Request from Consumer to Producer to fetch update previously notified by
-    a Data ready message.
+    """Request from Consumer to Producer to fetch update previously notified by a
+    Data ready message.
 
     Answered with a Service Delivery.
     """

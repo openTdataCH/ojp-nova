@@ -13,8 +13,8 @@ __NAMESPACE__ = "http://www.siri.org.uk/siri"
 @dataclass
 class AffectedConnectionLinkStructure:
     """
-    Type for a reference Information about a CONNECTION link from a given stop
-    that is affected by a SITUATION.
+    Type for a reference Information about a CONNECTION link from a given stop that
+    is affected by a SITUATION.
 
     :ivar connection_link_ref: Reference to a CONNECTION link affected
         by a  SITUATION.

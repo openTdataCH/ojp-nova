@@ -10,8 +10,7 @@ __NAMESPACE__ = "http://nova.voev.ch/services/v14/vertrieb"
 @dataclass
 class KaufRequest(VertriebsRequest):
     """
-    Das Objekt Kaufanfrage dient als Container für mehrere
-    LeistungsKaufanfragen.
+    Das Objekt Kaufanfrage dient als Container für mehrere LeistungsKaufanfragen.
     """
     leistungs_kauf_request: List[LeistungsKaufRequest] = field(
         default_factory=list,

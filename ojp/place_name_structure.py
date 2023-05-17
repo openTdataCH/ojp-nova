@@ -7,8 +7,8 @@ __NAMESPACE__ = "http://www.siri.org.uk/siri"
 
 @dataclass
 class PlaceNameStructure:
-    """Names of VIA points, used to help identify the LINE, for example, Luton
-    to Luton via Sutton.
+    """Names of VIA points, used to help identify the LINE, for example, Luton to
+    Luton via Sutton.
 
     Currently 3 in VDV. Should only be included if the detail level was
     requested.

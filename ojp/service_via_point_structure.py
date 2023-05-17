@@ -7,8 +7,8 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 
 @dataclass
 class ServiceViaPointStructure:
-    """[a specialisation of VIA in TMv6] STOP PLACE or SCHEDULED STOP POINT as
-    a VIA for a particular SERVICE PATTERN.
+    """[a specialisation of VIA in TMv6] STOP PLACE or SCHEDULED STOP POINT as a
+    VIA for a particular SERVICE PATTERN.
 
     Specialisation of a VIA.
 

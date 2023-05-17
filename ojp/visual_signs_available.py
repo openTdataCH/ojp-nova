@@ -7,8 +7,7 @@ __NAMESPACE__ = "http://www.ifopt.org.uk/acsb"
 @dataclass
 class VisualSignsAvailable:
     """
-    Whether a PLACE / SITE ELEMENT has Visual signals availble for the free
-    access.
+    Whether a PLACE / SITE ELEMENT has Visual signals availble for the free access.
     """
     class Meta:
         namespace = "http://www.ifopt.org.uk/acsb"

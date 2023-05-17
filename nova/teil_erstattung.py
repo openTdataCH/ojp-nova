@@ -7,9 +7,9 @@ __NAMESPACE__ = "http://nova.voev.ch/services/v14/vertrieb"
 
 @dataclass
 class TeilErstattung:
-    """Das Objekt Teilerstattung kann Teil einer ErstattungsAngebotsanfrage
-    sein. Eine Teilerstattung enthält (optional) Informationen zu:
+    """Das Objekt Teilerstattung kann Teil einer ErstattungsAngebotsanfrage sein.
 
+    Eine Teilerstattung enthält (optional) Informationen zu:
     - der Anzahl benutzter Einheiten Leistung der ErstattungsAngebotsanfrage - dem gewünschten Erstattungsdatum
     """
     letztes_gueltigkeits_datum: Optional[XmlDate] = field(

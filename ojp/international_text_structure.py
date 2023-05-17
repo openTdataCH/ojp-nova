@@ -8,8 +8,8 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 @dataclass
 class InternationalTextStructure:
     """
-    [a restricted view of ALTERNATIVE NAME in TMv6] alternative identified text
-    to be used in specified languages.
+    [a restricted view of ALTERNATIVE NAME in TMv6] alternative identified text to
+    be used in specified languages.
 
     :ivar text: Text content.
     :ivar text_id: Id of this text. May be used for matching to pre-

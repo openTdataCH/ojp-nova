@@ -5,7 +5,6 @@ from nova.geltungs_bereich import GeltungsBereich
 from nova.nutzungs_info import NutzungsInfo
 from nova.produkt_einfluss_faktor_gruppe import ProduktEinflussFaktorGruppe
 from nova.reise_gruppe_info import ReiseGruppeInfo
-from nova.reservations_info import ReservationsInfo
 from nova.vertrags_info import VertragsInfo
 
 __NAMESPACE__ = "http://nova.voev.ch/services/v14/vertrieb"
@@ -19,7 +18,6 @@ class Leistung(AbstractLeistung):
     anschliessend produziert.
 
     :ivar nutzungs_info:
-    :ivar reservations_info:
     :ivar aktivierte_leistung:
     :ivar produkt_einfluss_faktoren:
     :ivar geltungs_bereich:
@@ -32,14 +30,6 @@ class Leistung(AbstractLeistung):
         default=None,
         metadata={
             "name": "nutzungsInfo",
-            "type": "Element",
-            "namespace": "http://nova.voev.ch/services/v14/vertrieb",
-        }
-    )
-    reservations_info: List[ReservationsInfo] = field(
-        default_factory=list,
-        metadata={
-            "name": "reservationsInfo",
             "type": "Element",
             "namespace": "http://nova.voev.ch/services/v14/vertrieb",
         }

@@ -6,8 +6,8 @@ __NAMESPACE__ = "http://www.siri.org.uk/siri"
 
 @dataclass
 class DepartureProximityText(NaturalLanguageStringStructure):
-    """Arbitrary text string to show to indicate the status of the departure of
-    the vehicle, for example, “Boarding”, “GatesClosed”.
+    """Arbitrary text string to show to indicate the status of the departure of the
+    vehicle, for example, “Boarding”, “GatesClosed”.
 
     +SIRI v2.0
     """

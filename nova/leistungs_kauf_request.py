@@ -9,8 +9,8 @@ __NAMESPACE__ = "http://nova.voev.ch/services/v14/vertrieb"
 @dataclass
 class LeistungsKaufRequest:
     """
-    Eine LeistungsKaufanfrage enthält alle Informationen, die notwendig sind,
-    um die entsprechende Leistung kaufen zu können.
+    Eine LeistungsKaufanfrage enthält alle Informationen, die notwendig sind, um
+    die entsprechende Leistung kaufen zu können.
     """
     zahlungs_information: List[ZahlungsInformationRequest] = field(
         default_factory=list,

@@ -16,8 +16,8 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 @dataclass
 class FareProductStructure:
     """
-    [related to FARE PRODUCT in TM and NeTEx] different FARE PRODUCTs that may
-    be available with related information.
+    [related to FARE PRODUCT in TM and NeTEx] different FARE PRODUCTs that may be
+    available with related information.
 
     :ivar fare_product_id: Unique Id of the FareProduct.
     :ivar fare_product_name: printable FareProduct name

@@ -5,8 +5,8 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 
 class TypeOfFareClassEnumeration(Enum):
     """
-    classes of travel available on a particular service which will affect the
-    price to be paid.
+    Classes of travel available on a particular service which will affect the price
+    to be paid.
     """
     ALL = "all"
     FIRST = "first"

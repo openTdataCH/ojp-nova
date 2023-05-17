@@ -8,8 +8,8 @@ __NAMESPACE__ = "http://nova.voev.ch/services/v14/vertrieb"
 @dataclass
 class KundenSegmentProduktEinflussFaktor:
     """
-    Beschreibt als Spezialisierung eines Produkteinflussfaktors ein
-    spezifisches KundenSegment (1/1, ?, Erwachsene, Ermassigt).
+    Beschreibt als Spezialisierung eines Produkteinflussfaktors ein spezifisches
+    KundenSegment (1/1, ?, Erwachsene, Ermassigt).
 
     :ivar bezeichnung:
     :ivar kunden_segment_code: Code kann über Stammdaten zu den

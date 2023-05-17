@@ -11,8 +11,8 @@ class PathLinkStructure:
     """
     [TMv6] a link within a PLACE of or between two PLACEs (that is STOP PLACEs,
     ACCESS SPACEs or QUAYs,BOARDING POSITIONs,, POINTs OF INTEREST etc or PATH
-    JUNCTIONs) that represents a step in a possible route for pedestrians,
-    cyclists or other out-of-vehicle passengers within or between a PLACE.
+    JUNCTIONs) that represents a step in a possible route for pedestrians, cyclists
+    or other out-of-vehicle passengers within or between a PLACE.
 
     :ivar transition: Whether path is up down or level .
     :ivar access_feature_type: Type of physical feature of PATH LINK.

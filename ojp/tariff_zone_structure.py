@@ -7,9 +7,8 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 @dataclass
 class TariffZoneStructure:
     """
-    [a more clearly defined equivalent of TARIFF ZONE in TM and NeTEx] A ZONE
-    used to define a zonal fare structure in a zone-counting or zone-matrix
-    system.
+    [a more clearly defined equivalent of TARIFF ZONE in TM and NeTEx] A ZONE used
+    to define a zonal fare structure in a zone-counting or zone-matrix system.
 
     :ivar tariff_zone_ref:
     :ivar tariff_zone_text: Text describing the fare zone. Passengers

@@ -9,8 +9,8 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 @dataclass
 class LegIntermediateStructure:
     """
-    Describes the situation at a stop or station that lies between the LegBoard
-    and LegAlight stop or station including time-related information.
+    Describes the situation at a stop or station that lies between the LegBoard and
+    LegAlight stop or station including time-related information.
 
     :ivar stop_point_ref:
     :ivar stop_point_name: Name or description of stop point for use in

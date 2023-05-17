@@ -6,8 +6,7 @@ __NAMESPACE__ = "http://nova.voev.ch/services/v14/vertrieb"
 
 @dataclass
 class Zone:
-    """Repräsentiert eine Zone eines Tarifverbunds in der ein Ticket gültig
-    ist.
+    """Repräsentiert eine Zone eines Tarifverbunds in der ein Ticket gültig ist.
 
     Zonen kommen bei der Tarifierung von Verbunds- und City-Tickets zur
     Anwendung. Eine Zone wird durch einen Code sowie passender

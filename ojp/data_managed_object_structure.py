@@ -9,9 +9,9 @@ __NAMESPACE__ = "http://www.ifopt.org.uk/ifopt"
 @dataclass
 class DataManagedObjectStructure(VersionedObjectStructure):
     """
-    Abstract Type for DATA MANAGED OBJECT, that is an object that may be
-    assigned a RESPONSIBILITY SET dictating a responsbile ORGANISATION and/or
-    ADMINISTRATIVE ZONE.
+    Abstract Type for DATA MANAGED OBJECT, that is an object that may be assigned a
+    RESPONSIBILITY SET dictating a responsbile ORGANISATION and/or ADMINISTRATIVE
+    ZONE.
 
     :ivar managed_by_area_ref: ADMINISTRATIVE ZONEthat manages object.
         If absent then manager same as for containing parent of object.

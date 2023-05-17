@@ -12,7 +12,7 @@ __NAMESPACE__ = "http://nova.voev.ch/services/v14/preisauskunft"
 @dataclass
 class PreisAuskunftRequest:
     """
-    abstrakte Basisklasse für ProduktPreisAuskunft und VerbindungPreisAuskunft.
+    Abstrakte Basisklasse für ProduktPreisAuskunft und VerbindungPreisAuskunft.
     """
     client_identifier: Optional[ClientIdentifier] = field(
         default=None,

@@ -12,8 +12,8 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 @dataclass
 class StopEventParamStructure:
     """
-    Request specific parameters (parameters which define what is to be included
-    in a Stop  Event result)
+    Request specific parameters (parameters which define what is to be included in
+    a Stop  Event result)
 
     :ivar pt_mode_filter: Modes to be considered in stop events.
     :ivar line_filter: Lines/Directions to include/exclude.

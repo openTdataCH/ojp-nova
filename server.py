@@ -38,12 +38,16 @@ async def post_request(fastapi_req: Request):
             nova_response = test_nova_request_reply(ojp_fare_request)
             if nova_response:
                 ojp_fare_delivery = test_nova_to_ojp(nova_response)
-                xml = serializer.render(Ojp(ojpresponse=
-                                            Ojpresponse(service_delivery=
-                                                        ServiceDelivery(response_timestamp=ojp_fare_delivery.response_timestamp,
-                                                                        producer_ref="OJP2NOVA",
-                                                                        ojpfare_delivery=[ojp_fare_delivery]))), ns_map=ns_map)
-                return Response(xml, media_type="application/xml; charset=utf-8")
+                if ojp_fare_delivery:
+                    xml = serializer.render(Ojp(ojpresponse=
+                                                Ojpresponse(service_delivery=
+                                                            ServiceDelivery(response_timestamp=ojp_fare_delivery.response_timestamp,
+                                                                            producer_ref="OJP2NOVA",
+                                                                            ojpfare_delivery=[ojp_fare_delivery]))), ns_map=ns_map)
+                    return Response(xml, media_type="application/xml; charset=utf-8")
+                else:
+                    return Response(serializer.render(error_response("There was a NOVA response, but it cannot be used"), ns_map=ns_map),
+                                    status_code=400, media_type="application/xml; charset=utf-8")
 
             return Response(serializer.render(error_response("There was no NOVA response"), ns_map=ns_map), status_code=400, media_type="application/xml; charset=utf-8")
 

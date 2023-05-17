@@ -8,8 +8,8 @@ __NAMESPACE__ = "http://nova.voev.ch/services/v14/vertrieb"
 @dataclass
 class LeistungsStatusRequest(VertriebsRequest):
     """
-    Über die Subklasse LeistungsstatusAnfrage wird die Anfrage für alle
-    möglichen LeistungsStatus definiert.
+    Über die Subklasse LeistungsstatusAnfrage wird die Anfrage für alle möglichen
+    LeistungsStatus definiert.
     """
     leistungs_id: Optional[int] = field(
         default=None,

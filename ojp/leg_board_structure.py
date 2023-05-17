@@ -9,8 +9,8 @@ __NAMESPACE__ = "http://www.vdv.de/ojp"
 @dataclass
 class LegBoardStructure:
     """
-    Describes the the situation at a stop or station at which the passenger
-    boards a Leg of a trip including time-related information.
+    Describes the the situation at a stop or station at which the passenger boards
+    a Leg of a trip including time-related information.
 
     :ivar stop_point_ref:
     :ivar stop_point_name: Name or description of stop point for use in

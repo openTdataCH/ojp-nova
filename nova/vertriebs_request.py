@@ -11,8 +11,8 @@ __NAMESPACE__ = "http://nova.voev.ch/services/v14/vertrieb"
 @dataclass
 class VertriebsRequest:
     """
-    Abstrakte Basisklasse aller Anfragen, welche der NOVA Vertriebsservice
-    entgegen nimmt.
+    Abstrakte Basisklasse aller Anfragen, welche der NOVA Vertriebsservice entgegen
+    nimmt.
     """
     client_identifier: Optional[ClientIdentifier] = field(
         default=None,

@@ -7,8 +7,8 @@ __NAMESPACE__ = "http://www.siri.org.uk/siri"
 
 @dataclass
 class ExpectedLatestPassengerAccessTime:
-    """Latest expected time at which a PASSENGER should aim to arrive at the
-    STOP PLACE containing the stop.
+    """Latest expected time at which a PASSENGER should aim to arrive at the STOP
+    PLACE containing the stop.
 
     This time may be earlier than the VEHICLE departure times and may
     include time for processes such as checkin, security, etc.(As

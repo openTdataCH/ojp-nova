@@ -9,8 +9,8 @@ __NAMESPACE__ = "http://nova.voev.ch/services/v14/vertrieb"
 @dataclass
 class FahrplanVerbindung(Strecke):
     """
-    Eine Verbindungsanfrage beschreibt eine Kundenanfrage für eine
-    Angebotsanfrage anhand Verbindungsinformationen aus dem Fahrplan.
+    Eine Verbindungsanfrage beschreibt eine Kundenanfrage für eine Angebotsanfrage
+    anhand Verbindungsinformationen aus dem Fahrplan.
     """
     verbindungs_segment: List[FahrplanVerbindungsSegment] = field(
         default_factory=list,

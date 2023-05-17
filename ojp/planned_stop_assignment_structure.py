@@ -8,8 +8,8 @@ __NAMESPACE__ = "http://www.siri.org.uk/siri"
 @dataclass
 class PlannedStopAssignmentStructure:
     """
-    Type for assignment of a SCHEDULED STOP POINT to a specific QUAY or
-    platform +SIRI v2.0.
+    Type for assignment of a SCHEDULED STOP POINT to a specific QUAY or platform
+    +SIRI v2.0.
 
     :ivar aimed_quay_ref: Physical QUAY to use according to the planned
         timetable. +SIRI v2.0

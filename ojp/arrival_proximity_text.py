@@ -6,8 +6,8 @@ __NAMESPACE__ = "http://www.siri.org.uk/siri"
 
 @dataclass
 class ArrivalProximityText(NaturalLanguageStringStructure):
-    """Arbitrary text string to show to indicate the status of the departure of
-    the VEHICLE for example, “Enroute”, “5 Km”, “Approaching”.
+    """Arbitrary text string to show to indicate the status of the departure of the
+    VEHICLE for example, “Enroute”, “5 Km”, “Approaching”.
 
     May depend on the policy of the OPERATOR, for example show
     “Approaching” if less than 200metres away from stop. +SIRI v2.0

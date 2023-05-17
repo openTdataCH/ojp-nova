@@ -7,8 +7,8 @@ __NAMESPACE__ = "http://www.siri.org.uk/siri"
 
 @dataclass
 class ArrivalStatus:
-    """Classification of the timeliness of the visit according to a fixed list
-    of values.
+    """Classification of the timeliness of the visit according to a fixed list of
+    values.
 
     If not specified, same as DepartureStatus.
     """

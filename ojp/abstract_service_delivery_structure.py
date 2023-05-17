@@ -10,8 +10,7 @@ __NAMESPACE__ = "http://www.siri.org.uk/siri"
 @dataclass
 class AbstractServiceDeliveryStructure(ResponseStructure):
     """
-    Type for Common elementd for a SIRI service delivery of the Form
-    xxxDelivery.
+    Type for Common elementd for a SIRI service delivery of the Form xxxDelivery.
 
     :ivar request_message_ref: Arbitrary unique reference to the request
         which gave rise to this message.

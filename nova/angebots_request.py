@@ -12,8 +12,8 @@ __NAMESPACE__ = "http://nova.voev.ch/services/v14/vertrieb"
 
 @dataclass
 class AngebotsRequest(VertriebsRequest):
-    """Die Klasse AngebotsRequest ist die abstrakte Basisklasse für alle
-    Strecken-, Zonen- und produktbasierten Angebotsanfragen.
+    """Die Klasse AngebotsRequest ist die abstrakte Basisklasse für alle Strecken-,
+    Zonen- und produktbasierten Angebotsanfragen.
 
     Die Angebotsanfrage ihrerseits ist eine Subklasse einer
     Vertriebsanfrage.

@@ -10,8 +10,8 @@ __NAMESPACE__ = "http://www.siri.org.uk/siri"
 @dataclass
 class RemedyStructure:
     """
-    Description of the remedy to the change of a facility status (mainly when
-    it becomes partially or totally anavailable)
+    Description of the remedy to the change of a facility status (mainly when it
+    becomes partially or totally anavailable)
 
     :ivar remedy_type: Type of the remedy (repair/replacement/remove)
     :ivar description: Description of the set up remedy in natural

@@ -11,8 +11,8 @@ __NAMESPACE__ = "http://www.siri.org.uk/siri"
 @dataclass
 class AffectedInterchangeStructure:
     """
-    Information about a SERVICE JOURNEY INTERCHANGE at CONNECTION link from a
-    given SCHEDULED STOP POINT.
+    Information about a SERVICE JOURNEY INTERCHANGE at CONNECTION link from a given
+    SCHEDULED STOP POINT.
 
     :ivar interchange_ref: Reference to a SERVICE JOURNEY INTERCHANGE
         affected by a SITUATION.

@@ -380,6 +380,7 @@ from ojp.journey_part_info_structure import JourneyPartInfoStructure
 from ojp.journey_pattern_ref import JourneyPatternRef
 from ojp.journey_ref import JourneyRef
 from ojp.lane_enum import LaneEnum
+from ojp.lang_value import LangValue
 from ojp.leg_alight_structure import LegAlightStructure
 from ojp.leg_attribute_structure import LegAttributeStructure
 from ojp.leg_board_structure import LegBoardStructure
@@ -1357,6 +1358,7 @@ __all__ = [
     "JourneyPatternRef",
     "JourneyRef",
     "LaneEnum",
+    "LangValue",
     "LegAlightStructure",
     "LegAttributeStructure",
     "LegBoardStructure",
