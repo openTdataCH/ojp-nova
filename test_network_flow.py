@@ -63,7 +63,7 @@ def get_nova_client():
     )
     parser = XmlParser(config)
 
-    client = Client.from_service(PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunft, location=NOVA_URL_API)
+    client = Client.from_service(PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunft, location=NOVA_URL_API, encoding="utf-8")
     client.parser = parser
 
     return client
