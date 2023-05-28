@@ -32,8 +32,14 @@ def error_response(error_text:str):
 async def post_request(fastapi_req: Request):
     body = await fastapi_req.body()
 
-    ojp_fare_request = parse_ojp(body.decode('utf-8'))
-    if ojp_fare_request.ojprequest:
+    ojp_fare_request = None
+    error = None
+    try:
+        ojp_fare_request = parse_ojp(body.decode('utf-8'))
+    except Exception as e:
+        error = e
+
+    if ojp_fare_request and ojp_fare_request.ojprequest:
         if ojp_fare_request.ojprequest.service_request.ojpfare_request:
             nova_response = test_nova_request_reply(ojp_fare_request)
             if nova_response:
@@ -55,8 +61,12 @@ async def post_request(fastapi_req: Request):
             return Response(call_ojp_2000(body.decode('utf-8')), media_type="application/xml; charset=utf-8")
 
     else:
-        return Response(serializer.render(error_response("There was no (valid) OJP request"), ns_map=ns_map), status_code=400,
-                        media_type="application/xml; charset=utf-8")
+        if error:
+            return Response(serializer.render(error_response("There was no (valid) OJP request\n"+error), ns_map=ns_map), status_code=400,
+                            media_type="application/xml; charset=utf-8")
+        else:
+            return Response(serializer.render(error_response("There was no (valid) OJP request"), ns_map=ns_map), status_code=400,
+                            media_type="application/xml; charset=utf-8")
 
 if __name__ == "__main__":
     import uvicorn
