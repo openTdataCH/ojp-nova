@@ -62,7 +62,7 @@ async def post_request(fastapi_req: Request):
 
     else:
         if error:
-            return Response(serializer.render(error_response("There was no (valid) OJP request\n"+error), ns_map=ns_map), status_code=400,
+            return Response(serializer.render(error_response("There was no (valid) OJP request\n"+str(error)), ns_map=ns_map), status_code=400,
                             media_type="application/xml; charset=utf-8")
         else:
             return Response(serializer.render(error_response("There was no (valid) OJP request"), ns_map=ns_map), status_code=400,
