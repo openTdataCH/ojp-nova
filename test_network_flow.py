@@ -89,11 +89,17 @@ def check_configuration():
 
 if __name__ == '__main__':
     #check configuration
+    ojp_trip_request_xml=''
     check_configuration()
-    ojp_trip_request = test_create_ojp_trip_request_simple_3()
     serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
     serializer = XmlSerializer(serializer_config)
-    ojp_trip_request_xml = serializer.render(ojp_trip_request, ns_map=ns_map)
+    if (not READTRIPREQUESTFILE):
+        ojp_trip_request = test_create_ojp_trip_request_simple_1()
+        ojp_trip_request_xml = serializer.render(ojp_trip_request, ns_map=ns_map)
+    else:
+        inputfile=open(READFILE,'r')
+        ojp_trip_request_xml=inputfile.read()
+        inputfile.close()
     log('generated/ojp_trip_request.xml',ojp_trip_request_xml)
     r = call_ojp_2000(ojp_trip_request_xml)
     ojp_trip_result = parse_ojp(r)
