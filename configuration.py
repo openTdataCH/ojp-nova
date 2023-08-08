@@ -19,6 +19,8 @@ HTTP_PORT = 8000
 HTTP_SLUG = "ojp2023"
 DEBUGGING = True
 LOGFILE = "generated/my_log.log"
+READTRIPREQUESTFILE = True
+READFILE = "input/input.xml"
 
 # if there exists a local_configuration it is used.
 try:
