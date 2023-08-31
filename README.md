@@ -92,6 +92,10 @@ OJPFare2Nova --> "https proxy": OJPFareDelivery
 tyk --> Client: OJPFareDelivery
 @enduml
 ```
+
+# Usage notes
+* The TripResult used in the OJP fare service should not be based on short-term real-time information. So the TripRequest should usually contain a UseRealtime set to false.
+* 
 # License 
 The code is made available as MIT license. The generated code in the "nova" folder based on the WSDL is property of SBB (www.sbb.ch) and not part of the license.
 # Assistance
