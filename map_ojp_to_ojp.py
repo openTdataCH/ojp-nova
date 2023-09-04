@@ -20,6 +20,7 @@ config = ParserConfig(
     fail_on_unknown_attributes=False,
 )
 
+
 def parse_ojp(body: str) -> Ojp:
     parser = XmlParser(config)
     return parser.from_string(body, Ojp)

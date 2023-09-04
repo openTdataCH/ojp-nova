@@ -20,8 +20,17 @@ HTTP_SLUG = "ojp2023"
 DEBUGGING = True
 LOGFILE = "generated/my_log.log"
 READTRIPREQUESTFILE = True
-READFILE = "input/input.xml"
-
+# READFILE = "input/input_oev_shart_plus_long.xml"
+# READFILE = "input/input_walk_only.xml"
+# READFILE = "input/input_Zuerich_Chur.xml"
+READFILE = "input/input_local.xml"
+# READFILE = "input/input_oev_shart_plus_long.xml"
+# READFILE = "input/input_sharing_intercity.xml"
+# READFILE = "input/input_sharing_only.xml"
+# READFILE = "input/input_odv_alone.xml"
+# READFILE = "input/input_demand_responsive_saturday_after_1500.xml"
+# READFILE = "input/input_bus_postauto.xml"
+# READFILE = "input/input_in_the_past_not_handeled_well_in_Preisauskunft.xml"
 # if there exists a local_configuration it is used.
 try:
     from local_configuration import *
