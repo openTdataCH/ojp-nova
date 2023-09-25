@@ -5,7 +5,7 @@ from nova import ErstellePreisAuskunft, VerbindungPreisAuskunftRequest, ClientId
     PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput
 from logger import log
 from ojp import Ojp, TimedLegStructure
-from support import OJPError, add_error
+from support import OJPError
 
 
 def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindungsSegment:
@@ -71,8 +71,8 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
             leg_nr=leg_nr+1
             # Only handled TimedLegs, everything else we should ignore (for now)
             if leg.continuous_leg is not None:
-                # We can't price coninuous legs. This in many cases may be correct, but not for sharing.
-                add_error("Leg "+str(leg_nr)+ ": Continuous Leg could not be priced.\n")
+                # We can't price continuous legs. This in many cases may be correct, but not for sharing.
+                continue
             if leg.timed_leg is None:
                 continue
             # if the timed leg is an on demand bus -> also ignore
@@ -80,7 +80,6 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
                 continue
             if leg.timed_leg.service.mode.bus_submode=="demandResponsive":
                 #we can't deal with demandResponsive in NOVA currently.
-                add_error("Leg "+str(leg_nr)+ ": On demand bus could not be priced.\n")
                 continue
             # To get the first TimedLeg and last TimedLeg to reply with the leg range in the FareResult
             leg_id = leg.leg_id
@@ -125,7 +124,7 @@ def test_ojp_fare_request_to_nova_request(ojp: Ojp) -> PreisAuskunftServicePortT
 
     nova_request = map_fare_request_to_nova_request(ojp)
     if nova_request==None or nova_request==False:
-        raise OJPError("Was not able to generate NOVA request from OJPFare Request"+str(ojp))
+        raise OJPError("Was not able to generate NOVA request from OJPFare Request:\n")
     nova_request_xml = serializer.render(nova_request)
     log('generated/nova_request.xml',nova_request_xml)
     return nova_request
