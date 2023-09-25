@@ -14,7 +14,7 @@ from ojp import Ojp, Ojpresponse, ServiceDelivery, ServiceDeliveryStructure, \
 from test_network_flow import test_nova_request_reply, call_ojp_2000
 from configuration import HTTP_HOST, HTTP_PORT, HTTPS, SSL_CERTFILE, SSL_KEYFILE, HTTP_SLUG,VATRATE
 import logger
-from support import add_error_response
+#from support import add_error_response
 
 app = FastAPI(title="OJP2NOVA")
 
@@ -27,6 +27,7 @@ ns_map = {'': 'http://www.siri.org.uk/siri', 'ojp': 'http://www.vdv.de/ojp'}
 @app.post("/"+HTTP_SLUG, tags=["Open Journey Planner"])
 async def post_request(fastapi_req: Request):
     body = await fastapi_req.body()
+    logger.log_entry("Received request: " + str(body))
 
     ojp_fare_request = None
     error = None
@@ -40,6 +41,7 @@ async def post_request(fastapi_req: Request):
             # a request was made and it seems legit
             if ojp_fare_request.ojprequest.service_request.ojpfare_request:
                 # we deal with a OJPFare Request andn will ask NOVA
+                logger.log_entry("Query to NOVA: "+str(ojp_fare_request))
                 nova_response = test_nova_request_reply(ojp_fare_request)
                 if nova_response:
                     #we got a valid response
@@ -47,28 +49,35 @@ async def post_request(fastapi_req: Request):
                     if ojp_fare_delivery:
                         # we have a OJPFareDelivery to work with
                         # we add the warnings
-                        ojp_fare_delivery=add_error_response(ojp_fare_delivery)
+                        logger.log_entry("Workable NOVA response put into OJP: "+str(ojp_fare_delivery))
+                        # ojp_fare_delivery=add_error_response(ojp_fare_delivery)
                         xml = serializer.render(Ojp(ojpresponse=   Ojpresponse(service_delivery=  ServiceDelivery(response_timestamp=ojp_fare_delivery.response_timestamp,producer_ref="OJP2NOVA",
 ojpfare_delivery=[ojp_fare_delivery]))), ns_map=ns_map)
                         return Response(xml, media_type="application/xml; charset=utf-8")
                     else:
+                        logger.log_entry("There was a NOVA response, but it can't be used:"+ str(nova_response))
                         return Response(serializer.render(error_response("There was a NOVA response, but it cannot be used"), ns_map=ns_map),
                                         status_code=400, media_type="application/xml; charset=utf-8")
+                logger.log_entry("There was no NOVA response")
                 return Response(serializer.render(error_response("There was no NOVA response"), ns_map=ns_map), status_code=400, media_type="application/xml; charset=utf-8")
             else:
+                logger.log_entry("Returning the call to the OJP server:"+str(body.decode('utf-8')))
                 return Response(call_ojp_2000(body.decode('utf-8')), media_type="application/xml; charset=utf-8")
         else:
             #very general errors
             if error:
               # an error message was provided in the exception
-               return Response(serializer.render(error_response("There was no (valid) OJP request\n"+str(error)), ns_map=ns_map), status_code=400,
+              logger.log_entry("Couldn't extract a valid OJP request")
+              return Response(serializer.render(error_response("There was no (valid) OJP request\n"+str(error)), ns_map=ns_map), status_code=400,
                             media_type="application/xml; charset=utf-8")
             else:
                 # no error message was provided in the exception
+                logger.log_entry("No valid OJP request")
                 return Response(serializer.render(error_response("There was no (valid) OJP request"), ns_map=ns_map), status_code=400,
                             media_type="application/xml; charset=utf-8")
     except Exception as e:
         # not yet really sophisticated handling of all other errors during the work (should be regular OJPDeliveries with OtherError set
+        logger.log_entry("Some other error occured.")
         return Response(
             serializer.render(error_response(str(e)), ns_map=ns_map),
             status_code=400,
