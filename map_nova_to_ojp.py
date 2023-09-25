@@ -10,6 +10,7 @@ from nova import ErstellePreisAuskunftResponse, KlassenTypCode, PreisAuspraegung
 from ojp import OjpfareDelivery, FareResultStructure, FareProductStructure, TripFareResultStructure, \
     TypeOfFareClassEnumeration
 from logger import log
+from configuration import VATRATE
 
 def map_klasse_to_fareclass(klasse: KlassenTypCode) -> TypeOfFareClassEnumeration:
     if klasse == KlassenTypCode.KLASSE_1:
@@ -31,10 +32,10 @@ def map_preis_auspraegung_to_trip_fare_result(preis_auspraegungen: List[PreisAus
                                                                    fare_product_name=preis_auspraegung.produkt_nummer,
                                                                    fare_authority_ref='NOVA',
                                                                    fare_authority_text='NOVA',
-                                                                   price=round(float(preis_auspraegung.preis.betrag)*(1.07),2),
-                                                                   net_price=preis_auspraegung.preis.betrag,
+                                                                   price=preis_auspraegung.preis.betrag,
+                                                                   net_price=round(float(preis_auspraegung.preis.betrag)*(1.0-VATRATE/100),2),
                                                                    currency=preis_auspraegung.preis.waehrung,
-                                                                   vat_rate=7.7,
+                                                                   vat_rate=VATRATE,
                                                                    travel_class=map_klasse_to_fareclass(preis_auspraegung.produkt_einfluss_faktoren.klasse))]))
 
     return FareResultStructure(result_id=id, trip_fare_result=tripfareresults)

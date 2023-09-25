@@ -90,7 +90,7 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
             segments += [map_timed_leg_to_segment(leg.timed_leg)]
         if leg_start is None:
             #no pricable legs found.
-            raise OJPError("no pricable legs found")
+            raise OJPError("no pricable legs found.")
 
         verbindungen += [VerbindungPreisAuskunft(externe_verbindungs_referenz_id=externeVerbindungsReferenzId + "_" + leg_start + "_" + leg_end, segment_hin_fahrt=segments)]
 
@@ -111,7 +111,8 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
                                                                               klassen_name="Einzelbillette")])],
                                                                       reisender=[ReisendenInfoPreisAuskunft(alter=age,
                                                                                                             externe_reisenden_referenz_id="1234",
-                                                                                                            reisenden_typ=ReisendenTypCode.PERSON)],
+                                                                                                            reisenden_typ=ReisendenTypCode.PERSON,
+                                                                                                            ermaessigungs_karte_code="HTA")],
                                                                       verbindung=verbindungen
                                                                       ))))
 
