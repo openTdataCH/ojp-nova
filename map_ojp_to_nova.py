@@ -78,7 +78,7 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
             # if the timed leg is an on demand bus -> also ignore
             if leg.timed_leg.service.mode is None:
                 continue
-            if leg.timed_leg.service.mode.bus_submode=="demandResponsive":
+            if leg.timed_leg.service.mode.bus_submode == "demandResponsive":
                 #we can't deal with demandResponsive in NOVA currently.
                 continue
             # To get the first TimedLeg and last TimedLeg to reply with the leg range in the FareResult
