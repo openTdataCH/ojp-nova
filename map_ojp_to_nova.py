@@ -68,7 +68,7 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
         leg_end = None
         leg_nr=0
         for leg in legs:
-            leg_nr=leg_nr+1
+            leg_nr = leg_nr + 1
             # Only handled TimedLegs, everything else we should ignore (for now)
             if leg.continuous_leg is not None:
                 # We can't price continuous legs. This in many cases may be correct, but not for sharing.
