@@ -12,7 +12,7 @@ from support import error_response
 from ojp import Ojp, Ojpresponse, ServiceDelivery, ServiceDeliveryStructure, \
     OtherError, OjpfareDelivery
 from test_network_flow import test_nova_request_reply, call_ojp_2000
-from configuration import HTTP_HOST, HTTP_PORT, HTTPS, SSL_CERTFILE, SSL_KEYFILE, HTTP_SLUG,VATRATE
+from configuration import HTTP_HOST, HTTP_PORT, HTTPS, SSL_CERTFILE, SSL_KEYFILE, HTTP_SLUG, VATRATE
 import logger
 #from support import add_error_response
 
