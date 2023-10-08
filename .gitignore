@@ -6,5 +6,5 @@ __pycache__/
 /venv/*
 /.idea/*
 /generated/*.log
-/logs/*
+/logs/*.log
 /generated/*.xml
