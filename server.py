@@ -8,7 +8,7 @@ from xsdata.formats.dataclass.serializers.config import SerializerConfig
 from xsdata.models.datatype import XmlDateTime
 
 from map_nova_to_ojp import test_nova_to_ojp
-from map_ojp_to_ojp import parse_ojp
+from map_ojp_to_ojp import map_ojp_trip_result_to_ojp_fare_request, parse_ojp
 from support import error_response
 from ojp import Ojp, Ojpresponse, ServiceDelivery, ServiceDeliveryStructure, \
     OtherError, OjpfareDelivery
@@ -44,10 +44,17 @@ async def post_request(fastapi_req: Request):
     body = await fastapi_req.body()
     logger.log_entry("Received request: " + str(body))
 
+    body_str = body.decode('utf-8')
+    
+    is_ojp_trip_request_response = _is_ojp_trip_request_response(body_str)
+    if is_ojp_trip_request_response:
+        ojp_fare_request = map_ojp_trip_result_to_ojp_fare_request(parse_ojp(body_str))
+        body_str = serializer.render(ojp_fare_request, ns_map=ns_map)
+
     ojp_fare_request = None
     error = None
     try:
-        ojp_fare_request = parse_ojp(body.decode('utf-8'))
+        ojp_fare_request = parse_ojp(body_str)
     except Exception as e:
         error = e
 
