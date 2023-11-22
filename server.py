@@ -17,6 +17,9 @@ from configuration import HTTP_HOST, HTTP_PORT, HTTPS, SSL_CERTFILE, SSL_KEYFILE
 import logger
 #from support import add_error_response
 
+from xsdata.formats.dataclass.parsers import XmlParser
+from xsdata.formats.dataclass.parsers.config import ParserConfig
+
 app = FastAPI(title="OJP2NOVA")
 
 origins = ["*"]
@@ -95,6 +98,21 @@ ojpfare_delivery=[ojp_fare_delivery]))), ns_map=ns_map)
             status_code=400,
             media_type="application/xml; charset=utf-8")
 
+def _is_ojp_trip_request_response(xml_str: str) -> bool:
+    config = ParserConfig(
+        base_url=None,
+        process_xinclude=False,
+        fail_on_unknown_properties=False,
+        fail_on_unknown_attributes=False,
+    )
+
+    parser = XmlParser(config)
+    ojp_data = parser.from_string(xml_str)
+
+    if ojp_data and ojp_data.ojpresponse and ojp_data.ojpresponse.service_delivery:
+        return ojp_data.ojpresponse.service_delivery.ojptrip_delivery is not None
+
+    return False
 
 if __name__ == "__main__":
     import uvicorn
