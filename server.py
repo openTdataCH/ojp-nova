@@ -2,6 +2,7 @@
 import datetime
 
 from fastapi import FastAPI, Request, Response, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 from xsdata.models.datatype import XmlDateTime
@@ -17,6 +18,17 @@ import logger
 #from support import add_error_response
 
 app = FastAPI(title="OJP2NOVA")
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["POST", "GET"],
+	allow_headers=["*"],
+    max_age=3600,
+)
 
 serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
 serializer = XmlSerializer(serializer_config)
