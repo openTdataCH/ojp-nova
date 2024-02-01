@@ -11,9 +11,13 @@ class Adresse:
     :ivar ort:
     :ivar plz:
     :ivar adress_zusatz:
-    :ivar strasse_hnr:
-    :ivar strassenname: Delivered only for CH/LI addresses if street and
-        house number can be separated.
+    :ivar strasse_hnr: @Deprecated will be removed in NOVA 15, please
+        use "streetHousenumber" instead.
+    :ivar street_housenumber:
+    :ivar strassenname: @Deprecated will be removed in NOVA 15, please
+        use "street" instead.
+    :ivar street: Delivered only for CH/LI addresses if street and house
+        number can be separated.
     :ivar hausnummer: Delivered only for CH/LI addresses if street and
         house number can be separated.
     :ivar postfach:
@@ -71,6 +75,16 @@ class Adresse:
             "max_length": 30,
         }
     )
+    street_housenumber: Optional[str] = field(
+        default=None,
+        metadata={
+            "name": "streetHousenumber",
+            "type": "Attribute",
+            "namespace": "http://nova.voev.ch/services/v14/base",
+            "min_length": 0,
+            "max_length": 60,
+        }
+    )
     strassenname: Optional[str] = field(
         default=None,
         metadata={
@@ -78,6 +92,15 @@ class Adresse:
             "namespace": "http://nova.voev.ch/services/v14/base",
             "min_length": 0,
             "max_length": 30,
+        }
+    )
+    street: Optional[str] = field(
+        default=None,
+        metadata={
+            "type": "Attribute",
+            "namespace": "http://nova.voev.ch/services/v14/base",
+            "min_length": 0,
+            "max_length": 60,
         }
     )
     hausnummer: Optional[str] = field(

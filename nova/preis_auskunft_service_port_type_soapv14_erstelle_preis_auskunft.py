@@ -9,6 +9,6 @@ class PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunft:
     style = "document"
     location = "http://nova.voev.ch/novapa/vertrieb/public/v14/PreisAuskunftService"
     transport = "http://schemas.xmlsoap.org/soap/http"
-    soap_action = "https://nova.voev.ch/services/v14/preisauskunft/erstellePreisAuskunft"
+    soap_action = "http://nova.voev.ch/services/v14/preisauskunft/erstellePreisAuskunft"
     input = PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput
     output = PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput

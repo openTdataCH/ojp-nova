@@ -40,7 +40,7 @@ async def post_request(fastapi_req: Request):
         if ojp_fare_request and ojp_fare_request.ojprequest:
             # a request was made and it seems legit
             if ojp_fare_request.ojprequest.service_request.ojpfare_request:
-                # we deal with a OJPFare Request andn will ask NOVA
+                # we deal with a OJPFare Request and will ask NOVA
                 logger.log_entry("Query to NOVA: "+str(ojp_fare_request))
                 nova_response = test_nova_request_reply(ojp_fare_request)
                 if nova_response:

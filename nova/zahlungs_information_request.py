@@ -1,4 +1,5 @@
 from dataclasses import dataclass, field
+from decimal import Decimal
 from typing import List, Optional
 from nova.geld_betrag import GeldBetrag
 from nova.zahlungs_attribut import ZahlungsAttribut
@@ -18,6 +19,7 @@ class ZahlungsInformationRequest:
         Zahlvorgang abspeichern kann. Wird z.B: von B2B verwendet, um in
         gewissen Situationen die RechnungsStelle und die Kostenzuordnung
         zu übergeben.
+    :ivar auslaendische_zahlung:
     :ivar zahlungs_art_code: UNBEKANNT; BAR; BON; MAE; FAK; DOS; DIN;
         AMX; JCB; VEG; VIS; PCD; YWD; MC; EC; MIG; ONE; REK; UAP
     :ivar externe_zahlungs_referenz: Kann von den LV verwendet werden,
@@ -36,6 +38,14 @@ class ZahlungsInformationRequest:
         default_factory=list,
         metadata={
             "name": "zahlungsAttribut",
+            "type": "Element",
+            "namespace": "http://nova.voev.ch/services/v14/vertrieb",
+        }
+    )
+    auslaendische_zahlung: Optional["ZahlungsInformationRequest.AuslaendischeZahlung"] = field(
+        default=None,
+        metadata={
+            "name": "auslaendischeZahlung",
             "type": "Element",
             "namespace": "http://nova.voev.ch/services/v14/vertrieb",
         }
@@ -61,3 +71,25 @@ class ZahlungsInformationRequest:
             "max_length": 200,
         }
     )
+
+    @dataclass
+    class AuslaendischeZahlung:
+        betrag: Optional[GeldBetrag] = field(
+            default=None,
+            metadata={
+                "type": "Element",
+                "namespace": "http://nova.voev.ch/services/v14/vertrieb",
+                "required": True,
+            }
+        )
+        angewendeter_wechselkurs: Optional[Decimal] = field(
+            default=None,
+            metadata={
+                "name": "angewendeterWechselkurs",
+                "type": "Attribute",
+                "namespace": "http://nova.voev.ch/services/v14/vertrieb",
+                "required": True,
+                "total_digits": 7,
+                "fraction_digits": 5,
+            }
+        )
