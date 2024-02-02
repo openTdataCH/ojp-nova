@@ -8,12 +8,17 @@ from ojp import Ojp, TimedLegStructure
 from support import OJPError
 
 def sloid2didok(sloid):
-    #remove left part of sloid
-    sloid=sloid.replace('ch:1:sloid:','')
-    if ':' in sloid:
+    #if a didok code, just return it
+    try:
+        didok=int(sloid)
+        return didok
+    except:
+        #remove left part of sloid
+        sloid=sloid.replace('ch:1:sloid:','')
+        if ':' in sloid:
             sloid = sloid[:sloid.find(':')]
-    #remove the right part of sloid, if it exist
-    return 8500000+int(sloid)
+        #remove the right part of sloid, if it exist
+        return 8500000+int(sloid)
 
 def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindungsSegment:
     einstieg = sloid2didok(timed_leg.leg_board.stop_point_ref)
