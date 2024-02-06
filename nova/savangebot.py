@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from typing import List, Optional
 from nova.abstract_angebot import AbstractAngebot
+from nova.erstattungs_gebuehr import ErstattungsGebuehr
 from nova.geld_betrag import GeldBetrag
 from nova.zu_erstattende_leistung import ZuErstattendeLeistung
 
@@ -18,6 +19,7 @@ class Savangebot(AbstractAngebot):
     :ivar max_selbstbehalt:
     :ivar angewendeter_selbstbehalt:
     :ivar min_selbstbehalt:
+    :ivar erstattungs_gebuehr:
     :ivar ausweis_pflicht:
     :ivar traeger_medium: Aktuell konstant "SICHERHEITSPAPIER"
     """
@@ -60,6 +62,14 @@ class Savangebot(AbstractAngebot):
         default=None,
         metadata={
             "name": "minSelbstbehalt",
+            "type": "Element",
+            "namespace": "http://nova.voev.ch/services/v14/vertrieb",
+        }
+    )
+    erstattungs_gebuehr: List[ErstattungsGebuehr] = field(
+        default_factory=list,
+        metadata={
+            "name": "erstattungsGebuehr",
             "type": "Element",
             "namespace": "http://nova.voev.ch/services/v14/vertrieb",
         }

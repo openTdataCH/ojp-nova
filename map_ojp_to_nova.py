@@ -7,10 +7,22 @@ from logger import log
 from ojp import Ojp, TimedLegStructure
 from support import OJPError
 
+def sloid2didok(sloid):
+    #if a didok code, just return it
+    try:
+        didok=int(sloid)
+        return didok
+    except:
+        #remove left part of sloid
+        sloid=sloid.replace('ch:1:sloid:','')
+        if ':' in sloid:
+            sloid = sloid[:sloid.find(':')]
+        #remove the right part of sloid, if it exist
+        return 8500000+int(sloid)
 
 def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindungsSegment:
-    einstieg = timed_leg.leg_board.stop_point_ref
-    ausstieg = timed_leg.leg_alight.stop_point_ref
+    einstieg = sloid2didok(timed_leg.leg_board.stop_point_ref)
+    ausstieg = sloid2didok(timed_leg.leg_alight.stop_point_ref)
     abfahrts_zeit = timed_leg.leg_board.service_departure.timetabled_time
     ankunfts_zeit = timed_leg.leg_alight.service_arrival.timetabled_time
     line_ref = timed_leg.service.line_ref
@@ -32,8 +44,8 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
     verwaltungs_code = "{:06}".format(int(operator_ref.split(':')[1])) # takes e.g. ojp:11 and makes 000011 out of it
 
     leg_intermediates = timed_leg.leg_intermediates
-    zwischenhalten = [timed_leg.leg_board.stop_point_ref] + [leg_intermediate.stop_point_ref
-                      for leg_intermediate in leg_intermediates] + [timed_leg.leg_alight.stop_point_ref]
+    zwischenhalten = [sloid2didok(timed_leg.leg_board.stop_point_ref)] + [sloid2didok(leg_intermediate.stop_point_ref)
+                      for leg_intermediate in leg_intermediates] + [sloid2didok(timed_leg.leg_alight.stop_point_ref)]
 
     return FahrplanVerbindungsSegment(einstieg=int(einstieg), ausstieg=int(ausstieg),
                                verwaltungs_code=verwaltungs_code,

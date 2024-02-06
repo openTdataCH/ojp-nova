@@ -6,6 +6,7 @@ from nova.fahrt_wunsch_abdeckung import FahrtWunschAbdeckung
 from nova.nutzungs_info import NutzungsInfo
 from nova.produkt_einfluss_faktor_gruppe import ProduktEinflussFaktorGruppe
 from nova.reise_gruppe_info import ReiseGruppeInfo
+from nova.reservations_moeglichkeit import ReservationsMoeglichkeit
 from nova.vertrags_info import VertragsInfo
 
 __NAMESPACE__ = "http://nova.voev.ch/services/v14/vertrieb"
@@ -92,6 +93,14 @@ class Angebot(AbstractAngebot):
             "namespace": "http://nova.voev.ch/services/v14/vertrieb",
             "min_length": 0,
             "max_length": 50,
+        }
+    )
+    reservations_moeglichkeit: List[ReservationsMoeglichkeit] = field(
+        default_factory=list,
+        metadata={
+            "name": "reservationsMoeglichkeit",
+            "type": "Element",
+            "namespace": "http://nova.voev.ch/services/v14/vertrieb",
         }
     )
     fahrt_wunsch_abdeckung: Optional[FahrtWunschAbdeckung] = field(

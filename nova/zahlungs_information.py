@@ -1,4 +1,5 @@
 from dataclasses import dataclass, field
+from decimal import Decimal
 from typing import List, Optional
 from nova.geld_betrag import GeldBetrag
 from nova.zahlungs_art import ZahlungsArt
@@ -23,6 +24,7 @@ class ZahlungsInformation:
         Zahlvorgang abspeichern kann. Wird z.B: von B2B verwendet, um in
         gewissen Situationen die RechnungsStelle und die Kostenzuordnung
         zu übergeben.
+    :ivar auslaendische_zahlung:
     :ivar externe_zahlungs_referenz: Kann von den LV verwendet werden,
         um eine Referenz auf ihren Zahlvorgang abzulegen.
     """
@@ -52,6 +54,14 @@ class ZahlungsInformation:
             "namespace": "http://nova.voev.ch/services/v14/vertrieb",
         }
     )
+    auslaendische_zahlung: Optional["ZahlungsInformation.AuslaendischeZahlung"] = field(
+        default=None,
+        metadata={
+            "name": "auslaendischeZahlung",
+            "type": "Element",
+            "namespace": "http://nova.voev.ch/services/v14/vertrieb",
+        }
+    )
     externe_zahlungs_referenz: Optional[str] = field(
         default=None,
         metadata={
@@ -62,3 +72,25 @@ class ZahlungsInformation:
             "max_length": 200,
         }
     )
+
+    @dataclass
+    class AuslaendischeZahlung:
+        betrag: Optional[GeldBetrag] = field(
+            default=None,
+            metadata={
+                "type": "Element",
+                "namespace": "http://nova.voev.ch/services/v14/vertrieb",
+                "required": True,
+            }
+        )
+        angewendeter_wechselkurs: Optional[Decimal] = field(
+            default=None,
+            metadata={
+                "name": "angewendeterWechselkurs",
+                "type": "Attribute",
+                "namespace": "http://nova.voev.ch/services/v14/vertrieb",
+                "required": True,
+                "total_digits": 7,
+                "fraction_digits": 5,
+            }
+        )
