@@ -8,3 +8,9 @@ __pycache__/
 /generated/*.log
 /logs/*.log
 /generated/*.xml
+/generated/*.gz
+/generated/*.zip
+/generated/nova_stammdaten.xml
+/generated/*.csv
+/generated/nova_p_r*.*
+
