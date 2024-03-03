@@ -1,0 +1,11 @@
+[Unit]
+Description=OJP Nova Python Service
+After=network.target
+
+[Service]
+User=ec2user
+WorkingDirectory=/path/to/project
+ExecStart=/path/to/python /path/to/project/server.py
+
+[Install]
+WantedBy=multi-user.target
