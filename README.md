@@ -36,6 +36,9 @@ starts a server on: http://127.0.0.1:8000
 run test_client.py 
 This will result in a TripRequest/TripDelivery to the OJP service. 
 
+## Create Python service
+see [service](./service/)
+
 ## Processing the whole flow (as an example)
 run network_flow.py 
 The following should happen 
