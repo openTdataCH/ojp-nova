@@ -5,6 +5,8 @@ from nova import ErstellePreisAuskunft, VerbindungPreisAuskunftRequest, ClientId
     PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput
 from logger import log
 from ojp import Ojp, TimedLegStructure
+from support import OJPError
+
 
 def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindungsSegment:
     einstieg = timed_leg.leg_board.stop_point_ref
@@ -64,19 +66,30 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
         segments = []
         leg_start = None
         leg_end = None
+        leg_nr=0
         for leg in legs:
-
+            leg_nr = leg_nr + 1
             # Only handled TimedLegs, everything else we should ignore (for now)
+            if leg.continuous_leg is not None:
+                # We can't price continuous legs. This in many cases may be correct, but not for sharing.
+                continue
             if leg.timed_leg is None:
                 continue
-
+            # if the timed leg is an on demand bus -> also ignore
+            if leg.timed_leg.service.mode is None:
+                continue
+            if leg.timed_leg.service.mode.bus_submode == "demandResponsive":
+                #we can't deal with demandResponsive in NOVA currently.
+                continue
             # To get the first TimedLeg and last TimedLeg to reply with the leg range in the FareResult
             leg_id = leg.leg_id
             if not leg_start:
                 leg_start = leg_id
             leg_end = leg_id
-
             segments += [map_timed_leg_to_segment(leg.timed_leg)]
+        if leg_start is None:
+            #no pricable legs found.
+            raise OJPError("no pricable legs found.")
 
         verbindungen += [VerbindungPreisAuskunft(externe_verbindungs_referenz_id=externeVerbindungsReferenzId + "_" + leg_start + "_" + leg_end, segment_hin_fahrt=segments)]
 
@@ -97,7 +110,8 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
                                                                               klassen_name="Einzelbillette")])],
                                                                       reisender=[ReisendenInfoPreisAuskunft(alter=age,
                                                                                                             externe_reisenden_referenz_id="1234",
-                                                                                                            reisenden_typ=ReisendenTypCode.PERSON)],
+                                                                                                            reisenden_typ=ReisendenTypCode.PERSON,
+                                                                                                            ermaessigungs_karte_code="HTA")],
                                                                       verbindung=verbindungen
                                                                       ))))
 
@@ -109,6 +123,8 @@ def test_ojp_fare_request_to_nova_request(ojp: Ojp) -> PreisAuskunftServicePortT
     serializer = XmlSerializer(serializer_config)
 
     nova_request = map_fare_request_to_nova_request(ojp)
+    if nova_request==None or nova_request==False:
+        raise OJPError("Was not able to generate NOVA request from OJPFare Request:\n")
     nova_request_xml = serializer.render(nova_request)
     log('generated/nova_request.xml',nova_request_xml)
     return nova_request

@@ -13,7 +13,6 @@
               <ojp:Text>Zürich (Zürich)</ojp:Text>
             </ojp:LocationName>
           </ojp:PlaceRef>
-          <ojp:DepArrTime>2023-08-09T08:43:42.788Z</ojp:DepArrTime>
         </ojp:Origin>
         <ojp:Destination>
           <ojp:PlaceRef>

@@ -5,7 +5,10 @@ This repository contains the necessary code integrate OJP into the NOVA Preisaus
 1. Check out the code
 2. Create a pycharm project from it
 
-Necessary libraries are named in requirements.txt.
+Necessary libraries are named in requirements.txt
+```
+$ python3 -m pip install -r requirements.txt
+```
 
 ## generation of code from the XSD
 

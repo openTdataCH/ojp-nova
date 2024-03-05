@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
 <OJP xmlns="http://www.siri.org.uk/siri" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ojp="http://www.vdv.de/ojp" xsi:schemaLocation="http://www.siri.org.uk/siri ../ojp-xsd-v1.0/OJP.xsd" version="1.0">
   <OJPRequest>
     <ServiceRequest>
       <RequestorRef>OJP SDK v1.0</RequestorRef>
-      <RequestTimestamp>2023-08-08T11:55:09.213Z</RequestTimestamp>
+      <RequestTimestamp>2023-09-04T11:00:53.285Z</RequestTimestamp>
       <ojp:OJPTripRequest>
-        <RequestTimestamp>2023-08-08T11:55:09.213Z</RequestTimestamp>
+        <RequestTimestamp>2023-09-04T11:00:53.285Z</RequestTimestamp>
         <ojp:Origin>
           <ojp:PlaceRef>
             <StopPointRef>8576990</StopPointRef>
@@ -13,7 +12,6 @@
               <ojp:Text>Bern, Guisanplatz Expo (Bern)</ojp:Text>
             </ojp:LocationName>
           </ojp:PlaceRef>
-          <ojp:DepArrTime>2023-08-08T14:43:42.788Z</ojp:DepArrTime>
         </ojp:Origin>
         <ojp:Destination>
           <ojp:PlaceRef>
