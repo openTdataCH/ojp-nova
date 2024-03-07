@@ -117,7 +117,7 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
                                                                           correlation_id="87482634-560b-4da3-b6a1-155c37490fed",
                                                                           geschaefts_prozess_id="1781786f-57ba-4e9a-bc29-287e2aa97f9a"),
                                                                       angebots_filter=[TaxonomieFilter(
-                                                                          produkt_taxonomie="Basistaxonomie",
+                                                                          produkt_taxonomie="SBB Preisauskunft",
                                                                           taxonomie_klasse_pfad=[TaxonomieKlassePfad(
                                                                               klassen_name="Einzelbillette")])],
                                                                       reisender=[ReisendenInfoPreisAuskunft(alter=age,

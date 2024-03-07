@@ -22,11 +22,18 @@ HTTP_SLUG = "ojp2023"
 DEBUGGING = True
 LOGFILE = "logs/my_log.log"
 READTRIPREQUESTFILE = True
-VATRATE = 7.7  # Percent   TODO will change 1.1.2024!
+VATRATE = 8.1  # Percent
 # READFILE = "input/input_oev_shart_plus_long.xml"
 # READFILE = "input/input_walk_only.xml"
 # READFILE = "input/input_Zuerich_Chur.xml"
-READFILE = "input/input_local.xml"
+# READFILE = "input/input_Zuerich_Bern.xml"
+READFILE = "input/input_Basel_Sargans.xml"
+
+# READFILE = "input/input_Bern_Interlaken_Ost.xml"
+# READFILE = "input/input_Bern_Interlaken_Gymnasium.xml"
+# READFILE = "input/input_Bern_Guisanplatz_Interlaken_Gymnasium.xml"
+
+# READFILE = "input/input_local.xml"
 # READFILE = "input/input_oev_shart_plus_long.xml"
 # READFILE = "input/input_sharing_intercity.xml"
 # READFILE = "input/input_sharing_only.xml"
