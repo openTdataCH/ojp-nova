@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from typing import List, Optional
 from nova.leistung_verkaufs_parameter_type import LeistungVerkaufsParameterType
+from nova.platz_vergabe_kriterien import PlatzVergabeKriterien
 
 __NAMESPACE__ = "http://nova.voev.ch/services/v14/vertrieb"
 
@@ -12,6 +13,8 @@ class LeistungsRequest:
     übermittelte angebotsId eine Leistung offerieren zu können.
 
     :ivar verkaufs_parameter:
+    :ivar platz_auswahl: obligatorisch und nur für Reservationsangebote
+        gedacht
     :ivar angebots_id:
     :ivar externe_leistungs_referenz_id:
     :ivar externe_reisenden_referenz_id:
@@ -24,6 +27,14 @@ class LeistungsRequest:
         default_factory=list,
         metadata={
             "name": "verkaufsParameter",
+            "type": "Element",
+            "namespace": "http://nova.voev.ch/services/v14/vertrieb",
+        }
+    )
+    platz_auswahl: List["LeistungsRequest.PlatzAuswahl"] = field(
+        default_factory=list,
+        metadata={
+            "name": "platzAuswahl",
             "type": "Element",
             "namespace": "http://nova.voev.ch/services/v14/vertrieb",
         }
@@ -77,3 +88,31 @@ class LeistungsRequest:
             "namespace": "http://nova.voev.ch/services/v14/vertrieb",
         }
     )
+
+    @dataclass
+    class PlatzAuswahl:
+        """
+        :ivar platz_vergabe_kriterien: Zonenauswahlkriterien für die
+            automatische Platzwahl
+        :ivar verbindungs_abschnitt_id:
+        """
+        platz_vergabe_kriterien: Optional[PlatzVergabeKriterien] = field(
+            default=None,
+            metadata={
+                "name": "platzVergabeKriterien",
+                "type": "Element",
+                "namespace": "http://nova.voev.ch/services/v14/vertrieb",
+                "required": True,
+            }
+        )
+        verbindungs_abschnitt_id: Optional[str] = field(
+            default=None,
+            metadata={
+                "name": "verbindungsAbschnittId",
+                "type": "Attribute",
+                "namespace": "http://nova.voev.ch/services/v14/vertrieb",
+                "required": True,
+                "min_length": 0,
+                "max_length": 100,
+            }
+        )

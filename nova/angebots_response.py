@@ -4,6 +4,7 @@ from nova.abstract_angebot import AbstractAngebot
 from nova.angebots_paket import AngebotsPaket
 from nova.geltungs_bereich import GeltungsBereich
 from nova.reisender import Reisender
+from nova.verbindungs_info import VerbindungsInfo
 from nova.vertriebs_response import VertriebsResponse
 
 __NAMESPACE__ = "http://nova.voev.ch/services/v14/vertrieb"
@@ -44,6 +45,14 @@ class AngebotsResponse(VertriebsResponse):
         default=None,
         metadata={
             "name": "geltungsBereiche",
+            "type": "Element",
+            "namespace": "http://nova.voev.ch/services/v14/vertrieb",
+            "required": True,
+        }
+    )
+    verbindungen: Optional["AngebotsResponse.Verbindungen"] = field(
+        default=None,
+        metadata={
             "type": "Element",
             "namespace": "http://nova.voev.ch/services/v14/vertrieb",
             "required": True,
@@ -92,6 +101,16 @@ class AngebotsResponse(VertriebsResponse):
             default_factory=list,
             metadata={
                 "name": "geltungsBereich",
+                "type": "Element",
+                "namespace": "http://nova.voev.ch/services/v14/vertrieb",
+            }
+        )
+
+    @dataclass
+    class Verbindungen:
+        verbindung: List[VerbindungsInfo] = field(
+            default_factory=list,
+            metadata={
                 "type": "Element",
                 "namespace": "http://nova.voev.ch/services/v14/vertrieb",
             }

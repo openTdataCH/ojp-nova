@@ -1,6 +1,7 @@
 from nova.abstract_angebot import AbstractAngebot
 from nova.abstract_leistung import AbstractLeistung
 from nova.abstract_rabatt_type import AbstractRabattType
+from nova.abteil_art import AbteilArt
 from nova.adresse import Adresse
 from nova.aktivierungs_angebots_request import AktivierungsAngebotsRequest
 from nova.anfrage_protokoll_level import AnfrageProtokollLevel
@@ -23,6 +24,7 @@ from nova.b2_brabatt_stufe_code_liste_1 import B2BrabattStufeCodeListe1
 from nova.b2_brabatt_stufe_code_liste_2 import B2BrabattStufeCodeListe2
 from nova.b2_brabatt_type import B2BrabattType
 from nova.befahrungs_typ import BefahrungsTyp
+from nova.befoerderungs_einschraenkung import BefoerderungsEinschraenkung
 from nova.beleg_request import BelegRequest
 from nova.beleg_response import BelegResponse
 from nova.bestaetige_produktion import BestaetigeProduktion
@@ -46,6 +48,7 @@ from nova.erneuerungs_request import ErneuerungsRequest
 from nova.erstattete_leistung import ErstatteteLeistung
 from nova.erstattungs_angebots_request import ErstattungsAngebotsRequest
 from nova.erstattungs_daten import ErstattungsDaten
+from nova.erstattungs_gebuehr import ErstattungsGebuehr
 from nova.erstattungs_grund_typ_1 import ErstattungsGrundTyp1
 from nova.erstattungs_grund_typ_2 import ErstattungsGrundTyp2
 from nova.erstattungs_typ import ErstattungsTyp
@@ -57,8 +60,6 @@ from nova.erstelle_freizeit_belege import ErstelleFreizeitBelege
 from nova.erstelle_freizeit_belege_response import ErstelleFreizeitBelegeResponse
 from nova.erstelle_freizeit_kombi_angebot import ErstelleFreizeitKombiAngebot
 from nova.erstelle_freizeit_kombi_angebot_response import ErstelleFreizeitKombiAngebotResponse
-from nova.erstelle_preis_auskunft import ErstellePreisAuskunft
-from nova.erstelle_preis_auskunft_response import ErstellePreisAuskunftResponse
 from nova.erstelle_savangebote import ErstelleSavangebote
 from nova.erstelle_savangebote_response import ErstelleSavangeboteResponse
 from nova.erstelle_tarif_weg_kombinations_angebot import ErstelleTarifWegKombinationsAngebot
@@ -163,17 +164,23 @@ from nova.paketbedingung import Paketbedingung
 from nova.parkplatz import Parkplatz
 from nova.ping import Ping
 from nova.ping_response import PingResponse
+from nova.platz import Platz
+from nova.platz_lage import PlatzLage
+from nova.platz_verfuegbarkeit import PlatzVerfuegbarkeit
+from nova.platz_vergabe_kriterien import PlatzVergabeKriterien
 from nova.preis import Preis
-from nova.preis_auskunft_request import PreisAuskunftRequest
-from nova.preis_auskunft_response import PreisAuskunftResponse
-from nova.preis_auskunft_service_port_type_soapv14_erstelle_preis_auskunft import PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunft
-from nova.preis_auskunft_service_port_type_soapv14_erstelle_preis_auskunft_input import PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput
-from nova.preis_auskunft_service_port_type_soapv14_erstelle_preis_auskunft_output import PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput
+from nova.erstelle_preis_auskunft import ErstellePreisAuskunft
+from nova.erstelle_preis_auskunft_response import ErstellePreisAuskunftResponse
 from nova.preis_auspraegung import PreisAuspraegung
+from nova.preis_auskunft_service_port_type_soapv14_erstelle_preis_auskunft import PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput
+from nova.verbindung_preis_auskunft_request import VerbindungPreisAuskunftRequest
+from nova.reisenden_info_preis_auskunft import ReisendenInfoPreisAuskunft
+from nova.verbindung_preis_auskunft_request import VerbindungPreisAuskunftRequest, VerbindungPreisAuskunft
+from nova.preis_auskunft_service_port_type_soapv14_erstelle_preis_auskunft_input import PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput
+from nova.preis_auskunft_service_port_type_soapv14_erstelle_preis_auskunft import PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunft
 from nova.produkt_basierter_angebots_request import ProduktBasierterAngebotsRequest
 from nova.produkt_einfluss_faktor_gruppe import ProduktEinflussFaktorGruppe
 from nova.produkt_nummer_filter import ProduktNummerFilter
-from nova.produkt_preis_auskunft_request import ProduktPreisAuskunftRequest
 from nova.produkt_rabatt_type import ProduktRabattType
 from nova.pruef_status import PruefStatus
 from nova.pruefen_verbindung_tarifierbarkeits import PruefenVerbindungTarifierbarkeits
@@ -186,9 +193,12 @@ from nova.reise_gruppe_info import ReiseGruppeInfo
 from nova.reise_route_segment import ReiseRouteSegment
 from nova.reise_weg_info import ReiseWegInfo
 from nova.reisenden_info import ReisendenInfo
-from nova.reisenden_info_preis_auskunft import ReisendenInfoPreisAuskunft
 from nova.reisenden_typ_code import ReisendenTypCode
 from nova.reisender import Reisender
+from nova.reservations_info import ReservationsInfo
+from nova.reservations_moeglichkeit import ReservationsMoeglichkeit
+from nova.reservations_pflicht import ReservationsPflicht
+from nova.reservierter_verbindungs_abschnitt import ReservierterVerbindungsAbschnitt
 from nova.sav_typ import SavTyp
 from nova.savaktion import Savaktion
 from nova.savangebot import Savangebot
@@ -227,10 +237,10 @@ from nova.transaktions_verhalten import TransaktionsVerhalten
 from nova.uhrzeit_abschnitt import UhrzeitAbschnitt
 from nova.uhrzeit_einschraenkungen_typ import UhrzeitEinschraenkungenTyp
 from nova.verbindung import Verbindung
-from nova.verbindung_preis_auskunft import VerbindungPreisAuskunft
-from nova.verbindung_preis_auskunft_request import VerbindungPreisAuskunftRequest
 from nova.verbindung_tarifierbarkeits_request import VerbindungTarifierbarkeitsRequest
 from nova.verbindung_tarifierbarkeits_response import VerbindungTarifierbarkeitsResponse
+from nova.verbindungs_abschnitt import VerbindungsAbschnitt
+from nova.verbindungs_info import VerbindungsInfo
 from nova.verbund_leistungs_info import VerbundLeistungsInfo
 from nova.verbund_strecken_request import VerbundStreckenRequest
 from nova.verbund_strecken_typ import VerbundStreckenTyp
@@ -248,6 +258,67 @@ from nova.vertrags_daten import VertragsDaten
 from nova.vertrags_info import VertragsInfo
 from nova.vertriebs_request import VertriebsRequest
 from nova.vertriebs_response import VertriebsResponse
+from nova.vertriebs_service_port_type_soapv14_bestaetige_produktion import VertriebsServicePortTypeSoapv14BestaetigeProduktion
+from nova.vertriebs_service_port_type_soapv14_bestaetige_produktion_input import VertriebsServicePortTypeSoapv14BestaetigeProduktionInput
+from nova.vertriebs_service_port_type_soapv14_bestaetige_produktion_output import VertriebsServicePortTypeSoapv14BestaetigeProduktionOutput
+from nova.vertriebs_service_port_type_soapv14_erstelle_angebote import VertriebsServicePortTypeSoapv14ErstelleAngebote
+from nova.vertriebs_service_port_type_soapv14_erstelle_angebote_input import VertriebsServicePortTypeSoapv14ErstelleAngeboteInput
+from nova.vertriebs_service_port_type_soapv14_erstelle_angebote_output import VertriebsServicePortTypeSoapv14ErstelleAngeboteOutput
+from nova.vertriebs_service_port_type_soapv14_erstelle_belege import VertriebsServicePortTypeSoapv14ErstelleBelege
+from nova.vertriebs_service_port_type_soapv14_erstelle_belege_input import VertriebsServicePortTypeSoapv14ErstelleBelegeInput
+from nova.vertriebs_service_port_type_soapv14_erstelle_belege_output import VertriebsServicePortTypeSoapv14ErstelleBelegeOutput
+from nova.vertriebs_service_port_type_soapv14_erstelle_freizeit_belege import VertriebsServicePortTypeSoapv14ErstelleFreizeitBelege
+from nova.vertriebs_service_port_type_soapv14_erstelle_freizeit_belege_input import VertriebsServicePortTypeSoapv14ErstelleFreizeitBelegeInput
+from nova.vertriebs_service_port_type_soapv14_erstelle_freizeit_belege_output import VertriebsServicePortTypeSoapv14ErstelleFreizeitBelegeOutput
+from nova.vertriebs_service_port_type_soapv14_erstelle_freizeit_kombi_angebot import VertriebsServicePortTypeSoapv14ErstelleFreizeitKombiAngebot
+from nova.vertriebs_service_port_type_soapv14_erstelle_freizeit_kombi_angebot_input import VertriebsServicePortTypeSoapv14ErstelleFreizeitKombiAngebotInput
+from nova.vertriebs_service_port_type_soapv14_erstelle_freizeit_kombi_angebot_output import VertriebsServicePortTypeSoapv14ErstelleFreizeitKombiAngebotOutput
+from nova.vertriebs_service_port_type_soapv14_erstelle_savangebote import VertriebsServicePortTypeSoapv14ErstelleSavangebote
+from nova.vertriebs_service_port_type_soapv14_erstelle_savangebote_input import VertriebsServicePortTypeSoapv14ErstelleSavangeboteInput
+from nova.vertriebs_service_port_type_soapv14_erstelle_savangebote_output import VertriebsServicePortTypeSoapv14ErstelleSavangeboteOutput
+from nova.vertriebs_service_port_type_soapv14_erstelle_tarif_weg_kombinations_angebot import VertriebsServicePortTypeSoapv14ErstelleTarifWegKombinationsAngebot
+from nova.vertriebs_service_port_type_soapv14_erstelle_tarif_weg_kombinations_angebot_input import VertriebsServicePortTypeSoapv14ErstelleTarifWegKombinationsAngebotInput
+from nova.vertriebs_service_port_type_soapv14_erstelle_tarif_weg_kombinations_angebot_output import VertriebsServicePortTypeSoapv14ErstelleTarifWegKombinationsAngebotOutput
+from nova.vertriebs_service_port_type_soapv14_erstelle_vertrags_belege import VertriebsServicePortTypeSoapv14ErstelleVertragsBelege
+from nova.vertriebs_service_port_type_soapv14_erstelle_vertrags_belege_input import VertriebsServicePortTypeSoapv14ErstelleVertragsBelegeInput
+from nova.vertriebs_service_port_type_soapv14_erstelle_vertrags_belege_output import VertriebsServicePortTypeSoapv14ErstelleVertragsBelegeOutput
+from nova.vertriebs_service_port_type_soapv14_get_leistungs_status import VertriebsServicePortTypeSoapv14GetLeistungsStatus
+from nova.vertriebs_service_port_type_soapv14_get_leistungs_status_input import VertriebsServicePortTypeSoapv14GetLeistungsStatusInput
+from nova.vertriebs_service_port_type_soapv14_get_leistungs_status_output import VertriebsServicePortTypeSoapv14GetLeistungsStatusOutput
+from nova.vertriebs_service_port_type_soapv14_kaufe_angebote import VertriebsServicePortTypeSoapv14KaufeAngebote
+from nova.vertriebs_service_port_type_soapv14_kaufe_angebote_input import VertriebsServicePortTypeSoapv14KaufeAngeboteInput
+from nova.vertriebs_service_port_type_soapv14_kaufe_angebote_output import VertriebsServicePortTypeSoapv14KaufeAngeboteOutput
+from nova.vertriebs_service_port_type_soapv14_kaufe_leistungen import VertriebsServicePortTypeSoapv14KaufeLeistungen
+from nova.vertriebs_service_port_type_soapv14_kaufe_leistungen_input import VertriebsServicePortTypeSoapv14KaufeLeistungenInput
+from nova.vertriebs_service_port_type_soapv14_kaufe_leistungen_output import VertriebsServicePortTypeSoapv14KaufeLeistungenOutput
+from nova.vertriebs_service_port_type_soapv14_leistung_entsperren import VertriebsServicePortTypeSoapv14LeistungEntsperren
+from nova.vertriebs_service_port_type_soapv14_leistung_entsperren_input import VertriebsServicePortTypeSoapv14LeistungEntsperrenInput
+from nova.vertriebs_service_port_type_soapv14_leistung_entsperren_output import VertriebsServicePortTypeSoapv14LeistungEntsperrenOutput
+from nova.vertriebs_service_port_type_soapv14_leistung_sperren import VertriebsServicePortTypeSoapv14LeistungSperren
+from nova.vertriebs_service_port_type_soapv14_leistung_sperren_input import VertriebsServicePortTypeSoapv14LeistungSperrenInput
+from nova.vertriebs_service_port_type_soapv14_leistung_sperren_output import VertriebsServicePortTypeSoapv14LeistungSperrenOutput
+from nova.vertriebs_service_port_type_soapv14_lese_freizeit_beleg_status import VertriebsServicePortTypeSoapv14LeseFreizeitBelegStatus
+from nova.vertriebs_service_port_type_soapv14_lese_freizeit_beleg_status_input import VertriebsServicePortTypeSoapv14LeseFreizeitBelegStatusInput
+from nova.vertriebs_service_port_type_soapv14_lese_freizeit_beleg_status_output import VertriebsServicePortTypeSoapv14LeseFreizeitBelegStatusOutput
+from nova.vertriebs_service_port_type_soapv14_liefere_belege_fuer_angebot import VertriebsServicePortTypeSoapv14LiefereBelegeFuerAngebot
+from nova.vertriebs_service_port_type_soapv14_liefere_belege_fuer_angebot_input import VertriebsServicePortTypeSoapv14LiefereBelegeFuerAngebotInput
+from nova.vertriebs_service_port_type_soapv14_liefere_belege_fuer_angebot_output import VertriebsServicePortTypeSoapv14LiefereBelegeFuerAngebotOutput
+from nova.vertriebs_service_port_type_soapv14_offeriere_leistungen import VertriebsServicePortTypeSoapv14OfferiereLeistungen
+from nova.vertriebs_service_port_type_soapv14_offeriere_leistungen_input import VertriebsServicePortTypeSoapv14OfferiereLeistungenInput
+from nova.vertriebs_service_port_type_soapv14_offeriere_leistungen_output import VertriebsServicePortTypeSoapv14OfferiereLeistungenOutput
+from nova.vertriebs_service_port_type_soapv14_ping import VertriebsServicePortTypeSoapv14Ping
+from nova.vertriebs_service_port_type_soapv14_ping_input import VertriebsServicePortTypeSoapv14PingInput
+from nova.vertriebs_service_port_type_soapv14_ping_output import VertriebsServicePortTypeSoapv14PingOutput
+from nova.vertriebs_service_port_type_soapv14_pruefen_verbindung_tarifierbarkeits import VertriebsServicePortTypeSoapv14PruefenVerbindungTarifierbarkeits
+from nova.vertriebs_service_port_type_soapv14_pruefen_verbindung_tarifierbarkeits_input import VertriebsServicePortTypeSoapv14PruefenVerbindungTarifierbarkeitsInput
+from nova.vertriebs_service_port_type_soapv14_pruefen_verbindung_tarifierbarkeits_output import VertriebsServicePortTypeSoapv14PruefenVerbindungTarifierbarkeitsOutput
+from nova.vertriebs_service_port_type_soapv14_storniere_leistung import VertriebsServicePortTypeSoapv14StorniereLeistung
+from nova.vertriebs_service_port_type_soapv14_storniere_leistung_input import VertriebsServicePortTypeSoapv14StorniereLeistungInput
+from nova.vertriebs_service_port_type_soapv14_storniere_leistung_output import VertriebsServicePortTypeSoapv14StorniereLeistungOutput
+from nova.vertriebs_service_port_type_soapv14_suche_leistungen import VertriebsServicePortTypeSoapv14SucheLeistungen
+from nova.vertriebs_service_port_type_soapv14_suche_leistungen_input import VertriebsServicePortTypeSoapv14SucheLeistungenInput
+from nova.vertriebs_service_port_type_soapv14_suche_leistungen_output import VertriebsServicePortTypeSoapv14SucheLeistungenOutput
+from nova.wagen_art import WagenArt
 from nova.weg_angabe import WegAngabe
 from nova.weg_position import WegPosition
 from nova.weg_suche import WegSuche
@@ -276,6 +347,7 @@ __all__ = [
     "AbstractAngebot",
     "AbstractLeistung",
     "AbstractRabattType",
+    "AbteilArt",
     "Adresse",
     "AktivierungsAngebotsRequest",
     "AnfrageProtokollLevel",
@@ -298,6 +370,7 @@ __all__ = [
     "B2BrabattStufeCodeListe2",
     "B2BrabattType",
     "BefahrungsTyp",
+    "BefoerderungsEinschraenkung",
     "BelegRequest",
     "BelegResponse",
     "BestaetigeProduktion",
@@ -321,6 +394,7 @@ __all__ = [
     "ErstatteteLeistung",
     "ErstattungsAngebotsRequest",
     "ErstattungsDaten",
+    "ErstattungsGebuehr",
     "ErstattungsGrundTyp1",
     "ErstattungsGrundTyp2",
     "ErstattungsTyp",
@@ -332,8 +406,6 @@ __all__ = [
     "ErstelleFreizeitBelegeResponse",
     "ErstelleFreizeitKombiAngebot",
     "ErstelleFreizeitKombiAngebotResponse",
-    "ErstellePreisAuskunft",
-    "ErstellePreisAuskunftResponse",
     "ErstelleSavangebote",
     "ErstelleSavangeboteResponse",
     "ErstelleTarifWegKombinationsAngebot",
@@ -438,17 +510,14 @@ __all__ = [
     "Parkplatz",
     "Ping",
     "PingResponse",
+    "Platz",
+    "PlatzLage",
+    "PlatzVerfuegbarkeit",
+    "PlatzVergabeKriterien",
     "Preis",
-    "PreisAuskunftRequest",
-    "PreisAuskunftResponse",
-    "PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunft",
-    "PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput",
-    "PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput",
-    "PreisAuspraegung",
     "ProduktBasierterAngebotsRequest",
     "ProduktEinflussFaktorGruppe",
     "ProduktNummerFilter",
-    "ProduktPreisAuskunftRequest",
     "ProduktRabattType",
     "PruefStatus",
     "PruefenVerbindungTarifierbarkeits",
@@ -461,9 +530,12 @@ __all__ = [
     "ReiseRouteSegment",
     "ReiseWegInfo",
     "ReisendenInfo",
-    "ReisendenInfoPreisAuskunft",
     "ReisendenTypCode",
     "Reisender",
+    "ReservationsInfo",
+    "ReservationsMoeglichkeit",
+    "ReservationsPflicht",
+    "ReservierterVerbindungsAbschnitt",
     "SavTyp",
     "Savaktion",
     "Savangebot",
@@ -502,10 +574,10 @@ __all__ = [
     "UhrzeitAbschnitt",
     "UhrzeitEinschraenkungenTyp",
     "Verbindung",
-    "VerbindungPreisAuskunft",
-    "VerbindungPreisAuskunftRequest",
     "VerbindungTarifierbarkeitsRequest",
     "VerbindungTarifierbarkeitsResponse",
+    "VerbindungsAbschnitt",
+    "VerbindungsInfo",
     "VerbundLeistungsInfo",
     "VerbundStreckenRequest",
     "VerbundStreckenTyp",
@@ -523,6 +595,67 @@ __all__ = [
     "VertragsInfo",
     "VertriebsRequest",
     "VertriebsResponse",
+    "VertriebsServicePortTypeSoapv14BestaetigeProduktion",
+    "VertriebsServicePortTypeSoapv14BestaetigeProduktionInput",
+    "VertriebsServicePortTypeSoapv14BestaetigeProduktionOutput",
+    "VertriebsServicePortTypeSoapv14ErstelleAngebote",
+    "VertriebsServicePortTypeSoapv14ErstelleAngeboteInput",
+    "VertriebsServicePortTypeSoapv14ErstelleAngeboteOutput",
+    "VertriebsServicePortTypeSoapv14ErstelleBelege",
+    "VertriebsServicePortTypeSoapv14ErstelleBelegeInput",
+    "VertriebsServicePortTypeSoapv14ErstelleBelegeOutput",
+    "VertriebsServicePortTypeSoapv14ErstelleFreizeitBelege",
+    "VertriebsServicePortTypeSoapv14ErstelleFreizeitBelegeInput",
+    "VertriebsServicePortTypeSoapv14ErstelleFreizeitBelegeOutput",
+    "VertriebsServicePortTypeSoapv14ErstelleFreizeitKombiAngebot",
+    "VertriebsServicePortTypeSoapv14ErstelleFreizeitKombiAngebotInput",
+    "VertriebsServicePortTypeSoapv14ErstelleFreizeitKombiAngebotOutput",
+    "VertriebsServicePortTypeSoapv14ErstelleSavangebote",
+    "VertriebsServicePortTypeSoapv14ErstelleSavangeboteInput",
+    "VertriebsServicePortTypeSoapv14ErstelleSavangeboteOutput",
+    "VertriebsServicePortTypeSoapv14ErstelleTarifWegKombinationsAngebot",
+    "VertriebsServicePortTypeSoapv14ErstelleTarifWegKombinationsAngebotInput",
+    "VertriebsServicePortTypeSoapv14ErstelleTarifWegKombinationsAngebotOutput",
+    "VertriebsServicePortTypeSoapv14ErstelleVertragsBelege",
+    "VertriebsServicePortTypeSoapv14ErstelleVertragsBelegeInput",
+    "VertriebsServicePortTypeSoapv14ErstelleVertragsBelegeOutput",
+    "VertriebsServicePortTypeSoapv14GetLeistungsStatus",
+    "VertriebsServicePortTypeSoapv14GetLeistungsStatusInput",
+    "VertriebsServicePortTypeSoapv14GetLeistungsStatusOutput",
+    "VertriebsServicePortTypeSoapv14KaufeAngebote",
+    "VertriebsServicePortTypeSoapv14KaufeAngeboteInput",
+    "VertriebsServicePortTypeSoapv14KaufeAngeboteOutput",
+    "VertriebsServicePortTypeSoapv14KaufeLeistungen",
+    "VertriebsServicePortTypeSoapv14KaufeLeistungenInput",
+    "VertriebsServicePortTypeSoapv14KaufeLeistungenOutput",
+    "VertriebsServicePortTypeSoapv14LeistungEntsperren",
+    "VertriebsServicePortTypeSoapv14LeistungEntsperrenInput",
+    "VertriebsServicePortTypeSoapv14LeistungEntsperrenOutput",
+    "VertriebsServicePortTypeSoapv14LeistungSperren",
+    "VertriebsServicePortTypeSoapv14LeistungSperrenInput",
+    "VertriebsServicePortTypeSoapv14LeistungSperrenOutput",
+    "VertriebsServicePortTypeSoapv14LeseFreizeitBelegStatus",
+    "VertriebsServicePortTypeSoapv14LeseFreizeitBelegStatusInput",
+    "VertriebsServicePortTypeSoapv14LeseFreizeitBelegStatusOutput",
+    "VertriebsServicePortTypeSoapv14LiefereBelegeFuerAngebot",
+    "VertriebsServicePortTypeSoapv14LiefereBelegeFuerAngebotInput",
+    "VertriebsServicePortTypeSoapv14LiefereBelegeFuerAngebotOutput",
+    "VertriebsServicePortTypeSoapv14OfferiereLeistungen",
+    "VertriebsServicePortTypeSoapv14OfferiereLeistungenInput",
+    "VertriebsServicePortTypeSoapv14OfferiereLeistungenOutput",
+    "VertriebsServicePortTypeSoapv14Ping",
+    "VertriebsServicePortTypeSoapv14PingInput",
+    "VertriebsServicePortTypeSoapv14PingOutput",
+    "VertriebsServicePortTypeSoapv14PruefenVerbindungTarifierbarkeits",
+    "VertriebsServicePortTypeSoapv14PruefenVerbindungTarifierbarkeitsInput",
+    "VertriebsServicePortTypeSoapv14PruefenVerbindungTarifierbarkeitsOutput",
+    "VertriebsServicePortTypeSoapv14StorniereLeistung",
+    "VertriebsServicePortTypeSoapv14StorniereLeistungInput",
+    "VertriebsServicePortTypeSoapv14StorniereLeistungOutput",
+    "VertriebsServicePortTypeSoapv14SucheLeistungen",
+    "VertriebsServicePortTypeSoapv14SucheLeistungenInput",
+    "VertriebsServicePortTypeSoapv14SucheLeistungenOutput",
+    "WagenArt",
     "WegAngabe",
     "WegPosition",
     "WegSuche",

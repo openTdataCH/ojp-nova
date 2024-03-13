@@ -10,14 +10,20 @@ __NAMESPACE__ = "http://nova.voev.ch/services/v14/vertrieb"
 class ErneuerungsRequest:
     """
     :ivar bestehende_leistungs_id:
-    :ivar externe_leistungs_referenz_id:
-    :ivar original_leistung_produkt_nummer:
-    :ivar original_leistung_gueltig_bis:
-    :ivar vertrags_partner_tkid:
-    :ivar reisender_tkid:
-    :ivar vertrags_nummer:
-    :ivar original_leistung_klasse:
-    :ivar original_leistungs_erster_lv:
+    :ivar externe_leistungs_referenz_id: @Deprecated Kuba Erneuerung not
+        supported.
+    :ivar original_leistung_produkt_nummer: @Deprecated Kuba Erneuerung
+        not supported.
+    :ivar original_leistung_gueltig_bis: @Deprecated Kuba Erneuerung not
+        supported.
+    :ivar vertrags_partner_tkid: @Deprecated Kuba Erneuerung not
+        supported.
+    :ivar reisender_tkid: @Deprecated Kuba Erneuerung not supported.
+    :ivar vertrags_nummer: @Deprecated Kuba Erneuerung not supported.
+    :ivar original_leistung_klasse: @Deprecated Kuba Erneuerung not
+        supported.
+    :ivar original_leistungs_erster_lv: @Deprecated Kuba Erneuerung not
+        supported.
     :ivar rabatt_request:
     :ivar gueltig_ab:
     :ivar ersatz_leistungs_kauf: Attribut zur Steuerung des

@@ -26,6 +26,10 @@ class FahrplanVerbindungsSegment:
         eine Abfahrtszeit gesetzt sein.
     :ivar ankunfts_zeit: Auf dem letzten FahrplanverbindungsSegment muss
         eine Ankunftszeit gesetzt sein.
+    :ivar verbindungs_abschnitts_index: Ein Pflichtfeld für
+        Reservationsanfragen. Bei einer Durchbindung muss für mehrere
+        FahrplanVerbindungsSegmente derselbe verbindungsAbschnittsIndex
+        verwendet werden.
     """
     verkehrs_mittel: Optional[VerkehrsMittelGattung] = field(
         default=None,
@@ -99,6 +103,14 @@ class FahrplanVerbindungsSegment:
         default=None,
         metadata={
             "name": "ankunftsZeit",
+            "type": "Attribute",
+            "namespace": "http://nova.voev.ch/services/v14/vertrieb",
+        }
+    )
+    verbindungs_abschnitts_index: Optional[int] = field(
+        default=None,
+        metadata={
+            "name": "verbindungsAbschnittsIndex",
             "type": "Attribute",
             "namespace": "http://nova.voev.ch/services/v14/vertrieb",
         }
