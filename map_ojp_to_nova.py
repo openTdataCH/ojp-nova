@@ -2,7 +2,7 @@
 from nova import ErstellePreisAuskunft, VerbindungPreisAuskunftRequest, ClientIdentifier, CorrelationKontext, \
     TaxonomieFilter, TaxonomieKlassePfad, ReisendenInfoPreisAuskunft, ReisendenTypCode, VerbindungPreisAuskunft, \
     FahrplanVerbindungsSegment, VerkehrsMittelGattung, ZwischenHaltContextTripContext, \
-    PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput
+    PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput, EmptyType
 from logger import log
 from ojp import Ojp, TimedLegStructure
 from support import OJPError
@@ -118,12 +118,11 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
                                                                           geschaefts_prozess_id="1781786f-57ba-4e9a-bc29-287e2aa97f9a"),
                                                                       angebots_filter=[TaxonomieFilter(
                                                                           produkt_taxonomie="SBB Preisauskunft",
-                                                                          taxonomie_klasse_pfad=[TaxonomieKlassePfad(
-                                                                              klassen_name="Einzelbillette")])],
+                                                                          taxonomie_klasse_pfad=[TaxonomieKlassePfad(EmptyType())])],
                                                                       reisender=[ReisendenInfoPreisAuskunft(alter=age,
                                                                                                             externe_reisenden_referenz_id="1234",
                                                                                                             reisenden_typ=ReisendenTypCode.PERSON,
-                                                                                                            ermaessigungs_karte_code="HTA")],
+                                                                                                            ermaessigungs_karte_code=["HTA"])],
                                                                       verbindung=verbindungen
                                                                       ))))
 

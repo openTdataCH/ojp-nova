@@ -26,13 +26,13 @@ VATRATE = 8.1  # Percent
 # READFILE = "input/input_oev_shart_plus_long.xml"
 # READFILE = "input/input_walk_only.xml"
 # READFILE = "input/input_Zuerich_Chur.xml"
+READFILE = "input/input_Bern_Chur_SOB_Zukunft.xml"  #time must be reset before run. Check if discounts exist on www.sbb.ch
+READFILE = "input/input_Bern_Zweisimmen_BLS_Zukunft.xml"  #time must be reset before run. Check if discounts exist on www.sbb.ch
 # READFILE = "input/input_Zuerich_Bern.xml"
-READFILE = "input/input_Basel_Sargans.xml"
-
+# READFILE = "input/input_Basel_Sargans.xml"
 # READFILE = "input/input_Bern_Interlaken_Ost.xml"
 # READFILE = "input/input_Bern_Interlaken_Gymnasium.xml"
 # READFILE = "input/input_Bern_Guisanplatz_Interlaken_Gymnasium.xml"
-
 # READFILE = "input/input_local.xml"
 # READFILE = "input/input_oev_shart_plus_long.xml"
 # READFILE = "input/input_sharing_intercity.xml"
