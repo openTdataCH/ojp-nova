@@ -8,7 +8,7 @@ import sys
 # writing debugging files and specific points
 def log(filename,xml):
     if DEBUGGING:
-        open(filename, 'w').write(xml)
+        open(filename, 'w',encoding='utf-8').write(xml)
 
 # writing which origin/destination was asked from NOVA
 def log_entry(origin, destination, starttime,stoptime):
