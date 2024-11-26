@@ -6,6 +6,7 @@ from nova import ErstellePreisAuskunft, VerbindungPreisAuskunftRequest, ClientId
 from logger import log
 from ojp import Ojp, TimedLegStructure
 from support import OJPError
+import random
 
 def sloid2didok(sloid):
     #if a didok code, just return it
@@ -68,6 +69,7 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
 
     try:
         age = ojp.ojprequest.service_request.ojpfare_request[0].params.traveller[0].age
+        travellers = ojp.ojprequest.service_request.ojpfare_request[0].params.traveller
     except:
         pass
 
@@ -76,6 +78,7 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
         legs = fare_request.trip_fare_request.trip.trip_leg
         externeVerbindungsReferenzId = fare_request.trip_fare_request.trip.trip_id
         segments = []
+        reisende = []
         leg_start = None
         leg_end = None
         leg_nr=0
@@ -104,7 +107,38 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
             raise OJPError("no pricable legs found.")
 
         verbindungen += [VerbindungPreisAuskunft(externe_verbindungs_referenz_id=externeVerbindungsReferenzId + "_" + leg_start + "_" + leg_end, segment_hin_fahrt=segments)]
+        reisende =[]
+        for traveler in travellers:
+            # we only do one for the time being TODO
+            r_alter=25
+            if traveler.age == None:
+                t_alter=25
+            else:
+                t_alter=traveler.age
+            r_typ = ReisendenTypCode.PERSON
+            if traveler.passenger_category == None:
+                r_typ =ReisendenTypCode.PERSON
+            elif traveler.passenger_category == "Dog":
+                r_typ = ReisendenTypCode.HUND
+            elif traveler.passenger_category == "Bicycle":
+                r_typ = ReisendenTypCode.VELO
+            else:
+                r_typ = ReisendenTypCode.PERSON
+            digits = "0123456789"
+            r_referenz= ''.join(random.choice(digits) for _ in range(6))
+            # we only process HTA for the time being!
+            reisender = ReisendenInfoPreisAuskunft(alter=r_alter,
+                                                   externe_reisenden_referenz_id=r_referenz,
+                                                   reisenden_typ=r_typ,
+                                                   ermaessigungs_karte_code=[])
 
+            for entitlement_product in traveler.entitlement_product:
+                if "HTA" in entitlement_product:
+                    reisender = ReisendenInfoPreisAuskunft(alter=r_alter,
+                                                           externe_reisenden_referenz_id=r_referenz,
+                                                           reisenden_typ=r_typ,
+                                                           ermaessigungs_karte_code=["HTA"])
+            reisende.append(reisender)
     return PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput(
         body=PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput.Body(
             erstelle_preis_auskunft=ErstellePreisAuskunft(
@@ -119,10 +153,7 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
                                                                       angebots_filter=[TaxonomieFilter(
                                                                           produkt_taxonomie="SBB Preisauskunft",
                                                                           taxonomie_klasse_pfad=[TaxonomieKlassePfad(EmptyType())])],
-                                                                      reisender=[ReisendenInfoPreisAuskunft(alter=age,
-                                                                                                            externe_reisenden_referenz_id="1234",
-                                                                                                            reisenden_typ=ReisendenTypCode.PERSON,
-                                                                                                            ermaessigungs_karte_code=["HTA"])],
+                                                                      reisender=reisende,
                                                                       verbindung=verbindungen
                                                                       ))))
 

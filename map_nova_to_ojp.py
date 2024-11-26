@@ -27,6 +27,9 @@ def map_preis_auspraegung_to_trip_fare_result(preis_auspraegungen: List[PreisAus
     tripfareresults = []
     for preis_auspraegung in preis_auspraegungen:
         _, from_leg_id, to_leg_id = preis_auspraegung.externe_verbindungs_referenz_id.split('_')
+        required_card=[]
+        if preis_auspraegung.produkt_einfluss_faktoren.kunden_segment.kunden_segment_code=="HALBTAX":
+            required_card=["HTA"]
         tripfareresults.append(TripFareResultStructure(from_trip_leg_id_ref=from_leg_id, to_trip_leg_id_ref=to_leg_id,
                                 fare_product=[FareProductStructure(fare_product_id=preis_auspraegung.produkt_nummer,
                                                                    fare_product_name=preis_auspraegung.produkt_nummer,
@@ -35,6 +38,7 @@ def map_preis_auspraegung_to_trip_fare_result(preis_auspraegungen: List[PreisAus
                                                                    price=preis_auspraegung.preis.betrag,
                                                                    net_price=round(float(preis_auspraegung.preis.betrag)*(1.0-VATRATE/100),2),
                                                                    currency=preis_auspraegung.preis.waehrung,
+                                                                   required_card=required_card,
                                                                    vat_rate=VATRATE,
                                                                    travel_class=map_klasse_to_fareclass(preis_auspraegung.produkt_einfluss_faktoren.klasse))]))
 
