@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
 import datetime
-
+from configuration import USE_HTA
 from ojp import Ojp, Ojprequest, ServiceRequest, OjpfareRequest, FareParamStructure, PassengerCategoryEnumeration, \
     TypeOfFareClassEnumeration, FarePassengerStructure, TripFareRequestStructure, TripStructure, OjptripRequest, \
-    TripResultStructure
+    TripResultStructure, EntitlementProductRef
 
 from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.parsers.config import ParserConfig
@@ -26,16 +26,19 @@ def parse_ojp(body: str) -> Ojp:
     return parser.from_string(body, Ojp)
 
 def map_to_individual_ojpfarerequest(trip: TripStructure, now: XmlDateTime) -> OjpfareRequest:
+    travellers=[]
+    if USE_HTA:
+        travellers.append(FarePassengerStructure(passenger_category=PassengerCategoryEnumeration.ADULT,age=25,entitlement_product = ["HTA"]))
+    else:
+        travellers.append(FarePassengerStructure(passenger_category=PassengerCategoryEnumeration.ADULT,age=25,entitlement_product = []))
+
     return OjpfareRequest(
         request_timestamp=now,
         params=FareParamStructure(fare_authority_filter=["ch:1:NOVA"],
                                   passenger_category=[PassengerCategoryEnumeration.ADULT],
                                   travel_class=TypeOfFareClassEnumeration.SECOND,
-                                  traveller=[
-                                      FarePassengerStructure(passenger_category=PassengerCategoryEnumeration.ADULT,
-                                                             age=25)]),
-        trip_fare_request=TripFareRequestStructure(trip=trip)
-    )
+                                  traveller=travellers),
+        trip_fare_request=TripFareRequestStructure(trip=trip))
 
 # def map_to_individual_ojptriprefinerequest(trip_result: TripResultStructure, now: XmlDateTime) -> OjptripRefineRequest:
 #     return OjptripRefineRequest(
