@@ -23,7 +23,7 @@
           </ojp:PlaceRef>
         </ojp:Destination>
         <ojp:Params>
-          <ojp:NumberOfResultsAfter>2</ojp:NumberOfResultsAfter>
+          <ojp:NumberOfResultsAfter>6</ojp:NumberOfResultsAfter>
           <ojp:IncludeTrackSections>false</ojp:IncludeTrackSections>
           <ojp:IncludeLegProjection>false</ojp:IncludeLegProjection>
           <ojp:IncludeTurnDescription>false</ojp:IncludeTurnDescription>

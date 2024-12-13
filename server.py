@@ -62,7 +62,8 @@ ojpfare_delivery=[ojp_fare_delivery]))), ns_map=ns_map)
                 return Response(serializer.render(error_response("There was no NOVA response"), ns_map=ns_map), status_code=400, media_type="application/xml; charset=utf-8")
             else:
                 logger.log_entry("Returning the call to the OJP server:"+str(body.decode('utf-8')))
-                return Response(call_ojp_2000(body.decode('utf-8')), media_type="application/xml; charset=utf-8")
+                s,r=call_ojp_2000(body.decode('utf-8'))
+                return Response(r, media_type="application/xml; charset=utf-8",status_code=s)
         else:
             #very general errors
             if error:

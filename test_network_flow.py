@@ -26,7 +26,7 @@ def call_ojp_2000(request_body):
         headers = {'Authorization': 'Bearer ' + access_token, 'Content-Type': 'application/xml; charset=utf-8' }
         api_call_response = requests.post(OJP_URL_API, data=request_body.encode('utf-8'), headers=headers, verify=False)
         api_call_response.encoding = api_call_response.apparent_encoding
-        return api_call_response.text
+        return api_call_response.status_code,api_call_response.text
 
     except Exception as e:
         message = 'Failed: {:s}.'.format(str(e))
@@ -104,7 +104,10 @@ if __name__ == '__main__':
         log('generated/ojp_trip_request.xml', ojp_trip_request_xml)
         try:
             print (f"\n********************************************\n{rf}\n********************************************\n")
-            r = call_ojp_2000(ojp_trip_request_xml)
+            status,r = call_ojp_2000(ojp_trip_request_xml)
+            if status !=200:
+                message=f"call returned a wrong status {status}"
+                raise IOError(message, e)
             ojp_trip_result = parse_ojp(r)
             # TODO ojp_trip_result.ojpresponse.service_delivery.ojptrip_delivery.status== false => error. However, I do only get to ojptrip_delivery.
             ojp_trip_result_xml = serializer.render(ojp_trip_result, ns_map=ns_map)
