@@ -44,8 +44,8 @@ READFILE = []
 #READFILE.append("input/input_demand_responsive_saturday_after_1500.xml")
 #READFILE.append("input/input_bus_postauto.xml")
 #READFILE.append("input/input_in_the_past_not_handeled_well_in_Preisauskunft.xml")
-#READFILE.append("input/input_problematic_case_vasile.xml")
-READFILE.append("input/input_Europaplatz.xml")
+READFILE.append("input/input_problematic_case_vasile.xml")
+#READFILE.append("input/input_Europaplatz.xml")
 
 
 # if there exists a local_configuration it is used.
