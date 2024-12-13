@@ -8,17 +8,18 @@
         <RequestTimestamp>2023-08-08T11:35:38.145Z</RequestTimestamp>
         <ojp:Origin>
           <ojp:PlaceRef>
-            <StopPointRef>8500010</StopPointRef>
+            <StopPointRef>8507076</StopPointRef>
             <ojp:LocationName>
-              <ojp:Text>Basel SBB</ojp:Text>
+              <ojp:Text>Belp</ojp:Text>
             </ojp:LocationName>
           </ojp:PlaceRef>
+          <ojp:DepArrTime>2024-12-16T08:43:42.788Z</ojp:DepArrTime>
         </ojp:Origin>
         <ojp:Destination>
           <ojp:PlaceRef>
-            <StopPointRef>8509411</StopPointRef>
+            <StopPointRef>8507089</StopPointRef>
             <ojp:LocationName>
-              <ojp:Text>Sargans</ojp:Text>
+              <ojp:Text>Schwarzenburg</ojp:Text>
             </ojp:LocationName>
           </ojp:PlaceRef>
         </ojp:Destination>
