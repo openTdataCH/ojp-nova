@@ -11,7 +11,7 @@ from ojp import OjpfareDelivery, FareResultStructure, FareProductStructure, Trip
     TypeOfFareClassEnumeration
 from logger import log
 from configuration import VATRATE
-
+from fare_products import products
 def map_klasse_to_fareclass(klasse: KlassenTypCode) -> TypeOfFareClassEnumeration:
     if klasse == KlassenTypCode.KLASSE_1:
         return TypeOfFareClassEnumeration.FIRST
@@ -30,9 +30,10 @@ def map_preis_auspraegung_to_trip_fare_result(preis_auspraegungen: List[PreisAus
         required_card=[]
         if preis_auspraegung.produkt_einfluss_faktoren.kunden_segment.kunden_segment_code=="HALBTAX":
             required_card=["HTA"]
+        fare_product_name=products.get(str(preis_auspraegung.produkt_nummer),str(preis_auspraegung.produkt_nummer)) # name or number if none
         tripfareresults.append(TripFareResultStructure(from_trip_leg_id_ref=from_leg_id, to_trip_leg_id_ref=to_leg_id,
                                 fare_product=[FareProductStructure(fare_product_id=preis_auspraegung.produkt_nummer,
-                                                                   fare_product_name=preis_auspraegung.produkt_nummer,
+                                                                   fare_product_name=fare_product_name,
                                                                    fare_authority_ref='NOVA',
                                                                    fare_authority_text='NOVA',
                                                                    price=preis_auspraegung.preis.betrag,
