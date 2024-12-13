@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<siri:OJP xmlns="http://www.vdv.de/ojp" xmlns:siri="http://www.siri.org.uk/siri" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.vdv.de/ojp" version="1.0">
+  <siri:OJPRequest>
+    <siri:ServiceRequest>
+      <siri:ServiceRequestContext>
+        <siri:Language>de</siri:Language>
+      </siri:ServiceRequestContext>
+      <siri:RequestTimestamp>2024-12-13T19:41:51.171Z</siri:RequestTimestamp>
+      <siri:RequestorRef>OJP_JS_SDK_v0.14.1</siri:RequestorRef>
+      <OJPTripRequest>
+        <siri:RequestTimestamp>2024-12-13T19:41:51.171Z</siri:RequestTimestamp>
+        <Origin>
+          <PlaceRef>
+            <StopPlaceRef>ch:1:sloid:7492:0:460848</StopPlaceRef>
+            <LocationName>
+              <Text>Interlaken Ost</Text>
+            </LocationName>
+          </PlaceRef>
+          <DepArrTime>2024-12-13T19:30:29.036Z</DepArrTime>
+        </Origin>
+        <Destination>
+          <PlaceRef>
+            <GeoPosition>
+              <siri:Longitude>7.86957</siri:Longitude>
+              <siri:Latitude>46.69054</siri:Latitude>
+            </GeoPosition>
+            <LocationName>
+              <Text>46.690540,7.869570</Text>
+            </LocationName>
+          </PlaceRef>
+        </Destination>
+        <Params>
+          <PrivateModeFilter>
+            <Exclude>false</Exclude>
+          </PrivateModeFilter>
+          <NumberOfResults>2</NumberOfResults>
+          <IncludeTrackSections>false</IncludeTrackSections>
+          <IncludeLegProjection>false</IncludeLegProjection>
+          <IncludeTurnDescription>false</IncludeTurnDescription>
+          <IncludeIntermediateStops>true</IncludeIntermediateStops>
+          <UseRealtimeData>explanatory</UseRealtimeData>
+        </Params>
+      </OJPTripRequest>
+    </siri:ServiceRequest>
+  </siri:OJPRequest>
+</siri:OJP>
