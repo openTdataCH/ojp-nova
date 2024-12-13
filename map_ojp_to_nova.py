@@ -4,14 +4,28 @@ from nova import ErstellePreisAuskunft, VerbindungPreisAuskunftRequest, ClientId
     FahrplanVerbindungsSegment, VerkehrsMittelGattung, ZwischenHaltContextTripContext, \
     PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput, EmptyType
 from logger import log
-from ojp import Ojp, TimedLegStructure
+from ojp import Ojp, TimedLegStructure, FarePassengerStructure, PassengerCategoryEnumeration
 from support import OJPError
 import random
 
 def sloid2didok(sloid):
+    # TODO this is a hack for the timetable change 2024/2025 must be done correctly in map_ojp_to_ojp.py by replacing the stoppoints with the correct didoks
     #if a didok code, just return it
+    my_dict ={
+    }
+    #dict from https://confluence.sbb.ch/pages/viewpage.action?pageId=2608861819
+    #"8507082": "8504108",
+    #"8503088": "8503000",
+    #"8519342": "8504014",
+    #"8014488": "8503467",
+    #"8014482": "8503466",
+    #"8014483": "8503465",
+    #"8014484": "8503464",
+    #"8014485": "853463",
+    #"8014487": "8503462",
     try:
         didok=int(sloid)
+        didok=int(my_dict.get(str(didok),str(didok))) # replaces if it is in the table or gets the value back
         return didok
     except:
         #remove left part of sloid
@@ -19,6 +33,10 @@ def sloid2didok(sloid):
         if ':' in sloid:
             sloid = sloid[:sloid.find(':')]
         #remove the right part of sloid, if it exist
+        #if bigger than 100000 -> no add
+        sloid=int(my_dict.get(str(sloid),str(sloid))) # replaces if it is in the table or gets the value back
+        if int(sloid)>100000:
+            return int(sloid)
         return 8500000+int(sloid)
 
 def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindungsSegment:
@@ -68,8 +86,12 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
         return False
 
     try:
-        age = ojp.ojprequest.service_request.ojpfare_request[0].params.traveller[0].age
-        travellers = ojp.ojprequest.service_request.ojpfare_request[0].params.traveller
+        if ojp.ojprequest.service_request.ojpfare_request[0].params.traveller is None:
+            travellers = []
+            travellers.append(FarePassengerStructure(age=25, entitlement_product =["HTA"]))
+        else:
+            age = ojp.ojprequest.service_request.ojpfare_request[0].params.traveller[0].age
+            travellers = ojp.ojprequest.service_request.ojpfare_request[0].params.traveller
     except:
         pass
 

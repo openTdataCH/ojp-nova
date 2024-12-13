@@ -23,7 +23,7 @@ DEBUGGING = True
 LOGFILE = "logs/my_log.log"
 READTRIPREQUESTFILE = True
 VATRATE = 8.1  # Percent
-USE_HTA = True # if in the tests half price should be used
+USE_HTA = False # if in the tests half price should be used
 READFILE = []
 #READFILE.append("input/input_oev_shart_plus_long.xml")
 #READFILE.append("input/input_walk_only.xml")
@@ -44,8 +44,9 @@ READFILE = []
 #READFILE.append("input/input_demand_responsive_saturday_after_1500.xml")
 #READFILE.append("input/input_bus_postauto.xml")
 #READFILE.append("input/input_in_the_past_not_handeled_well_in_Preisauskunft.xml")
-#READFILE.append("input/input_BE_ZH_Zukunft_discount.xml")
-READFILE.append("input/input_problematic_case_vasile.xml")
+#READFILE.append("input/input_problematic_case_vasile.xml")
+READFILE.append("input/input_Europaplatz.xml")
+
 
 # if there exists a local_configuration it is used.
 try:
