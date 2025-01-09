@@ -1,4 +1,4 @@
-xsdata[cli,lxml,soap]==23.8
+xsdata[cli,lxml,soap]
 requests
 fastapi[all]
 uvicorn

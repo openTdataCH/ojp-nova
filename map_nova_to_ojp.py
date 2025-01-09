@@ -84,7 +84,7 @@ if __name__ == '__main__':
     parser = XmlParser(parser_config)
 
     serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
-    serializer = XmlSerializer(serializer_config)
+    serializer = XmlSerializer(config=serializer_config)
 
     soap = parser.parse('generated/nova_response.xml', PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput)
     if soap:

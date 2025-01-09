@@ -19,7 +19,7 @@ import logger
 app = FastAPI(title="OJP2NOVA")
 
 serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
-serializer = XmlSerializer(serializer_config)
+serializer = XmlSerializer(config=serializer_config)
 
 ns_map = {'': 'http://www.siri.org.uk/siri', 'ojp': 'http://www.vdv.de/ojp'}
 

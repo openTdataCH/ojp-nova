@@ -184,7 +184,7 @@ def test_ojp_fare_request_to_nova_request(ojp: Ojp) -> PreisAuskunftServicePortT
     from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
     serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
-    serializer = XmlSerializer(serializer_config)
+    serializer = XmlSerializer(config=serializer_config)
 
     nova_request = map_fare_request_to_nova_request(ojp)
     if nova_request==None or nova_request==False:

@@ -77,7 +77,7 @@ def test_nova_request_reply(ojp: Ojp):
     nova_response = nova_client.send(nova_request, headers=headers)
     if nova_response:
         serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
-        serializer = XmlSerializer(serializer_config)
+        serializer = XmlSerializer(config=serializer_config)
         nova_response_xml = serializer.render(nova_response)
         log('generated/nova_response.xml',nova_response_xml)
         return nova_response
@@ -92,7 +92,7 @@ if __name__ == '__main__':
     ojp_trip_request_xml=''
     check_configuration()
     serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
-    serializer = XmlSerializer(serializer_config)
+    serializer = XmlSerializer(config=serializer_config)
     for rf in READFILE:
         if (not READTRIPREQUESTFILE):
             ojp_trip_request = test_create_ojp_trip_request_simple_1()
