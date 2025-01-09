@@ -132,7 +132,7 @@ def test_nova_request_reply(ojp: Ojp):
     nova_response = nova_client.send(nova_request, headers=headers)
     if nova_response:
         serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
-        serializer = XmlSerializer(serializer_config)
+        serializer = XmlSerializer(config=serializer_config)
         nova_response_xml = serializer.render(nova_response)
         log('generated/nova_response.xml',nova_response_xml)
         return nova_response
@@ -150,7 +150,7 @@ if __name__ == '__main__':
     access_token = oauth_helper.get_token()
     headers = {'Authorization': 'Bearer ' + access_token, "User-Agent": "OJP2NOVA/0.2"}
     serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
-    serializer = XmlSerializer(serializer_config)
+    serializer = XmlSerializer(config=serializer_config)
     try:
         areqbody='''
         <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
@@ -185,7 +185,7 @@ if __name__ == '__main__':
         nova_response = nova_client.send(nova_request, headers=headers)
         if nova_response:
             serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
-            serializer = XmlSerializer(serializer_config)
+            serializer = XmlSerializer(config=serializer_config)
             nova_response_xml = serializer.render(nova_response)
             log('generated/nova_p_r_response.xml', nova_response_xml)
     except Exception as e:

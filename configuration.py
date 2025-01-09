@@ -31,8 +31,8 @@ READFILE = []
 #READFILE.append("input/input_Bern_Chur_SOB_Zukunft.xml" ) #time must be reset before run. Check if discounts exist on www.sbb.ch
 #READFILE.append("input/input_Bern_Zweisimmen_BLS_Zukunft.xml")  #time must be reset before run. Check if discounts exist on www.sbb.ch
 #READFILE.append("input/input_Visp_SaaS_Fee_problem_1_preis.xml") #1. class price problematic
-#READFILE.append("input/input_Zuerich_Bern.xml")
-#READFILE.append("input/input_Basel_Sargans.xml")
+READFILE.append("input/input_Zuerich_Bern.xml")
+READFILE.append("input/input_Basel_Sargans.xml")
 #READFILE.append("input/input_Bern_Interlaken_Ost.xml")
 #READFILE.append("input/input_Bern_Interlaken_Gymnasium.xml")
 #READFILE.append("input/input_Bern_Guisanplatz_Interlaken_Gymnasium.xml")
@@ -45,7 +45,7 @@ READFILE = []
 #READFILE.append("input/input_bus_postauto.xml")
 #READFILE.append("input/input_in_the_past_not_handeled_well_in_Preisauskunft.xml")
 #READFILE.append("input/input_problematic_case_vasile.xml")
-READFILE.append("input/input_Europaplatz.xml")
+#READFILE.append("input/input_Europaplatz.xml")
 #READFILE.append("input/input_aller_retour.xml")
 
 
