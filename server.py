@@ -77,7 +77,7 @@ ojpfare_delivery=[ojp_fare_delivery]))), ns_map=ns_map)
                             media_type="application/xml; charset=utf-8")
     except Exception as e:
         # not yet really sophisticated handling of all other errors during the work (should be regular OJPDeliveries with OtherError set
-        logger.log_entry("Some other error occured.")
+        logger.log_entry("Some other error occured: "+str(e))
         return Response(
             serializer.render(error_response(str(e)), ns_map=ns_map),
             status_code=400,
