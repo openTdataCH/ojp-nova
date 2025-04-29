@@ -13,6 +13,7 @@ NOVA_PARKPLATZ_FILE = "generated/nova_parkplatz.csv"
 OJP_URL_API = "https://api.opentransportdata.swiss/ojp2020"
 OJP_TOKEN = ""
 OJP_FARE_TOKEN=""
+
 DIDOK_PERMALINK = "https://opentransportdata.swiss/de/dataset/service-points-full/permalink"
 HTTPS = False
 SSL_KEYFILE = ''

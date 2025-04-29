@@ -30,13 +30,12 @@
               <Text> Vicolo Geretta 6, 6900 Paradiso, Svizzera</Text>
             </LocationName>
           </PlaceRef>
-          <DepArrTime>2025-03-29T12:00:08.000Z</DepArrTime>
         </Destination>
         <Params>
           <NumberOfResults>1</NumberOfResults>
-          <IncludeTrackSections>true</IncludeTrackSections>
-          <IncludeLegProjection>true</IncludeLegProjection>
-          <IncludeTurnDescription>true</IncludeTurnDescription>
+          <IncludeTrackSections>false</IncludeTrackSections>
+          <IncludeLegProjection>false</IncludeLegProjection>
+          <IncludeTurnDescription>false</IncludeTurnDescription>
           <IncludeIntermediateStops>true</IncludeIntermediateStops>
           <UseRealtimeData>explanatory</UseRealtimeData>
         </Params>
