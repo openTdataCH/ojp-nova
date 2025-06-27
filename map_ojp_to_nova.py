@@ -8,12 +8,18 @@ from ojp import Ojp, TimedLegStructure, FarePassengerStructure, PassengerCategor
 from support import OJPError
 import random
 
-def is_number(s):
-    try:
-        float(s)  # Try converting to float
-        return True
-    except ValueError:
-        return False
+def process_operating_ref(operator_ref):
+    # Remove the 'ojp:' prefix if it exists
+    if operator_ref.startswith("ojp:"):
+        operator_ref = operator_ref[4:]
+
+    # Check if the remaining string is a digit
+    if operator_ref.isdigit():
+        # Fill with zeros from the left to make it 6 characters long
+        return operator_ref.zfill(6)
+    else:
+        # Return the original string if it's not an int or not 6 characters long
+        return operator_ref
 
 def sloid2didok(sloid):
     # TODO this is a hack for the timetable change 2024/2025 must be done correctly in map_ojp_to_ojp.py by replacing the stoppoints with the correct didoks
@@ -59,22 +65,13 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
     _, verkehrs_mittel_nummer, _ = line_ref.split(':')
     # This is an other hack.
     verkehrs_mittel_nummer = ''.join(filter(lambda x: x.isdigit(), verkehrs_mittel_nummer))
-
     try:
         # Set verkehrs_mittel_nummer to timed_leg.extension.publishedjourneynumber?
         verkehrs_mittel_nummer = [x.children[0].text for x in timed_leg.extension.children if x.qname == '{http://www.vdv.de/ojp}PublishedJourneyNumber'][0]
     except:
         pass
 
-    # Uses ojp:OperatorRef in service
-    # handles now, if ojp: is not present.
-    # TODO to handle sboid another check needs to be built.
-    if is_number(operator_ref):
-        #operatorref in the form of 11
-        verwaltungs_code = "{:06}".format(int(operator_ref))
-    else:
-        #assume it is ojp:11 => handle it
-        verwaltungs_code = "{:06}".format(int(operator_ref.split(':')[1])) # takes e.g. ojp:11 and makes 000011 out of it
+    verwaltungs_code= process_operating_ref(operator_ref)
 
     leg_intermediates = timed_leg.leg_intermediates
     zwischenhalten = [sloid2didok(timed_leg.leg_board.stop_point_ref)] + [sloid2didok(leg_intermediate.stop_point_ref)

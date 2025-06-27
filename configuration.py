@@ -50,6 +50,7 @@ READFILE.append("input/input_strange_price.xml")
 #READFILE.append("input/input_problematic_case_vasile.xml")
 #READFILE.append("input/input_Europaplatz.xml")
 #READFILE.append("input/input_aller_retour.xml")
+READFILE.append("input/input_Bodensee.xml")
 
 
 # if there exists a local_configuration it is used.
