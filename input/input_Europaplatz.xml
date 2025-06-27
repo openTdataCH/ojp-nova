@@ -13,7 +13,6 @@
               <ojp:Text>Belp</ojp:Text>
             </ojp:LocationName>
           </ojp:PlaceRef>
-          <ojp:DepArrTime>2024-12-16T08:43:42.788Z</ojp:DepArrTime>
         </ojp:Origin>
         <ojp:Destination>
           <ojp:PlaceRef>
@@ -24,7 +23,7 @@
           </ojp:PlaceRef>
         </ojp:Destination>
         <ojp:Params>
-          <ojp:NumberOfResultsAfter>1</ojp:NumberOfResultsAfter>
+          <ojp:NumberOfResultsAfter>2</ojp:NumberOfResultsAfter>
           <ojp:IncludeTrackSections>false</ojp:IncludeTrackSections>
           <ojp:IncludeLegProjection>false</ojp:IncludeLegProjection>
           <ojp:IncludeTurnDescription>false</ojp:IncludeTurnDescription>
