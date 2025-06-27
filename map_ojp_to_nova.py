@@ -8,6 +8,13 @@ from ojp import Ojp, TimedLegStructure, FarePassengerStructure, PassengerCategor
 from support import OJPError
 import random
 
+def is_number(s):
+    try:
+        float(s)  # Try converting to float
+        return True
+    except ValueError:
+        return False
+
 def sloid2didok(sloid):
     # TODO this is a hack for the timetable change 2024/2025 must be done correctly in map_ojp_to_ojp.py by replacing the stoppoints with the correct didoks
     #if a didok code, just return it
@@ -60,7 +67,14 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
         pass
 
     # Uses ojp:OperatorRef in service
-    verwaltungs_code = "{:06}".format(int(operator_ref.split(':')[1])) # takes e.g. ojp:11 and makes 000011 out of it
+    # handles now, if ojp: is not present.
+    # TODO to handle sboid another check needs to be built.
+    if is_number(operator_ref):
+        #operatorref in the form of 11
+        verwaltungs_code = "{:06}".format(int(operator_ref))
+    else:
+        #assume it is ojp:11 => handle it
+        verwaltungs_code = "{:06}".format(int(operator_ref.split(':')[1])) # takes e.g. ojp:11 and makes 000011 out of it
 
     leg_intermediates = timed_leg.leg_intermediates
     zwischenhalten = [sloid2didok(timed_leg.leg_board.stop_point_ref)] + [sloid2didok(leg_intermediate.stop_point_ref)
