@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import json
+import traceback
+
 import requests
 import urllib3
 from xsdata.formats.dataclass.client import Client
@@ -141,6 +143,6 @@ if __name__ == '__main__':
         except Exception as e:
             # not yet really sophisticated handling of all other errors during the work (should be regular OJPDeliveries with OtherError set
             log('generated/error_file.xml', str(e))
-            print (str(e))
+            traceback.print_exc()
 
 
