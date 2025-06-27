@@ -33,9 +33,9 @@ def map_preis_auspraegung_to_trip_fare_result(preis_auspraegungen: List[PreisAus
         fare_product_name=products.get(str(preis_auspraegung.produkt_nummer),str(preis_auspraegung.produkt_nummer)) # name or number if none
         tripfareresults.append(TripFareResultStructure(from_trip_leg_id_ref=from_leg_id, to_trip_leg_id_ref=to_leg_id,
                                 fare_product=[FareProductStructure(fare_product_id=preis_auspraegung.produkt_nummer,
-                                                                   fare_product_name=fare_product_name,
-                                                                   fare_authority_ref='NOVA',
-                                                                   fare_authority_text='NOVA',
+                                                                   fare_product_name=preis_auspraegung.produkt_nummer,
+                                                                   fare_authority_ref='ch:1:sboid:101704',
+                                                                   fare_authority_text='Alliance SwissPass',
                                                                    price=preis_auspraegung.preis.betrag,
                                                                    net_price=round(float(preis_auspraegung.preis.betrag)*(1.0-VATRATE/100),2),
                                                                    currency=preis_auspraegung.preis.waehrung,
