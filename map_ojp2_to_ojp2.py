@@ -74,7 +74,7 @@ def preprocess_stops_to_commercial_stops(delivery: OjptripDeliveryStructure) -> 
     for place in delivery.trip_response_context.places.place:
         if place.stop_point is not None:
             if place.stop_point.parent_ref is not None:
-                parent[place.stop_point.stop_point_ref]=place.stop_point.parent_ref
+                parent[place.stop_point.stop_point_ref.value]=place.stop_point.parent_ref
 
     #foreach trip
     for trip_result in delivery.trip_result:
@@ -88,13 +88,13 @@ def preprocess_stops_to_commercial_stops(delivery: OjptripDeliveryStructure) -> 
                 # we can't deal with demandResponsive in NOVA currently.
                 continue
             ## only timed. we now replace the stop_point_ref with the parent
-            leg.timed_leg.leg_board.stop_point_ref = parent.get(leg.timed_leg.leg_board.stop_point_ref,
+            leg.timed_leg.leg_board.stop_point_ref = parent.get(leg.timed_leg.leg_board.stop_point_ref.value,
                                                                 leg.timed_leg.leg_board.stop_point_ref)
-            leg.timed_leg.leg_alight.stop_point_ref = parent.get(leg.timed_leg.leg_alight.stop_point_ref,
+            leg.timed_leg.leg_alight.stop_point_ref = parent.get(leg.timed_leg.leg_alight.stop_point_ref.value,
                                                                  leg.timed_leg.leg_alight.stop_point_ref)
             leg_intermediates = leg.timed_leg.leg_intermediate
             for leg_intermediate in leg_intermediates:
-                leg_intermediate.stop_point_ref = parent.get(leg_intermediate.stop_point_ref,
+                leg_intermediate.stop_point_ref = parent.get(leg_intermediate.stop_point_ref.value,
                                                              leg_intermediate.stop_point_ref)
 
     return delivery
