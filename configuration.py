@@ -12,6 +12,9 @@ NOVA_PARKPLATZ_FILE = "generated/nova_parkplatz.csv"
 # OJP_Token can be obtained at: https://opentransportdata.swiss/dev-dashboard
 OJP_URL_API = "https://api.opentransportdata.swiss/ojp2020"
 OJP_TOKEN = ""
+
+OJP_2_URL_API = "https://api.opentransportdata.swiss/ojp20"
+OJP_2_TOKEN = ""
 OJP_FARE_TOKEN=""
 
 DIDOK_PERMALINK = "https://opentransportdata.swiss/de/dataset/service-points-full/permalink"
@@ -41,6 +44,7 @@ READFILE = []
 #READFILE.append("input/input_Bern_Guisanplatz_Interlaken_Gymnasium.xml")
 #READFILE.append("input/input_local.xml")
 #READFILE.append("input/input_oev_shart_plus_long.xml")
+READFILE.append("input/input_ojp_2_test.xml")
 #READFILE.append("input/input_sharing_intercity.xml")
 #READFILE.append(input/input_sharing_only.xml")
 #READFILE.append("input/input_odv_alone.xml")
@@ -50,7 +54,7 @@ READFILE = []
 #READFILE.append("input/input_problematic_case_vasile.xml")
 #READFILE.append("input/input_Europaplatz.xml")
 #READFILE.append("input/input_aller_retour.xml")
-READFILE.append("input/input_Bodensee.xml")
+#READFILE.append("input/input_Bodensee.xml")
 
 
 # if there exists a local_configuration it is used.

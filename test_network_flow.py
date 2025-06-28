@@ -16,17 +16,35 @@ from test_create_ojp_request import *
 from map_nova_to_ojp import test_nova_to_ojp
 from map_ojp_to_nova import test_ojp_fare_request_to_nova_request
 from map_ojp_to_ojp import parse_ojp, map_ojp_trip_result_to_ojp_fare_request #, map_ojp_trip_result_to_ojp_refine_request
+from map_ojp2_to_ojp2 import parse_ojp2, map_ojp2_trip_result_to_ojp2_fare_request #, map_ojp_trip_result_to_ojp_refine_request
+
 from nova import PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunft
 from ojp import Ojp
 from logger import log
-
+from xslt_transform import transform_xml, is_version_2_0
 ns_map = {'': 'http://www.siri.org.uk/siri', 'ojp': 'http://www.vdv.de/ojp'}
+
+
+
 
 def call_ojp_2000(request_body):
     try:
         access_token = OJP_TOKEN
         headers = {'Authorization': 'Bearer ' + access_token, 'Content-Type': 'application/xml; charset=utf-8' }
         api_call_response = requests.post(OJP_URL_API, data=request_body.encode('utf-8'), headers=headers, verify=False)
+        api_call_response.encoding = api_call_response.apparent_encoding
+        return api_call_response.status_code,api_call_response.text
+
+    except Exception as e:
+        message = 'Failed: {:s}.'.format(str(e))
+        raise IOError(message, e)
+
+
+def call_ojp_20(request_body):
+    try:
+        access_token = OJP_2_TOKEN
+        headers = {'Authorization': 'Bearer ' + access_token, 'Content-Type': 'application/xml; charset=utf-8' }
+        api_call_response = requests.post(OJP_2_URL_API, data=request_body.encode('utf-8'), headers=headers, verify=False)
         api_call_response.encoding = api_call_response.apparent_encoding
         return api_call_response.status_code,api_call_response.text
 
@@ -106,39 +124,54 @@ if __name__ == '__main__':
         log('generated/ojp_trip_request.xml', ojp_trip_request_xml)
         try:
             print (f"\n********************************************\n{rf}\n********************************************\n")
-            status,r = call_ojp_2000(ojp_trip_request_xml)
-            if status !=200:
-                message=f"call returned a wrong status {status}"
-                raise IOError(message, e)
-            ojp_trip_result = parse_ojp(r)
-            # TODO ojp_trip_result.ojpresponse.service_delivery.ojptrip_delivery.status== false => error. However, I do only get to ojptrip_delivery.
-            ojp_trip_result_xml = serializer.render(ojp_trip_result, ns_map=ns_map)
-            log('generated/ojp_trip_reply.xml', ojp_trip_result_xml)
+            if  is_version_2_0(ojp_trip_request_xml):
+                status, r = call_ojp_20(ojp_trip_request_xml)
+                if status != 200:
+                    message = f"call returned a wrong status {status}"
+                    raise IOError(message)
+                ojp_trip_result = parse_ojp2(r)
+                ojp_trip_result_xml = serializer.render(ojp_trip_result, ns_map=ns_map)
+                log('generated/ojp_trip_reply.xml', ojp_trip_result_xml)
+                ojp_fare_request = map_ojp2_trip_result_to_ojp2_fare_request(ojp_trip_result)
+                ojp_fare_request_xml = serializer.render(ojp_fare_request, ns_map=ns_map)
+                log('generated/ojp_fare_request.xml', ojp_fare_request_xml)
+                #here we transform to ojp 1.0
+                ojp_fare_request_xml=transform_xml(ojp_fare_request_xml,"./xslt/xslt_ojpfare_request_2.0-1.0")
+                nova_response = test_nova_request_reply(ojp_fare_request)
+                if nova_response:
+                    ojp_fare_result = test_nova_to_ojp(nova_response)
+                    ojp_fare_result_xml = serializer.render(ojp_fare_result, ns_map=ns_map)
+                    # here we transform to ojp 1.0
+                    ojp_fare_result_xml = transform_xml(ojp_fare_result_xml, "./xslt/xslt_ojpfare_delivery_1.0-2.0")
+                    for fr1 in ojp_fare_result.fare_result:
+                        for fr in fr1.trip_fare_result:
+                            print("Legs: " + str(fr.from_trip_leg_id_ref) + "-" + str(fr.to_trip_leg_id_ref))
+                            print(fr.fare_product)
+                            print("\n")
+                    log('generated/ojp_fare_result.xml', ojp_fare_result_xml)
+            else:
+                status,r = call_ojp_2000(ojp_trip_request_xml)
+                if status != 200:
+                    message = f"call returned a wrong status {status}"
+                    raise IOError(message)
+                ojp_trip_result = parse_ojp(r)
+                ojp_trip_result_xml = serializer.render(ojp_trip_result, ns_map=ns_map)
+                log('generated/ojp_trip_reply.xml', ojp_trip_result_xml)
+                ojp_fare_request = map_ojp_trip_result_to_ojp_fare_request(ojp_trip_result)
+                ojp_fare_request_xml = serializer.render(ojp_fare_request, ns_map=ns_map)
+                log('generated/ojp_fare_request.xml', ojp_fare_request_xml)
 
-            # TODO: This would only work in OJP v1.1
-            # ojp_refine_request = map_ojp_trip_result_to_ojp_refine_request(ojp_trip_result)
-            # ojp_refine_request_xml = serializer.render(ojp_refine_request, ns_map=ns_map)
-            # open('ojp_trip_refine_request.xml', 'w').write(ojp_refine_request_xml)
-            # r = call_ojp_2000(ojp_refine_request_xml)
+                nova_response = test_nova_request_reply(ojp_fare_request)
+                if nova_response:
+                    ojp_fare_result = test_nova_to_ojp(nova_response)
+                    ojp_fare_result_xml = serializer.render(ojp_fare_result, ns_map=ns_map)
+                    for fr1 in ojp_fare_result.fare_result:
+                        for fr in fr1.trip_fare_result:
+                            print("Legs: " + str(fr.from_trip_leg_id_ref) + "-" + str(fr.to_trip_leg_id_ref))
+                            print(fr.fare_product)
+                            print("\n")
+                    log('generated/ojp_fare_result.xml', ojp_fare_result_xml)
 
-            ojp_trip_result = parse_ojp(r)
-            ojp_trip_result_xml = serializer.render(ojp_trip_result, ns_map=ns_map)
-            open('generated/ojp_trip_refine_reply.xml', 'w', encoding='utf-8').write(ojp_trip_result_xml)
-
-            ojp_fare_request = map_ojp_trip_result_to_ojp_fare_request(ojp_trip_result)
-            ojp_fare_request_xml = serializer.render(ojp_fare_request, ns_map=ns_map)
-            log('generated/ojp_fare_request.xml', ojp_fare_request_xml)
-
-            nova_response = test_nova_request_reply(ojp_fare_request)
-            if nova_response:
-                ojp_fare_result = test_nova_to_ojp(nova_response)
-                ojp_fare_result_xml = serializer.render(ojp_fare_result, ns_map=ns_map)
-                for fr1 in ojp_fare_result.fare_result:
-                    for fr in fr1.trip_fare_result:
-                        print("Legs: " + str(fr.from_trip_leg_id_ref) + "-" + str(fr.to_trip_leg_id_ref))
-                        print(fr.fare_product)
-                        print("\n")
-                log('generated/ojp_fare_result.xml', ojp_fare_result_xml)
 
         except Exception as e:
             # not yet really sophisticated handling of all other errors during the work (should be regular OJPDeliveries with OtherError set
