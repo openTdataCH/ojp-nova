@@ -12,8 +12,14 @@ $ python3 -m pip install -r requirements.txt
 
 ## generation of code from the XSD
 
+You need an xsdata for OJP 1.0:
 ```
 xsdata -p ojp -ss clusters path-to-ojp.xsd
+```
+
+You need also a configuration for OJP 2.0:
+```
+xsdata -p ojp2 -ss clusters path-to-ojp.xsd
 ```
 ## Configuration
 The repository is missing the relevant configuration.
