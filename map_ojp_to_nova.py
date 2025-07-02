@@ -9,6 +9,7 @@ from support import OJPError
 import random
 
 def process_operating_ref(operator_ref):
+    operator_ref = operator_ref.value
     # Remove the 'ojp:' prefix if it exists
     if operator_ref.startswith("ojp:"):
         operator_ref = operator_ref[4:]
@@ -57,9 +58,9 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
     ausstieg = sloid2didok(timed_leg.leg_alight.stop_point_ref)
     abfahrts_zeit = timed_leg.leg_board.service_departure.timetabled_time
     ankunfts_zeit = timed_leg.leg_alight.service_arrival.timetabled_time
-    line_ref = timed_leg.service.line_ref
+    line_ref = timed_leg.service.line_ref.value
     operator_ref = timed_leg.service.operator_ref  # needs to be processed afterwards to get the verwaltungs_code
-    gattungs_code = timed_leg.service.mode.short_name.text.value  # is correct, but a bit of a hack
+    gattungs_code = timed_leg.service.mode.short_name.text[0].value  # is correct, but a bit of a hack
 
     # unfortunately it is not in line_ref, but in Extension/ojp:PublishedJourneyNumber
     _, verkehrs_mittel_nummer, _ = line_ref.split(':')
@@ -73,7 +74,7 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
 
     verwaltungs_code= process_operating_ref(operator_ref)
 
-    leg_intermediates = timed_leg.leg_intermediates
+    leg_intermediates = timed_leg.leg_intermediate
     zwischenhalten = [sloid2didok(timed_leg.leg_board.stop_point_ref)] + [sloid2didok(leg_intermediate.stop_point_ref)
                       for leg_intermediate in leg_intermediates] + [sloid2didok(timed_leg.leg_alight.stop_point_ref)]
 
@@ -93,13 +94,13 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
     if not (ojp.ojprequest and ojp.ojprequest.service_request and ojp.ojprequest.service_request.ojpfare_request
             and len(ojp.ojprequest.service_request.ojpfare_request) > 0 and ojp.ojprequest.service_request.ojpfare_request[0].trip_fare_request
             and ojp.ojprequest.service_request.ojpfare_request[0].trip_fare_request.trip
-            and len(ojp.ojprequest.service_request.ojpfare_request[0].trip_fare_request.trip.trip_leg) > 0):
+            and len(ojp.ojprequest.service_request.ojpfare_request[0].trip_fare_request.trip.leg) > 0):
         return False
 
     try:
         if ojp.ojprequest.service_request.ojpfare_request[0].params.traveller is None:
             travellers = []
-            travellers.append(FarePassengerStructure(age=25, entitlement_product =["HTA"]))
+            travellers.append(FarePassengerStructure(age=25, entitlement_product=["HTA"]))
         else:
             age = ojp.ojprequest.service_request.ojpfare_request[0].params.traveller[0].age
             travellers = ojp.ojprequest.service_request.ojpfare_request[0].params.traveller
@@ -108,8 +109,8 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
 
     verbindungen = []
     for fare_request in ojp.ojprequest.service_request.ojpfare_request:
-        legs = fare_request.trip_fare_request.trip.trip_leg
-        externeVerbindungsReferenzId = fare_request.trip_fare_request.trip.trip_id
+        legs = fare_request.trip_fare_request.trip.leg
+        externeVerbindungsReferenzId = fare_request.trip_fare_request.trip.id
         segments = []
         reisende = []
         leg_start = None
@@ -130,7 +131,7 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
                 #we can't deal with demandResponsive in NOVA currently.
                 continue
             # To get the first TimedLeg and last TimedLeg to reply with the leg range in the FareResult
-            leg_id = leg.leg_id
+            leg_id = leg.id
             if not leg_start:
                 leg_start = leg_id
             leg_end = leg_id
@@ -165,7 +166,7 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
                                                    reisenden_typ=r_typ,
                                                    ermaessigungs_karte_code=[])
 
-            for entitlement_product in traveler.entitlement_product:
+            for entitlement_product in traveler.entitlement_products:
                 if "HTA" in entitlement_product:
                     reisender = ReisendenInfoPreisAuskunft(alter=r_alter,
                                                            externe_reisenden_referenz_id=r_referenz,

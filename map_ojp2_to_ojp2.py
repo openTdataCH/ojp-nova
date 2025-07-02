@@ -74,7 +74,7 @@ def preprocess_stops_to_commercial_stops(delivery: OjptripDeliveryStructure) -> 
     for place in delivery.trip_response_context.places.place:
         if place.stop_point is not None:
             if place.stop_point.parent_ref is not None:
-                parent[place.stop_point.stop_point_ref.value]=place.stop_point.parent_ref
+                parent[place.stop_point.stop_point_ref.value]=place.stop_point.parent_ref.value
 
     #foreach trip
     for trip_result in delivery.trip_result:
@@ -109,7 +109,7 @@ def map_ojp2_trip_result_to_ojp2_fare_request(ojp: Ojp) -> Ojp:
 
     farerequest = []
     for ojptrip_delivery in ojp.ojpresponse.service_delivery.ojptrip_delivery:
-        # preprocess trip result to translate the quays to the commercial stop
+    #    # preprocess trip result to translate the quays to the commercial stop
         ojptrip_delivery=preprocess_stops_to_commercial_stops(ojptrip_delivery)
         for trip_result in ojptrip_delivery.trip_result:
             farerequest += [map_to_individual_ojpfarerequest(trip_result.trip, now)]
