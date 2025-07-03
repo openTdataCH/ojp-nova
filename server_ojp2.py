@@ -6,17 +6,18 @@ from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 from xsdata.models.datatype import XmlDateTime
 
-from map_nova_to_ojp import test_nova_to_ojp
-from map_ojp_to_ojp import parse_ojp
+from map_nova_to_ojp2 import test_nova_to_ojp2
+from map_ojp2_to_ojp2 import parse_ojp2
 from support import error_response
-from ojp import Ojp, Ojpresponse, ServiceDelivery, ServiceDeliveryStructure, \
+
+from ojp2 import Ojp, Ojpresponse, ServiceDelivery, ServiceDeliveryStructure, \
     OtherError, OjpfareDelivery
-from test_network_flow import test_nova_request_reply, call_ojp_2000
+from test_network_flow import call_ojp_20, test_nova_request_reply_for_ojp2
 from configuration import HTTP_HOST, HTTP_PORT, HTTPS, SSL_CERTFILE, SSL_KEYFILE, HTTP_SLUG, VATRATE
 import logger
 #from support import add_error_response
 
-app = FastAPI(title="OJPTONOVA")
+app = FastAPI(title="OJP2TONOVA")
 
 serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
 serializer = XmlSerializer(config=serializer_config)
@@ -32,7 +33,7 @@ async def post_request(fastapi_req: Request):
     ojp_fare_request = None
     error = None
     try:
-        ojp_fare_request = parse_ojp(body.decode('utf-8'))
+        ojp_fare_request = parse_ojp2(body.decode('utf-8'))
     except Exception as e:
         error = e
 
@@ -42,10 +43,10 @@ async def post_request(fastapi_req: Request):
             if ojp_fare_request.ojprequest.service_request.ojpfare_request:
                 # we deal with a OJPFare Request and will ask NOVA
                 logger.log_entry("Query to NOVA: "+str(ojp_fare_request))
-                nova_response = test_nova_request_reply(ojp_fare_request)
+                nova_response = test_nova_request_reply_for_ojp2(ojp_fare_request)
                 if nova_response:
                     #we got a valid response
-                    ojp_fare_delivery = test_nova_to_ojp(nova_response)
+                    ojp_fare_delivery = test_nova_to_ojp2(nova_response)
                     if ojp_fare_delivery:
                         # we have a OJPFareDelivery to work with
                         # we add the warnings
@@ -62,7 +63,7 @@ ojpfare_delivery=[ojp_fare_delivery]))), ns_map=ns_map)
                 return Response(serializer.render(error_response("There was no NOVA response"), ns_map=ns_map), status_code=400, media_type="application/xml; charset=utf-8")
             else:
                 logger.log_entry("Returning the call to the OJP server:"+str(body.decode('utf-8')))
-                s,r=call_ojp_2000(body.decode('utf-8'))
+                s,r=call_ojp_20(body.decode('utf-8'))
                 return Response(r, media_type="application/xml; charset=utf-8",status_code=s)
         else:
             #very general errors
