@@ -137,7 +137,19 @@ They are used as "TC-<the value>". The value needs to be transferred to nova for
 - We base on the commercial stops (as BPUIC). The calls are more and more based on the SLOID. It is important only provide the commerical stops to NOVA. In some cases the commercial stop is no longer directly based on the other one (e.g. Europaplatz). The right one must be obtained from the PlaceContext (done in sloid2didok function)
 # Changelog
 
-# 
+# 1.1 (in progress)
+- OJP 2.0 support
+- Handling of tariff codes
+- Better error handling
+- Improved mypy, black and the like (better code)
+- More examples
+- Fixed some bugs in testing part
+
+# 1.0
+Basic version running with everything needed for OJP 1.0
+# Roadmap
+Currently no roadmap defined
+
 # License 
 The code is made available as MIT license. The generated code in the "nova" folder based on the WSDL is property of SBB (www.sbb.ch) and not part of the license.
 # Assistance
