@@ -78,8 +78,18 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
     zwischenhalten = [sloid2didok(timed_leg.leg_board.stop_point_ref)] + [sloid2didok(leg_intermediate.stop_point_ref)
                       for leg_intermediate in leg_intermediates] + [sloid2didok(timed_leg.leg_alight.stop_point_ref)]
 
+    #handling of Tariff code TC
+    attr2=timed_leg.service.attribute
+    tariff_code=""
+    for attr in attr2:
+        attr_text= attr.user_text.text
+        if attr_text.startswith("TC-"):
+            #tariff code found in OJP data
+            tariff_code=attr_text[4:]
+
     return FahrplanVerbindungsSegment(einstieg=int(einstieg), ausstieg=int(ausstieg),
                                verwaltungs_code=verwaltungs_code,
+                               info_plus_tarif_code =tariff_code,
                                abfahrts_zeit=abfahrts_zeit,
                                ankunfts_zeit=ankunfts_zeit,
                                verkehrs_mittel=VerkehrsMittelGattung(
