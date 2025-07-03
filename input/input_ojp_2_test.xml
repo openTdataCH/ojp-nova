@@ -14,7 +14,6 @@
                             <Text>Kloten</Text>
                         </Name>
                     </PlaceRef>
-                    <DepArrTime>2025-10-01T23:30:00Z</DepArrTime>
                 </Origin>
                 <Destination>
                     <PlaceRef>
@@ -26,7 +25,10 @@
                 </Destination>
                 <Params>
                     <NumberOfResults>3</NumberOfResults>
-                    <IncludeIntermediateStops>false</IncludeIntermediateStops>
+          <IncludeTrackSections>false</IncludeTrackSections>
+          <IncludeLegProjection>false</IncludeLegProjection>
+          <IncludeTurnDescription>false</IncludeTurnDescription>
+          <IncludeIntermediateStops>true</IncludeIntermediateStops>
                 </Params>
             </OJPTripRequest>
         </siri:ServiceRequest>

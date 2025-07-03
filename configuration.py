@@ -30,31 +30,44 @@ READTRIPREQUESTFILE = True
 VATRATE = 8.1  # Percent
 USE_HTA = False # if in the tests half price should be used
 READFILE = []
+
+# Working
 #READFILE.append("input/input_oev_shart_plus_long.xml")
-#READFILE.append("input/input_walk_only.xml")
 #READFILE.append("input/input_Zuerich_Chur.xml")
-#READFILE.append("input/input_Bern_Chur_SOB_Zukunft.xml" ) #time must be reset before run. Check if discounts exist on www.sbb.ch
-#READFILE.append("input/input_Bern_Zweisimmen_BLS_Zukunft.xml")  #time must be reset before run. Check if discounts exist on www.sbb.ch
 #READFILE.append("input/input_Visp_SaaS_Fee_problem_1_preis.xml") #1. class price problematic
 #READFILE.append("input/input_strange_price.xml")
 #READFILE.append("input/input_Zuerich_Bern.xml")
-#READFILE.append("input/input_Basel_Sargans.xml")
+READFILE.append("input/input_Basel_Sargans.xml")
 #READFILE.append("input/input_Bern_Interlaken_Ost.xml")
 #READFILE.append("input/input_Bern_Interlaken_Gymnasium.xml")
 #READFILE.append("input/input_Bern_Guisanplatz_Interlaken_Gymnasium.xml")
 #READFILE.append("input/input_local.xml")
 #READFILE.append("input/input_oev_shart_plus_long.xml")
-READFILE.append("input/input_ojp_2_test.xml")
-#READFILE.append("input/input_sharing_intercity.xml")
-#READFILE.append(input/input_sharing_only.xml")
-#READFILE.append("input/input_odv_alone.xml")
 #READFILE.append("input/input_demand_responsive_saturday_after_1500.xml")
 #READFILE.append("input/input_bus_postauto.xml")
+#READFILE.append("input/input_sharing_intercity.xml")
+
+# No result, but no result is ok
+#READFILE.append("input/input_walk_only.xml")
+#READFILE.append("input/input_sharing_only.xml")
+#READFILE.append("input/input_odv_alone.xml")
 #READFILE.append("input/input_in_the_past_not_handeled_well_in_Preisauskunft.xml")
+
+# Contains DepArr that needs to be set to something useful before testing
+#READFILE.append("input/input_Bern_Chur_SOB_Zukunft.xml" ) #time must be reset before run. Check if discounts exist on www.sbb.ch
+#READFILE.append("input/input_Bern_Zweisimmen_BLS_Zukunft.xml")  #time must be reset before run. Check if discounts exist on www.sbb.ch
+
+# need analysis
 #READFILE.append("input/input_problematic_case_vasile.xml")
 #READFILE.append("input/input_Europaplatz.xml")
 #READFILE.append("input/input_aller_retour.xml")
 #READFILE.append("input/input_Bodensee.xml")
+
+READFILE.append("input/input_ojp_1_test.xml")
+
+READFILE.append("input/input_ojp_2_test.xml")
+
+
 
 
 # if there exists a local_configuration it is used.

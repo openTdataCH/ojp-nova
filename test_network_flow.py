@@ -14,7 +14,11 @@ from xsdata.formats.dataclass.serializers.config import SerializerConfig
 from configuration import *
 from test_create_ojp_request import *
 from map_nova_to_ojp import test_nova_to_ojp
+from map_nova_to_ojp2 import test_nova_to_ojp2
+
 from map_ojp_to_nova import test_ojp_fare_request_to_nova_request
+from map_ojp2_to_nova import test_ojp2_fare_request_to_nova_request
+
 from map_ojp_to_ojp import parse_ojp, map_ojp_trip_result_to_ojp_fare_request #, map_ojp_trip_result_to_ojp_refine_request
 from map_ojp2_to_ojp2 import parse_ojp2, map_ojp2_trip_result_to_ojp2_fare_request #, map_ojp_trip_result_to_ojp_refine_request
 
@@ -101,6 +105,19 @@ def test_nova_request_reply(ojp: Ojp):
         nova_response_xml = serializer.render(nova_response)
         log('generated/nova_response.xml',nova_response_xml)
         return nova_response
+def test_nova_request_reply_for_ojp2(ojp: Ojp):
+    oauth_helper = OAuth2Helper(client_id=NOVA_CLIENT_ID, client_secret=NOVA_CLIENT_SECRET)
+    access_token = oauth_helper.get_token()
+    headers = {'Authorization': 'Bearer ' + access_token, "User-Agent": "OJP2NOVA/0.2"}
+    nova_request = test_ojp2_fare_request_to_nova_request(ojp)
+    nova_client = get_nova_client()
+    nova_response = nova_client.send(nova_request, headers=headers)
+    if nova_response:
+        serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
+        serializer = XmlSerializer(config=serializer_config)
+        nova_response_xml = serializer.render(nova_response)
+        log('generated/nova_response.xml',nova_response_xml)
+        return nova_response
 
 def check_configuration():
     if (len(NOVA_CLIENT_SECRET)==0):
@@ -135,20 +152,22 @@ if __name__ == '__main__':
                 ojp_fare_request = map_ojp2_trip_result_to_ojp2_fare_request(ojp_trip_result)
                 ojp_fare_request_xml = serializer.render(ojp_fare_request, ns_map=ns_map)
                 log('generated/ojp_fare_request.xml', ojp_fare_request_xml)
-                #here we transform to ojp 1.0
-                ojp_fare_request_xml=transform_xml(ojp_fare_request_xml,"./xslt/xslt_ojpfare_request_2.0-1.0")
-                nova_response = test_nova_request_reply(ojp_fare_request)
+                nova_response = test_nova_request_reply_for_ojp2(ojp_fare_request)
                 if nova_response:
-                    ojp_fare_result = test_nova_to_ojp(nova_response)
-                    ojp_fare_result_xml = serializer.render(ojp_fare_result, ns_map=ns_map)
-                    # here we transform to ojp 1.0
-                    ojp_fare_result_xml = transform_xml(ojp_fare_result_xml, "./xslt/xslt_ojpfare_delivery_1.0-2.0")
-                    for fr1 in ojp_fare_result.fare_result:
-                        for fr in fr1.trip_fare_result:
-                            print("Legs: " + str(fr.from_trip_leg_id_ref) + "-" + str(fr.to_trip_leg_id_ref))
-                            print(fr.fare_product)
-                            print("\n")
-                    log('generated/ojp_fare_result.xml', ojp_fare_result_xml)
+                    ojp_fare_result = test_nova_to_ojp2(nova_response)
+                    if not(ojp_fare_result):
+                        ojp_fare_result_xml="Not a valid nova fare response received." #TODO Improve with better handling
+                        log('generated/ojp_fare_result.xml', ojp_fare_result_xml)
+                    else:
+                        ojp_fare_result_xml = serializer.render(ojp_fare_result, ns_map=ns_map)
+                        for fr1 in ojp_fare_result.fare_result:
+                            for fr in fr1.trip_fare_result:
+                                print("Legs: " + str(fr.from_leg_id_ref) + "-" + str(fr.to_leg_id_ref))
+                                print(fr.fare_product)
+                                print("\n")
+                        log('generated/ojp_fare_result.xml', ojp_fare_result_xml)
+
+
             else:
                 status,r = call_ojp_2000(ojp_trip_request_xml)
                 if status != 200:
