@@ -71,6 +71,8 @@ def preprocess_stops_to_commercial_stops(delivery: OjptripDeliveryStructure) -> 
     #parse context and create a dictionnary of the highest parent
     parent = {}
     #TODO we do it once only, but in future we might to change it
+    if not delivery.trip_response_context:
+        return delivery
     for place in delivery.trip_response_context.places.place:
         if place.stop_point is not None:
             if place.stop_point.parent_ref is not None:

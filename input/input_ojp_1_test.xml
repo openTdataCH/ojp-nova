@@ -16,14 +16,14 @@
         </ojp:Origin>
         <ojp:Destination>
           <ojp:PlaceRef>
-            <StopPointRef>850342</StopPointRef>
+            <StopPointRef>8503424</StopPointRef>
             <ojp:LocationName>
               <ojp:Text>Schaffhausen</ojp:Text>
             </ojp:LocationName>
           </ojp:PlaceRef>
         </ojp:Destination>
         <ojp:Params>
-          <ojp:NumberOfResultsAfter>3</ojp:NumberOfResultsAfter>
+          <ojp:NumberOfResultsAfter>1</ojp:NumberOfResultsAfter>
           <ojp:IncludeTrackSections>false</ojp:IncludeTrackSections>
           <ojp:IncludeLegProjection>false</ojp:IncludeLegProjection>
           <ojp:IncludeTurnDescription>false</ojp:IncludeTurnDescription>

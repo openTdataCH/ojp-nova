@@ -72,7 +72,7 @@ def preprocess_stops_to_commercial_stops(delivery: OjptripDeliveryStructure) -> 
     parent = {}
     #TODO we do it once only, but in future we might to change it
     if not delivery.trip_response_context:
-        raise Exception("No trip context provided. Probably no result obtained from server")
+        return delivery
     for place in delivery.trip_response_context.places.location:
         if place.stop_point is not None:
             if place.stop_point.parent_ref is not None:
