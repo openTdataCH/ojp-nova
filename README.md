@@ -1,5 +1,5 @@
 # OJPFARE 2 NOVA
-This repository contains the necessary code integrate OJP into the NOVA Preisauskunft.
+This repository contains the necessary code integrate OJP into the NOVA Preisauskunft in Switzerland
 
 ## Requirements
 1. Check out the code
@@ -33,7 +33,11 @@ NOVA_CLIENT_SECRET = ''
 NOVA_URL_API = ""
 OJP_URL_API = "https://api.opentransportdata.swiss/ojp2020"
 OJP_TOKEN = ''
+OJP2_URL_API = "https://api.opentransportdata.swiss/ojp20"
+OJP2_TOKEN = ''
+xxx
 ```
+
 ## Starting the server
 run server.py 
 starts a server on: http://127.0.0.1:8000 
@@ -60,6 +64,7 @@ Everything is written to xml files for inspection
 
 ## How the actual service is built
 ### Component diagram
+
 ![image](https://github.com/openTdataCH/ojp-nova/assets/24227470/b20eb8c9-6c94-4e77-8f5e-e870d59b16cf)
 ```
 @startuml
@@ -105,10 +110,35 @@ tyk --> Client: OJPFareDelivery
 @enduml
 ```
 
+# Handling OJP 1.0 and OJP 2.0
+- Originally OJPFare was built for OJP 1.0
+- With service_ojp2.py we now have also a service for OJP 2.0
+- test_network_flow.py can process both (it uses the version="1.0" or version="2.0" attribute of the OJP element to decide, which path to use.
+- test_client_ojp2.py is the test client for OJP 2.0 services.
+
+A lot was done with a duplification of files/functions:
+
+| OJP 1.0                  | OJP 2.0 | Explanation                   |
+|--------------------------|---------|-------------------------------|
+| server.py                |server_ojp2.py| test simpler server           |
+| test_client.py           |test_client_ojp2.py| The client to test the server |
+| test_create_ojp_request.py |test_create_ojp2_request.py| Creates valid requests|
+|map_ojp_to_ojp.py |map_ojp2_to_ojp2.py |Functions to map trip delivery to fare request |
+|map_ojp_to_nova.py |map_ojp2_to_nova.py |Functions to map the fare request to a nova request|
+|map_nova_to_ojp.py |map_nova_to_ojp2.py|Functions to map the nova response to an OJP fare delivery|
+
+# The special case of tariff codes
+Tariff codes are used in some very special cases. They are transported in the text or user_text of the Attribute element.
+They are used as "TC-<the value>". The value needs to be transferred to nova for a correct calculation. This is done in the new code.
+
 # Usage notes
-* The TripResult used in the OJP fare service should not be based on short-term real-time information. So the TripRequest should usually contain a UseRealtime set to false.
-* 
+- The TripResult used in the OJP fare service should not be based on short-term real-time information. So the TripRequest should usually contain a UseRealtime set to false.
+- The price is only in one direction. If the full price in both directions is needed and artificial trip must be constructed, that contains all necessary legs in both direction (and works from the time view): Search A to B, some delay, search B to A, concatenate the trips into one. This IS necessary as sometimes the trip in  both direction is cheaper than two single trips.
+- We base on the commercial stops (as BPUIC). The calls are more and more based on the SLOID. It is important only provide the commerical stops to NOVA. In some cases the commercial stop is no longer directly based on the other one (e.g. Europaplatz). The right one must be obtained from the PlaceContext (done in sloid2didok function)
+# Changelog
+
+# 
 # License 
 The code is made available as MIT license. The generated code in the "nova" folder based on the WSDL is property of SBB (www.sbb.ch) and not part of the license.
 # Assistance
-If you need something about this project, just use the issue tracker: https://github.com/openTdataCH/ojp-nova/issues
+If you need something about this project, just use the issue tracker: https://github.com/openTdataCH/ojp-nova/issues or contact us at opendata@sbb.ch.

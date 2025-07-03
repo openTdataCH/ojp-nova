@@ -5,53 +5,8 @@ from nova import ErstellePreisAuskunft, VerbindungPreisAuskunftRequest, ClientId
     PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput, EmptyType
 from logger import log
 from ojp import Ojp, TimedLegStructure, FarePassengerStructure, PassengerCategoryEnumeration
-from support import OJPError
+from support import OJPError, process_operating_ref,sloid2didok
 import random
-
-def process_operating_ref(operator_ref):
-    operator_ref = operator_ref
-    # Remove the 'ojp:' prefix if it exists
-    if operator_ref.startswith("ojp:"):
-        operator_ref = operator_ref[4:]
-
-    # Check if the remaining string is a digit
-    if operator_ref.isdigit():
-        # Fill with zeros from the left to make it 6 characters long
-        return operator_ref.zfill(6)
-    else:
-        # Return the original string if it's not an int or not 6 characters long
-        return operator_ref
-
-def sloid2didok(sloid):
-    # TODO this is a hack for the timetable change 2024/2025 must be done correctly in map_ojp_to_ojp.py by replacing the stoppoints with the correct didoks
-    #if a didok code, just return it
-    my_dict ={
-    }
-    #dict from https://confluence.sbb.ch/pages/viewpage.action?pageId=2608861819
-    #"8507082": "8504108",
-    #"8503088": "8503000",
-    #"8519342": "8504014",
-    #"8014488": "8503467",
-    #"8014482": "8503466",
-    #"8014483": "8503465",
-    #"8014484": "8503464",
-    #"8014485": "853463",
-    #"8014487": "8503462",
-    try:
-        didok=int(sloid)
-        didok=int(my_dict.get(str(didok),str(didok))) # replaces if it is in the table or gets the value back
-        return didok
-    except:
-        #remove left part of sloid
-        sloid=sloid.replace('ch:1:sloid:','')
-        if ':' in sloid:
-            sloid = sloid[:sloid.find(':')]
-        #remove the right part of sloid, if it exist
-        #if bigger than 100000 -> no add
-        sloid=int(my_dict.get(str(sloid),str(sloid))) # replaces if it is in the table or gets the value back
-        if int(sloid)>100000:
-            return int(sloid)
-        return 8500000+int(sloid)
 
 def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindungsSegment:
     einstieg = sloid2didok(timed_leg.leg_board.stop_point_ref)
