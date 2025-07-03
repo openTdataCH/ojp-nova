@@ -127,6 +127,7 @@ A lot was done with a duplification of files/functions:
 |map_ojp_to_nova.py |map_ojp2_to_nova.py |Functions to map the fare request to a nova request|
 |map_nova_to_ojp.py |map_nova_to_ojp2.py|Functions to map the nova response to an OJP fare delivery|
 
+There was also an idea to do it with xslt (OJP 2.0 -> OJP 1.0). For testing purposes it currently was easier to duplicate the programs.
 # The special case of tariff codes
 Tariff codes are used in some very special cases. They are transported in the text or user_text of the Attribute element.
 They are used as "TC-<the value>". The value needs to be transferred to nova for a correct calculation. This is done in the new code.
