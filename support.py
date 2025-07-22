@@ -28,9 +28,12 @@ def error_response(error_text:str):
 # sd.ErrorCondition(other_error=OtherError(err_str))
 # return sd
 
+def process_operating_ref_ojp2(operator_ref):
+    operator_ref=operator_ref.value
+    return process_operating_ref(operator_ref)
 
 def process_operating_ref(operator_ref):
-    operator_ref = operator_ref.value
+    #operator_ref = operator_ref.value
     # Remove the 'ojp:' prefix if it exists
     if operator_ref.startswith("ojp:"):
         operator_ref = operator_ref[4:]

@@ -5,7 +5,7 @@ from nova import ErstellePreisAuskunft, VerbindungPreisAuskunftRequest, ClientId
     PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput, EmptyType
 from logger import log
 from ojp2 import Ojp, TimedLegStructure, FarePassengerStructure, PassengerCategoryEnumeration
-from support import OJPError, process_operating_ref,sloid2didok
+from support import OJPError, process_operating_ref_ojp2,sloid2didok
 import random
 
 def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindungsSegment:
@@ -27,7 +27,7 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
     except:
         pass
 
-    verwaltungs_code= process_operating_ref(operator_ref)
+    verwaltungs_code= process_operating_ref_ojp2(operator_ref)
 
     leg_intermediates = timed_leg.leg_intermediate
     zwischenhalten = [sloid2didok(timed_leg.leg_board.stop_point_ref)] + [sloid2didok(leg_intermediate.stop_point_ref)
@@ -38,9 +38,22 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
     tariff_code=""
     for attr in attr2:
         attr_text= attr.user_text.text
-        if attr_text.startswith("TC-"):
+        if attr_text[0].value.startswith("TC-"):
             #tariff code found in OJP data
-            tariff_code=attr_text[4:]
+            tariff_code=attr_text[0].value[4:]
+    if tariff_code=="":
+        return FahrplanVerbindungsSegment(einstieg=int(einstieg), ausstieg=int(ausstieg),
+                                          verwaltungs_code=verwaltungs_code,
+                                          abfahrts_zeit=abfahrts_zeit,
+                                          ankunfts_zeit=ankunfts_zeit,
+                                          verkehrs_mittel=VerkehrsMittelGattung(
+                                              gattungs_code=gattungs_code,
+                                              verkehrs_mittel_nummer=int(verkehrs_mittel_nummer)),
+                                          zwischen_halt_context=[FahrplanVerbindungsSegment.ZwischenHaltContext(
+                                              uic_code=int(zwischenhalt),
+                                              trip_context=ZwischenHaltContextTripContext.PLANNED) for zwischenhalt in
+                                              zwischenhalten]
+                                          )
 
     return FahrplanVerbindungsSegment(einstieg=int(einstieg), ausstieg=int(ausstieg),
                                verwaltungs_code=verwaltungs_code,

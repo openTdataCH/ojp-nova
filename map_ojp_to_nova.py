@@ -37,9 +37,21 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
     tariff_code = ""
     for attr in attr2:
         attr_text = attr.text.text
-        if attr_text.startswith("TC-"):
+        if attr_text.value.startswith("TC-"):
             # tariff code found in OJP data
-            tariff_code = attr_text[4:]
+            tariff_code = attr_text.value[4:]
+    if tariff_code=="":
+        return FahrplanVerbindungsSegment(einstieg=int(einstieg), ausstieg=int(ausstieg),
+                               verwaltungs_code=verwaltungs_code,
+                               abfahrts_zeit=abfahrts_zeit,
+                               ankunfts_zeit=ankunfts_zeit,
+                               verkehrs_mittel=VerkehrsMittelGattung(
+                                   gattungs_code=gattungs_code,
+                                   verkehrs_mittel_nummer=int(verkehrs_mittel_nummer)),
+                               zwischen_halt_context=[FahrplanVerbindungsSegment.ZwischenHaltContext(
+                                       uic_code=int(zwischenhalt),
+                                       trip_context=ZwischenHaltContextTripContext.PLANNED) for zwischenhalt in zwischenhalten]
+                               )
     return FahrplanVerbindungsSegment(einstieg=int(einstieg), ausstieg=int(ausstieg),
                                verwaltungs_code=verwaltungs_code,
                                info_plus_tarif_code=tariff_code,
@@ -52,7 +64,6 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
                                        uic_code=int(zwischenhalt),
                                        trip_context=ZwischenHaltContextTripContext.PLANNED) for zwischenhalt in zwischenhalten]
                                )
-
 def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput:
     if not (ojp.ojprequest and ojp.ojprequest.service_request and ojp.ojprequest.service_request.ojpfare_request
             and len(ojp.ojprequest.service_request.ojpfare_request) > 0 and ojp.ojprequest.service_request.ojpfare_request[0].trip_fare_request
