@@ -11,6 +11,10 @@
 * Currently we don't have releases branches
 * Branch protection on master will be activated at some point (when we have more than one developer)
 
+# Commits
+* Only bug fixes should be done towards master.
+* A commit should change one thing. The note always should explain, what is done.
+* If bigger stuff is done, as separate branch with a PR should be done.
 
 # Coding
 * The code should be clean and documented. Especially algorithm specialities should be explained.

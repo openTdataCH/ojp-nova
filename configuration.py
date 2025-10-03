@@ -55,7 +55,7 @@ READFILE = []
 
 # Contains DepArr that needs to be set to something useful before testing
 #READFILE.append("input/input_Bern_Chur_SOB_Zukunft.xml" ) #time must be reset before run. Check if discounts exist on www.sbb.ch
-#READFILE.append("input/input_Bern_Zweisimmen_BLS_Zukunft.xml")  #time must be reset before run. Check if discounts exist on www.sbb.ch
+READFILE.append("input/input_Bern_Zweisimmen_BLS_Zukunft.xml")  #time must be reset before run. Check if discounts exist on www.sbb.ch
 
 # need analysis
 #READFILE.append("input/input_problematic_case_vasile.xml")
@@ -68,7 +68,7 @@ READFILE = []
 
 #READFILE.append("input/input_problematic_Europaplatz_ojp1.xml")
 #READFILE.append("input/input_problematic_Europaplatz_ojp2.xml")
-READFILE.append("input/input_problematic_Europaplatz_ojp2_via.xml")
+#READFILE.append("input/input_problematic_Europaplatz_ojp2_via.xml")
 
 
 # if there exists a local_configuration it is used.
