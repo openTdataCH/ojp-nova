@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OJP xmlns="http://www.siri.org.uk/siri" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ojp="http://www.vdv.de/ojp" xsi:schemaLocation="http://www.siri.org.uk/siri ../ojp-xsd-v1.0/OJP.xsd" version="1.0">
+  <OJPRequest>
+    <ServiceRequest>
+      <RequestorRef>OJP SDK v1.0</RequestorRef>
+      <RequestTimestamp>2023-08-08T12:14:18.548Z</RequestTimestamp>
+      <ojp:OJPTripRequest>
+        <RequestTimestamp>2023-08-08T12:14:18.548Z</RequestTimestamp>
+        <ojp:Origin>
+          <ojp:PlaceRef>
+            <ojp:GeoPosition>
+              <Longitude>9.259560312617168</Longitude>
+              <Latitude>47.27335303505126</Latitude>
+            </ojp:GeoPosition>
+            <ojp:LocationName>
+              <ojp:Text>47.273353,9.259560</ojp:Text>
+            </ojp:LocationName>
+          </ojp:PlaceRef>
+        </ojp:Origin>
+        <ojp:Destination>
+          <ojp:PlaceRef>
+            <ojp:GeoPosition>
+              <Longitude>9.290112083483052</Longitude>
+              <Latitude>47.3177509092327</Latitude>
+            </ojp:GeoPosition>
+            <ojp:LocationName>
+              <ojp:Text>47.317751,9.290112</ojp:Text>
+            </ojp:LocationName>
+          </ojp:PlaceRef>
+        </ojp:Destination>
+        <ojp:Params>
+          <ojp:NumberOfResultsAfter>5</ojp:NumberOfResultsAfter>
+          <ojp:IncludeTrackSections>true</ojp:IncludeTrackSections>
+          <ojp:IncludeLegProjection>true</ojp:IncludeLegProjection>
+          <ojp:IncludeTurnDescription>true</ojp:IncludeTurnDescription>
+          <ojp:IncludeIntermediateStops>true</ojp:IncludeIntermediateStops>
+        </ojp:Params>
+      </ojp:OJPTripRequest>
+    </ServiceRequest>
+  </OJPRequest>
+</OJP>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OJP xmlns="http://www.siri.org.uk/siri" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ojp="http://www.vdv.de/ojp" xsi:schemaLocation="http://www.siri.org.uk/siri ../ojp-xsd-v1.0/OJP.xsd" version="1.0">
+  <OJPRequest>
+    <ServiceRequest>
+      <RequestorRef>OJP SDK v1.0</RequestorRef>
+      <RequestTimestamp>2023-08-08T11:35:38.145Z</RequestTimestamp>
+      <ojp:OJPTripRequest>
+        <RequestTimestamp>2023-08-08T11:35:38.145Z</RequestTimestamp>
+        <ojp:Origin>
+          <ojp:PlaceRef>
+            <StopPointRef>8507000</StopPointRef>
+            <ojp:LocationName>
+              <ojp:Text>Bern</ojp:Text>
+            </ojp:LocationName>           
+          </ojp:PlaceRef>
+        <ojp:DepArrTime>2024-10-26T19:55:22</ojp:DepArrTime>
+        </ojp:Origin>
+        <ojp:Destination>
+          <ojp:PlaceRef>
+            <StopPointRef>8503000</StopPointRef>
+            <ojp:LocationName>
+              <ojp:Text>Zürich</ojp:Text>
+            </ojp:LocationName>
+          </ojp:PlaceRef>
+        </ojp:Destination>
+        <ojp:Params>
+          <ojp:NumberOfResultsAfter>2</ojp:NumberOfResultsAfter>
+          <ojp:IncludeTrackSections>false</ojp:IncludeTrackSections>
+          <ojp:IncludeLegProjection>false</ojp:IncludeLegProjection>
+          <ojp:IncludeTurnDescription>false</ojp:IncludeTurnDescription>
+          <ojp:IncludeIntermediateStops>true</ojp:IncludeIntermediateStops>
+        </ojp:Params>
+      </ojp:OJPTripRequest>
+    </ServiceRequest>
+  </OJPRequest>
+</OJP>
