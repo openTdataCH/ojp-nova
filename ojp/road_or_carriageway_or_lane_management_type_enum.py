@@ -1,0 +1,33 @@
+from enum import Enum
+
+__NAMESPACE__ = "http://datex2.eu/schema/2_0RC1/2_0"
+
+
+class RoadOrCarriagewayOrLaneManagementTypeEnum(Enum):
+    CAR_POOL_LANE_IN_OPERATION = "carPoolLaneInOperation"
+    CARRIAGEWAY_CLOSURES = "carriagewayClosures"
+    CLEAR_ALANE_FOR_EMERGENCY_VEHICLES = "clearALaneForEmergencyVehicles"
+    CLEAR_ALANE_FOR_SNOWPLOUGHS_AND_GRITTING_VEHICLES = "clearALaneForSnowploughsAndGrittingVehicles"
+    CLOSED_PERMANENTLY_FOR_THE_WINTER = "closedPermanentlyForTheWinter"
+    CONTRAFLOW = "contraflow"
+    DO_NOT_USE_SPECIFIED_LANES_OR_CARRIAGEWAYS = "doNotUseSpecifiedLanesOrCarriageways"
+    HARD_SHOULDER_RUNNING_IN_OPERATION = "hardShoulderRunningInOperation"
+    INTERMITTENT_SHORT_TERM_CLOSURES = "intermittentShortTermClosures"
+    KEEP_TO_THE_LEFT = "keepToTheLeft"
+    KEEP_TO_THE_RIGHT = "keepToTheRight"
+    LANE_CLOSURES = "laneClosures"
+    LANES_DEVIATED = "lanesDeviated"
+    NARROW_LANES = "narrowLanes"
+    NEW_ROADWORKS_LAYOUT = "newRoadworksLayout"
+    OVERNIGHT_CLOSURES = "overnightClosures"
+    ROAD_CLEARED = "roadCleared"
+    ROAD_CLOSED = "roadClosed"
+    ROLLING_ROAD_BLOCK = "rollingRoadBlock"
+    RUSH_HOUR_LANE_IN_OPERATION = "rushHourLaneInOperation"
+    SINGLE_ALTERNATE_LINE_TRAFFIC = "singleAlternateLineTraffic"
+    TIDAL_FLOW_LANE_IN_OPERATION = "tidalFlowLaneInOperation"
+    TURN_AROUND_IN_OPERATION = "turnAroundInOperation"
+    USE_OF_SPECIFIED_LANES_OR_CARRIAGEWAYS_ALLOWED = "useOfSpecifiedLanesOrCarriagewaysAllowed"
+    USE_SPECIFIED_LANES_OR_CARRIAGEWAYS = "useSpecifiedLanesOrCarriageways"
+    VEHICLE_STORAGE_IN_OPERATION = "vehicleStorageInOperation"
+    OTHER = "other"
