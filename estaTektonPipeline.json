@@ -54,7 +54,6 @@
         "feature","bugfix"
       ],
       "build": {
-        "additionalBuildParams": "-DskipITs",
         "buildDockerImage": false,
         "deployDockerImage": false
       }
