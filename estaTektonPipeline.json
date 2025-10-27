@@ -1,0 +1,99 @@
+{
+  "$schema": "https://clew-resources.sbb-cloud.net/tekton-schema.json",
+  "productName": "skiplus-ojp-nova",
+  "docker": {
+    "artifactoryDockerRepo": "skiplus.docker",
+    "archs": [
+      "amd64",
+      "arm64"
+    ]
+  },
+  "stages": [
+    {
+      "stageName": "dev",
+      "argoCD": {
+        "argoCdAppName": "skiplus-ojp-nova",
+        "autoSync": true,
+        "argoCdSecret": "argocd-env-dev-secret"
+      },
+      "helm": {
+        "sourceRepository": "https://code.sbb.ch/scm/ki_skiplus/skiplus-argocd.git",
+        "chartFilePath": "clusters/aws02t/values/skiplus-ojp-nova.yaml",
+        "versionProperties": [
+          ".appVersion"
+        ]
+      }
+    },
+    {
+      "stageName": "int",
+      "argoCD": {
+        "argoCdAppName": "skiplus-ojp-nova",
+        "autoSync": true,
+        "argoCdSecret": "argocd-env-secret"
+      },
+      "helm": {
+        "sourceRepository": "https://code.sbb.ch/scm/ki_skiplus/skiplus-argocd.git",
+        "chartFilePath": "clusters/maggie/values/skiplus-ojp-nova-int.yaml",
+        "versionProperties": [
+          ".esta-deployment-helm.image.tag"
+        ]
+      }
+    }
+  ],
+  "pipelines": [
+    {
+      "name": "continuous-build",
+      "triggerType": [
+        "GITEVENT",
+        "USER"
+      ],
+      "branchNamePrefixes": [
+        "feature","bugfix"
+      ],
+      "build": {
+        "buildDockerImage": false,
+        "deployDockerImage": false
+      }
+    },
+    {
+      "name": "continuous-dev-deploy",
+      "triggerType": [
+        "GITEVENT"
+      ],
+      "versionTagEventPatterns": [
+        "SNAPSHOT$"
+      ],
+      "branchNamePrefixes": [
+        "master"
+      ],
+      "build": {
+        "buildDockerImage": true,
+        "deployDockerImage": true,
+        "versionTag": "snapshot-rev-${GIT_REV_SHORT}",
+        "failOnQualityGateFailure": false
+      },
+      "stages": [
+        "dev"
+      ]
+    },
+    {
+      "name": "release",
+      "triggerType": [
+        "GITEVENT"
+      ],
+      "versionTagEventPatterns": [
+        "^(\\d+\\.)(\\d+\\.)(\\*|\\d+)$"
+      ],
+      "build": {
+        "buildDockerImage": true,
+        "packageAndDeployHelmChart": true,
+        "versionTag": "${VERSION_TAG}",
+        "failOnQualityGateFailure": false,
+        "deployArtifacts": true
+      },
+      "stages": [
+        "int"
+      ]
+    }
+  ]
+}

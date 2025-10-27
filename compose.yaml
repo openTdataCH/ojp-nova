@@ -1,0 +1,15 @@
+services:
+  ojp-nova:
+    build:
+      context: .
+      platforms:
+        - linux/amd64
+        - linux/arm64
+    image: skiplus-ojp-nova
+#    volumes:
+#      - ./configuration:/app/configuration
+#      - ./logs:/app/logs
+#      - ./output:/app/output
+    ports:
+      - "8000:8000"
+#   network_mode: host
