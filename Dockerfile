@@ -1,4 +1,4 @@
-FROM python:3.13-alpine
+FROM dockerio.docker.bin.sbb.ch/python:3.13-alpine
 WORKDIR /app
 RUN mkdir /app/logs
 # RUN chmod 777 /app
