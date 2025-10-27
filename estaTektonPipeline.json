@@ -1,9 +1,6 @@
 {
   "$schema": "https://clew-resources.sbb-cloud.net/tekton-schema.json",
   "productName": "skiplus-ojp-nova",
-  "builder": {
-    "python": "3.13"
-  },
   "docker": {
     "artifactoryDockerRepo": "skiplus.docker",
     "archs": [
