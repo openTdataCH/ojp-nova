@@ -7,7 +7,7 @@ services:
         - linux/arm64
     image: skiplus-ojp-nova
     volumes:
-      - ./logs:/app/logs
-      - ./generated:/app/generated
+      - /var/skiplus/logs:/app/logs
+      - /var/skiplus/generated:/app/generated
     ports:
       - "81:80"
