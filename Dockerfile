@@ -5,5 +5,5 @@ RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 COPY *.py .
 COPY ojp/ ojp/
 COPY nova/ nova/
-EXPOSE 8000
-CMD ["fastapi","run","/app/server.py"]
+EXPOSE 80
+CMD ["fastapi","run","/app/server.py","--port", "80"]
