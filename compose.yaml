@@ -7,4 +7,4 @@ services:
         - linux/arm64
     image: skiplus-ojp-nova
     ports:
-      - "80:80"
+      - "81:80"
