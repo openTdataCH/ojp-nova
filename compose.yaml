@@ -11,5 +11,5 @@ services:
 #      - ./logs:/app/logs
 #      - ./output:/app/output
     ports:
-      - "8000:8000"
+      - "80:8000"
 #   network_mode: host
