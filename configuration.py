@@ -6,7 +6,7 @@ import os
 NOVA_URL_TOKEN = os.getenv("NOVA_TOKEN_URL")
 NOVA_CLIENT_ID = os.getenv("NOVA_CLIENT_ID")
 NOVA_CLIENT_SECRET = os.getenv("NOVA_CLIENT_SECRET")
-NOVA_BASE_URL = os.getenv("NOVA_BASE_URL")
+NOVA_BASE_URL = os.getenv("NOVA_BASE_URL","")
 
 NOVA_URL_API = NOVA_BASE_URL + "/novaan/vertrieb/public/v14/PreisauskunftService"
 NOVA_URL_V_API = NOVA_BASE_URL + "/novaan/vertrieb/public/v14/VertriebsService"
