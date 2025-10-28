@@ -11,3 +11,4 @@ services:
       - /var/skiplus/generated:/app/generated
     ports:
       - "81:80"
+
