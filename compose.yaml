@@ -6,5 +6,8 @@ services:
         - linux/amd64
         - linux/arm64
     image: skiplus-ojp-nova
+    volumes:
+      - ./logs:/app/logs
+      - ./generated:/app/generated
     ports:
       - "81:80"
