@@ -1,17 +1,25 @@
 # CONFIGURATION:
+import os
 
 # For keys and connection to NOVA contact opendata@sbb.ch if necessary.
 # However, those access keys only are provided under special circumstances.
-NOVA_URL_TOKEN = ""
-NOVA_CLIENT_ID = ''
-NOVA_CLIENT_SECRET = ''
-NOVA_URL_API = ""
+NOVA_URL_TOKEN = os.getenv("NOVA_TOKEN_URL")
+NOVA_CLIENT_ID = os.getenv("NOVA_CLIENT_ID")
+NOVA_CLIENT_SECRET = os.getenv("NOVA_CLIENT_SECRET")
+NOVA_BASE_URL = os.getenv("NOVA_BASE_URL")
+
+NOVA_URL_API = NOVA_BASE_URL + "/novaan/vertrieb/public/v14/PreisauskunftService"
+NOVA_URL_V_API = NOVA_BASE_URL + "/novaan/vertrieb/public/v14/VertriebsService"
+NOVA_URL_S_API = NOVA_BASE_URL + "/novaan/vertrieb/public/v14/VertriebsstammdatenService"
+
+OJP_URL_API = "https://api.opentransportdata.swiss/ojp2020"
+# OJP_Token can be obtained at: https://opentransportdata.swiss/dev-dashboard
+OJP_TOKEN = os.getenv("OJP_TOKEN")
+
 NOVA_STAMMDATEN_FILE="generated/nova_stammdaten.gz"
 NOVA_STAMMDATEN_FILE_UNZIPPED="generated/nova_stammdaten.xml"
 NOVA_PARKPLATZ_FILE = "generated/nova_parkplatz.csv"
-# OJP_Token can be obtained at: https://opentransportdata.swiss/dev-dashboard
-OJP_URL_API = "https://api.opentransportdata.swiss/ojp2020"
-OJP_TOKEN = ""
+
 DIDOK_PERMALINK = "https://opentransportdata.swiss/de/dataset/service-points-full/permalink"
 HTTPS = False
 SSL_KEYFILE = ''
@@ -19,7 +27,7 @@ SSL_CERTFILE = ''
 HTTP_HOST = '127.0.0.1'
 HTTP_PORT = 8000
 HTTP_SLUG = "ojp2023"
-DEBUGGING = True
+DEBUGGING = os.getenv("DEBUGGING","true")
 LOGFILE = "logs/my_log.log"
 READTRIPREQUESTFILE = True
 VATRATE = 8.1  # Percent
