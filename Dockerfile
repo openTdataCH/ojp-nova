@@ -1,11 +1,10 @@
 FROM dockerio.docker.bin.sbb.ch/python:3.13-alpine
 WORKDIR /app
 RUN mkdir /app/logs
-# RUN chmod 777 /app
-ADD requirements.txt .
-RUN pip install -r ./requirements.txt
+COPY ./requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 COPY *.py .
 COPY ojp/ ojp/
 COPY nova/ nova/
 EXPOSE 8000
-ENTRYPOINT ["python","/app/server.py"]
+CMD ["fastapi","run","/app/server.py"]
