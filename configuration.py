@@ -6,6 +6,7 @@ import os
 NOVA_URL_TOKEN = os.getenv("NOVA_TOKEN_URL")
 NOVA_CLIENT_ID = os.getenv("NOVA_CLIENT_ID")
 NOVA_CLIENT_SECRET = os.getenv("NOVA_CLIENT_SECRET")
+NOVA_SCOPE = os.getenv("NOVA_SCOPE")
 NOVA_BASE_URL = os.getenv("NOVA_BASE_URL","")
 
 NOVA_URL_API = NOVA_BASE_URL + "/novaan/vertrieb/public/v14/PreisauskunftService"
@@ -27,7 +28,7 @@ SSL_CERTFILE = ''
 HTTP_HOST = '127.0.0.1'
 HTTP_PORT = 8000
 HTTP_SLUG = "ojp2023"
-DEBUGGING = os.getenv("DEBUGGING","true")
+DEBUGGING = os.getenv("DEBUGGING","true").lower() in ['true', 'debug','enabled']
 LOGFILE = "logs/my_log.log"
 READTRIPREQUESTFILE = True
 VATRATE = 8.1  # Percent
