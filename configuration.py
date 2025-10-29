@@ -17,9 +17,12 @@ OJP_URL_API = "https://api.opentransportdata.swiss/ojp2020"
 # OJP_Token can be obtained at: https://opentransportdata.swiss/dev-dashboard
 OJP_TOKEN = os.getenv("OJP_TOKEN")
 
-NOVA_STAMMDATEN_FILE="generated/nova_stammdaten.gz"
-NOVA_STAMMDATEN_FILE_UNZIPPED="generated/nova_stammdaten.xml"
-NOVA_PARKPLATZ_FILE = "generated/nova_parkplatz.csv"
+OUTPUT_DIR = os.getenv("OUTPUT_DIR",".")
+GENERATED_DIR =OUTPUT_DIR + "/generated"
+
+NOVA_STAMMDATEN_FILE= GENERATED_DIR + "/nova_stammdaten.gz"
+NOVA_STAMMDATEN_FILE_UNZIPPED = GENERATED_DIR + "/nova_stammdaten.xml"
+NOVA_PARKPLATZ_FILE = GENERATED_DIR + "/nova_parkplatz.csv"
 
 DIDOK_PERMALINK = "https://opentransportdata.swiss/de/dataset/service-points-full/permalink"
 HTTPS = False
@@ -29,7 +32,8 @@ HTTP_HOST = '127.0.0.1'
 HTTP_PORT = 8000
 HTTP_SLUG = "ojp2023"
 DEBUGGING = os.getenv("DEBUGGING","true").lower() in ['true', 'debug','enabled']
-LOGFILE = "logs/my_log.log"
+LOGS_DIR = OUTPUT_DIR + "/logs"
+LOGFILE = LOGS_DIR + "/my_log.log"
 READTRIPREQUESTFILE = True
 VATRATE = 8.1  # Percent
 USE_HTA = False # if in the tests half price should be used
@@ -57,6 +61,7 @@ READFILE = []
 READFILE.append("input/input_Europaplatz.xml")
 #READFILE.append("input/input_aller_retour.xml")
 
+d
 
 # if there exists a local_configuration it is used.
 try:
