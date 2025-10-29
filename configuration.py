@@ -1,13 +1,13 @@
 # CONFIGURATION:
-import os
+from os import getenv, path, makedirs
 
 # For keys and connection to NOVA contact opendata@sbb.ch if necessary.
 # However, those access keys only are provided under special circumstances.
-NOVA_URL_TOKEN = os.getenv("NOVA_TOKEN_URL")
-NOVA_CLIENT_ID = os.getenv("NOVA_CLIENT_ID")
-NOVA_CLIENT_SECRET = os.getenv("NOVA_CLIENT_SECRET")
-NOVA_SCOPE = os.getenv("NOVA_SCOPE")
-NOVA_BASE_URL = os.getenv("NOVA_BASE_URL","")
+NOVA_URL_TOKEN = getenv("NOVA_TOKEN_URL")
+NOVA_CLIENT_ID = getenv("NOVA_CLIENT_ID")
+NOVA_CLIENT_SECRET = getenv("NOVA_CLIENT_SECRET")
+NOVA_SCOPE = getenv("NOVA_SCOPE")
+NOVA_BASE_URL = getenv("NOVA_BASE_URL","")
 
 NOVA_URL_API = NOVA_BASE_URL + "/novaan/vertrieb/public/v14/PreisauskunftService"
 NOVA_URL_V_API = NOVA_BASE_URL + "/novaan/vertrieb/public/v14/VertriebsService"
@@ -15,11 +15,14 @@ NOVA_URL_S_API = NOVA_BASE_URL + "/novaan/vertrieb/public/v14/Vertriebsstammdate
 
 OJP_URL_API = "https://api.opentransportdata.swiss/ojp2020"
 # OJP_Token can be obtained at: https://opentransportdata.swiss/dev-dashboard
-OJP_TOKEN = os.getenv("OJP_TOKEN")
+OJP_TOKEN = getenv("OJP_TOKEN")
 
-NOVA_STAMMDATEN_FILE="generated/nova_stammdaten.gz"
-NOVA_STAMMDATEN_FILE_UNZIPPED="generated/nova_stammdaten.xml"
-NOVA_PARKPLATZ_FILE = "generated/nova_parkplatz.csv"
+GENERATED_DIR = getenv("GENERATED_DIR","generated")
+if not path.exists(GENERATED_DIR):
+    makedirs(GENERATED_DIR)
+NOVA_STAMMDATEN_FILE= GENERATED_DIR + "/nova_stammdaten.gz"
+NOVA_STAMMDATEN_FILE_UNZIPPED = GENERATED_DIR + "/nova_stammdaten.xml"
+NOVA_PARKPLATZ_FILE = GENERATED_DIR + "/nova_parkplatz.csv"
 
 DIDOK_PERMALINK = "https://opentransportdata.swiss/de/dataset/service-points-full/permalink"
 HTTPS = False
@@ -28,8 +31,12 @@ SSL_CERTFILE = ''
 HTTP_HOST = '127.0.0.1'
 HTTP_PORT = 8000
 HTTP_SLUG = "ojp2023"
-DEBUGGING = os.getenv("DEBUGGING","true").lower() in ['true', 'debug','enabled']
-LOGFILE = "logs/my_log.log"
+DEBUGGING = getenv("DEBUGGING","true").lower() in ['true', 'debug','enabled']
+LOGS_DIR = getenv("LOGS_DIR","logs")
+if not path.exists(LOGS_DIR):
+    makedirs(LOGS_DIR)
+LOGFILE = LOGS_DIR + "/my_log.log"
+
 READTRIPREQUESTFILE = True
 VATRATE = 8.1  # Percent
 USE_HTA = False # if in the tests half price should be used
@@ -56,7 +63,6 @@ READFILE = []
 #READFILE.append("input/input_problematic_case_vasile.xml")
 READFILE.append("input/input_Europaplatz.xml")
 #READFILE.append("input/input_aller_retour.xml")
-
 
 # if there exists a local_configuration it is used.
 try:

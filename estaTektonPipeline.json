@@ -20,7 +20,7 @@
         "sourceRepository": "https://code.sbb.ch/scm/ki_skiplus/skiplus-argocd.git",
         "chartFilePath": "clusters/aws02t/values/skiplus-ojp-nova.yaml",
         "versionProperties": [
-          ".appVersion"
+          ".esta-deployment-helm.image.tag"
         ]
       }
     },
