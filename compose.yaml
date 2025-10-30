@@ -12,5 +12,5 @@ services:
     volumes:
       - /var/skiplus:/var
     ports:
-      - "81:80"
+      - "8000:8000"
 
