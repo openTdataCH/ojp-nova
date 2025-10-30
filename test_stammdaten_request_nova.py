@@ -33,14 +33,14 @@ def load_didok_stammdaten():
     print (r0.url)
     r1 = requests.get(r0.url)  # using redirect
     chunk_size=200000
-    with open("generated/servicepoints.zip", "wb") as out:
+    with open(generated("servicepoints.zip"), "wb") as out:
         data =r1.content
         out.write(data)
-    with ZipFile("generated/servicepoints.zip") as myzip:
-        myzip.extract(myzip.filelist[0],"generated")
+    with ZipFile(generated("servicepoints.zip")) as myzip:
+        myzip.extract(myzip.filelist[0],GENERATED_DIR)
         print(myzip.filelist[0].filename)
         # open the file and build
-        with open("generated/"+myzip.filelist[0].filename, encoding="utf-8") as csvfile:
+        with open(generated(myzip.filelist[0].filename), encoding="utf-8") as csvfile:
             spamreader = csv.reader(csvfile, delimiter=';')
             for row in spamreader:
                 lin=[]
@@ -136,7 +136,7 @@ def test_nova_stammdaten_request_reply(ojp: Ojp):
         serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
         serializer = XmlSerializer(serializer_config)
         nova_response_xml = serializer.render(nova_response)
-        log('generated/nova_stammdaten.xml',nova_response_xml)
+        log('nova_stammdaten.xml',nova_response_xml)
         return nova_response
 
 def check_configuration():
@@ -179,14 +179,14 @@ if __name__ == '__main__':
         '''
         nova_request=parse_nova_stammdaten_request(areqbody)
         nova_request_xml = serializer.render(nova_request)
-        log('generated/nova_stammdaten_request.xml', nova_request_xml)
+        log('nova_stammdaten_request.xml', nova_request_xml)
         nova_client = get_nova_client()
         nova_response = nova_client.send(nova_request, headers=headers)
         if nova_response:
             serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
             serializer = XmlSerializer(serializer_config)
             nova_response_xml = serializer.render(nova_response)
-            log('generated/nova_stammdaten_response.xml', nova_response_xml)
+            log('nova_stammdaten_response.xml', nova_response_xml)
         # get file from response
         url = extractUrlStammdaten(nova_response)
         r = requests.get(url, allow_redirects=True)
@@ -226,6 +226,6 @@ if __name__ == '__main__':
             write.writerows(rows)
     except Exception as e:
         # not yet really sophisticated handling of all other errors during the work (should be regular OJPDeliveries with OtherError set
-        log('generated/error_file.xml', str(e))
+        log('error_file.xml', str(e))
         print (str(e))
         print(traceback.format_exc())

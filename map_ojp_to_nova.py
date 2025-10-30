@@ -3,6 +3,7 @@ from nova import ErstellePreisAuskunft, VerbindungPreisAuskunftRequest, ClientId
     TaxonomieFilter, TaxonomieKlassePfad, ReisendenInfoPreisAuskunft, ReisendenTypCode, VerbindungPreisAuskunft, \
     FahrplanVerbindungsSegment, VerkehrsMittelGattung, ZwischenHaltContextTripContext, \
     PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput, EmptyType
+from configuration import generated
 from logger import log
 from ojp import Ojp, TimedLegStructure, FarePassengerStructure, PassengerCategoryEnumeration
 from support import OJPError
@@ -190,7 +191,7 @@ def test_ojp_fare_request_to_nova_request(ojp: Ojp) -> PreisAuskunftServicePortT
     if nova_request==None or nova_request==False:
         raise OJPError("Was not able to generate NOVA request from OJPFare Request:\n")
     nova_request_xml = serializer.render(nova_request)
-    log('generated/nova_request.xml',nova_request_xml)
+    log('nova_request.xml',nova_request_xml)
     return nova_request
 
 if __name__ == '__main__':
@@ -204,7 +205,7 @@ if __name__ == '__main__':
         fail_on_unknown_attributes=False,
     )
     parser = XmlParser(parser_config)
-    ojp = parser.parse('generated/ojp_fare_request.xml', Ojp)
+    ojp = parser.parse(generated('ojp_fare_request.xml'), Ojp)
 
     if ojp:
         print(test_ojp_fare_request_to_nova_request(ojp))

@@ -18,9 +18,14 @@ OJP_URL_API = "https://api.opentransportdata.swiss/ojp2020"
 OJP_TOKEN = getenv("OJP_TOKEN")
 
 GENERATED_DIR = getenv("GENERATED_DIR","generated")
-NOVA_STAMMDATEN_FILE= GENERATED_DIR + "/nova_stammdaten.gz"
-NOVA_STAMMDATEN_FILE_UNZIPPED = GENERATED_DIR + "/nova_stammdaten.xml"
-NOVA_PARKPLATZ_FILE = GENERATED_DIR + "/nova_parkplatz.csv"
+''' Returns the path of a generated file
+'''
+def generated(name) -> str:
+    return GENERATED_DIR+'/'+name
+
+NOVA_STAMMDATEN_FILE= generated("nova_stammdaten.gz")
+NOVA_STAMMDATEN_FILE_UNZIPPED = generated("nova_stammdaten.xml")
+NOVA_PARKPLATZ_FILE = generated("nova_parkplatz.csv")
 
 DIDOK_PERMALINK = "https://opentransportdata.swiss/de/dataset/service-points-full/permalink"
 HTTPS = False

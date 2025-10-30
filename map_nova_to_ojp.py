@@ -10,7 +10,7 @@ from nova import ErstellePreisAuskunftResponse, KlassenTypCode, PreisAuspraegung
 from ojp import OjpfareDelivery, FareResultStructure, FareProductStructure, TripFareResultStructure, \
     TypeOfFareClassEnumeration
 from logger import log
-from configuration import VATRATE
+from configuration import VATRATE, generated
 from fare_products import products
 def map_klasse_to_fareclass(klasse: KlassenTypCode) -> TypeOfFareClassEnumeration:
     if klasse == KlassenTypCode.KLASSE_1:
@@ -86,9 +86,10 @@ if __name__ == '__main__':
     serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
     serializer = XmlSerializer(serializer_config)
 
-    soap = parser.parse('generated/nova_response.xml', PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput)
+    soap = parser.parse(generated('nova_response.xml'), PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput)
     if soap:
         ojp_fare_delivery = test_nova_to_ojp(soap)
         ojp_fare_delivery_xml = serializer.render(ojp_fare_delivery)
-        log('generated/ojp_fare_reply.xml', ojp_fare_delivery_xml)
+        log('ojp_fare_reply.xml', ojp_fare_delivery_xml)
         print(ojp_fare_delivery_xml)
+
