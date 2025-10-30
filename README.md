@@ -1,7 +1,9 @@
-# OJPFARE 2 NOVA
+# OJPFare service for Switzerland
 This repository contains the necessary code integrate OJP into the NOVA Preisauskunft in Switzerland
+.
+## Installation
 
-## Requirements
+### Initial steps
 1. Check out the code
 2. Create a pycharm project from it
 
@@ -10,8 +12,8 @@ Necessary libraries are named in requirements.txt
 $ python3 -m pip install -r requirements.txt
 ```
 
-## generation of code from the XSD
-
+### generation of code from the XSD
+With xsdata we create ojp classes that use the schema and are then used within the project.
 You need an xsdata for OJP 1.0:
 ```
 xsdata -p ojp -ss clusters path-to-ojp.xsd
@@ -21,11 +23,15 @@ You need also a configuration for OJP 2.0:
 ```
 xsdata -p ojp2 -ss clusters path-to-ojp.xsd
 ```
-## Configuration
-The repository is missing the relevant configuration.
-The configuration is only handed out, when necessary. Contact opendata@sbb.ch, if necessary. However, the access is and will remain limited.
 
-Relevant fields:
+This is not neede for nova as the necessary xsdata objects are already created in the folder nova.
+
+### Configuration
+The main configuration is stored in configuration.py. However, you need additional information to make this work.
+We suggest to use local_configuration.py (is omitted through .gitignore).
+
+If you need some configuration it may be discussed. Contact opendata@sbb.ch, if necessary. Be aware, that the NOVA product team needs to agree. However, the access is and will remain limited.
+Relevant element that need to be filled:
 ```
 NOVA_URL_TOKEN = ""
 NOVA_CLIENT_ID = ''
@@ -38,31 +44,39 @@ OJP2_TOKEN = ''
 xxx
 ```
 
+### Testing the configuration
+You can test the configuration with test_network_flow.py.
+
+This will run a local run through (see section on testing).
+
+The following should happen 
+1. client: Builds an `OJPTripRequest` from "Bern" to "Zürich" with departure time now
+2. client: The `OJPTripDelivery` from OJP is obtained
+3. client: From the result an `OJPFareRequest` ist constructed
+4. client: the OJPFareRequest ist sent to the server
+5. server: Transforms the `OJPFareRequest` into a NOVA Preisauskunft request
+6. server: Process the result from NOVA, build an `OJPFareDelivery` and send it to the client
+7. client: Show the result
+8. 
+Everything is written to xml files for inspection  in the folder `generated`
+
 ## Starting the server
-run server.py 
+run `server.py `
 starts a server on: http://127.0.0.1:8000 
 
-## First connection test
-run test_client.py 
+### First connection test
+run `test_client.py` 
 This will result in a TripRequest/TripDelivery to the OJP service. 
 
-## Create Python service
+### Create Python service
 see [service](./service/)
 
-## Processing the whole flow (as an example)
-run network_flow.py 
-The following should happen 
-1. client: Builds an OJPTripRequest from "Bern" to "Zürich" with departure time now
-2. client: The OJPTripDelivery from OJP is obtained
-3. client: From the result an OJPFareRequest ist constructed
-4. client: the OJPFareRequest ist sent to the server
-5. server: Transforms the OJPFareRequest into a NOVA Preisauskunft requdst
-6. server: Process the result from NOVA, build an OJPFareDelivery and send it to the client
-7. client: Show the result
-
-Everything is written to xml files for inspection
 
 ## How the actual service is built
+
+The service is stateless and can connect to the Swiss OJP v1 service, the Swiss OJP v2 service and the NOVA system.
+For simplicity we don't distinguish OJP v1 and OJP v2 in the diagrams.
+
 ### Component diagram
 
 ![image](https://github.com/openTdataCH/ojp-nova/assets/24227470/b20eb8c9-6c94-4e77-8f5e-e870d59b16cf)
@@ -138,20 +152,27 @@ They are used as "TC-<the value>". The value needs to be transferred to nova for
 - We base on the commercial stops (as BPUIC). The calls are more and more based on the SLOID. It is important only provide the commerical stops to NOVA. In some cases the commercial stop is no longer directly based on the other one (e.g. Europaplatz). The right one must be obtained from the PlaceContext (done in sloid2didok function)
 # Changelog
 
-# 1.1 (in progress)
+# 1.3 
+- Better error handling
+
+# 1.2 prepared for dockerization
+- Make sure that we can run this in our new environment.
+
+# 1.1 Bug fixes, better documentation, better testing
 - OJP 2.0 support
 - Handling of tariff codes
-- Better error handling
 - Improved mypy, black and the like (better code)
 - More examples
 - Fixed some bugs in testing part
 
 # 1.0
 Basic version running with everything needed for OJP 1.0
+
 # Roadmap
-Currently no roadmap defined
+Currently no further roadmap defined
 
 # License 
 The code is made available as MIT license. The generated code in the "nova" folder based on the WSDL is property of SBB (www.sbb.ch) and not part of the license.
+
 # Assistance
 If you need something about this project, just use the issue tracker: https://github.com/openTdataCH/ojp-nova/issues or contact us at opendata@sbb.ch.
