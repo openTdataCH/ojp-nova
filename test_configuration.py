@@ -15,12 +15,24 @@ READFILE = []
 #READFILE.append("input/input_demand_responsive_saturday_after_1500.xml")
 #READFILE.append("input/input_bus_postauto.xml")
 #READFILE.append("input/input_sharing_intercity.xml")
+#READFILE.append("input/input_problematic_case_vasile.xml")
+#READFILE.append("input/input_Europaplatz.xml")
+
+
+# OJP 2.0 example
+#READFILE.append("input/input_ojp_1_test.xml")
+#READFILE.append("input/input_ojp_2_test.xml")
+#READFILE.append("input/input_problematic_Europaplatz_ojp1.xml")
+READFILE.append("input/input_problematic_Europaplatz_ojp2.xml")
 
 # No result, but no result is ok
 #READFILE.append("input/input_walk_only.xml")
 #READFILE.append("input/input_sharing_only.xml")
 #READFILE.append("input/input_odv_alone.xml")
 #READFILE.append("input/input_in_the_past_not_handeled_well_in_Preisauskunft.xml")
+#READFILE.append("input/input_Bodensee.xml") # no data available there
+#READFILE.append("input/input_problematic_Europaplatz_ojp2_via.xml")  # no longer ok as construction finished
+
 
 # Contains DepArr that needs to be set to something useful before testing
 #READFILE.append("input/input_Bern_Chur_SOB_Zukunft.xml" ) #time must be reset before run. Check if discounts exist on www.sbb.ch
@@ -28,14 +40,5 @@ READFILE = []
 #READFILE.append("input/input_bern_riehen.xml")  #time must be reset before run. Check if discounts exist on www.sbb.ch
 
 # need analysis
-READFILE.append("input/input_problematic_case_vasile.xml")
-#READFILE.append("input/input_Europaplatz.xml")
 #READFILE.append("input/input_aller_retour.xml")
-#READFILE.append("input/input_Bodensee.xml")
 
-#READFILE.append("input/input_ojp_1_test.xml")
-#READFILE.append("input/input_ojp_2_test.xml")
-
-#READFILE.append("input/input_problematic_Europaplatz_ojp1.xml")
-#READFILE.append("input/input_problematic_Europaplatz_ojp2.xml")
-#READFILE.append("input/input_problematic_Europaplatz_ojp2_via.xml")

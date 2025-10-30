@@ -165,16 +165,16 @@ If it is omitted, then `now` is used. but we keep it in the files commented out,
 
 # Changelog
 
-## 1.3 
+## 1.3 Improving
 - Better error handling
+- Improved mypy, black and the like (better code)
 
 ## 1.2 prepared for dockerization
 - Make sure that we can run this in our new environment.
 
 ## 1.1 Bug fixes, better documentation, better testing
-- OJP 2.0 support
+- OJP 2.0 support (first version)
 - Handling of tariff codes
-- Improved mypy, black and the like (better code)
 - More examples
 - Fixed some bugs in testing part
 
