@@ -33,7 +33,7 @@ READFILE = []  # contains the test files to read
 
 # if there exists a test_configuration it is loaded.
 try:
-    from local_configuration import *
+    from test_configuration import *
 except:
     pass
 # if there exists a local_configuration it is used.

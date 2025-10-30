@@ -126,7 +126,7 @@ tyk --> Client: OJPFareDelivery
 
 # Handling OJP 1.0 and OJP 2.0
 - Originally OJPFare was built for OJP 1.0
-- With service_ojp2.py we now have also a service for OJP 2.0
+- With service_ojp2.py we now have also a service for OJP 2.0.
 - test_network_flow.py can process both (it uses the version="1.0" or version="2.0" attribute of the OJP element to decide, which path to use.
 - test_client_ojp2.py is the test client for OJP 2.0 services.
 
@@ -142,6 +142,7 @@ A lot was done with a duplification of files/functions:
 |map_nova_to_ojp.py |map_nova_to_ojp2.py|Functions to map the nova response to an OJP fare delivery|
 
 There was also an idea to do it with xslt (OJP 2.0 -> OJP 1.0). For testing purposes it currently was easier to duplicate the programs.
+
 # The special case of tariff codes
 Tariff codes are used in some very special cases. They are transported in the text or user_text of the Attribute element.
 They are used as "TC-<the value>". The value needs to be transferred to nova for a correct calculation. This is done in the new code.
@@ -149,13 +150,17 @@ They are used as "TC-<the value>". The value needs to be transferred to nova for
 # Usage notes
 - The TripResult used in the OJP fare service should not be based on short-term real-time information. So the TripRequest should usually contain a UseRealtime set to false.
 - The price is only in one direction. If the full price in both directions is needed and artificial trip must be constructed, that contains all necessary legs in both direction (and works from the time view): Search A to B, some delay, search B to A, concatenate the trips into one. This IS necessary as sometimes the trip in  both direction is cheaper than two single trips.
-- We base on the commercial stops (as BPUIC). The calls are more and more based on the SLOID. It is important only provide the commerical stops to NOVA. In some cases the commercial stop is no longer directly based on the other one (e.g. Europaplatz). The right one must be obtained from the PlaceContext (done in sloid2didok function)
+- We base on the commercial stops (as BPUIC). The calls are more and more based on the SLOID. It is important only provide the commerical stops to NOVA. In some cases the commercial stop is no longer directly based on the other one (e.g. Europaplatz). The right one must be obtained from the PlaceContext (done in `sloid2didok` function).
 
 
 # Testing
 In the folder `input` there are possible xml files. Some work, some are problematic
 The selection of files to use in `test_network_flow.py` is done by `test_configuration.py` which basically contains an array
 of the files to use. `test_configuration.py` contains the explanaition on what works and what not.
+
+Be aware: For some discount tickets the trip needs to be several days in the future. Currently this needs to be set manually in the respective 
+request file in `input`. We don't use the `<ojp:DepArrTime>2025-10-10T15:30:40</ojp:DepArrTime>` in many cases, as trips in the past don't have prives.
+If it is omitted, then `now` is used. but we keep it in the files commented out, so that you just can put in the time.
 
 
 # Changelog

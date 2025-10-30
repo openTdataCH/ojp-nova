@@ -40,7 +40,7 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
         attr_text= attr.user_text.text
         if attr_text[0].value.startswith("TC-"):
             #tariff code found in OJP data
-            tariff_code=attr_text[0].value[4:]
+            tariff_code=attr_text[0].value[3:]
     if tariff_code=="":
         return FahrplanVerbindungsSegment(einstieg=int(einstieg), ausstieg=int(ausstieg),
                                           verwaltungs_code=verwaltungs_code,
