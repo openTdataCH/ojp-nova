@@ -134,7 +134,7 @@ def test_nova_request_reply(ojp: Ojp):
         serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
         serializer = XmlSerializer(serializer_config)
         nova_response_xml = serializer.render(nova_response)
-        log('generated/nova_response.xml',nova_response_xml)
+        log('nova_response.xml',nova_response_xml)
         return nova_response
 
 def check_configuration():
@@ -180,16 +180,16 @@ if __name__ == '__main__':
         '''
         nova_request=parse_nova_request(areqbody)
         nova_request_xml = serializer.render(nova_request)
-        log('generated/nova_p_r_request.xml', nova_request_xml)
+        log('nova_p_r_request.xml', nova_request_xml)
         nova_client = get_nova_client()
         nova_response = nova_client.send(nova_request, headers=headers)
         if nova_response:
             serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
             serializer = XmlSerializer(serializer_config)
             nova_response_xml = serializer.render(nova_response)
-            log('generated/nova_p_r_response.xml', nova_response_xml)
+            log('nova_p_r_response.xml', nova_response_xml)
     except Exception as e:
         # not yet really sophisticated handling of all other errors during the work (should be regular OJPDeliveries with OtherError set
-        log('generated/error_file.xml', str(e))
+        log('error_file.xml', str(e))
         print (str(e))
         print(traceback.format_exc())

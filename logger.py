@@ -8,7 +8,7 @@ import sys
 # writing debugging files and specific points
 def log(filename,xml):
     if DEBUGGING:
-        open(filename, 'w',encoding='utf-8').write(xml)
+        open(generated(filename), 'w',encoding='utf-8').write(xml)
 
 # writing which origin/destination was asked from NOVA
 def log_entry(origin, destination, starttime,stoptime):
@@ -44,8 +44,9 @@ def setup_custom_logger():
 
     return logger
 
-# makes sure the log path exists
+# makes sure the LOGS_DIR path exists
 import pathlib
-pathlib.Path("generated").mkdir(parents=True, exist_ok=True)
+from configuration import LOGS_DIR
+pathlib.Path(LOGS_DIR).mkdir(parents=True, exist_ok=True)
 logger = setup_custom_logger()
 

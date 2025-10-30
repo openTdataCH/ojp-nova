@@ -79,7 +79,7 @@ def test_nova_request_reply(ojp: Ojp):
         serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
         serializer = XmlSerializer(serializer_config)
         nova_response_xml = serializer.render(nova_response)
-        log('generated/nova_response.xml',nova_response_xml)
+        log('nova_response.xml',nova_response_xml)
         return nova_response
 
 def check_configuration():
@@ -101,14 +101,14 @@ if __name__ == '__main__':
             inputfile = open(rf, 'r', encoding='utf-8')
             ojp_trip_request_xml = inputfile.read()
             inputfile.close()
-        log('generated/ojp_trip_request.xml', ojp_trip_request_xml)
+        log('ojp_trip_request.xml', ojp_trip_request_xml)
         try:
             print (f"\n********************************************\n{rf}\n********************************************\n")
             r = call_ojp_2000(ojp_trip_request_xml)
             ojp_trip_result = parse_ojp(r)
             # TODO ojp_trip_result.ojpresponse.service_delivery.ojptrip_delivery.status== false => error. However, I do only get to ojptrip_delivery.
             ojp_trip_result_xml = serializer.render(ojp_trip_result, ns_map=ns_map)
-            log('generated/ojp_trip_reply.xml', ojp_trip_result_xml)
+            log('ojp_trip_reply.xml', ojp_trip_result_xml)
 
             # TODO: This would only work in OJP v1.1
             # ojp_refine_request = map_ojp_trip_result_to_ojp_refine_request(ojp_trip_result)
@@ -118,11 +118,11 @@ if __name__ == '__main__':
 
             ojp_trip_result = parse_ojp(r)
             ojp_trip_result_xml = serializer.render(ojp_trip_result, ns_map=ns_map)
-            open('generated/ojp_trip_refine_reply.xml', 'w', encoding='utf-8').write(ojp_trip_result_xml)
+            open(generated('ojp_trip_refine_reply.xml'), 'w', encoding='utf-8').write(ojp_trip_result_xml)
 
             ojp_fare_request = map_ojp_trip_result_to_ojp_fare_request(ojp_trip_result)
             ojp_fare_request_xml = serializer.render(ojp_fare_request, ns_map=ns_map)
-            log('generated/ojp_fare_request.xml', ojp_fare_request_xml)
+            log('ojp_fare_request.xml', ojp_fare_request_xml)
 
             nova_response = test_nova_request_reply(ojp_fare_request)
             if nova_response:
@@ -133,11 +133,11 @@ if __name__ == '__main__':
                         print("Legs: " + str(fr.from_trip_leg_id_ref) + "-" + str(fr.to_trip_leg_id_ref))
                         print(fr.fare_product)
                         print("\n")
-                log('generated/ojp_fare_result.xml', ojp_fare_result_xml)
+                log('ojp_fare_result.xml', ojp_fare_result_xml)
 
         except Exception as e:
             # not yet really sophisticated handling of all other errors during the work (should be regular OJPDeliveries with OtherError set
-            log('generated/error_file.xml', str(e))
+            log('error_file.xml', str(e))
             print (str(e))
 
 
