@@ -150,25 +150,33 @@ They are used as "TC-<the value>". The value needs to be transferred to nova for
 - The TripResult used in the OJP fare service should not be based on short-term real-time information. So the TripRequest should usually contain a UseRealtime set to false.
 - The price is only in one direction. If the full price in both directions is needed and artificial trip must be constructed, that contains all necessary legs in both direction (and works from the time view): Search A to B, some delay, search B to A, concatenate the trips into one. This IS necessary as sometimes the trip in  both direction is cheaper than two single trips.
 - We base on the commercial stops (as BPUIC). The calls are more and more based on the SLOID. It is important only provide the commerical stops to NOVA. In some cases the commercial stop is no longer directly based on the other one (e.g. Europaplatz). The right one must be obtained from the PlaceContext (done in sloid2didok function)
+
+
+# Testing
+In the folder `input` there are possible xml files. Some work, some are problematic
+The selection of files to use in `test_network_flow.py` is done by `test_configuration.py` which basically contains an array
+of the files to use. `test_configuration.py` contains the explanaition on what works and what not.
+
+
 # Changelog
 
-# 1.3 
+## 1.3 
 - Better error handling
 
-# 1.2 prepared for dockerization
+## 1.2 prepared for dockerization
 - Make sure that we can run this in our new environment.
 
-# 1.1 Bug fixes, better documentation, better testing
+## 1.1 Bug fixes, better documentation, better testing
 - OJP 2.0 support
 - Handling of tariff codes
 - Improved mypy, black and the like (better code)
 - More examples
 - Fixed some bugs in testing part
 
-# 1.0
+## 1.0
 Basic version running with everything needed for OJP 1.0
 
-# Roadmap
+## Roadmap
 Currently no further roadmap defined
 
 # License 
