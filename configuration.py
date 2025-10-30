@@ -18,8 +18,6 @@ OJP_URL_API = "https://api.opentransportdata.swiss/ojp2020"
 OJP_TOKEN = getenv("OJP_TOKEN")
 
 GENERATED_DIR = getenv("GENERATED_DIR","generated")
-if not path.exists(GENERATED_DIR):
-    makedirs(GENERATED_DIR)
 NOVA_STAMMDATEN_FILE= GENERATED_DIR + "/nova_stammdaten.gz"
 NOVA_STAMMDATEN_FILE_UNZIPPED = GENERATED_DIR + "/nova_stammdaten.xml"
 NOVA_PARKPLATZ_FILE = GENERATED_DIR + "/nova_parkplatz.csv"
@@ -33,8 +31,6 @@ HTTP_PORT = 8000
 HTTP_SLUG = "ojp2023"
 DEBUGGING = getenv("DEBUGGING","true").lower() in ['true', 'debug','enabled']
 LOGS_DIR = getenv("LOGS_DIR","logs")
-if not path.exists(LOGS_DIR):
-    makedirs(LOGS_DIR)
 LOGFILE = LOGS_DIR + "/my_log.log"
 
 READTRIPREQUESTFILE = True
