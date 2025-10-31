@@ -10,7 +10,7 @@ from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
 import xml_logger
-from configuration import *
+from configuration import NOVA_BASE_URL, OJP_URL_API,OJP_TOKEN, NOVA_URL_TOKEN, NOVA_CLIENT_ID, NOVA_CLIENT_SECRET, READFILE, READTRIPREQUESTFILE
 from test_create_ojp_request import *
 from map_nova_to_ojp import test_nova_to_ojp
 from map_ojp_to_nova import test_ojp_fare_request_to_nova_request
