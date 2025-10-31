@@ -17,7 +17,7 @@ from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
 import xml_logger
-from configuration import NOVA_URL_TOKEN, DIDOK_PERMALINK, NOVA_BASE_URL, XML_LOG_DIR, NOVA_CLIENT_ID, NOVA_CLIENT_SECRET
+from configuration import NOVA_URL_TOKEN, DIDOK_PERMALINK, NOVA_URL_API, XML_LOG_DIR, NOVA_CLIENT_ID, NOVA_CLIENT_SECRET
 import xml_logger
 from nova.vertriebsstammdaten_service_port_type_soapv14_get_stammdaten_file import *
 from nova.vertriebsstammdaten_service_port_type_soapv14_get_stammdaten_file_input import *
@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 
 ns_map = {'': 'http://www.siri.org.uk/siri', 'ojp': 'http://www.vdv.de/ojp'}
 
-NOVA_URL_S_API = NOVA_BASE_URL + "/novaan/vertrieb/public/v14/VertriebsstammdatenService"
+NOVA_URL_S_API = NOVA_URL_API + "/novaan/vertrieb/public/v14/VertriebsstammdatenService"
 
 def load_didok_stammdaten():
     r0 = requests.get(DIDOK_PERMALINK)

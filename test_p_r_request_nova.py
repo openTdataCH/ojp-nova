@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import json
-import logging
 import traceback
 
 import requests
@@ -21,7 +20,8 @@ logger = logging.getLogger(__name__)
 
 ns_map = {'': 'http://www.siri.org.uk/siri', 'ojp': 'http://www.vdv.de/ojp'}
 
-NOVA_URL_V_API = NOVA_BASE_URL + "/novaan/vertrieb/public/v14/VertriebsService"
+NOVA_URL_V_API = NOVA_URL_API + "/novaan/vertrieb/public/v14/VertriebsService"
+
 
 def parse_nova_request(body: str) -> VertriebsServicePortTypeSoapv14ErstelleAngeboteInput:
     config = ParserConfig(
