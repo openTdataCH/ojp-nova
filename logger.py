@@ -6,12 +6,12 @@ import datetime
 import sys
 
 # writing debugging files and specific points
-def log(filename,xml):
+def log(filename:str,xml:str) -> None:
     if DEBUGGING:
         open(filename, 'w',encoding='utf-8').write(xml)
 
 # writing which origin/destination was asked from NOVA
-def log_entry(origin, destination, starttime,stoptime):
+def log_entry_orig_dest(origin, destination, starttime,stoptime) ->None:
     logger = logging.getLogger('OJP2NOVA')
 #    logger.setLevel(logging.INFO)
 #    handler = RotatingFileHandler(LOGFILE, maxBytes=80000, backupCount=10)
