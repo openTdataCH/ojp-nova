@@ -7,14 +7,8 @@ from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
 from configuration import XML_LOG_ENABLED, XML_LOG_DIR
 
-
-def enabled() -> str:
-    ''' Evaluates if this logger is enabled.'''
-    return XML_LOG_ENABLED
-
-
 # Make sure the path exists
-if enabled():
+if XML_LOG_ENABLED:
     pathlib.Path(XML_LOG_DIR).mkdir(parents=True, exist_ok=True)
 
 
@@ -26,8 +20,9 @@ def path(filename) -> str:
 
 def log_serialized(filename, xml):
     ''' Writes the serialized xml to file if the xml logger is enabled.'''
-    if enabled():
-        open(path(filename), 'w', encoding='utf-8').write(xml)
+    if XML_LOG_ENABLED:
+        with open(path(filename), 'w', encoding='utf-8') as f:
+            f.write(xml)
 
 
 def log_object_as_xml(filename, obj):

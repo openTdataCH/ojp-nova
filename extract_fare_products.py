@@ -1,10 +1,10 @@
 import xml.etree.ElementTree as ET
 import os
-from configuration import GENERATED_DIR
+from configuration import XML_LOG_DIR
 
 current_directory = os.getcwd()
 # Parse the XML file
-tree = ET.parse(os.path.join(current_directory, GENERATED_DIR, 'nova_stammdaten.xml'))
+tree = ET.parse(os.path.join(current_directory, XML_LOG_DIR, 'nova_stammdaten.xml'))
 root = tree.getroot()
 
 # Initialize the dictionary
@@ -25,5 +25,5 @@ for product_info in root.findall('.//{http://nova.voev.ch/services/v14/vertrieb/
         products[product_nummer] = product_bezeichnung
 
 # Generate the out.py file
-with open(os.path.join(current_directory, GENERATED_DIR, 'out.py'), 'w',encoding='utf-8') as f:
+with open(os.path.join(current_directory, XML_LOG_DIR, 'out.py'), 'w',encoding='utf-8') as f:
     f.write('products = {}\n'.format(products))
