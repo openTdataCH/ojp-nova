@@ -28,7 +28,7 @@ DEBUGGING = True
 LOGFILE = "logs/my_log.log"
 READTRIPREQUESTFILE = True
 VATRATE = 8.1  # Percent
-USE_HTA = False # if in the tests half price should be used
+USE_HTA = True # if in the tests half price should be used
 READFILE = []  # contains the test files to read
 
 # if there exists a test_configuration it is loaded.
