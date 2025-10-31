@@ -6,7 +6,7 @@ from logging.handlers import RotatingFileHandler
 
 from configuration import LOG_DIR, LOG_FILE, LOG_FILE_HANDLER_ENABLED, LOG_LEVEL
 
-LOG_FORMAT = '%(asctime)s %(levelname)-8s %(message)s'
+LOG_FORMAT = '%(asctime)s %(levelname)-8s - %(name)s: %(message)s'
 LOG_DATE_FORMAT = '%Y-%m-%d %H:%M:%S'
 LOG_FILE_MAX_BYTES = 8000000
 LOG_FILE_BACKUP_COUNT = 10
