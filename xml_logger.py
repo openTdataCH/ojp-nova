@@ -34,5 +34,5 @@ def log_object_as_xml(filename, obj):
     ''' Serializes the object to XML and writes the rendered xml to file if the logger is enabled. '''
     serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
     serializer = XmlSerializer(serializer_config)
-    xml = serializer.render(object)
+    xml = serializer.render(obj)
     log_serialized(xml)
