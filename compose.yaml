@@ -9,6 +9,7 @@ services:
     environment:
       - LOG_DIR=/var/logs
       - XML_LOG_DIR=/var/generated
+      - LOG_LEVEL=DEBUG
     volumes:
       - /var/skiplus:/var
     ports:
