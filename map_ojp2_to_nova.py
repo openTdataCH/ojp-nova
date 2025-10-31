@@ -144,8 +144,8 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
                                                    reisenden_typ=r_typ,
                                                    ermaessigungs_karte_code=[])
 
-            for entitlement_product in traveler.entitlement_products:
-                if "HTA" in entitlement_product:
+            for entitlement_product in traveler.entitlement_products.entitlement_product:
+                if entitlement_product.entitlement_product_ref=="HTA":
                     reisender = ReisendenInfoPreisAuskunft(alter=r_alter,
                                                            externe_reisenden_referenz_id=r_referenz,
                                                            reisenden_typ=r_typ,

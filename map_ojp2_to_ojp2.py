@@ -4,7 +4,7 @@ import datetime
 from configuration import USE_HTA
 from ojp2 import Ojp, Ojprequest, ServiceRequest, OjpfareRequest, FareParamStructure, PassengerCategoryEnumeration, \
     FareClassEnumeration, FarePassengerStructure, TripFareRequestStructure, TripStructure, OjptripRequest, \
-    TripResultStructure,  OjptripDeliveryStructure, EntitlementProductStructure, StopPlaceSpaceRefStructure, StopPointRef, StopPointRefStructure
+    TripResultStructure,  OjptripDeliveryStructure, EntitlementProductListStructure, EntitlementProductStructure,StopPlaceSpaceRefStructure, StopPointRef, StopPointRefStructure
 
 from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.parsers.config import ParserConfig
@@ -28,7 +28,10 @@ def parse_ojp2(body: str) -> Ojp:
 def map_to_individual_ojpfarerequest(trip: TripStructure, now: XmlDateTime) -> OjpfareRequest:
     travellers=[]
     if USE_HTA:
-        travellers.append(FarePassengerStructure(age=25, entitlement_products = ["HTA"]))
+        entitlementproduct=EntitlementProductStructure(fare_authority_ref="NOVA",entitlement_product_name="HTA", entitlement_product_ref="HTA") #TODO correct fare_authority_ref
+
+        entitlementproducts=EntitlementProductListStructure(entitlement_product=entitlementproduct)
+        travellers.append(FarePassengerStructure(age=25, entitlement_products = entitlementproducts))
     else:
         travellers.append(FarePassengerStructure(passenger_category=PassengerCategoryEnumeration.ADULT,entitlement_products = []))
 
