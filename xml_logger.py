@@ -35,4 +35,4 @@ def log_object_as_xml(filename, obj):
     serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
     serializer = XmlSerializer(serializer_config)
     xml = serializer.render(obj)
-    log_serialized(xml)
+    log_serialized(filename, xml)
