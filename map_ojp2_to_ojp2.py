@@ -30,7 +30,7 @@ def map_to_individual_ojpfarerequest(trip: TripStructure, now: XmlDateTime) -> O
     if USE_HTA:
         entitlementproduct=EntitlementProductStructure(fare_authority_ref="NOVA",entitlement_product_name="HTA", entitlement_product_ref="HTA") #TODO correct fare_authority_ref
 
-        entitlementproducts=EntitlementProductListStructure(entitlement_product=entitlementproduct)
+        entitlementproducts=EntitlementProductListStructure(entitlement_product=[entitlementproduct])
         travellers.append(FarePassengerStructure(age=25, entitlement_products = entitlementproducts))
     else:
         travellers.append(FarePassengerStructure(passenger_category=PassengerCategoryEnumeration.ADULT,entitlement_products = []))

@@ -23,6 +23,7 @@ from map_ojp_to_ojp import parse_ojp, map_ojp_trip_result_to_ojp_fare_request #,
 from map_ojp2_to_ojp2 import parse_ojp2, map_ojp2_trip_result_to_ojp2_fare_request #, map_ojp_trip_result_to_ojp_refine_request
 
 from nova import PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunft
+from ojp2 import Ojp as Ojp2
 from ojp import Ojp
 from logger import log
 from xslt_transform import transform_xml, is_version_2_0
@@ -105,7 +106,7 @@ def test_nova_request_reply(ojp: Ojp):
         nova_response_xml = serializer.render(nova_response)
         log('generated/nova_response.xml',nova_response_xml)
         return nova_response
-def test_nova_request_reply_for_ojp2(ojp: Ojp):
+def test_nova_request_reply_for_ojp2(ojp: Ojp2):
     oauth_helper = OAuth2Helper(client_id=NOVA_CLIENT_ID, client_secret=NOVA_CLIENT_SECRET)
     access_token = oauth_helper.get_token()
     headers = {'Authorization': 'Bearer ' + access_token, "User-Agent": "OJP2NOVA/0.2"}

@@ -15,9 +15,9 @@ READFILE = []
 #READFILE.append("input/input_demand_responsive_saturday_after_1500.xml")
 #READFILE.append("input/input_bus_postauto.xml")
 #READFILE.append("input/input_sharing_intercity.xml")
-#READFILE.append("input/input_problematic_case_vasile.xml")
+READFILE.append("input/input_problematic_case_vasile.xml")
 #READFILE.append("input/input_Europaplatz.xml")
-READFILE.append("input/input_Nachtbus.xml")
+#READFILE.append("input/input_Nachtbus.xml")
 
 
 # OJP 2.0 example
