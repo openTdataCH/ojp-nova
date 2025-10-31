@@ -17,13 +17,14 @@ READFILE = []
 #READFILE.append("input/input_sharing_intercity.xml")
 #READFILE.append("input/input_problematic_case_vasile.xml")
 #READFILE.append("input/input_Europaplatz.xml")
+READFILE.append("input/input_Nachtbus.xml")
 
 
 # OJP 2.0 example
 #READFILE.append("input/input_ojp_1_test.xml")
 #READFILE.append("input/input_ojp_2_test.xml")
 #READFILE.append("input/input_problematic_Europaplatz_ojp1.xml")
-READFILE.append("input/input_problematic_Europaplatz_ojp2.xml")
+#READFILE.append("input/input_problematic_Europaplatz_ojp2.xml")
 
 # No result, but no result is ok
 #READFILE.append("input/input_walk_only.xml")
