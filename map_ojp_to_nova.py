@@ -3,11 +3,13 @@ from nova import ErstellePreisAuskunft, VerbindungPreisAuskunftRequest, ClientId
     TaxonomieFilter, TaxonomieKlassePfad, ReisendenInfoPreisAuskunft, ReisendenTypCode, VerbindungPreisAuskunft, \
     FahrplanVerbindungsSegment, VerkehrsMittelGattung, ZwischenHaltContextTripContext, \
     PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput, EmptyType
-from configuration import generated
-from logger import log
+import xml_logger
 from ojp import Ojp, TimedLegStructure, FarePassengerStructure, PassengerCategoryEnumeration
 from support import OJPError
 import random
+import logging
+
+logger = logging.getLogger(__name__)
 
 def sloid2didok(sloid):
     # TODO this is a hack for the timetable change 2024/2025 must be done correctly in map_ojp_to_ojp.py by replacing the stoppoints with the correct didoks
@@ -126,6 +128,7 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
             leg_end = leg_id
             segments += [map_timed_leg_to_segment(leg.timed_leg)]
         if leg_start is None:
+            logger.error("no pricable legs found.")
             #no pricable legs found.
             raise OJPError("no pricable legs found.")
 
@@ -189,9 +192,9 @@ def test_ojp_fare_request_to_nova_request(ojp: Ojp) -> PreisAuskunftServicePortT
 
     nova_request = map_fare_request_to_nova_request(ojp)
     if nova_request==None or nova_request==False:
+        logger.error("Was not able to generate NOVA request from OJPFare Request.")
         raise OJPError("Was not able to generate NOVA request from OJPFare Request:\n")
-    nova_request_xml = serializer.render(nova_request)
-    log('nova_request.xml',nova_request_xml)
+    xml_logger.log_object_as_xml('nova_request.xml', nova_request)
     return nova_request
 
 if __name__ == '__main__':
@@ -205,7 +208,7 @@ if __name__ == '__main__':
         fail_on_unknown_attributes=False,
     )
     parser = XmlParser(parser_config)
-    ojp = parser.parse(generated('ojp_fare_request.xml'), Ojp)
+    ojp = parser.parse(xml_logger.path('ojp_fare_request.xml'), Ojp)
 
     if ojp:
         print(test_ojp_fare_request_to_nova_request(ojp))

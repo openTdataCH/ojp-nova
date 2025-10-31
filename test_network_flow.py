@@ -9,6 +9,7 @@ from xsdata.formats.dataclass.parsers.config import ParserConfig
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
+import xml_logger
 from configuration import *
 from test_create_ojp_request import *
 from map_nova_to_ojp import test_nova_to_ojp
@@ -16,9 +17,13 @@ from map_ojp_to_nova import test_ojp_fare_request_to_nova_request
 from map_ojp_to_ojp import parse_ojp, map_ojp_trip_result_to_ojp_fare_request #, map_ojp_trip_result_to_ojp_refine_request
 from nova import PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunft
 from ojp import Ojp
-from logger import log
+import logging
+
+logger = logging.getLogger(__name__)
 
 ns_map = {'': 'http://www.siri.org.uk/siri', 'ojp': 'http://www.vdv.de/ojp'}
+
+NOVA_URL_API = NOVA_BASE_URL + "/novaan/vertrieb/public/v14/PreisauskunftService"
 
 def call_ojp_2000(request_body):
     try:
@@ -76,10 +81,7 @@ def test_nova_request_reply(ojp: Ojp):
     nova_client = get_nova_client()
     nova_response = nova_client.send(nova_request, headers=headers)
     if nova_response:
-        serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
-        serializer = XmlSerializer(serializer_config)
-        nova_response_xml = serializer.render(nova_response)
-        log('nova_response.xml',nova_response_xml)
+        xml_logger.log_object_as_xml('nova_response.xml', nova_response)
         return nova_response
 
 def check_configuration():
@@ -101,14 +103,14 @@ if __name__ == '__main__':
             inputfile = open(rf, 'r', encoding='utf-8')
             ojp_trip_request_xml = inputfile.read()
             inputfile.close()
-        log('ojp_trip_request.xml', ojp_trip_request_xml)
+        xml_logger.log_serialized('ojp_trip_request.xml',ojp_trip_request_xml)
         try:
             print (f"\n********************************************\n{rf}\n********************************************\n")
             r = call_ojp_2000(ojp_trip_request_xml)
             ojp_trip_result = parse_ojp(r)
             # TODO ojp_trip_result.ojpresponse.service_delivery.ojptrip_delivery.status== false => error. However, I do only get to ojptrip_delivery.
-            ojp_trip_result_xml = serializer.render(ojp_trip_result, ns_map=ns_map)
-            log('ojp_trip_reply.xml', ojp_trip_result_xml)
+
+            xml_logger.log_object_as_xml('ojp_trip_reply.xml',ojp_trip_result)
 
             # TODO: This would only work in OJP v1.1
             # ojp_refine_request = map_ojp_trip_result_to_ojp_refine_request(ojp_trip_result)
@@ -118,26 +120,25 @@ if __name__ == '__main__':
 
             ojp_trip_result = parse_ojp(r)
             ojp_trip_result_xml = serializer.render(ojp_trip_result, ns_map=ns_map)
-            open(generated('ojp_trip_refine_reply.xml'), 'w', encoding='utf-8').write(ojp_trip_result_xml)
+            open(xml_logger.path('ojp_trip_refine_reply.xml'), 'w', encoding='utf-8').write(ojp_trip_result_xml)
 
             ojp_fare_request = map_ojp_trip_result_to_ojp_fare_request(ojp_trip_result)
-            ojp_fare_request_xml = serializer.render(ojp_fare_request, ns_map=ns_map)
-            log('ojp_fare_request.xml', ojp_fare_request_xml)
+            xml_logger.log_object_as_xml('ojp_fare_request.xml',ojp_fare_request)
 
             nova_response = test_nova_request_reply(ojp_fare_request)
             if nova_response:
                 ojp_fare_result = test_nova_to_ojp(nova_response)
-                ojp_fare_result_xml = serializer.render(ojp_fare_result, ns_map=ns_map)
                 for fr1 in ojp_fare_result.fare_result:
                     for fr in fr1.trip_fare_result:
                         print("Legs: " + str(fr.from_trip_leg_id_ref) + "-" + str(fr.to_trip_leg_id_ref))
                         print(fr.fare_product)
                         print("\n")
-                log('ojp_fare_result.xml', ojp_fare_result_xml)
+                xml_logger.log_object_as_xml('ojp_fare_result.xml',ojp_fare_result)
 
         except Exception as e:
             # not yet really sophisticated handling of all other errors during the work (should be regular OJPDeliveries with OtherError set
-            log('error_file.xml', str(e))
+            xml_logger.log_serialized('error_file.xml', str(e))
+            logger.error(e, stack_info=True, exc_info=True)
             print (str(e))
 
 

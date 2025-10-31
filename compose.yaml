@@ -6,11 +6,6 @@ services:
         - linux/amd64
         - linux/arm64
     image: skiplus-ojp-nova
-    environment:
-      - LOGS_DIR=/var/logs
-      - GENERATED_DIR=/var/generated
-    volumes:
-      - /var/skiplus:/var
     ports:
       - "8000:8000"
 
