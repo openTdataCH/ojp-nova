@@ -61,6 +61,9 @@ def sloid2didok(sloid):
     #"8014484": "8503464",
     #"8014485": "853463",
     #"8014487": "8503462",
+    if type(sloid)!=str:
+        #must be a StopPointRef or StopPlaceRef TODO:Why is this different in OJP 1 and 2
+        sloid=sloid.value
     try:
         didok=int(sloid)
         didok=int(my_dict.get(str(didok),str(didok))) # replaces if it is in the table or gets the value back
