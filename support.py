@@ -4,10 +4,13 @@ from xsdata.models.datatype import XmlDateTime
 
 import datetime
 
+from ojp2 import OperatorRef
+
+
 # err_str = "" #global error string
 
 # define an error response immediatly and make sure the program can send it back (ignores all warnings that were before).
-def error_response(error_text:str):
+def error_response(error_text:str) -> Ojp:
     return Ojp(ojpresponse=
         Ojpresponse(service_delivery=
                     ServiceDelivery(response_timestamp=XmlDateTime.from_datetime(datetime.datetime.utcnow()),
@@ -28,11 +31,11 @@ def error_response(error_text:str):
 # sd.ErrorCondition(other_error=OtherError(err_str))
 # return sd
 
-def process_operating_ref_ojp2(operator_ref):
+def process_operating_ref_ojp2(operator_ref:OperatorRef) ->str:
     operator_ref=operator_ref.value
     return process_operating_ref(operator_ref)
 
-def process_operating_ref(operator_ref):
+def process_operating_ref(operator_ref:str) ->str:
     #operator_ref = operator_ref.value
     # Remove the 'ojp:' prefix if it exists
     if operator_ref.startswith("ojp:"):
@@ -46,7 +49,7 @@ def process_operating_ref(operator_ref):
         # Return the original string if it's not an int or not 6 characters long
         return operator_ref
 
-def sloid2didok(sloid):
+def sloid2didok(sloid)->int:
     # TODO this is a hack for the timetable change 2024/2025 must be done correctly in map_ojp_to_ojp.py by replacing the stoppoints with the correct didoks
     #if a didok code, just return it
     my_dict ={

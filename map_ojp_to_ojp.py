@@ -67,8 +67,8 @@ def map_to_individual_ojpfarerequest(trip: TripStructure, now: XmlDateTime) -> O
 #                                  ojprefinement_request=refinerequest)))
 
 def preprocess_stops_to_commercial_stops(delivery: OjptripDeliveryStructure) -> OjptripDeliveryStructure:
-    #prepocessing every StopPointRef is replaced with the highestmost parent for the processing in fares
-    #parse context and create a dictionnary of the highest parent
+    #prepocessing every StopPointRef is replaced with the highest level of parent for the processing in fares
+    #parse context and create a dictionary of the highest parent
     parent = {}
     #TODO we do it once only, but in future we might to change it
     if not delivery.trip_response_context:

@@ -1,6 +1,6 @@
 from lxml import etree
 
-def is_version_2_0(xml_string):
+def is_version_2_0(xml_string:str) -> bool:
     #simple test to see if the xml is OJP version 2.0 (or should be)
     # Split the string into lines
     lines = xml_string.splitlines()

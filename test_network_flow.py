@@ -2,6 +2,7 @@
 
 import json
 import traceback
+from typing import Tuple
 
 import requests
 import urllib3
@@ -32,7 +33,7 @@ ns_map = {'': 'http://www.siri.org.uk/siri', 'ojp': 'http://www.vdv.de/ojp'}
 
 
 
-def call_ojp_2000(request_body):
+def call_ojp_2000(request_body:str) -> Tuple[int,str]:
     try:
         access_token = OJP_TOKEN
         headers = {'Authorization': 'Bearer ' + access_token, 'Content-Type': 'application/xml; charset=utf-8' }
@@ -45,7 +46,7 @@ def call_ojp_2000(request_body):
         raise IOError(message, e)
 
 
-def call_ojp_20(request_body):
+def call_ojp_20(request_body:str) -> Tuple[int,str]:
     try:
         access_token = OJP_2_TOKEN
         headers = {'Authorization': 'Bearer ' + access_token, 'Content-Type': 'application/xml; charset=utf-8' }
@@ -74,7 +75,7 @@ class OAuth2Helper:
             self.current_token = json.loads(access_token_response.text)
         return self.current_token['access_token']
 
-def get_nova_client():
+def get_nova_client() -> Client:
     # TODO: It might be more elegant to cache this client in some way, but we would need to handle the expiry of the token
     oauth_helper = OAuth2Helper(client_id=NOVA_CLIENT_ID, client_secret=NOVA_CLIENT_SECRET)
     access_token = oauth_helper.get_token()
@@ -120,7 +121,7 @@ def test_nova_request_reply_for_ojp2(ojp: Ojp2):
         log('generated/nova_response.xml',nova_response_xml)
         return nova_response
 
-def check_configuration():
+def check_configuration() ->None:
     if (len(NOVA_CLIENT_SECRET)==0):
         print("Secrets not set in the configuration")
         exit(1)

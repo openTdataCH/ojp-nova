@@ -23,7 +23,7 @@ READFILE.append("input/input_problematic_case_vasile.xml")
 # OJP 2.0 example
 #READFILE.append("input/input_ojp_1_test.xml")
 #READFILE.append("input/input_ojp_2_test.xml")
-#READFILE.append("input/input_problematic_Europaplatz_ojp1.xml")
+READFILE.append("input/input_problematic_Europaplatz_ojp1.xml")
 #READFILE.append("input/input_problematic_Europaplatz_ojp2.xml")
 
 # No result, but no result is ok
