@@ -29,7 +29,7 @@ def test_create_ojp_trip_request_simple_3() -> Ojp:
     return test_create_ojp_trip_request_long(origin,destination,starttime)
 
 # builds the requests
-def test_create_ojp_trip_request_long(origin,destination,starttime) -> Ojp:
+def test_create_ojp_trip_request_long(origin:str,destination:str,starttime:datetime.datetime) -> Ojp:
     starttime = starttime.isoformat() + "Z"
     starttime = XmlDateTime.from_string(starttime)
 

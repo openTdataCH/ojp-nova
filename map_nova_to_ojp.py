@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import datetime
-from typing import List
+from typing import List, Optional
 
 from xsdata.models.datatype import XmlDateTime
 
@@ -18,14 +18,18 @@ def map_klasse_to_fareclass(klasse: KlassenTypCode) -> TypeOfFareClassEnumeratio
     elif klasse == KlassenTypCode.KLASSE_2:
         return TypeOfFareClassEnumeration.SECOND
     else:
-        return None
+        return TypeOfFareClassEnumeration.ALL
 
-def map_preis_auspraegung_to_trip_fare_result(preis_auspraegungen: List[PreisAuspraegung]) -> FareResultStructure:
+def map_preis_auspraegung_to_trip_fare_result(preis_auspraegungen: List[PreisAuspraegung]) -> Optional[FareResultStructure]:
     referenz = preis_auspraegungen[0].externe_verbindungs_referenz_id
+    if referenz is None:
+        return None
     id, _, _ = referenz.split('_')
 
     tripfareresults = []
     for preis_auspraegung in preis_auspraegungen:
+        if preis_auspraegung.externe_verbindungs_referenz_id is None:
+            break
         _, from_leg_id, to_leg_id = preis_auspraegung.externe_verbindungs_referenz_id.split('_')
         required_card=[]
         if preis_auspraegung.produkt_einfluss_faktoren.kunden_segment.kunden_segment_code=="HALBTAX":

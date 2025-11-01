@@ -1,4 +1,5 @@
 # CONFIGURATION:
+from typing import List
 
 # For keys and connection to NOVA contact opendata@sbb.ch if necessary.
 # However, those access keys only are provided under special circumstances.
@@ -29,7 +30,7 @@ LOGFILE = "logs/my_log.log"
 READTRIPREQUESTFILE = True
 VATRATE = 8.1  # Percent
 USE_HTA = True # if in the tests half price should be used
-READFILE = []  # contains the test files to read
+READFILE: List[str]  = [] # contains the test files to read
 
 # if there exists a test_configuration it is loaded.
 try:

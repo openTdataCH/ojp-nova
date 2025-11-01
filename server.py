@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import datetime
-
 from fastapi import FastAPI, Request, Response, HTTPException
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
@@ -25,7 +24,7 @@ ns_map = {'': 'http://www.siri.org.uk/siri', 'ojp': 'http://www.vdv.de/ojp'}
 
 
 @app.post("/"+HTTP_SLUG, tags=["Open Journey Planner"])
-async def post_request(fastapi_req: Request):
+async def post_request(fastapi_req: Request)->Response:
     body = await fastapi_req.body()
     logger.log_entry("Received request: " + str(body))
 
@@ -39,7 +38,7 @@ async def post_request(fastapi_req: Request):
     try:
         if ojp_fare_request and ojp_fare_request.ojprequest:
             # a request was made and it seems legit
-            if ojp_fare_request.ojprequest.service_request.ojpfare_request:
+            if ojp_fare_request.ojprequest.service_request and ojp_fare_request.ojprequest.service_request.ojpfare_request:
                 # we deal with a OJPFare Request and will ask NOVA
                 logger.log_entry("Query to NOVA: "+str(ojp_fare_request))
                 nova_response = test_nova_request_reply(ojp_fare_request)

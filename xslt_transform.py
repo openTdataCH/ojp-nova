@@ -12,7 +12,7 @@ def is_version_2_0(xml_string:str) -> bool:
     # Check the second line for the version
     second_line = lines[1]
     return 'version="2.0"' in second_line
-def transform_xml(xml_string, xslt_file):
+def transform_xml(xml_string:str, xslt_file:str)->str:
     try:
         # Parse the XML string
         xml_doc = etree.fromstring(xml_string)

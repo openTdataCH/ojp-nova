@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+from typing import List
+
 from nova import ErstellePreisAuskunft, VerbindungPreisAuskunftRequest, ClientIdentifier, CorrelationKontext, \
     TaxonomieFilter, TaxonomieKlassePfad, ReisendenInfoPreisAuskunft, ReisendenTypCode, VerbindungPreisAuskunft, \
     FahrplanVerbindungsSegment, VerkehrsMittelGattung, ZwischenHaltContextTripContext, \
@@ -90,7 +92,7 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
         legs = fare_request.trip_fare_request.trip.leg
         externeVerbindungsReferenzId = fare_request.trip_fare_request.trip.id
         segments = []
-        reisende = []
+        reisende:List[ReisendenInfoPreisAuskunft] = []
         leg_start = None
         leg_end = None
         leg_nr=0

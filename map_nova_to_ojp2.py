@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 import datetime
-from typing import List
+from decimal import Decimal
+from typing import List, Optional, Dict
 
 from xsdata.models.datatype import XmlDateTime
 
@@ -40,17 +41,17 @@ def map_preis_auspraegung_to_trip_fare_result(preis_auspraegungen: List[PreisAus
                                                                    net_price=round(float(preis_auspraegung.preis.betrag)*(1.0-VATRATE/100),2),
                                                                    currency=preis_auspraegung.preis.waehrung,
                                                                    required_card=required_card,
-                                                                   vat_rate=VATRATE,
+                                                                   vat_rate=Decimal(VATRATE),
                                                                    fare_class=map_klasse_to_fareclass(preis_auspraegung.produkt_einfluss_faktoren.klasse))]))
 
     return FareResultStructure(id=id, trip_fare_result=tripfareresults)
 
 
-def map_nova_reply_to_ojp_fare_delivery(soap: PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput) -> OjpfareDelivery:
+def map_nova_reply_to_ojp_fare_delivery(soap: PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput) -> Optional[OjpfareDelivery]:
     if not soap.body.erstelle_preis_auskunft_response.preis_auskunft_response.preis_auspraegung:
-        return False
+        return None
 
-    bonded_trips = {}
+    bonded_trips :Dict[str,PreisAuspraegung]= {}
     for preis_auspraegung in soap.body.erstelle_preis_auskunft_response.preis_auskunft_response.preis_auspraegung:
         if preis_auspraegung.produkt_einfluss_faktoren.klasse == KlassenTypCode.KLASSENWECHSEL:
             continue

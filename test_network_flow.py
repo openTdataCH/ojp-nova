@@ -23,7 +23,8 @@ from map_ojp2_to_nova import test_ojp2_fare_request_to_nova_request
 from map_ojp_to_ojp import parse_ojp, map_ojp_trip_result_to_ojp_fare_request #, map_ojp_trip_result_to_ojp_refine_request
 from map_ojp2_to_ojp2 import parse_ojp2, map_ojp2_trip_result_to_ojp2_fare_request #, map_ojp_trip_result_to_ojp_refine_request
 
-from nova import PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunft
+from nova import PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunft, \
+    PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput
 from ojp2 import Ojp as Ojp2
 from ojp import Ojp
 from logger import log
@@ -61,13 +62,13 @@ def call_ojp_20(request_body:str) -> Tuple[int,str]:
 class OAuth2Helper:
     # Credits: https://developer.byu.edu/docs/consume-api/use-api/oauth-20/oauth-20-python-sample-code
 
-    def __init__(self, client_id, client_secret):
+    def __init__(self, client_id:str, client_secret:str):
         urllib3.disable_warnings()
         self.client_id = client_id
         self.client_secret = client_secret
         self.current_token = None
 
-    def get_token(self, new_token=False):
+    def get_token(self, new_token:bool=False) ->str:
         if new_token or not self.current_token:
             data = {'grant_type': 'client_credentials', 'scope': 'api://e1710a9f-d3e8-4751-b662-42f242e79f20/.default'}
             access_token_response = requests.post(NOVA_URL_TOKEN, data=data, verify=False, allow_redirects=False,
@@ -94,7 +95,7 @@ def get_nova_client() -> Client:
 
     return client
 
-def test_nova_request_reply(ojp: Ojp):
+def test_nova_request_reply(ojp: Ojp)->PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput:
     oauth_helper = OAuth2Helper(client_id=NOVA_CLIENT_ID, client_secret=NOVA_CLIENT_SECRET)
     access_token = oauth_helper.get_token()
     headers = {'Authorization': 'Bearer ' + access_token, "User-Agent": "OJP2NOVA/0.2"}
@@ -107,7 +108,7 @@ def test_nova_request_reply(ojp: Ojp):
         nova_response_xml = serializer.render(nova_response)
         log('generated/nova_response.xml',nova_response_xml)
         return nova_response
-def test_nova_request_reply_for_ojp2(ojp: Ojp2):
+def test_nova_request_reply_for_ojp2(ojp: Ojp2)->str:
     oauth_helper = OAuth2Helper(client_id=NOVA_CLIENT_ID, client_secret=NOVA_CLIENT_SECRET)
     access_token = oauth_helper.get_token()
     headers = {'Authorization': 'Bearer ' + access_token, "User-Agent": "OJP2NOVA/0.2"}

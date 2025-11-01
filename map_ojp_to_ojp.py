@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import datetime
+from typing import Optional
+
 from configuration import USE_HTA
 from ojp import Ojp, Ojprequest, ServiceRequest, OjpfareRequest, FareParamStructure, PassengerCategoryEnumeration, \
     TypeOfFareClassEnumeration, FarePassengerStructure, TripFareRequestStructure, TripStructure, OjptripRequest, \
@@ -9,9 +11,6 @@ from ojp import Ojp, Ojprequest, ServiceRequest, OjpfareRequest, FareParamStruct
 from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.parsers.config import ParserConfig
 from xsdata.models.datatype import XmlDateTime
-
-# from ojp.ojptrip_refine_request import OjptripRefineRequest
-# from ojp.trip_refine_param_structure import TripRefineParamStructure
 
 config = ParserConfig(
     base_url=None,
@@ -97,7 +96,7 @@ def preprocess_stops_to_commercial_stops(delivery: OjptripDeliveryStructure) -> 
                     leg_intermediate.stop_point_ref = parent.get(leg_intermediate.stop_point_ref,leg_intermediate.stop_point_ref)
     return delivery
 
-def map_ojp_trip_result_to_ojp_fare_request(ojp: Ojp) -> Ojp:
+def map_ojp_trip_result_to_ojp_fare_request(ojp: Ojp) -> Optional[Ojp]:
     if len(ojp.ojpresponse.service_delivery.ojptrip_delivery) != 1:
         return None
 

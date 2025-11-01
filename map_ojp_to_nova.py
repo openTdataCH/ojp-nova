@@ -124,11 +124,11 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
             else:
                 t_alter=traveler.age
             r_typ = ReisendenTypCode.PERSON
-            if traveler.passenger_category == None:
+            if traveler.passenger_category is None:
                 r_typ =ReisendenTypCode.PERSON
-            elif traveler.passenger_category == "Dog":
+            elif traveler.passenger_category.value == "Dog":
                 r_typ = ReisendenTypCode.HUND
-            elif traveler.passenger_category == "Bicycle":
+            elif traveler.passenger_category.value == "Bicycle":
                 r_typ = ReisendenTypCode.VELO
             else:
                 r_typ = ReisendenTypCode.PERSON
@@ -173,7 +173,7 @@ def test_ojp_fare_request_to_nova_request(ojp: Ojp) -> PreisAuskunftServicePortT
     serializer = XmlSerializer(config=serializer_config)
 
     nova_request = map_fare_request_to_nova_request(ojp)
-    if nova_request==None or nova_request==False:
+    if nova_request is None:
         raise OJPError("Was not able to generate NOVA request from OJPFare Request:\n")
     nova_request_xml = serializer.render(nova_request)
     log('generated/nova_request.xml',nova_request_xml)

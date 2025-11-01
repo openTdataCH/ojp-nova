@@ -11,7 +11,7 @@ def log(filename:str,xml:str) -> None:
         open(filename, 'w',encoding='utf-8').write(xml)
 
 # writing which origin/destination was asked from NOVA
-def log_entry_orig_dest(origin, destination, starttime,stoptime) ->None:
+def log_entry_orig_dest(origin:str, destination:str, starttime:datetime.datetime,stoptime:datetime.datetime) ->None:
     logger = logging.getLogger('OJP2NOVA')
 #    logger.setLevel(logging.INFO)
 #    handler = RotatingFileHandler(LOGFILE, maxBytes=80000, backupCount=10)
@@ -22,12 +22,12 @@ def log_entry_orig_dest(origin, destination, starttime,stoptime) ->None:
     logstr='"'+t+'";"'+origin+'";"'+destination+"';"+starttime+"';"+stoptime
     logger.info(logstr)
 
-def log_entry(logstr:str):
+def log_entry(logstr:str)->None:
     logger = logging.getLogger('OJP2NOVA')
     logger.info(logstr)
 
 # sets up the logger
-def setup_custom_logger():
+def setup_custom_logger()->logging.Logger:
     formatter = logging.Formatter(fmt='%(asctime)s %(levelname)-8s %(message)s',
                                   datefmt='%Y-%m-%d %H:%M:%S')
 

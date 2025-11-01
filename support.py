@@ -84,7 +84,7 @@ def sloid2didok(sloid)->int:
         return 8500000+int(sloid)
 
 # raising an error and sending it back. Does not add values from err_str
-class OJPError(Exception):
+class OJPError(Exception) :
 
     # Constructor or Initializer
     def __init__(self, value):
