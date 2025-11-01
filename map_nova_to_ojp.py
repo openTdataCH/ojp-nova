@@ -32,7 +32,7 @@ def map_preis_auspraegung_to_trip_fare_result(preis_auspraegungen: List[PreisAus
             break
         _, from_leg_id, to_leg_id = preis_auspraegung.externe_verbindungs_referenz_id.split('_')
         required_card=[]
-        if preis_auspraegung.produkt_einfluss_faktoren.kunden_segment.kunden_segment_code=="HALBTAX":
+        if preis_auspraegung.produkt_einfluss_faktoren and preis_auspraegung.produkt_einfluss_faktoren.kunden_segment.kunden_segment_code=="HALBTAX":
             required_card=["HTA"]
         fare_product_name=products.get(str(preis_auspraegung.produkt_nummer),str(preis_auspraegung.produkt_nummer)) # name or number if none
         tripfareresults.append(TripFareResultStructure(from_trip_leg_id_ref=from_leg_id, to_trip_leg_id_ref=to_leg_id,
@@ -50,11 +50,11 @@ def map_preis_auspraegung_to_trip_fare_result(preis_auspraegungen: List[PreisAus
     return FareResultStructure(result_id=id, trip_fare_result=tripfareresults)
 
 
-def map_nova_reply_to_ojp_fare_delivery(soap: PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput) -> OjpfareDelivery:
+def map_nova_reply_to_ojp_fare_delivery(soap: PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput) -> Optional[OjpfareDelivery]:
     if not soap.body.erstelle_preis_auskunft_response.preis_auskunft_response.preis_auspraegung:
-        return False
+        return None
 
-    bonded_trips = {}
+    bonded_trips: dict[str,PreisAuspraegung] = {}
     for preis_auspraegung in soap.body.erstelle_preis_auskunft_response.preis_auskunft_response.preis_auspraegung:
         if preis_auspraegung.produkt_einfluss_faktoren.klasse == KlassenTypCode.KLASSENWECHSEL:
             continue

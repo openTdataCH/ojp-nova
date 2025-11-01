@@ -13,7 +13,7 @@ from ojp2 import OjpfareDelivery, FareResultStructure, FareProductStructure, Tri
 from logger import log
 from configuration import VATRATE
 from fare_products import products
-def map_klasse_to_fareclass(klasse: KlassenTypCode) -> FareClassEnumeration:
+def map_klasse_to_fareclass(klasse: KlassenTypCode) -> Optional[FareClassEnumeration]:
     if klasse == KlassenTypCode.KLASSE_1:
         return FareClassEnumeration.FIRST_CLASS
     elif klasse == KlassenTypCode.KLASSE_2:
@@ -66,7 +66,7 @@ def map_nova_reply_to_ojp_fare_delivery(soap: PreisAuskunftServicePortTypeSoapv1
 
     return OjpfareDelivery(response_timestamp=XmlDateTime.from_datetime(datetime.datetime.utcnow()), status=True, fare_result=fareResults)
 
-def test_nova_to_ojp2(soap: PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput) -> OjpfareDelivery:
+def test_nova_to_ojp2(soap: PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput) -> Optional[OjpfareDelivery]:
     ojp_fare_delivery = map_nova_reply_to_ojp_fare_delivery(soap)
     return ojp_fare_delivery
 

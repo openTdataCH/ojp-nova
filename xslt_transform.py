@@ -1,3 +1,5 @@
+from typing import Optional
+
 from lxml import etree
 
 def is_version_2_0(xml_string:str) -> bool:
@@ -11,8 +13,10 @@ def is_version_2_0(xml_string:str) -> bool:
 
     # Check the second line for the version
     second_line = lines[1]
-    return 'version="2.0"' in second_line
-def transform_xml(xml_string:str, xslt_file:str)->str:
+    if 'version="2.0"' in second_line:
+        return True
+    return False
+def transform_xml(xml_string:str, xslt_file:str)->Optional[str]:
     try:
         # Parse the XML string
         xml_doc = etree.fromstring(xml_string)

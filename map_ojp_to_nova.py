@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+from typing import List, Optional
+
 from nova import ErstellePreisAuskunft, VerbindungPreisAuskunftRequest, ClientIdentifier, CorrelationKontext, \
     TaxonomieFilter, TaxonomieKlassePfad, ReisendenInfoPreisAuskunft, ReisendenTypCode, VerbindungPreisAuskunft, \
     FahrplanVerbindungsSegment, VerkehrsMittelGattung, ZwischenHaltContextTripContext, \
@@ -15,11 +17,13 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
     ankunfts_zeit = timed_leg.leg_alight.service_arrival.timetabled_time
     line_ref = timed_leg.service.line_ref
     operator_ref = timed_leg.service.operator_ref  # needs to be processed afterwards to get the verwaltungs_code
+    if timed_leg.service.mode.short_name is None:
+        raise OJPError("No short name for mode. Probably an ODV bus in OJPFare request to NOVA. Currently this is not suppoerted")
     gattungs_code = timed_leg.service.mode.short_name.text.value  # is correct, but a bit of a hack
 
     # unfortunately it is not in line_ref, but in Extension/ojp:PublishedJourneyNumber
     _, verkehrs_mittel_nummer, _ = line_ref.split(':')
-    # This is an other hack.
+    # This is an other hack. TODO
     verkehrs_mittel_nummer = ''.join(filter(lambda x: x.isdigit(), verkehrs_mittel_nummer))
     try:
         # Set verkehrs_mittel_nummer to timed_leg.extension.publishedjourneynumber?
@@ -27,7 +31,8 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
     except:
         pass
 
-    verwaltungs_code= process_operating_ref(operator_ref)
+    if operator_ref:
+        verwaltungs_code= process_operating_ref(operator_ref)
 
     leg_intermediates = timed_leg.leg_intermediates
     zwischenhalten = [sloid2didok(timed_leg.leg_board.stop_point_ref)] + [sloid2didok(leg_intermediate.stop_point_ref)
@@ -64,12 +69,12 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
                                        uic_code=int(zwischenhalt),
                                        trip_context=ZwischenHaltContextTripContext.PLANNED) for zwischenhalt in zwischenhalten]
                                )
-def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput:
+def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput]:
     if not (ojp.ojprequest and ojp.ojprequest.service_request and ojp.ojprequest.service_request.ojpfare_request
             and len(ojp.ojprequest.service_request.ojpfare_request) > 0 and ojp.ojprequest.service_request.ojpfare_request[0].trip_fare_request
             and ojp.ojprequest.service_request.ojpfare_request[0].trip_fare_request.trip
             and len(ojp.ojprequest.service_request.ojpfare_request[0].trip_fare_request.trip.trip_leg) > 0):
-        return False
+        return None
 
     try:
         if ojp.ojprequest.service_request.ojpfare_request[0].params.traveller is None:
@@ -86,7 +91,7 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
         legs = fare_request.trip_fare_request.trip.trip_leg
         externeVerbindungsReferenzId = fare_request.trip_fare_request.trip.trip_id
         segments = []
-        reisende = []
+        reisende:List[ReisendenInfoPreisAuskunft] = []
         leg_start = None
         leg_end = None
         leg_nr=0
@@ -101,7 +106,7 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
             # if the timed leg is an on demand bus -> also ignore
             if leg.timed_leg.service.mode is None:
                 continue
-            if leg.timed_leg.service.mode.bus_submode == "demandResponsive":
+            if leg.timed_leg.service.mode.bus_submode == "demandAndResponseBus":
                 #we can't deal with demandResponsive in NOVA currently.
                 continue
             # To get the first TimedLeg and last TimedLeg to reply with the leg range in the FareResult
@@ -112,7 +117,8 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
             segments += [map_timed_leg_to_segment(leg.timed_leg)]
         if leg_start is None:
             #no pricable legs found.
-            raise OJPError("no pricable legs found.")
+            break
+            #raise OJPError("no pricable legs found.") #TODO we should not raise an error when there are other priced TripResults. Currently one non-pricable raises the error
 
         verbindungen += [VerbindungPreisAuskunft(externe_verbindungs_referenz_id=externeVerbindungsReferenzId + "_" + leg_start + "_" + leg_end, segment_hin_fahrt=segments)]
         reisende =[]

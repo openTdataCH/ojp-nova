@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-from typing import List
+from typing import List, Optional
 
 from nova import ErstellePreisAuskunft, VerbindungPreisAuskunftRequest, ClientIdentifier, CorrelationKontext, \
     TaxonomieFilter, TaxonomieKlassePfad, ReisendenInfoPreisAuskunft, ReisendenTypCode, VerbindungPreisAuskunft, \
     FahrplanVerbindungsSegment, VerkehrsMittelGattung, ZwischenHaltContextTripContext, \
     PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput, EmptyType
 from logger import log
-from ojp2 import Ojp, TimedLegStructure, FarePassengerStructure, PassengerCategoryEnumeration
+from ojp2 import Ojp, TimedLegStructure, FarePassengerStructure, PassengerCategoryEnumeration, \
+    EntitlementProductStructure
 from support import OJPError, process_operating_ref_ojp2,sloid2didok
 import random
 
@@ -70,17 +71,17 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
                                        trip_context=ZwischenHaltContextTripContext.PLANNED) for zwischenhalt in zwischenhalten]
                                )
 
-def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput:
+def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput]:
     if not (ojp.ojprequest and ojp.ojprequest.service_request and ojp.ojprequest.service_request.ojpfare_request
             and len(ojp.ojprequest.service_request.ojpfare_request) > 0 and ojp.ojprequest.service_request.ojpfare_request[0].trip_fare_request
             and ojp.ojprequest.service_request.ojpfare_request[0].trip_fare_request.trip
             and len(ojp.ojprequest.service_request.ojpfare_request[0].trip_fare_request.trip.leg) > 0):
-        return False
+        return None
 
     try:
         if ojp.ojprequest.service_request.ojpfare_request[0].params.traveller is None:
             travellers = []
-            travellers.append(FarePassengerStructure(age=25, entitlement_product=["HTA"]))
+            travellers.append(FarePassengerStructure(age=25, entitlement_products=[EntitlementProductStructure(entitlement_product_ref="HTA",entitlement_product_name="HTA",fare_authority_ref="NOVA")]))
         else:
             age = ojp.ojprequest.service_request.ojpfare_request[0].params.traveller[0].age
             travellers = ojp.ojprequest.service_request.ojpfare_request[0].params.traveller
@@ -107,7 +108,7 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
             # if the timed leg is an on demand bus -> also ignore
             if leg.timed_leg.service.mode is None:
                 continue
-            if leg.timed_leg.service.mode.bus_submode == "demandResponsive":
+            if leg.timed_leg.service.mode.bus_submode and leg.timed_leg.service.mode.bus_submode.value == "demandAndResponseBus":
                 #we can't deal with demandResponsive in NOVA currently.
                 continue
             # To get the first TimedLeg and last TimedLeg to reply with the leg range in the FareResult
@@ -132,9 +133,9 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
             r_typ = ReisendenTypCode.PERSON
             if traveler.passenger_category is None:
                 r_typ =ReisendenTypCode.PERSON
-            elif traveler.passenger_category == "Dog":
+            elif traveler.passenger_category == PassengerCategoryEnumeration.DOG:
                 r_typ = ReisendenTypCode.HUND
-            elif traveler.passenger_category == "Bicycle":
+            elif traveler.passenger_category == PassengerCategoryEnumeration.BICYCLE:
                 r_typ = ReisendenTypCode.VELO
             else:
                 r_typ = ReisendenTypCode.PERSON

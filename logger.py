@@ -19,7 +19,7 @@ def log_entry_orig_dest(origin:str, destination:str, starttime:datetime.datetime
     tz = datetime.timezone.utc
     ft = "%Y-%m-%dT%H:%M:%S%z"
     t = datetime.datetime.now(tz=tz).strftime(ft)
-    logstr='"'+t+'";"'+origin+'";"'+destination+"';"+starttime+"';"+stoptime
+    logstr='"'+t+'";"'+origin+'";"'+destination+"';"+str(starttime)+"';"+str(stoptime)
     logger.info(logstr)
 
 def log_entry(logstr:str)->None:

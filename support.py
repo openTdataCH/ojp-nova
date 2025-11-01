@@ -1,3 +1,4 @@
+from typing import Dict
 
 from ojp import Ojp, Ojpresponse, ServiceDelivery, ServiceDeliveryStructure, OtherError
 from xsdata.models.datatype import XmlDateTime
@@ -32,8 +33,8 @@ def error_response(error_text:str) -> Ojp:
 # return sd
 
 def process_operating_ref_ojp2(operator_ref:OperatorRef) ->str:
-    operator_ref=operator_ref.value
-    return process_operating_ref(operator_ref)
+    operator_ref_str=operator_ref.value
+    return process_operating_ref(operator_ref_str)
 
 def process_operating_ref(operator_ref:str) ->str:
     #operator_ref = operator_ref.value
@@ -49,10 +50,10 @@ def process_operating_ref(operator_ref:str) ->str:
         # Return the original string if it's not an int or not 6 characters long
         return operator_ref
 
-def sloid2didok(sloid)->int:
+def sloid2didok(sloid:str)->int:
     # TODO this is a hack for the timetable change 2024/2025 must be done correctly in map_ojp_to_ojp.py by replacing the stoppoints with the correct didoks
     #if a didok code, just return it
-    my_dict ={
+    my_dict: Dict[str,str] ={
     }
     #dict from https://confluence.sbb.ch/pages/viewpage.action?pageId=2608861819
     #"8507082": "8504108",
@@ -91,5 +92,5 @@ class OJPError(Exception) :
         self.value = value
 
     # __str__ is to print() the value
-    def __str__(self):
+    def __str__(self)->str:
         return (repr(self.value))

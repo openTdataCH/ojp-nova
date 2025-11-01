@@ -2,7 +2,7 @@
 
 import json
 import traceback
-from typing import Tuple
+from typing import Tuple, Any, Optional
 
 import requests
 import urllib3
@@ -68,7 +68,7 @@ class OAuth2Helper:
         self.client_secret = client_secret
         self.current_token = None
 
-    def get_token(self, new_token:bool=False) ->str:
+    def get_token(self, new_token:bool=False) ->Any:
         if new_token or not self.current_token:
             data = {'grant_type': 'client_credentials', 'scope': 'api://e1710a9f-d3e8-4751-b662-42f242e79f20/.default'}
             access_token_response = requests.post(NOVA_URL_TOKEN, data=data, verify=False, allow_redirects=False,
@@ -95,7 +95,7 @@ def get_nova_client() -> Client:
 
     return client
 
-def test_nova_request_reply(ojp: Ojp)->PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput:
+def test_nova_request_reply(ojp: Ojp)->Optional[PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput]:
     oauth_helper = OAuth2Helper(client_id=NOVA_CLIENT_ID, client_secret=NOVA_CLIENT_SECRET)
     access_token = oauth_helper.get_token()
     headers = {'Authorization': 'Bearer ' + access_token, "User-Agent": "OJP2NOVA/0.2"}
@@ -108,7 +108,8 @@ def test_nova_request_reply(ojp: Ojp)->PreisAuskunftServicePortTypeSoapv14Erstel
         nova_response_xml = serializer.render(nova_response)
         log('generated/nova_response.xml',nova_response_xml)
         return nova_response
-def test_nova_request_reply_for_ojp2(ojp: Ojp2)->str:
+    return None
+def test_nova_request_reply_for_ojp2(ojp: Ojp2)->Optional[PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput]:
     oauth_helper = OAuth2Helper(client_id=NOVA_CLIENT_ID, client_secret=NOVA_CLIENT_SECRET)
     access_token = oauth_helper.get_token()
     headers = {'Authorization': 'Bearer ' + access_token, "User-Agent": "OJP2NOVA/0.2"}
@@ -121,7 +122,7 @@ def test_nova_request_reply_for_ojp2(ojp: Ojp2)->str:
         nova_response_xml = serializer.render(nova_response)
         log('generated/nova_response.xml',nova_response_xml)
         return nova_response
-
+    return None
 def check_configuration() ->None:
     if (len(NOVA_CLIENT_SECRET)==0):
         print("Secrets not set in the configuration")
@@ -145,6 +146,7 @@ if __name__ == '__main__':
         try:
             print (f"\n********************************************\n{rf}\n********************************************\n")
             if  is_version_2_0(ojp_trip_request_xml):
+                #We process an OJP 2 request
                 status, r = call_ojp_20(ojp_trip_request_xml)
                 if status != 200:
                     message = f"call returned a wrong status {status}"
@@ -172,6 +174,7 @@ if __name__ == '__main__':
 
 
             else:
+                # We work on a OJP 1.0 request
                 status,r = call_ojp_2000(ojp_trip_request_xml)
                 if status != 200:
                     message = f"call returned a wrong status {status}"
