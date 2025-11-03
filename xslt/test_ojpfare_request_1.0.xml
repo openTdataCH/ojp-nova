@@ -1,0 +1,1147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OJP xmlns="http://www.siri.org.uk/siri" xmlns:ojp="http://www.vdv.de/ojp" version="1.0">
+  <OJPRequest>
+    <ServiceRequest>
+      <RequestTimestamp>2025-04-28T12:41:07.190313</RequestTimestamp>
+      <RequestorRef>OJP2NOVA</RequestorRef>
+      <ojp:OJPFareRequest>
+        <RequestTimestamp>2025-04-28T12:41:07.190313</RequestTimestamp>
+        <ojp:TripFareRequest>
+          <ojp:Trip>
+            <ojp:TripId>ID-E7AD5503-55CD-4E2C-9BEA-C8E8216934E5</ojp:TripId>
+            <ojp:Duration>PT1H25M</ojp:Duration>
+            <ojp:StartTime>2025-04-28T12:05:00Z</ojp:StartTime>
+            <ojp:EndTime>2025-04-28T13:30:00Z</ojp:EndTime>
+            <ojp:Transfers>0</ojp:Transfers>
+            <ojp:TripLeg>
+              <ojp:LegId>1</ojp:LegId>
+              <ojp:ContinuousLeg>
+                <ojp:LegStart>
+                  <ojp:GeoPosition>
+                    <Longitude>8.96205</Longitude>
+                    <Latitude>46.01076</Latitude>
+                  </ojp:GeoPosition>
+                  <ojp:LocationName>
+                    <ojp:Text xml:lang="fr">Lugano,  Via agli Orti 5, 6962 Viganello, Suisse</ojp:Text>
+                  </ojp:LocationName>
+                </ojp:LegStart>
+                <ojp:LegEnd>
+                  <StopPointRef>ch:1:sloid:5913:0:743987</StopPointRef>
+                  <ojp:LocationName>
+                    <ojp:Text xml:lang="fr">Lugano, Autosilo Balestra</ojp:Text>
+                  </ojp:LocationName>
+                </ojp:LegEnd>
+                <ojp:Service>
+                  <ojp:IndividualMode>walk</ojp:IndividualMode>
+                </ojp:Service>
+                <ojp:TimeWindowStart>2025-04-28T12:05:00Z</ojp:TimeWindowStart>
+                <ojp:TimeWindowEnd>2025-04-28T12:22:00Z</ojp:TimeWindowEnd>
+                <ojp:Duration>PT6M</ojp:Duration>
+              </ojp:ContinuousLeg>
+            </ojp:TripLeg>
+            <ojp:TripLeg>
+              <ojp:LegId>2</ojp:LegId>
+              <ojp:TimedLeg>
+                <ojp:LegBoard>
+                  <StopPointRef>8505913</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Lugano, Autosilo Balestra</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:NameSuffix>
+                    <ojp:Text xml:lang="fr">PLATFORM_ACCESS_WITH_ASSISTANCE</ojp:Text>
+                  </ojp:NameSuffix>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T13:04:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>1</ojp:Order>
+                </ojp:LegBoard>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8591603</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Lugano, Centro</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:PlannedQuay>
+                    <ojp:Text xml:lang="fr">S</ojp:Text>
+                  </ojp:PlannedQuay>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T13:08:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T13:08:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>2</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8575245</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Lugano, Piazza Rezzonico</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T13:11:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T13:11:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>3</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8579022</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Lugano, Piazza Luini</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T13:12:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T13:12:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>4</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8580035</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Paradiso, Debarcadero</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T13:14:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T13:14:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>5</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8581644</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Paradiso, Stazione/Scuole</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T13:16:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T13:16:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>6</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8591802</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Paradiso, Stazione</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T13:17:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T13:17:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>7</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegAlight>
+                  <StopPointRef>8575301</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Paradiso, Calprino</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:NameSuffix>
+                    <ojp:Text xml:lang="fr">ALTERNATIVE_TRANSPORT</ojp:Text>
+                  </ojp:NameSuffix>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T13:19:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:Order>8</ojp:Order>
+                </ojp:LegAlight>
+                <ojp:Service>
+                  <ojp:OperatingDayRef>2025-04-28</ojp:OperatingDayRef>
+                  <ojp:JourneyRef>ojp:96327:3:H:j25:35:943</ojp:JourneyRef>
+                  <LineRef>ojp:96327:3</LineRef>
+                  <DirectionRef>H</DirectionRef>
+                  <ojp:Mode>
+                    <ojp:PtMode>bus</ojp:PtMode>
+                    <BusSubmode>localBusService</BusSubmode>
+                    <ojp:Name>
+                      <ojp:Text xml:lang="fr">Bus</ojp:Text>
+                    </ojp:Name>
+                    <ojp:ShortName>
+                      <ojp:Text xml:lang="fr">B</ojp:Text>
+                    </ojp:ShortName>
+                  </ojp:Mode>
+                  <ojp:PublishedLineName>
+                    <ojp:Text xml:lang="fr">434</ojp:Text>
+                  </ojp:PublishedLineName>
+                  <ojp:OperatorRef>ojp:801</ojp:OperatorRef>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xml:lang="fr">Sedie a rotelle e passeggini hanno la priorità</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>I_1r8</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xml:lang="fr">Gruppi: da riservare con almeno 2 giorni lavorativi di preavviso. Vale anche per gruppi con Ticino-Ticket</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>I_1Pa</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xml:lang="fr">VELOS: Nombre de places limité</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__VB</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xml:lang="fr">GROUPES: réservation obligatoire</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__GR</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xml:lang="fr">Accès à plancher surbaissé</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__NF</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:DestinationStopPointRef>8505757</ojp:DestinationStopPointRef>
+                  <ojp:DestinationText>
+                    <ojp:Text xml:lang="fr">Carona, Paese</ojp:Text>
+                  </ojp:DestinationText>
+                </ojp:Service>
+                <ojp:Extension>
+                  <ojp:TransportTypeName>
+                    <ojp:Text xml:lang="fr">Bus</ojp:Text>
+                  </ojp:TransportTypeName>
+                  <ojp:PublishedJourneyNumber>
+                    <ojp:Text xml:lang="fr">943</ojp:Text>
+                  </ojp:PublishedJourneyNumber>
+                  <ojp:OperatorName>
+                    <ojp:Text xml:lang="fr">CarPostal SA</ojp:Text>
+                  </ojp:OperatorName>
+                </ojp:Extension>
+              </ojp:TimedLeg>
+            </ojp:TripLeg>
+            <ojp:TripLeg>
+              <ojp:LegId>3</ojp:LegId>
+              <ojp:ContinuousLeg>
+                <ojp:LegStart>
+                  <StopPointRef>ch:1:sloid:75301:0:706847</StopPointRef>
+                  <ojp:LocationName>
+                    <ojp:Text xml:lang="fr">Paradiso, Calprino</ojp:Text>
+                  </ojp:LocationName>
+                </ojp:LegStart>
+                <ojp:LegEnd>
+                  <ojp:GeoPosition>
+                    <Longitude>8.94427</Longitude>
+                    <Latitude>45.99177</Latitude>
+                  </ojp:GeoPosition>
+                  <ojp:LocationName>
+                    <ojp:Text xml:lang="fr"> Vicolo Geretta 6, 6900 Paradiso, Svizzera</ojp:Text>
+                  </ojp:LocationName>
+                </ojp:LegEnd>
+                <ojp:Service>
+                  <ojp:IndividualMode>walk</ojp:IndividualMode>
+                </ojp:Service>
+                <ojp:TimeWindowStart>2025-04-28T13:19:00Z</ojp:TimeWindowStart>
+                <ojp:TimeWindowEnd>2025-04-28T13:30:00Z</ojp:TimeWindowEnd>
+                <ojp:Duration>PT11M</ojp:Duration>
+                <ojp:Length>782</ojp:Length>
+              </ojp:ContinuousLeg>
+            </ojp:TripLeg>
+          </ojp:Trip>
+        </ojp:TripFareRequest>
+        <ojp:Params>
+          <ojp:FareAuthorityFilter>ch:1:NOVA</ojp:FareAuthorityFilter>
+          <ojp:PassengerCategory>Adult</ojp:PassengerCategory>
+          <ojp:TravelClass>second</ojp:TravelClass>
+          <ojp:Traveller>
+            <ojp:PassengerCategory>Adult</ojp:PassengerCategory>
+          </ojp:Traveller>
+        </ojp:Params>
+      </ojp:OJPFareRequest>
+      <ojp:OJPFareRequest>
+        <RequestTimestamp>2025-04-28T12:41:07.190313</RequestTimestamp>
+        <ojp:TripFareRequest>
+          <ojp:Trip>
+            <ojp:TripId>ID-8787D5A5-7842-434C-A3CC-5D4E8ED3CC6A</ojp:TripId>
+            <ojp:Duration>PT1H8M</ojp:Duration>
+            <ojp:StartTime>2025-04-28T12:22:00Z</ojp:StartTime>
+            <ojp:EndTime>2025-04-28T13:30:00Z</ojp:EndTime>
+            <ojp:Transfers>0</ojp:Transfers>
+            <ojp:TripLeg>
+              <ojp:LegId>1</ojp:LegId>
+              <ojp:ContinuousLeg>
+                <ojp:LegStart>
+                  <ojp:GeoPosition>
+                    <Longitude>8.96205</Longitude>
+                    <Latitude>46.01076</Latitude>
+                  </ojp:GeoPosition>
+                  <ojp:LocationName>
+                    <ojp:Text xml:lang="fr">Lugano,  Via agli Orti 5, 6962 Viganello, Suisse</ojp:Text>
+                  </ojp:LocationName>
+                </ojp:LegStart>
+                <ojp:LegEnd>
+                  <StopPointRef>ch:1:sloid:5913:0:743987</StopPointRef>
+                  <ojp:LocationName>
+                    <ojp:Text xml:lang="fr">Lugano, Autosilo Balestra</ojp:Text>
+                  </ojp:LocationName>
+                </ojp:LegEnd>
+                <ojp:Service>
+                  <ojp:IndividualMode>walk</ojp:IndividualMode>
+                </ojp:Service>
+                <ojp:TimeWindowStart>2025-04-28T12:22:00Z</ojp:TimeWindowStart>
+                <ojp:TimeWindowEnd>2025-04-28T12:39:00Z</ojp:TimeWindowEnd>
+                <ojp:Duration>PT6M</ojp:Duration>
+              </ojp:ContinuousLeg>
+            </ojp:TripLeg>
+            <ojp:TripLeg>
+              <ojp:LegId>2</ojp:LegId>
+              <ojp:TimedLeg>
+                <ojp:LegBoard>
+                  <StopPointRef>8505913</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Lugano, Autosilo Balestra</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:NameSuffix>
+                    <ojp:Text xml:lang="fr">PLATFORM_ACCESS_WITH_ASSISTANCE</ojp:Text>
+                  </ojp:NameSuffix>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T13:04:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>1</ojp:Order>
+                </ojp:LegBoard>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8591603</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Lugano, Centro</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:PlannedQuay>
+                    <ojp:Text xml:lang="fr">S</ojp:Text>
+                  </ojp:PlannedQuay>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T13:08:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T13:08:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>2</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8575245</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Lugano, Piazza Rezzonico</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T13:11:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T13:11:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>3</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8579022</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Lugano, Piazza Luini</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T13:12:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T13:12:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>4</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8580035</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Paradiso, Debarcadero</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T13:14:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T13:14:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>5</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8581644</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Paradiso, Stazione/Scuole</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T13:16:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T13:16:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>6</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8591802</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Paradiso, Stazione</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T13:17:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T13:17:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>7</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegAlight>
+                  <StopPointRef>8575301</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Paradiso, Calprino</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:NameSuffix>
+                    <ojp:Text xml:lang="fr">ALTERNATIVE_TRANSPORT</ojp:Text>
+                  </ojp:NameSuffix>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T13:19:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:Order>8</ojp:Order>
+                </ojp:LegAlight>
+                <ojp:Service>
+                  <ojp:OperatingDayRef>2025-04-28</ojp:OperatingDayRef>
+                  <ojp:JourneyRef>ojp:96327:3:H:j25:35:943</ojp:JourneyRef>
+                  <LineRef>ojp:96327:3</LineRef>
+                  <DirectionRef>H</DirectionRef>
+                  <ojp:Mode>
+                    <ojp:PtMode>bus</ojp:PtMode>
+                    <BusSubmode>localBusService</BusSubmode>
+                    <ojp:Name>
+                      <ojp:Text xml:lang="fr">Bus</ojp:Text>
+                    </ojp:Name>
+                    <ojp:ShortName>
+                      <ojp:Text xml:lang="fr">B</ojp:Text>
+                    </ojp:ShortName>
+                  </ojp:Mode>
+                  <ojp:PublishedLineName>
+                    <ojp:Text xml:lang="fr">434</ojp:Text>
+                  </ojp:PublishedLineName>
+                  <ojp:OperatorRef>ojp:801</ojp:OperatorRef>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xml:lang="fr">Sedie a rotelle e passeggini hanno la priorità</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>I_1r8</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xml:lang="fr">Gruppi: da riservare con almeno 2 giorni lavorativi di preavviso. Vale anche per gruppi con Ticino-Ticket</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>I_1Pa</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xml:lang="fr">VELOS: Nombre de places limité</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__VB</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xml:lang="fr">GROUPES: réservation obligatoire</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__GR</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xml:lang="fr">Accès à plancher surbaissé</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__NF</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:DestinationStopPointRef>8505757</ojp:DestinationStopPointRef>
+                  <ojp:DestinationText>
+                    <ojp:Text xml:lang="fr">Carona, Paese</ojp:Text>
+                  </ojp:DestinationText>
+                </ojp:Service>
+                <ojp:Extension>
+                  <ojp:TransportTypeName>
+                    <ojp:Text xml:lang="fr">Bus</ojp:Text>
+                  </ojp:TransportTypeName>
+                  <ojp:PublishedJourneyNumber>
+                    <ojp:Text xml:lang="fr">943</ojp:Text>
+                  </ojp:PublishedJourneyNumber>
+                  <ojp:OperatorName>
+                    <ojp:Text xml:lang="fr">CarPostal SA</ojp:Text>
+                  </ojp:OperatorName>
+                </ojp:Extension>
+              </ojp:TimedLeg>
+            </ojp:TripLeg>
+            <ojp:TripLeg>
+              <ojp:LegId>3</ojp:LegId>
+              <ojp:ContinuousLeg>
+                <ojp:LegStart>
+                  <StopPointRef>ch:1:sloid:75301:0:706847</StopPointRef>
+                  <ojp:LocationName>
+                    <ojp:Text xml:lang="fr">Paradiso, Calprino</ojp:Text>
+                  </ojp:LocationName>
+                </ojp:LegStart>
+                <ojp:LegEnd>
+                  <ojp:GeoPosition>
+                    <Longitude>8.94427</Longitude>
+                    <Latitude>45.99177</Latitude>
+                  </ojp:GeoPosition>
+                  <ojp:LocationName>
+                    <ojp:Text xml:lang="fr"> Vicolo Geretta 6, 6900 Paradiso, Svizzera</ojp:Text>
+                  </ojp:LocationName>
+                </ojp:LegEnd>
+                <ojp:Service>
+                  <ojp:IndividualMode>walk</ojp:IndividualMode>
+                </ojp:Service>
+                <ojp:TimeWindowStart>2025-04-28T13:19:00Z</ojp:TimeWindowStart>
+                <ojp:TimeWindowEnd>2025-04-28T13:30:00Z</ojp:TimeWindowEnd>
+                <ojp:Duration>PT11M</ojp:Duration>
+                <ojp:Length>782</ojp:Length>
+              </ojp:ContinuousLeg>
+            </ojp:TripLeg>
+          </ojp:Trip>
+        </ojp:TripFareRequest>
+        <ojp:Params>
+          <ojp:FareAuthorityFilter>ch:1:NOVA</ojp:FareAuthorityFilter>
+          <ojp:PassengerCategory>Adult</ojp:PassengerCategory>
+          <ojp:TravelClass>second</ojp:TravelClass>
+          <ojp:Traveller>
+            <ojp:PassengerCategory>Adult</ojp:PassengerCategory>
+          </ojp:Traveller>
+        </ojp:Params>
+      </ojp:OJPFareRequest>
+      <ojp:OJPFareRequest>
+        <RequestTimestamp>2025-04-28T12:41:07.190313</RequestTimestamp>
+        <ojp:TripFareRequest>
+          <ojp:Trip>
+            <ojp:TripId>ID-A86387BF-F870-42A2-A14C-8238BCDE316C</ojp:TripId>
+            <ojp:Duration>PT53M</ojp:Duration>
+            <ojp:StartTime>2025-04-28T12:37:00Z</ojp:StartTime>
+            <ojp:EndTime>2025-04-28T13:30:00Z</ojp:EndTime>
+            <ojp:Transfers>0</ojp:Transfers>
+            <ojp:TripLeg>
+              <ojp:LegId>1</ojp:LegId>
+              <ojp:ContinuousLeg>
+                <ojp:LegStart>
+                  <ojp:GeoPosition>
+                    <Longitude>8.96205</Longitude>
+                    <Latitude>46.01076</Latitude>
+                  </ojp:GeoPosition>
+                  <ojp:LocationName>
+                    <ojp:Text xml:lang="fr">Lugano,  Via agli Orti 5, 6962 Viganello, Suisse</ojp:Text>
+                  </ojp:LocationName>
+                </ojp:LegStart>
+                <ojp:LegEnd>
+                  <StopPointRef>ch:1:sloid:5913:0:743987</StopPointRef>
+                  <ojp:LocationName>
+                    <ojp:Text xml:lang="fr">Lugano, Autosilo Balestra</ojp:Text>
+                  </ojp:LocationName>
+                </ojp:LegEnd>
+                <ojp:Service>
+                  <ojp:IndividualMode>walk</ojp:IndividualMode>
+                </ojp:Service>
+                <ojp:TimeWindowStart>2025-04-28T12:37:00Z</ojp:TimeWindowStart>
+                <ojp:TimeWindowEnd>2025-04-28T12:54:00Z</ojp:TimeWindowEnd>
+                <ojp:Duration>PT6M</ojp:Duration>
+              </ojp:ContinuousLeg>
+            </ojp:TripLeg>
+            <ojp:TripLeg>
+              <ojp:LegId>2</ojp:LegId>
+              <ojp:TimedLeg>
+                <ojp:LegBoard>
+                  <StopPointRef>8505913</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Lugano, Autosilo Balestra</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:NameSuffix>
+                    <ojp:Text xml:lang="fr">PLATFORM_ACCESS_WITH_ASSISTANCE</ojp:Text>
+                  </ojp:NameSuffix>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T13:04:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>1</ojp:Order>
+                </ojp:LegBoard>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8591603</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Lugano, Centro</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:PlannedQuay>
+                    <ojp:Text xml:lang="fr">S</ojp:Text>
+                  </ojp:PlannedQuay>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T13:08:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T13:08:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>2</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8575245</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Lugano, Piazza Rezzonico</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T13:11:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T13:11:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>3</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8579022</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Lugano, Piazza Luini</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T13:12:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T13:12:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>4</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8580035</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Paradiso, Debarcadero</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T13:14:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T13:14:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>5</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8581644</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Paradiso, Stazione/Scuole</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T13:16:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T13:16:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>6</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8591802</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Paradiso, Stazione</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T13:17:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T13:17:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>7</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegAlight>
+                  <StopPointRef>8575301</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Paradiso, Calprino</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:NameSuffix>
+                    <ojp:Text xml:lang="fr">ALTERNATIVE_TRANSPORT</ojp:Text>
+                  </ojp:NameSuffix>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T13:19:00Z</ojp:TimetabledTime>
+                  </ojp:ServiceArrival>
+                  <ojp:Order>8</ojp:Order>
+                </ojp:LegAlight>
+                <ojp:Service>
+                  <ojp:OperatingDayRef>2025-04-28</ojp:OperatingDayRef>
+                  <ojp:JourneyRef>ojp:96327:3:H:j25:35:943</ojp:JourneyRef>
+                  <LineRef>ojp:96327:3</LineRef>
+                  <DirectionRef>H</DirectionRef>
+                  <ojp:Mode>
+                    <ojp:PtMode>bus</ojp:PtMode>
+                    <BusSubmode>localBusService</BusSubmode>
+                    <ojp:Name>
+                      <ojp:Text xml:lang="fr">Bus</ojp:Text>
+                    </ojp:Name>
+                    <ojp:ShortName>
+                      <ojp:Text xml:lang="fr">B</ojp:Text>
+                    </ojp:ShortName>
+                  </ojp:Mode>
+                  <ojp:PublishedLineName>
+                    <ojp:Text xml:lang="fr">434</ojp:Text>
+                  </ojp:PublishedLineName>
+                  <ojp:OperatorRef>ojp:801</ojp:OperatorRef>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xml:lang="fr">Sedie a rotelle e passeggini hanno la priorità</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>I_1r8</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xml:lang="fr">Gruppi: da riservare con almeno 2 giorni lavorativi di preavviso. Vale anche per gruppi con Ticino-Ticket</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>I_1Pa</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xml:lang="fr">VELOS: Nombre de places limité</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__VB</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xml:lang="fr">GROUPES: réservation obligatoire</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__GR</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xml:lang="fr">Accès à plancher surbaissé</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__NF</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:DestinationStopPointRef>8505757</ojp:DestinationStopPointRef>
+                  <ojp:DestinationText>
+                    <ojp:Text xml:lang="fr">Carona, Paese</ojp:Text>
+                  </ojp:DestinationText>
+                </ojp:Service>
+                <ojp:Extension>
+                  <ojp:TransportTypeName>
+                    <ojp:Text xml:lang="fr">Bus</ojp:Text>
+                  </ojp:TransportTypeName>
+                  <ojp:PublishedJourneyNumber>
+                    <ojp:Text xml:lang="fr">943</ojp:Text>
+                  </ojp:PublishedJourneyNumber>
+                  <ojp:OperatorName>
+                    <ojp:Text xml:lang="fr">CarPostal SA</ojp:Text>
+                  </ojp:OperatorName>
+                </ojp:Extension>
+              </ojp:TimedLeg>
+            </ojp:TripLeg>
+            <ojp:TripLeg>
+              <ojp:LegId>3</ojp:LegId>
+              <ojp:ContinuousLeg>
+                <ojp:LegStart>
+                  <StopPointRef>ch:1:sloid:75301:0:706847</StopPointRef>
+                  <ojp:LocationName>
+                    <ojp:Text xml:lang="fr">Paradiso, Calprino</ojp:Text>
+                  </ojp:LocationName>
+                </ojp:LegStart>
+                <ojp:LegEnd>
+                  <ojp:GeoPosition>
+                    <Longitude>8.94427</Longitude>
+                    <Latitude>45.99177</Latitude>
+                  </ojp:GeoPosition>
+                  <ojp:LocationName>
+                    <ojp:Text xml:lang="fr"> Vicolo Geretta 6, 6900 Paradiso, Svizzera</ojp:Text>
+                  </ojp:LocationName>
+                </ojp:LegEnd>
+                <ojp:Service>
+                  <ojp:IndividualMode>walk</ojp:IndividualMode>
+                </ojp:Service>
+                <ojp:TimeWindowStart>2025-04-28T13:19:00Z</ojp:TimeWindowStart>
+                <ojp:TimeWindowEnd>2025-04-28T13:30:00Z</ojp:TimeWindowEnd>
+                <ojp:Duration>PT11M</ojp:Duration>
+                <ojp:Length>782</ojp:Length>
+              </ojp:ContinuousLeg>
+            </ojp:TripLeg>
+          </ojp:Trip>
+        </ojp:TripFareRequest>
+        <ojp:Params>
+          <ojp:FareAuthorityFilter>ch:1:NOVA</ojp:FareAuthorityFilter>
+          <ojp:PassengerCategory>Adult</ojp:PassengerCategory>
+          <ojp:TravelClass>second</ojp:TravelClass>
+          <ojp:Traveller>
+            <ojp:PassengerCategory>Adult</ojp:PassengerCategory>
+          </ojp:Traveller>
+        </ojp:Params>
+      </ojp:OJPFareRequest>
+      <ojp:OJPFareRequest>
+        <RequestTimestamp>2025-04-28T12:41:07.190313</RequestTimestamp>
+        <ojp:TripFareRequest>
+          <ojp:Trip>
+            <ojp:TripId>ID-CF4FDA7C-0D88-48DE-9F3D-823EE03FB191</ojp:TripId>
+            <ojp:Duration>PT29M</ojp:Duration>
+            <ojp:StartTime>2025-04-28T12:44:36Z</ojp:StartTime>
+            <ojp:EndTime>2025-04-28T13:13:30Z</ojp:EndTime>
+            <ojp:Transfers>1</ojp:Transfers>
+            <ojp:TripLeg>
+              <ojp:LegId>1</ojp:LegId>
+              <ojp:ContinuousLeg>
+                <ojp:LegStart>
+                  <ojp:GeoPosition>
+                    <Longitude>8.96205</Longitude>
+                    <Latitude>46.01076</Latitude>
+                  </ojp:GeoPosition>
+                  <ojp:LocationName>
+                    <ojp:Text xml:lang="fr">Lugano,  Via agli Orti 5, 6962 Viganello, Suisse</ojp:Text>
+                  </ojp:LocationName>
+                </ojp:LegStart>
+                <ojp:LegEnd>
+                  <StopPointRef>8579018</StopPointRef>
+                  <ojp:LocationName>
+                    <ojp:Text xml:lang="fr">Lugano, Campus Universitario</ojp:Text>
+                  </ojp:LocationName>
+                </ojp:LegEnd>
+                <ojp:Service>
+                  <ojp:IndividualMode>walk</ojp:IndividualMode>
+                </ojp:Service>
+                <ojp:TimeWindowStart>2025-04-28T12:44:36Z</ojp:TimeWindowStart>
+                <ojp:TimeWindowEnd>2025-04-28T12:48:36Z</ojp:TimeWindowEnd>
+                <ojp:Duration>PT4M</ojp:Duration>
+                <ojp:Length>217</ojp:Length>
+              </ojp:ContinuousLeg>
+            </ojp:TripLeg>
+            <ojp:TripLeg>
+              <ojp:LegId>2</ojp:LegId>
+              <ojp:TimedLeg>
+                <ojp:LegBoard>
+                  <StopPointRef>8579018</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Lugano, Campus Universitario</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:NameSuffix>
+                    <ojp:Text xml:lang="fr">PLATFORM_ACCESS_WITH_ASSISTANCE</ojp:Text>
+                  </ojp:NameSuffix>
+                  <ojp:PlannedQuay>
+                    <ojp:Text xml:lang="fr">A</ojp:Text>
+                  </ojp:PlannedQuay>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T12:46:00Z</ojp:TimetabledTime>
+                    <ojp:EstimatedTime>2025-04-28T12:48:36Z</ojp:EstimatedTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>1</ojp:Order>
+                </ojp:LegBoard>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8595133</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Lugano, Università</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T12:47:00Z</ojp:TimetabledTime>
+                    <ojp:EstimatedTime>2025-04-28T12:49:36Z</ojp:EstimatedTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T12:47:00Z</ojp:TimetabledTime>
+                    <ojp:EstimatedTime>2025-04-28T12:49:36Z</ojp:EstimatedTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>2</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8588291</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Lugano, Corso Elvezia</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T12:47:30Z</ojp:TimetabledTime>
+                    <ojp:EstimatedTime>2025-04-28T12:50:06Z</ojp:EstimatedTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T12:47:30Z</ojp:TimetabledTime>
+                    <ojp:EstimatedTime>2025-04-28T12:50:06Z</ojp:EstimatedTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>3</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8594225</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Lugano, Via Balestra</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T12:48:30Z</ojp:TimetabledTime>
+                    <ojp:EstimatedTime>2025-04-28T12:51:06Z</ojp:EstimatedTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T12:48:30Z</ojp:TimetabledTime>
+                    <ojp:EstimatedTime>2025-04-28T12:51:06Z</ojp:EstimatedTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>4</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8591609</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Lugano, Palazzo Congressi</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T12:50:00Z</ojp:TimetabledTime>
+                    <ojp:EstimatedTime>2025-04-28T12:52:36Z</ojp:EstimatedTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T12:50:00Z</ojp:TimetabledTime>
+                    <ojp:EstimatedTime>2025-04-28T12:52:36Z</ojp:EstimatedTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>5</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegAlight>
+                  <StopPointRef>8591603</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Lugano, Centro</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:NameSuffix>
+                    <ojp:Text xml:lang="fr">PLATFORM_ACCESS_WITH_ASSISTANCE</ojp:Text>
+                  </ojp:NameSuffix>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T12:51:30Z</ojp:TimetabledTime>
+                    <ojp:EstimatedTime>2025-04-28T12:53:36Z</ojp:EstimatedTime>
+                  </ojp:ServiceArrival>
+                  <ojp:Order>6</ojp:Order>
+                </ojp:LegAlight>
+                <ojp:Service>
+                  <ojp:OperatingDayRef>2025-04-28</ojp:OperatingDayRef>
+                  <ojp:JourneyRef>ojp:92005:D:R:j25:321:5150</ojp:JourneyRef>
+                  <LineRef>ojp:92005:D</LineRef>
+                  <DirectionRef>R</DirectionRef>
+                  <ojp:Mode>
+                    <ojp:PtMode>bus</ojp:PtMode>
+                    <BusSubmode>localBusService</BusSubmode>
+                    <ojp:Name>
+                      <ojp:Text xml:lang="fr">Bus</ojp:Text>
+                    </ojp:Name>
+                    <ojp:ShortName>
+                      <ojp:Text xml:lang="fr">B</ojp:Text>
+                    </ojp:ShortName>
+                  </ojp:Mode>
+                  <ojp:PublishedLineName>
+                    <ojp:Text xml:lang="fr">5</ojp:Text>
+                  </ojp:PublishedLineName>
+                  <ojp:OperatorRef>ojp:955</ojp:OperatorRef>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xml:lang="fr">Biciclette: regolamento su www.tplsa.ch</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>I_0ow</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xml:lang="fr">Corsia B</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>I_1nR</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xml:lang="fr">VELOS: Nombre de places limité</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__VB</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xml:lang="fr">Accès à plancher surbaissé</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__NF</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:DestinationStopPointRef>8575333</ojp:DestinationStopPointRef>
+                  <ojp:DestinationText>
+                    <ojp:Text xml:lang="fr">Manno, Uovo di Manno</ojp:Text>
+                  </ojp:DestinationText>
+                </ojp:Service>
+                <ojp:Extension>
+                  <ojp:TransportTypeName>
+                    <ojp:Text xml:lang="fr">Bus</ojp:Text>
+                  </ojp:TransportTypeName>
+                  <ojp:PublishedJourneyNumber>
+                    <ojp:Text xml:lang="fr">5150</ojp:Text>
+                  </ojp:PublishedJourneyNumber>
+                  <ojp:OperatorName>
+                    <ojp:Text xml:lang="fr">Trasporti Pubblici Luganesi SA</ojp:Text>
+                  </ojp:OperatorName>
+                </ojp:Extension>
+              </ojp:TimedLeg>
+            </ojp:TripLeg>
+            <ojp:TripLeg>
+              <ojp:LegId>3</ojp:LegId>
+              <ojp:TransferLeg>
+                <ojp:TransferMode>walk</ojp:TransferMode>
+                <ojp:LegStart>
+                  <StopPointRef>8591603</StopPointRef>
+                  <ojp:LocationName>
+                    <ojp:Text xml:lang="fr">Lugano, Centro</ojp:Text>
+                  </ojp:LocationName>
+                </ojp:LegStart>
+                <ojp:LegEnd>
+                  <StopPointRef>8591603</StopPointRef>
+                  <ojp:LocationName>
+                    <ojp:Text xml:lang="fr">Lugano, Centro</ojp:Text>
+                  </ojp:LocationName>
+                </ojp:LegEnd>
+                <ojp:TimeWindowStart>2025-04-28T12:53:36Z</ojp:TimeWindowStart>
+                <ojp:TimeWindowEnd>2025-04-28T13:00:00Z</ojp:TimeWindowEnd>
+                <ojp:Duration>PT7M</ojp:Duration>
+                <ojp:WalkDuration>PT2M</ojp:WalkDuration>
+                <ojp:BufferTime>PT4M</ojp:BufferTime>
+              </ojp:TransferLeg>
+            </ojp:TripLeg>
+            <ojp:TripLeg>
+              <ojp:LegId>4</ojp:LegId>
+              <ojp:TimedLeg>
+                <ojp:LegBoard>
+                  <StopPointRef>8591603</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Lugano, Centro</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:NameSuffix>
+                    <ojp:Text xml:lang="fr">PLATFORM_ACCESS_WITH_ASSISTANCE</ojp:Text>
+                  </ojp:NameSuffix>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T13:00:00Z</ojp:TimetabledTime>
+                    <ojp:EstimatedTime>2025-04-28T13:00:00Z</ojp:EstimatedTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>1</ojp:Order>
+                </ojp:LegBoard>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8587432</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Lugano, Piazza Manzoni</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T13:01:30Z</ojp:TimetabledTime>
+                    <ojp:EstimatedTime>2025-04-28T13:01:30Z</ojp:EstimatedTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T13:01:30Z</ojp:TimetabledTime>
+                    <ojp:EstimatedTime>2025-04-28T13:01:30Z</ojp:EstimatedTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>2</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8575245</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Lugano, Piazza Rezzonico</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T13:02:00Z</ojp:TimetabledTime>
+                    <ojp:EstimatedTime>2025-04-28T13:02:00Z</ojp:EstimatedTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T13:02:00Z</ojp:TimetabledTime>
+                    <ojp:EstimatedTime>2025-04-28T13:02:00Z</ojp:EstimatedTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>3</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegIntermediates>
+                  <StopPointRef>8579022</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Lugano, Piazza Luini</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T13:03:00Z</ojp:TimetabledTime>
+                    <ojp:EstimatedTime>2025-04-28T13:03:00Z</ojp:EstimatedTime>
+                  </ojp:ServiceArrival>
+                  <ojp:ServiceDeparture>
+                    <ojp:TimetabledTime>2025-04-28T13:03:00Z</ojp:TimetabledTime>
+                    <ojp:EstimatedTime>2025-04-28T13:03:00Z</ojp:EstimatedTime>
+                  </ojp:ServiceDeparture>
+                  <ojp:Order>4</ojp:Order>
+                </ojp:LegIntermediates>
+                <ojp:LegAlight>
+                  <StopPointRef>8594220</StopPointRef>
+                  <ojp:StopPointName>
+                    <ojp:Text xml:lang="fr">Lugano, Bressanella</ojp:Text>
+                  </ojp:StopPointName>
+                  <ojp:NameSuffix>
+                    <ojp:Text xml:lang="fr">PLATFORM_ACCESS_WITH_ASSISTANCE</ojp:Text>
+                  </ojp:NameSuffix>
+                  <ojp:ServiceArrival>
+                    <ojp:TimetabledTime>2025-04-28T13:04:30Z</ojp:TimetabledTime>
+                    <ojp:EstimatedTime>2025-04-28T13:04:00Z</ojp:EstimatedTime>
+                  </ojp:ServiceArrival>
+                  <ojp:Order>5</ojp:Order>
+                </ojp:LegAlight>
+                <ojp:Service>
+                  <ojp:OperatingDayRef>2025-04-28</ojp:OperatingDayRef>
+                  <ojp:JourneyRef>ojp:92004:G:H:j25:112:4149</ojp:JourneyRef>
+                  <LineRef>ojp:92004:G</LineRef>
+                  <DirectionRef>H</DirectionRef>
+                  <ojp:Mode>
+                    <ojp:PtMode>bus</ojp:PtMode>
+                    <BusSubmode>localBusService</BusSubmode>
+                    <ojp:Name>
+                      <ojp:Text xml:lang="fr">Bus</ojp:Text>
+                    </ojp:Name>
+                    <ojp:ShortName>
+                      <ojp:Text xml:lang="fr">B</ojp:Text>
+                    </ojp:ShortName>
+                  </ojp:Mode>
+                  <ojp:PublishedLineName>
+                    <ojp:Text xml:lang="fr">4</ojp:Text>
+                  </ojp:PublishedLineName>
+                  <ojp:OperatorRef>ojp:955</ojp:OperatorRef>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xml:lang="fr">Corsia D</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>I_1nZ</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xml:lang="fr">Biciclette: regolamento su www.tplsa.ch</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>I_0ow</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xml:lang="fr">VELOS: Nombre de places limité</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__VB</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:Attribute>
+                    <ojp:Text>
+                      <ojp:Text xml:lang="fr">Accès à plancher surbaissé</ojp:Text>
+                    </ojp:Text>
+                    <ojp:Code>A__NF</ojp:Code>
+                  </ojp:Attribute>
+                  <ojp:DestinationStopPointRef>8579004</ojp:DestinationStopPointRef>
+                  <ojp:DestinationText>
+                    <ojp:Text xml:lang="fr">Canobbio, Ganna</ojp:Text>
+                  </ojp:DestinationText>
+                </ojp:Service>
+                <ojp:Extension>
+                  <ojp:TransportTypeName>
+                    <ojp:Text xml:lang="fr">Bus</ojp:Text>
+                  </ojp:TransportTypeName>
+                  <ojp:PublishedJourneyNumber>
+                    <ojp:Text xml:lang="fr">4149</ojp:Text>
+                  </ojp:PublishedJourneyNumber>
+                  <ojp:OperatorName>
+                    <ojp:Text xml:lang="fr">Trasporti Pubblici Luganesi SA</ojp:Text>
+                  </ojp:OperatorName>
+                </ojp:Extension>
+              </ojp:TimedLeg>
+            </ojp:TripLeg>
+            <ojp:TripLeg>
+              <ojp:LegId>5</ojp:LegId>
+              <ojp:ContinuousLeg>
+                <ojp:LegStart>
+                  <StopPointRef>8594220</StopPointRef>
+                  <ojp:LocationName>
+                    <ojp:Text xml:lang="fr">Lugano, Bressanella</ojp:Text>
+                  </ojp:LocationName>
+                </ojp:LegStart>
+                <ojp:LegEnd>
+                  <ojp:GeoPosition>
+                    <Longitude>8.94427</Longitude>
+                    <Latitude>45.99177</Latitude>
+                  </ojp:GeoPosition>
+                  <ojp:LocationName>
+                    <ojp:Text xml:lang="fr"> Vicolo Geretta 6, 6900 Paradiso, Svizzera</ojp:Text>
+                  </ojp:LocationName>
+                </ojp:LegEnd>
+                <ojp:Service>
+                  <ojp:IndividualMode>walk</ojp:IndividualMode>
+                </ojp:Service>
+                <ojp:TimeWindowStart>2025-04-28T13:04:30Z</ojp:TimeWindowStart>
+                <ojp:TimeWindowEnd>2025-04-28T13:13:30Z</ojp:TimeWindowEnd>
+                <ojp:Duration>PT9M</ojp:Duration>
+              </ojp:ContinuousLeg>
+            </ojp:TripLeg>
+          </ojp:Trip>
+        </ojp:TripFareRequest>
+        <ojp:Params>
+          <ojp:FareAuthorityFilter>ch:1:NOVA</ojp:FareAuthorityFilter>
+          <ojp:PassengerCategory>Adult</ojp:PassengerCategory>
+          <ojp:TravelClass>second</ojp:TravelClass>
+          <ojp:Traveller>
+            <ojp:PassengerCategory>Adult</ojp:PassengerCategory>
+          </ojp:Traveller>
+        </ojp:Params>
+      </ojp:OJPFareRequest>
+    </ServiceRequest>
+  </OJPRequest>
+</OJP>
