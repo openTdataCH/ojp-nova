@@ -1,16 +1,12 @@
 READFILE = []
 
-READFILE.append("input/input_oev_shart_plus_long.xml")
-READFILE.append("input/input_Zuerich_Chur.xml")
-READFILE.append("input/input_Visp_SaaS_Fee_problem_1_preis.xml") #1. class price problematic
-READFILE.append("input/input_strange_price.xml")
-READFILE.append("input/input_Zuerich_Bern.xml")
-READFILE.append("input/input_Basel_Sargans.xml")
-READFILE.append("input/input_Bern_Interlaken_Ost.xml")
-READFILE.append("input/input_Bern_Interlaken_Gymnasium.xml")
+READFILE.append("input/input_ojp_2_test.xml")
+
+
 
 
 '''
+----------------------------------------------------------------
 Reservoir for tests
 
 # Working OJP 1.0 examples

@@ -42,7 +42,7 @@ ns_map = {"": "http://www.siri.org.uk/siri", "ojp": "http://www.vdv.de/ojp"}
 
 
 @app.post("/" + HTTP_SLUG, tags=["Open Journey Planner"])
-async def post_request(fastapi_req: Request):
+async def post_request(fastapi_req: Request) ->Response:
     body = await fastapi_req.body()
     logger.log_entry("Received request: " + str(body))
 

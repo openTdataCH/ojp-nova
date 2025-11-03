@@ -81,7 +81,10 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
             travellers = []
             travellers.append(FarePassengerStructure(age=25, entitlement_product=["HTA"]))
         else:
-            age = ojp.ojprequest.service_request.ojpfare_request[0].params.traveller[0].age
+            if not(ojp.ojprequest.service_request.ojpfare_request[0].params.traveller[0].age is int):
+                age = ojp.ojprequest.service_request.ojpfare_request[0].params.traveller[0].age
+            else:
+                age=25
             travellers = ojp.ojprequest.service_request.ojpfare_request[0].params.traveller
     except:
         pass
@@ -104,9 +107,9 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
             if leg.timed_leg is None:
                 continue
             # if the timed leg is an on demand bus -> also ignore
-            if leg.timed_leg.service.mode is None:
+            if leg.timed_leg.service is None or leg.timed_leg.service.mode is None:
                 continue
-            if leg.timed_leg.service.mode.bus_submode == "demandAndResponseBus":
+            if leg.timed_leg.service and leg.timed_leg.service.mode.bus_submode == "demandAndResponseBus":
                 #we can't deal with demandResponsive in NOVA currently.
                 continue
             # To get the first TimedLeg and last TimedLeg to reply with the leg range in the FareResult

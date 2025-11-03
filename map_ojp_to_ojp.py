@@ -12,6 +12,8 @@ from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.parsers.config import ParserConfig
 from xsdata.models.datatype import XmlDateTime
 
+from support import OJPError
+
 config = ParserConfig(
     base_url=None,
     process_xinclude=False,
@@ -79,6 +81,8 @@ def preprocess_stops_to_commercial_stops(delivery: OjptripDeliveryStructure) -> 
                     parent[place.stop_point.stop_point_ref]=place.stop_point.parent_ref
     #foreach trip
         for trip_result in delivery.trip_result:
+            if trip_result.trip.trip_leg is None:
+                raise OJPError("ERR104: No legs in Trip.")
             for leg in trip_result.trip.trip_leg:
                 if leg.timed_leg is None:
                     continue
@@ -97,7 +101,7 @@ def preprocess_stops_to_commercial_stops(delivery: OjptripDeliveryStructure) -> 
     return delivery
 
 def map_ojp_trip_result_to_ojp_fare_request(ojp: Ojp) -> Optional[Ojp]:
-    if len(ojp.ojpresponse.service_delivery.ojptrip_delivery) != 1:
+    if ojp.ojpresponse is None or ojp.ojpresponse.service_delivery is None or ojp.ojpresponse.service_delivery.ojptrip_delivery is None or len(ojp.ojpresponse.service_delivery.ojptrip_delivery) != 1:
         return None
 
     now1 = datetime.datetime.utcnow()
@@ -105,6 +109,8 @@ def map_ojp_trip_result_to_ojp_fare_request(ojp: Ojp) -> Optional[Ojp]:
 
 
     farerequest = []
+    if ojp.ojpresponse.service_delivery is None or ojp.ojpresponse.service_delivery.ojptrip_delivery is None :
+        OJPError("ERR106: No service delivery could be genrated")
     for ojptrip_delivery in ojp.ojpresponse.service_delivery.ojptrip_delivery:
         # preprocess trip result to translate the quays to the commercial stop
         ojptrip_delivery=preprocess_stops_to_commercial_stops(ojptrip_delivery)

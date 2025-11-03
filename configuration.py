@@ -1,6 +1,8 @@
 # CONFIGURATION:
 from typing import List
 
+from ojp import VatRateEnumeration
+
 # For keys and connection to NOVA contact opendata@sbb.ch if necessary.
 # However, those access keys only are provided under special circumstances.
 NOVA_URL_TOKEN = ""
@@ -28,7 +30,7 @@ HTTP_SLUG = "ojp2023"
 DEBUGGING = True
 LOGFILE = "logs/my_log.log"
 READTRIPREQUESTFILE = True
-VATRATE = 8.1  # Percent
+VATRATE= 8.1  # Percent
 USE_HTA = True # if in the tests half price should be used
 READFILE: List[str]  = [] # contains the test files to read
 

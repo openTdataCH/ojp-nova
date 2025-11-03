@@ -65,9 +65,9 @@ def sloid2didok(sloid:str)->int:
     #"8014484": "8503464",
     #"8014485": "853463",
     #"8014487": "8503462",
-    if type(sloid)!=str:
-        #must be a StopPointRef or StopPlaceRef TODO:Why is this different in OJP 1 and 2
-        sloid=sloid.value
+    #if type(sloid)!=str:
+    #    #must be a StopPointRef or StopPlaceRef TODO:Why is this different in OJP 1 and 2
+    #    sloid=sloid.value
     try:
         didok=int(sloid)
         didok=int(my_dict.get(str(didok),str(didok))) # replaces if it is in the table or gets the value back
@@ -79,7 +79,7 @@ def sloid2didok(sloid:str)->int:
             sloid = sloid[:sloid.find(':')]
         #remove the right part of sloid, if it exist
         #if bigger than 100000 -> no add
-        sloid=int(my_dict.get(str(sloid),str(sloid))) # replaces if it is in the table or gets the value back
+        sloid=my_dict.get(str(sloid),str(sloid)) # replaces if it is in the table or gets the value back
         if int(sloid)>100000:
             return int(sloid)
         return 8500000+int(sloid)
@@ -88,7 +88,7 @@ def sloid2didok(sloid:str)->int:
 class OJPError(Exception) :
 
     # Constructor or Initializer
-    def __init__(self, value):
+    def __init__(self, value:str) -> None:
         self.value = value
 
     # __str__ is to print() the value

@@ -26,7 +26,7 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
     verkehrs_mittel_nummer = ''.join(filter(lambda x: x.isdigit(), verkehrs_mittel_nummer))
     try:
         # Set verkehrs_mittel_nummer to timed_leg.extension.publishedjourneynumber?
-        verkehrs_mittel_nummer = [x.children[0].text for x in timed_leg.extension.children if x.qname == '{http://www.vdv.de/ojp}PublishedJourneyNumber'][0]
+        verkehrs_mittel_nummer = [x.children[0].text for x in timed_leg.extension.childen if x.qname == '{http://www.vdv.de/ojp}PublishedJourneyNumber'][0]
     except:
         pass
 
