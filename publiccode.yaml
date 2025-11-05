@@ -1,0 +1,48 @@
+publiccodeYmlVersion: "0.4"
+name: ojp-nova
+applicationSuite: public transport simple pricing
+url: https://github.com/openTdataCH/ojp-nova
+landingURL: https://data.opentransportdata.swiss/de/dataset/ojpfare
+softwareVersion: "1.1"
+releaseDate: 2025-11-14
+platforms:
+  - windows
+  - linux
+categories:
+  - data-collection
+  - data-analytics
+fundedBy:
+  - name: Federal Office of Transportation
+    uri: https://ld.admin.ch/office/VII.1.2
+developmentStatus: stable
+softwareType: standalone/backend
+organisation:
+  uri: https://ld.admin.ch/office/VII.1.2
+  name: Bundesamt für Verkehr
+description:
+  en:
+    localisedName: OJPFare Service
+    shortDescription: Swiss public transport pricing information for public transport
+    longDescription: >
+      A service to access OJP 1.0 and OJP 2.0 trip requests in Switzerland and
+      to  provide pricing information for public transport in Switzerland. As it
+      is based on the Preisauskunft-Service it does a fast and simple
+      calculation and supports only limited possibilities.
+    documentation: https://opentransportdata.swiss/en/cookbook/routing-cookbook/ojp-fare/
+    apiDocumentation: https://github.com/openTdataCH/ojp-nova/README.md
+    features:
+      - Pricing information for public transport in Switzerland
+      - OJPFare service for OJP 1.0 and OJP 2.0
+      - Can also do OJP 1.0 and OJP 2.0 trip requests
+legal:
+  license: MIT
+maintenance:
+  type: community
+  contacts:
+    - name: Geschäftsstelle Open Data, SBB
+      email: opendata@sbb.ch
+      affiliation: Systemführerschaft Kundeninformation, SBB
+localisation:
+  localisationReady: false
+  availableLanguages:
+    - en
