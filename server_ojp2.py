@@ -37,6 +37,16 @@ serializer = XmlSerializer(config=serializer_config)
 
 ns_map = {"": "http://www.siri.org.uk/siri", "ojp": "http://www.vdv.de/ojp"}
 
+# implements basic liveness probe
+@app.get("/health/liveness", tags=["Health"])
+async def liveness(fastapi_req: Request):
+    return Response("Liveness: OK", media_type="text/plain; charset=utf-8")
+
+
+# implements basic readiness probe
+@app.get("/health/readiness", tags=["Health"])
+async def readiness(fastapi_req: Request):
+    return Response("Readiness: OK", media_type="text/plain; charset=utf-8")
 
 @app.post("/" + HTTP_SLUG, tags=["Open Journey Planner"])
 async def post_request(fastapi_req: Request) ->Response:

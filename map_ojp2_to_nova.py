@@ -185,7 +185,7 @@ def test_ojp2_fare_request_to_nova_request(ojp: Ojp) -> PreisAuskunftServicePort
     if nova_request is None or not nova_request:
         logger.error("Was not able to generate NOVA request from OJPFare Request")
         raise OJPError("Was not able to generate NOVA request from OJPFare Request:\n")
-    xml_logger.log_object_as_xml('generated/nova_request_2.0.xml',nova_request)
+    xml_logger.log_object_as_xml('nova_request_2.0.xml',nova_request)
     return nova_request
 
 if __name__ == '__main__':
@@ -199,7 +199,7 @@ if __name__ == '__main__':
         fail_on_unknown_attributes=False,
     )
     parser = XmlParser(parser_config)
-    ojp = parser.parse('generated/ojp_fare_request_2.0.xml', Ojp)
+    ojp = parser.parse(xml_logger.path('ojp_fare_request_2.0.xml'), Ojp)
 
     if ojp:
         print(test_ojp2_fare_request_to_nova_request(ojp))
