@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OJP xmlns:ojp="http://www.vdv.de/ojp" xmlns="http://www.siri.org.uk/siri" version="1.0">
+  <OJPRequest>
+    <ServiceRequest>
+      <ServiceRequestContext>
+        <Language>de</Language>
+      </ServiceRequestContext>
+      <RequestTimestamp>2025-10-31T13:41:15.549Z</RequestTimestamp>
+      <RequestorRef>OJP_DemoApp_Beta_OJP1.0</RequestorRef>
+      <ojp:OJPTripRequest>
+        <RequestTimestamp>2025-10-31T13:41:15.549Z</RequestTimestamp>
+        <ojp:Origin>
+          <ojp:PlaceRef>
+            <ojp:StopPlaceRef>8576646</ojp:StopPlaceRef>
+            <ojp:LocationName>
+              <ojp:Text>Bern, Bahnhof (Bern)</ojp:Text>
+            </ojp:LocationName>
+          </ojp:PlaceRef>
+          <ojp:DepArrTime>2025-11-01T00:00:45.343Z</ojp:DepArrTime>
+        </ojp:Origin>
+        <ojp:Destination>
+          <ojp:PlaceRef>
+            <ojp:StopPlaceRef>8507006</ojp:StopPlaceRef>
+            <ojp:LocationName>
+              <ojp:Text>Münsingen (Münsingen (CH))</ojp:Text>
+            </ojp:LocationName>
+          </ojp:PlaceRef>
+        </ojp:Destination>
+        <ojp:Params>
+          <ojp:PrivateModeFilter>
+            <ojp:Exclude>false</ojp:Exclude>
+          </ojp:PrivateModeFilter>
+          <ojp:NumberOfResults>7</ojp:NumberOfResults>
+          <ojp:IncludeTrackSections>false</ojp:IncludeTrackSections>
+          <ojp:IncludeLegProjection>false</ojp:IncludeLegProjection>
+          <ojp:IncludeTurnDescription>false</ojp:IncludeTurnDescription>
+          <ojp:IncludeIntermediateStops>true</ojp:IncludeIntermediateStops>
+        </ojp:Params>
+      </ojp:OJPTripRequest>
+    </ServiceRequest>
+  </OJPRequest>
+</OJP>

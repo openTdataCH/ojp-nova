@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OJP xmlns="http://www.vdv.de/ojp" xmlns:siri="http://www.siri.org.uk/siri" version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.vdv.de/ojp ../../../../OneDrive/01_Dokumente/OJP%20OpenJourneyPlanner/OJP_changes_for_v1.1/OJP.xsd">
+    <OJPRequest>
+        <siri:ServiceRequest>
+            <siri:RequestTimestamp>2025-01-17T09:58:34Z</siri:RequestTimestamp>
+            <siri:RequestorRef>SKIplus</siri:RequestorRef>
+            <OJPTripRequest>
+                <siri:RequestTimestamp>2025-01-17T09:58:34Z</siri:RequestTimestamp>
+                <siri:MessageIdentifier>SKI-TR-Example1</siri:MessageIdentifier>
+                <Origin>
+                    <PlaceRef>
+                        <siri:StopPointRef>8503308</siri:StopPointRef>
+                        <Name>
+                            <Text>Kloten</Text>
+                        </Name>
+                    </PlaceRef>
+                </Origin>
+                <Destination>
+                    <PlaceRef>
+                        <siri:StopPointRef>8503424</siri:StopPointRef>
+                        <Name>
+                            <Text>Schaffhausen</Text>
+                        </Name>
+                    </PlaceRef>
+                </Destination>
+                <Params>
+                    <NumberOfResults>3</NumberOfResults>
+          <IncludeTrackSections>false</IncludeTrackSections>
+          <IncludeLegProjection>false</IncludeLegProjection>
+          <IncludeTurnDescription>false</IncludeTurnDescription>
+          <IncludeIntermediateStops>true</IncludeIntermediateStops>
+                </Params>
+            </OJPTripRequest>
+        </siri:ServiceRequest>
+    </OJPRequest>
+</OJP>

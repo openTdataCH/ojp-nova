@@ -29,21 +29,21 @@ def test_create_ojp_trip_request_simple_3() -> Ojp:
     return test_create_ojp_trip_request_long(origin,destination,starttime)
 
 # builds the requests
-def test_create_ojp_trip_request_long(origin,destination,starttime) -> Ojp:
-    starttime = starttime.isoformat() + "Z"
-    starttime = XmlDateTime.from_string(starttime)
+def test_create_ojp_trip_request_long(origin:str,destination:str,starttime:datetime.datetime) -> Ojp:
+    starttimea = starttime.isoformat() + "Z"
+    starttimeb = XmlDateTime.from_string(starttimea)
 
     return Ojp(ojprequest=
                Ojprequest(service_request=
                    ServiceRequest(requestor_ref="OJP2NOVA",
-                                  request_timestamp=starttime,
+                                  request_timestamp=starttimeb,
                                   ojptrip_request=
                                   [OjptripRequest(
-                                      request_timestamp=starttime,
+                                      request_timestamp=starttimeb,
                                       origin=[PlaceContextStructure(place_ref=
                                                                     PlaceRefStructure(stop_point_ref=str(origin),
                                                                                       location_name=InternationalTextStructure(text=NaturalLanguageStringStructure("origin"))),
-                                                                    dep_arr_time=starttime)],
+                                                                    dep_arr_time=starttimeb)],
                                       destination=[PlaceContextStructure(place_ref=
                                                                          PlaceRefStructure(stop_point_ref=str(destination),
                                                                                            location_name=InternationalTextStructure(text=NaturalLanguageStringStructure("destination"))))

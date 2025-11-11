@@ -16,7 +16,7 @@
               <Text>Interlaken Ost</Text>
             </LocationName>
           </PlaceRef>
-          <DepArrTime>2024-12-13T19:30:29.036Z</DepArrTime>
+          <!--<DepArrTime>2025-07-04T19:30:29.036Z</DepArrTime>-->
         </Origin>
         <Destination>
           <PlaceRef>

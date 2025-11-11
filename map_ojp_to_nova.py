@@ -1,46 +1,14 @@
 #!/usr/bin/env python3
+from typing import List, Optional
+
 from nova import ErstellePreisAuskunft, VerbindungPreisAuskunftRequest, ClientIdentifier, CorrelationKontext, \
     TaxonomieFilter, TaxonomieKlassePfad, ReisendenInfoPreisAuskunft, ReisendenTypCode, VerbindungPreisAuskunft, \
     FahrplanVerbindungsSegment, VerkehrsMittelGattung, ZwischenHaltContextTripContext, \
     PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput, EmptyType
-import xml_logger
+from logger import log
 from ojp import Ojp, TimedLegStructure, FarePassengerStructure, PassengerCategoryEnumeration
-from support import OJPError
+from support import OJPError, process_operating_ref,sloid2didok
 import random
-import logging
-
-logger = logging.getLogger(__name__)
-
-def sloid2didok(sloid):
-    # TODO this is a hack for the timetable change 2024/2025 must be done correctly in map_ojp_to_ojp.py by replacing the stoppoints with the correct didoks
-    #if a didok code, just return it
-    my_dict ={
-    }
-    #dict from https://confluence.sbb.ch/pages/viewpage.action?pageId=2608861819
-    #"8507082": "8504108",
-    #"8503088": "8503000",
-    #"8519342": "8504014",
-    #"8014488": "8503467",
-    #"8014482": "8503466",
-    #"8014483": "8503465",
-    #"8014484": "8503464",
-    #"8014485": "853463",
-    #"8014487": "8503462",
-    try:
-        didok=int(sloid)
-        didok=int(my_dict.get(str(didok),str(didok))) # replaces if it is in the table or gets the value back
-        return didok
-    except:
-        #remove left part of sloid
-        sloid=sloid.replace('ch:1:sloid:','')
-        if ':' in sloid:
-            sloid = sloid[:sloid.find(':')]
-        #remove the right part of sloid, if it exist
-        #if bigger than 100000 -> no add
-        sloid=int(my_dict.get(str(sloid),str(sloid))) # replaces if it is in the table or gets the value back
-        if int(sloid)>100000:
-            return int(sloid)
-        return 8500000+int(sloid)
 
 def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindungsSegment:
     einstieg = sloid2didok(timed_leg.leg_board.stop_point_ref)
@@ -49,27 +17,36 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
     ankunfts_zeit = timed_leg.leg_alight.service_arrival.timetabled_time
     line_ref = timed_leg.service.line_ref
     operator_ref = timed_leg.service.operator_ref  # needs to be processed afterwards to get the verwaltungs_code
+    if timed_leg.service.mode.short_name is None:
+        raise OJPError("No short name for mode. Probably an ODV bus in OJPFare request to NOVA. Currently this is not suppoerted")
     gattungs_code = timed_leg.service.mode.short_name.text.value  # is correct, but a bit of a hack
 
     # unfortunately it is not in line_ref, but in Extension/ojp:PublishedJourneyNumber
     _, verkehrs_mittel_nummer, _ = line_ref.split(':')
-    # This is an other hack.
+    # This is an other hack. TODO
     verkehrs_mittel_nummer = ''.join(filter(lambda x: x.isdigit(), verkehrs_mittel_nummer))
-
     try:
         # Set verkehrs_mittel_nummer to timed_leg.extension.publishedjourneynumber?
         verkehrs_mittel_nummer = [x.children[0].text for x in timed_leg.extension.children if x.qname == '{http://www.vdv.de/ojp}PublishedJourneyNumber'][0]
     except:
         pass
 
-    # Uses ojp:OperatorRef in service
-    verwaltungs_code = "{:06}".format(int(operator_ref.split(':')[1])) # takes e.g. ojp:11 and makes 000011 out of it
+    if operator_ref:
+        verwaltungs_code= process_operating_ref(operator_ref)
 
     leg_intermediates = timed_leg.leg_intermediates
     zwischenhalten = [sloid2didok(timed_leg.leg_board.stop_point_ref)] + [sloid2didok(leg_intermediate.stop_point_ref)
                       for leg_intermediate in leg_intermediates] + [sloid2didok(timed_leg.leg_alight.stop_point_ref)]
-
-    return FahrplanVerbindungsSegment(einstieg=int(einstieg), ausstieg=int(ausstieg),
+    # handling of Tariff code TC
+    attr2 = timed_leg.service.attribute
+    tariff_code = ""
+    for attr in attr2:
+        attr_text = attr.text.text
+        if attr_text.value.startswith("TC-"):
+            # tariff code found in OJP data
+            tariff_code = attr_text.value[3:]
+    if tariff_code=="":
+        return FahrplanVerbindungsSegment(einstieg=int(einstieg), ausstieg=int(ausstieg),
                                verwaltungs_code=verwaltungs_code,
                                abfahrts_zeit=abfahrts_zeit,
                                ankunfts_zeit=ankunfts_zeit,
@@ -80,20 +57,34 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
                                        uic_code=int(zwischenhalt),
                                        trip_context=ZwischenHaltContextTripContext.PLANNED) for zwischenhalt in zwischenhalten]
                                )
-
-def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput:
+    return FahrplanVerbindungsSegment(einstieg=int(einstieg), ausstieg=int(ausstieg),
+                               verwaltungs_code=verwaltungs_code,
+                               info_plus_tarif_code=tariff_code,
+                               abfahrts_zeit=abfahrts_zeit,
+                               ankunfts_zeit=ankunfts_zeit,
+                               verkehrs_mittel=VerkehrsMittelGattung(
+                                   gattungs_code=gattungs_code,
+                                   verkehrs_mittel_nummer=int(verkehrs_mittel_nummer)),
+                               zwischen_halt_context=[FahrplanVerbindungsSegment.ZwischenHaltContext(
+                                       uic_code=int(zwischenhalt),
+                                       trip_context=ZwischenHaltContextTripContext.PLANNED) for zwischenhalt in zwischenhalten]
+                               )
+def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput]:
     if not (ojp.ojprequest and ojp.ojprequest.service_request and ojp.ojprequest.service_request.ojpfare_request
             and len(ojp.ojprequest.service_request.ojpfare_request) > 0 and ojp.ojprequest.service_request.ojpfare_request[0].trip_fare_request
             and ojp.ojprequest.service_request.ojpfare_request[0].trip_fare_request.trip
             and len(ojp.ojprequest.service_request.ojpfare_request[0].trip_fare_request.trip.trip_leg) > 0):
-        return False
+        return None
 
     try:
         if ojp.ojprequest.service_request.ojpfare_request[0].params.traveller is None:
             travellers = []
-            travellers.append(FarePassengerStructure(age=25, entitlement_product =["HTA"]))
+            travellers.append(FarePassengerStructure(age=25, entitlement_product=["HTA"]))
         else:
-            age = ojp.ojprequest.service_request.ojpfare_request[0].params.traveller[0].age
+            if not(ojp.ojprequest.service_request.ojpfare_request[0].params.traveller[0].age is int):
+                age = ojp.ojprequest.service_request.ojpfare_request[0].params.traveller[0].age
+            else:
+                age=25
             travellers = ojp.ojprequest.service_request.ojpfare_request[0].params.traveller
     except:
         pass
@@ -103,7 +94,7 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
         legs = fare_request.trip_fare_request.trip.trip_leg
         externeVerbindungsReferenzId = fare_request.trip_fare_request.trip.trip_id
         segments = []
-        reisende = []
+        reisende:List[ReisendenInfoPreisAuskunft] = []
         leg_start = None
         leg_end = None
         leg_nr=0
@@ -116,9 +107,9 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
             if leg.timed_leg is None:
                 continue
             # if the timed leg is an on demand bus -> also ignore
-            if leg.timed_leg.service.mode is None:
+            if leg.timed_leg.service is None or leg.timed_leg.service.mode is None:
                 continue
-            if leg.timed_leg.service.mode.bus_submode == "demandResponsive":
+            if leg.timed_leg.service and leg.timed_leg.service.mode.bus_submode == "demandAndResponseBus":
                 #we can't deal with demandResponsive in NOVA currently.
                 continue
             # To get the first TimedLeg and last TimedLeg to reply with the leg range in the FareResult
@@ -128,9 +119,9 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
             leg_end = leg_id
             segments += [map_timed_leg_to_segment(leg.timed_leg)]
         if leg_start is None:
-            logger.error("no pricable legs found.")
             #no pricable legs found.
-            raise OJPError("no pricable legs found.")
+            break
+            #raise OJPError("no pricable legs found.") #TODO we should not raise an error when there are other priced TripResults. Currently one non-pricable raises the error
 
         verbindungen += [VerbindungPreisAuskunft(externe_verbindungs_referenz_id=externeVerbindungsReferenzId + "_" + leg_start + "_" + leg_end, segment_hin_fahrt=segments)]
         reisende =[]
@@ -142,11 +133,11 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> PreisAuskunftServ
             else:
                 t_alter=traveler.age
             r_typ = ReisendenTypCode.PERSON
-            if traveler.passenger_category == None:
+            if traveler.passenger_category is None:
                 r_typ =ReisendenTypCode.PERSON
-            elif traveler.passenger_category == "Dog":
+            elif traveler.passenger_category.value == "Dog":
                 r_typ = ReisendenTypCode.HUND
-            elif traveler.passenger_category == "Bicycle":
+            elif traveler.passenger_category.value == "Bicycle":
                 r_typ = ReisendenTypCode.VELO
             else:
                 r_typ = ReisendenTypCode.PERSON
@@ -188,14 +179,13 @@ def test_ojp_fare_request_to_nova_request(ojp: Ojp) -> PreisAuskunftServicePortT
     from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
     serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
-    serializer = XmlSerializer(serializer_config)
+    serializer = XmlSerializer(config=serializer_config)
 
     nova_request = map_fare_request_to_nova_request(ojp)
-    if nova_request==None or nova_request==False:
-        logger.error("Was not able to generate NOVA request from OJPFare Request.")
+    if nova_request is None:
         raise OJPError("Was not able to generate NOVA request from OJPFare Request:\n")
     nova_request_xml = serializer.render(nova_request)
-    xml_logger.log_serialized('nova_request.xml', nova_request_xml)
+    log('generated/nova_request.xml',nova_request_xml)
     return nova_request
 
 if __name__ == '__main__':
@@ -209,7 +199,7 @@ if __name__ == '__main__':
         fail_on_unknown_attributes=False,
     )
     parser = XmlParser(parser_config)
-    ojp = parser.parse(xml_logger.path('ojp_fare_request.xml'), Ojp)
+    ojp = parser.parse('generated/ojp_fare_request.xml', Ojp)
 
     if ojp:
         print(test_ojp_fare_request_to_nova_request(ojp))

@@ -1,0 +1,3193 @@
+from ojp2.abnormal_traffic import AbnormalTraffic
+from ojp2.abnormal_traffic_type_enum import AbnormalTrafficTypeEnum
+from ojp2.abstract_association_role import AbstractAssociationRole
+from ojp2.abstract_call_structure import AbstractCallStructure
+from ojp2.abstract_capabilities_structure import AbstractCapabilitiesStructure
+from ojp2.abstract_curve import AbstractCurve
+from ojp2.abstract_curve_type import AbstractCurveType
+from ojp2.abstract_discovery_delivery import AbstractDiscoveryDelivery
+from ojp2.abstract_discovery_delivery_structure import (
+    AbstractDiscoveryDeliveryStructure,
+)
+from ojp2.abstract_discovery_request import AbstractDiscoveryRequest
+from ojp2.abstract_discovery_request_structure import (
+    AbstractDiscoveryRequestStructure,
+)
+from ojp2.abstract_equipment_structure import AbstractEquipmentStructure
+from ojp2.abstract_functional_service_capabilities_request import (
+    AbstractFunctionalServiceCapabilitiesRequest,
+)
+from ojp2.abstract_functional_service_capabilities_response import (
+    AbstractFunctionalServiceCapabilitiesResponse,
+)
+from ojp2.abstract_functional_service_delivery import (
+    AbstractFunctionalServiceDelivery,
+)
+from ojp2.abstract_functional_service_request import (
+    AbstractFunctionalServiceRequest,
+)
+from ojp2.abstract_functional_service_request_structure import (
+    AbstractFunctionalServiceRequestStructure,
+)
+from ojp2.abstract_functional_service_subscription_request import (
+    AbstractFunctionalServiceSubscriptionRequest,
+)
+from ojp2.abstract_geometric_primitive import AbstractGeometricPrimitive
+from ojp2.abstract_geometric_primitive_type import (
+    AbstractGeometricPrimitiveType,
+)
+from ojp2.abstract_geometry import AbstractGeometry
+from ojp2.abstract_geometry_type import AbstractGeometryType
+from ojp2.abstract_gml import AbstractGml
+from ojp2.abstract_gmltype import AbstractGmltype
+from ojp2.abstract_identified_item_structure import (
+    AbstractIdentifiedItemStructure,
+)
+from ojp2.abstract_inline_property import AbstractInlineProperty
+from ojp2.abstract_item_structure import AbstractItemStructure
+from ojp2.abstract_member_type import AbstractMemberType
+from ojp2.abstract_metadata_property_type import AbstractMetadataPropertyType
+from ojp2.abstract_monitored_call_structure import (
+    AbstractMonitoredCallStructure,
+)
+from ojp2.abstract_notification_structure import AbstractNotificationStructure
+from ojp2.abstract_object import AbstractObject
+from ojp2.abstract_ojpservice_request_structure import (
+    AbstractOjpserviceRequestStructure,
+)
+from ojp2.abstract_projection import AbstractProjection
+from ojp2.abstract_reference import AbstractReference
+from ojp2.abstract_referencing_item_structure import (
+    AbstractReferencingItemStructure,
+)
+from ojp2.abstract_request import AbstractRequest
+from ojp2.abstract_request_structure import AbstractRequestStructure
+from ojp2.abstract_required_identified_item_structure import (
+    AbstractRequiredIdentifiedItemStructure,
+)
+from ojp2.abstract_required_referencing_item_structure import (
+    AbstractRequiredReferencingItemStructure,
+)
+from ojp2.abstract_response import AbstractResponse
+from ojp2.abstract_ring import AbstractRing
+from ojp2.abstract_ring_property_type import AbstractRingPropertyType
+from ojp2.abstract_ring_type import AbstractRingType
+from ojp2.abstract_service_capabilities_response_structure import (
+    AbstractServiceCapabilitiesResponseStructure,
+)
+from ojp2.abstract_service_delivery_structure import (
+    AbstractServiceDeliveryStructure,
+)
+from ojp2.abstract_service_journey_interchange_structure import (
+    AbstractServiceJourneyInterchangeStructure,
+)
+from ojp2.abstract_service_request import AbstractServiceRequest
+from ojp2.abstract_service_request_structure import (
+    AbstractServiceRequestStructure,
+)
+from ojp2.abstract_situation_element_structure import (
+    AbstractSituationElementStructure,
+)
+from ojp2.abstract_strict_association_role import AbstractStrictAssociationRole
+from ojp2.abstract_subscription_request_structure import (
+    AbstractSubscriptionRequestStructure,
+)
+from ojp2.abstract_subscription_structure import AbstractSubscriptionStructure
+from ojp2.abstract_surface import AbstractSurface
+from ojp2.abstract_surface_type import AbstractSurfaceType
+from ojp2.abstract_tracked_request import AbstractTrackedRequest
+from ojp2.access_facility import AccessFacility
+from ojp2.access_facility_enumeration import AccessFacilityEnumeration
+from ojp2.access_feature_status_enumeration import (
+    AccessFeatureStatusEnumeration,
+)
+from ojp2.access_feature_type_enumeration import AccessFeatureTypeEnumeration
+from ojp2.access_link_ref import AccessLinkRef
+from ojp2.access_link_ref_structure import AccessLinkRefStructure
+from ojp2.access_modes_enumeration import AccessModesEnumeration
+from ojp2.access_modes_list_of_enumerations import (
+    AccessModesListOfEnumerations,
+)
+from ojp2.access_not_allowed_error import AccessNotAllowedError
+from ojp2.access_not_allowed_error_structure import (
+    AccessNotAllowedErrorStructure,
+)
+from ojp2.access_path_link_ref_structure import AccessPathLinkRefStructure
+from ojp2.access_space_ref_structure import AccessSpaceRefStructure
+from ojp2.accessibility_assessment_structure import (
+    AccessibilityAssessmentStructure,
+)
+from ojp2.accessibility_details_profile_enumeration import (
+    AccessibilityDetailsProfileEnumeration,
+)
+from ojp2.accessibility_enumeration import AccessibilityEnumeration
+from ojp2.accessibility_feature_enumeration_1 import (
+    AccessibilityFeatureEnumeration1,
+)
+from ojp2.accessibility_feature_enumeration_2 import (
+    AccessibilityFeatureEnumeration2,
+)
+from ojp2.accessibility_feature_types_enumeration import (
+    AccessibilityFeatureTypesEnumeration,
+)
+from ojp2.accessibility_limitation_structure import (
+    AccessibilityLimitationStructure,
+)
+from ojp2.accessibility_structure import AccessibilityStructure
+from ojp2.accident import Accident
+from ojp2.accident_cause_enum import AccidentCauseEnum
+from ojp2.accident_type_enum import AccidentTypeEnum
+from ojp2.accommodation_facility import AccommodationFacility
+from ojp2.accommodation_facility_enumeration import (
+    AccommodationFacilityEnumeration,
+)
+from ojp2.action_data_structure import ActionDataStructure
+from ojp2.action_status_enumeration import ActionStatusEnumeration
+from ojp2.actions_structure import ActionsStructure
+from ojp2.activity import Activity
+from ojp2.actual_arrival_time import ActualArrivalTime
+from ojp2.actual_departure_time import ActualDepartureTime
+from ojp2.actual_headway_interval import ActualHeadwayInterval
+from ojp2.address_ref import AddressRef
+from ojp2.address_ref_structure import AddressRefStructure
+from ojp2.address_structure import AddressStructure
+from ojp2.administrative_area_ref_structure import (
+    AdministrativeAreaRefStructure,
+)
+from ojp2.administrative_area_refs_structure import (
+    AdministrativeAreaRefsStructure,
+)
+from ojp2.administrative_area_versioned_ref_structure import (
+    AdministrativeAreaVersionedRefStructure,
+)
+from ojp2.administrator_ref_structure import AdministratorRefStructure
+from ojp2.administrator_versioned_ref_structure import (
+    AdministratorVersionedRefStructure,
+)
+from ojp2.advice_ref_structure import AdviceRefStructure
+from ojp2.advice_type_enumeration import AdviceTypeEnumeration
+from ojp2.affected_call_structure import AffectedCallStructure
+from ojp2.affected_connection_link_structure import (
+    AffectedConnectionLinkStructure,
+)
+from ojp2.affected_facility_structure import AffectedFacilityStructure
+from ojp2.affected_interchange_structure import AffectedInterchangeStructure
+from ojp2.affected_modes_structure import AffectedModesStructure
+from ojp2.affected_network_structure import AffectedNetworkStructure
+from ojp2.affected_operator_structure import AffectedOperatorStructure
+from ojp2.affected_path_link_structure import AffectedPathLinkStructure
+from ojp2.affected_place_structure import AffectedPlaceStructure
+from ojp2.affected_road_structure import AffectedRoadStructure
+from ojp2.affected_roads_structure import AffectedRoadsStructure
+from ojp2.affected_section_structure import AffectedSectionStructure
+from ojp2.affected_stop_place_component_structure import (
+    AffectedStopPlaceComponentStructure,
+)
+from ojp2.affected_stop_place_element_structure import (
+    AffectedStopPlaceElementStructure,
+)
+from ojp2.affected_stop_point_structure import (
+    AffectedLineStructure,
+    AffectedRouteStructure,
+    AffectedStopPlaceStructure,
+    AffectedStopPointStructure,
+)
+from ojp2.affected_vehicle_journey_structure import (
+    AffectedVehicleJourneyStructure,
+)
+from ojp2.affected_vehicle_structure import AffectedVehicleStructure
+from ojp2.affects_scope_structure import AffectsScopeStructure
+from ojp2.aimed_arrival_time import AimedArrivalTime
+from ojp2.aimed_arrival_time_of_feeder import AimedArrivalTimeOfFeeder
+from ojp2.aimed_departure_time import AimedDepartureTime
+from ojp2.aimed_departure_time_of_distributor import (
+    AimedDepartureTimeOfDistributor,
+)
+from ojp2.aimed_flexible_area import AimedFlexibleArea
+from ojp2.aimed_flexible_area_ref import AimedFlexibleAreaRef
+from ojp2.aimed_headway_interval import AimedHeadwayInterval
+from ojp2.aimed_latest_passenger_access_time import (
+    AimedLatestPassengerAccessTime,
+)
+from ojp2.aimed_location_name import AimedLocationName
+from ojp2.air_submode import AirSubmode
+from ojp2.air_submodes_of_transport_enumeration import (
+    AirSubmodesOfTransportEnumeration,
+)
+from ojp2.alert_carea import AlertCarea
+from ojp2.alert_cause import AlertCause
+from ojp2.alert_cause_enumeration import AlertCauseEnumeration
+from ojp2.alert_cdirection import AlertCdirection
+from ojp2.alert_cdirection_enum import AlertCdirectionEnum
+from ojp2.alert_clinear import AlertClinear
+from ojp2.alert_clinear_by_code import AlertClinearByCode
+from ojp2.alert_clocation import AlertClocation
+from ojp2.alert_cmethod2_linear import AlertCmethod2Linear
+from ojp2.alert_cmethod2_point import AlertCmethod2Point
+from ojp2.alert_cmethod2_primary_point_location import (
+    AlertCmethod2PrimaryPointLocation,
+)
+from ojp2.alert_cmethod2_secondary_point_location import (
+    AlertCmethod2SecondaryPointLocation,
+)
+from ojp2.alert_cmethod4_linear import AlertCmethod4Linear
+from ojp2.alert_cmethod4_point import AlertCmethod4Point
+from ojp2.alert_cmethod4_primary_point_location import (
+    AlertCmethod4PrimaryPointLocation,
+)
+from ojp2.alert_cmethod4_secondary_point_location import (
+    AlertCmethod4SecondaryPointLocation,
+)
+from ojp2.alert_cpoint import AlertCpoint
+from ojp2.alias_structure import AliasStructure
+from ojp2.all_facilities_feature_structure import AllFacilitiesFeatureStructure
+from ojp2.all_modes_enumeration import AllModesEnumeration
+from ojp2.allowed_resource_usage_exceeded_error import (
+    AllowedResourceUsageExceededError,
+)
+from ojp2.allowed_resource_usage_exceeded_error_structure import (
+    AllowedResourceUsageExceededErrorStructure,
+)
+from ojp2.alternative_modes_of_operation_enumeration import (
+    AlternativeModesOfOperationEnumeration,
+)
+from ojp2.alternative_service_structure import AlternativeServiceStructure
+from ojp2.animal_presence_obstruction import AnimalPresenceObstruction
+from ojp2.animal_presence_type_enum import AnimalPresenceTypeEnum
+from ojp2.annotated_facility_structure import AnnotatedFacilityStructure
+from ojp2.area import Area
+from ojp2.area_destination import AreaDestination
+from ojp2.area_of_interest_enum import AreaOfInterestEnum
+from ojp2.area_structure import AreaStructure
+from ojp2.arrival_boarding_activity import ArrivalBoardingActivity
+from ojp2.arrival_boarding_activity_enumeration import (
+    ArrivalBoardingActivityEnumeration,
+)
+from ojp2.arrival_cancellation_reason import ArrivalCancellationReason
+from ojp2.arrival_formation_assignment import ArrivalFormationAssignment
+from ojp2.arrival_operator_refs import ArrivalOperatorRefs
+from ojp2.arrival_orientation_relative_to_quay import (
+    ArrivalOrientationRelativeToQuay,
+)
+from ojp2.arrival_platform_name import ArrivalPlatformName
+from ojp2.arrival_proximity_text import ArrivalProximityText
+from ojp2.arrival_status import ArrivalStatus
+from ojp2.assistance_facility import AssistanceFacility
+from ojp2.assistance_facility_enumeration import AssistanceFacilityEnumeration
+from ojp2.association_name import AssociationName
+from ojp2.association_role_type import AssociationRoleType
+from ojp2.audible_signals_available import AudibleSignalsAvailable
+from ojp2.audience_enumeration import AudienceEnumeration
+from ojp2.authenticated_request import AuthenticatedRequest
+from ojp2.authenticated_request_structure import AuthenticatedRequestStructure
+from ojp2.authority_operation import AuthorityOperation
+from ojp2.authority_operation_type_enum import AuthorityOperationTypeEnum
+from ojp2.authority_ref_structure import AuthorityRefStructure
+from ojp2.availability_problem_type import AvailabilityProblemType
+from ojp2.availability_problem_type_enumeration import (
+    AvailabilityProblemTypeEnumeration,
+)
+from ojp2.availability_result_structure import AvailabilityResultStructure
+from ojp2.axle_spacing import AxleSpacing
+from ojp2.axle_weight import AxleWeight
+from ojp2.basic_data_value import BasicDataValue
+from ojp2.beyond_data_horizon import BeyondDataHorizon
+from ojp2.beyond_data_horizon_error_structure import (
+    BeyondDataHorizonErrorStructure,
+)
+from ojp2.block_ref_structure import BlockRefStructure
+from ojp2.blocking_structure import BlockingStructure
+from ojp2.boarding_position_ref_structure_1 import (
+    BoardingPositionRefStructure1,
+)
+from ojp2.boarding_position_ref_structure_2 import (
+    BoardingPositionRefStructure2,
+)
+from ojp2.boarding_structure import BoardingStructure
+from ojp2.bookable_service_item_structure import BookableServiceItemStructure
+from ojp2.bookable_service_item_type_enumeration import (
+    BookableServiceItemTypeEnumeration,
+)
+from ojp2.booking_access_enumeration import BookingAccessEnumeration
+from ojp2.booking_arrangements_container_structure import (
+    BookingArrangementsContainerStructure,
+)
+from ojp2.booking_arrangements_structure import BookingArrangementsStructure
+from ojp2.booking_method_enumeration import BookingMethodEnumeration
+from ojp2.booking_method_list_of_enumerations import (
+    BookingMethodListOfEnumerations,
+)
+from ojp2.booking_notes_structure import BookingNotesStructure
+from ojp2.booking_process_enumeration import BookingProcessEnumeration
+from ojp2.booking_process_list_of_enumerations import (
+    BookingProcessListOfEnumerations,
+)
+from ojp2.booking_ptleg_structure import BookingPtlegStructure
+from ojp2.booking_status_enumeration import BookingStatusEnumeration
+from ojp2.booking_status_type import BookingStatusType
+from ojp2.booking_user_structure import BookingUserStructure
+from ojp2.booking_user_structure_cycling_profile import (
+    BookingUserStructureCyclingProfile,
+)
+from ojp2.booking_user_structure_hiking_profile import (
+    BookingUserStructureHikingProfile,
+)
+from ojp2.bounding_box_structure import BoundingBoxStructure
+from ojp2.branding_ref_structure import BrandingRefStructure
+from ojp2.branding_structure import BrandingStructure
+from ojp2.bus_submode import BusSubmode
+from ojp2.bus_submodes_of_transport_enumeration import (
+    BusSubmodesOfTransportEnumeration,
+)
+from ojp2.call_at_near_stop_structure import CallAtNearStopStructure
+from ojp2.call_at_stop_structure import CallAtStopStructure
+from ojp2.call_status_enumeration import CallStatusEnumeration
+from ojp2.capabilities_request import CapabilitiesRequest
+from ojp2.capabilities_request_structure import CapabilitiesRequestStructure
+from ojp2.capabilities_response import CapabilitiesResponse
+from ojp2.capabilities_response_structure import CapabilitiesResponseStructure
+from ojp2.capability_general_interaction_structure import (
+    CapabilityGeneralInteractionStructure,
+)
+from ojp2.capability_not_supported_error import CapabilityNotSupportedError
+from ojp2.capability_not_supported_error_structure import (
+    CapabilityNotSupportedErrorStructure,
+)
+from ojp2.capability_ref_structure import CapabilityRefStructure
+from ojp2.capability_request_policy_structure import (
+    CapabilityRequestPolicyStructure,
+)
+from ojp2.capability_subscription_policy_structure import (
+    CapabilitySubscriptionPolicyStructure,
+)
+from ojp2.car_park_configuration_enum import CarParkConfigurationEnum
+from ojp2.car_park_status_enum import CarParkStatusEnum
+from ojp2.car_parks import CarParks
+from ojp2.carriageway_enum import CarriagewayEnum
+from ojp2.casualties_structure import CasualtiesStructure
+from ojp2.catalogue_reference import CatalogueReference
+from ojp2.category_key_value_type import CategoryKeyValueType
+from ojp2.cause import Cause
+from ojp2.cause_type_enum import CauseTypeEnum
+from ojp2.changed_flag_enum import ChangedFlagEnum
+from ojp2.check_point_process_enumeration import CheckPointProcessEnumeration
+from ojp2.check_point_ref_structure import CheckPointRefStructure
+from ojp2.check_point_service_enumeration import CheckPointServiceEnumeration
+from ojp2.check_point_structure import CheckPointStructure
+from ojp2.check_status_request import CheckStatusRequest
+from ojp2.check_status_request_structure import CheckStatusRequestStructure
+from ojp2.check_status_response import CheckStatusResponse
+from ojp2.check_status_response_body_structure import (
+    CheckStatusResponseBodyStructure,
+)
+from ojp2.check_status_response_structure import CheckStatusResponseStructure
+from ojp2.circular_area_structure import CircularAreaStructure
+from ojp2.clear_down_ref_structure import ClearDownRefStructure
+from ojp2.closed_time_range_structure import ClosedTimeRangeStructure
+from ojp2.closed_timestamp_range_structure import ClosedTimestampRangeStructure
+from ojp2.coach_submode import CoachSubmode
+from ojp2.coach_submodes_of_transport_enumeration import (
+    CoachSubmodesOfTransportEnumeration,
+)
+from ojp2.code_list_type import CodeListType
+from ojp2.code_or_nil_reason_list_type import CodeOrNilReasonListType
+from ojp2.code_type import CodeType
+from ojp2.code_with_authority_type import CodeWithAuthorityType
+from ojp2.comment import Comment
+from ojp2.communications_transport_method_enumeration import (
+    CommunicationsTransportMethodEnumeration,
+)
+from ojp2.comparison_operator_enum import ComparisonOperatorEnum
+from ojp2.compliance_option_enum import ComplianceOptionEnum
+from ojp2.compound_train import CompoundTrain
+from ojp2.compound_train_ref import CompoundTrainRef
+from ojp2.compound_train_ref_structure import CompoundTrainRefStructure
+from ojp2.compound_train_structure import CompoundTrainStructure
+from ojp2.compression_method_enumeration import CompressionMethodEnumeration
+from ojp2.computation_method_enum import ComputationMethodEnum
+from ojp2.condition import Condition
+from ojp2.conditions import Conditions
+from ojp2.confidentiality_value_enum import ConfidentialityValueEnum
+from ojp2.congestion_enumeration import CongestionEnumeration
+from ojp2.connecting_journey_ref_structure import ConnectingJourneyRefStructure
+from ojp2.connection_direction_enumeration import (
+    ConnectionDirectionEnumeration,
+)
+from ojp2.connection_link_ref import ConnectionLinkRef
+from ojp2.connection_link_ref_structure import ConnectionLinkRefStructure
+from ojp2.consequence_content_structure import ConsequenceContentStructure
+from ojp2.construction_work_type_enum import ConstructionWorkTypeEnum
+from ojp2.construction_works import ConstructionWorks
+from ojp2.consumer_request_endpoint_structure import (
+    ConsumerRequestEndpointStructure,
+)
+from ojp2.consumer_response_endpoint_structure import (
+    ConsumerResponseEndpointStructure,
+)
+from ojp2.contact_details_structure import ContactDetailsStructure
+from ojp2.contextualised_connection_link_structure import (
+    ContextualisedConnectionLinkStructure,
+)
+from ojp2.contextualised_request_structure import (
+    ContextualisedRequestStructure,
+)
+from ojp2.continuous_leg_structure import ContinuousLegStructure
+from ojp2.continuous_service_structure import ContinuousServiceStructure
+from ojp2.conventional_modes_of_operation_enumeration import (
+    ConventionalModesOfOperationEnumeration,
+)
+from ojp2.coordinates_structure import CoordinatesStructure
+from ojp2.coordinates_type import CoordinatesType
+from ojp2.counted_feature_unit_enumeration import CountedFeatureUnitEnumeration
+from ojp2.counting_trend_enumeration import CountingTrendEnumeration
+from ojp2.counting_type_enumeration import CountingTypeEnumeration
+from ojp2.country_enum import CountryEnum
+from ojp2.country_ref_structure import CountryRefStructure
+from ojp2.course_of_journey_ref_structure import CourseOfJourneyRefStructure
+from ojp2.curve_array_property_type import CurveArrayPropertyType
+from ojp2.curve_property import CurveProperty
+from ojp2.curve_property_type import CurvePropertyType
+from ojp2.d2_logical_model import D2LogicalModel
+from ojp2.d2_logical_model_1 import D2LogicalModel1
+from ojp2.dangerous_goods_regulations_enum import DangerousGoodsRegulationsEnum
+from ojp2.data_frame_ref_structure import DataFrameRefStructure
+from ojp2.data_managed_object_structure import DataManagedObjectStructure
+from ojp2.data_name_spaces_structure import DataNameSpacesStructure
+from ojp2.data_ready_acknowledgement import DataReadyAcknowledgement
+from ojp2.data_ready_notification import DataReadyNotification
+from ojp2.data_ready_request_structure import DataReadyRequestStructure
+from ojp2.data_ready_response_structure import DataReadyResponseStructure
+from ojp2.data_received_acknowledgement import DataReceivedAcknowledgement
+from ojp2.data_received_response_structure import DataReceivedResponseStructure
+from ojp2.data_supply_request import DataSupplyRequest
+from ojp2.data_supply_request_body_structure import (
+    DataSupplyRequestBodyStructure,
+)
+from ojp2.data_supply_request_structure import DataSupplyRequestStructure
+from ojp2.dated_call import DatedCall
+from ojp2.dated_call_structure import DatedCallStructure
+from ojp2.dated_journey_part_info_structure import (
+    DatedJourneyPartInfoStructure,
+)
+from ojp2.dated_journey_structure import DatedJourneyStructure
+from ojp2.dated_vehicle_journey import DatedVehicleJourney
+from ojp2.dated_vehicle_journey_indirect_ref_structure import (
+    DatedVehicleJourneyIndirectRefStructure,
+)
+from ojp2.dated_vehicle_journey_ref import DatedVehicleJourneyRef
+from ojp2.dated_vehicle_journey_ref_structure import (
+    DatedVehicleJourneyRefStructure,
+)
+from ojp2.dated_vehicle_journey_structure import DatedVehicleJourneyStructure
+from ojp2.datex_pictogram_enum import DatexPictogramEnum
+from ojp2.day_enum import DayEnum
+from ojp2.day_type import DayType
+from ojp2.day_type_enumeration import DayTypeEnumeration
+from ojp2.day_week_month import DayWeekMonth
+from ojp2.days_of_week_enumerationx import DaysOfWeekEnumerationx
+from ojp2.default_code_space import DefaultCodeSpace
+from ojp2.defaulted_text_structure import DefaultedTextStructure
+from ojp2.delay_band_enum import DelayBandEnum
+from ojp2.delay_band_enumeration import DelayBandEnumeration
+from ojp2.delays import Delays
+from ojp2.delays_structure import DelaysStructure
+from ojp2.delays_type_enum import DelaysTypeEnum
+from ojp2.delivery_method_enumeration import DeliveryMethodEnumeration
+from ojp2.deny_reason_enum import DenyReasonEnum
+from ojp2.departure_boarding_activity import DepartureBoardingActivity
+from ojp2.departure_boarding_activity_enumeration import (
+    DepartureBoardingActivityEnumeration,
+)
+from ojp2.departure_cancellation_reason import DepartureCancellationReason
+from ojp2.departure_formation_assignment import DepartureFormationAssignment
+from ojp2.departure_operator_refs import DepartureOperatorRefs
+from ojp2.departure_orientation_relative_to_quay import (
+    DepartureOrientationRelativeToQuay,
+)
+from ojp2.departure_platform_name import DeparturePlatformName
+from ojp2.departure_proximity_text import DepartureProximityText
+from ojp2.departure_status import DepartureStatus
+from ojp2.description_content_structure import DescriptionContentStructure
+from ojp2.description_reference import DescriptionReference
+from ojp2.destination import Destination
+from ojp2.destination_name import DestinationName
+from ojp2.destination_ref import DestinationRef
+from ojp2.destination_ref_structure import DestinationRefStructure
+from ojp2.destination_structure import DestinationStructure
+from ojp2.direct_position_list_type import DirectPositionListType
+from ojp2.direct_position_type import DirectPositionType
+from ojp2.direction import Direction
+from ojp2.direction_compass_enum import DirectionCompassEnum
+from ojp2.direction_enum import DirectionEnum
+from ojp2.direction_ref_structure import DirectionRefStructure
+from ojp2.direction_structure import DirectionStructure
+from ojp2.distributor_departure_stop_ref import DistributorDepartureStopRef
+from ojp2.distributor_ref import DistributorRef
+from ojp2.distributor_stop_order import DistributorStopOrder
+from ojp2.distributor_visit_number import DistributorVisitNumber
+from ojp2.disturbance_activity import DisturbanceActivity
+from ojp2.disturbance_activity_type_enum import DisturbanceActivityTypeEnum
+from ojp2.driver_ref_structure import DriverRefStructure
+from ojp2.driving_condition_type_enum import DrivingConditionTypeEnum
+from ojp2.duration_content_structure import DurationContentStructure
+from ojp2.easements_structure import EasementsStructure
+from ojp2.elaborated_data import ElaboratedData
+from ojp2.elaborated_data_publication import ElaboratedDataPublication
+from ojp2.emission_co2_structure import EmissionCo2Structure
+from ojp2.empty_type import EmptyType
+from ojp2.encumbrance_enumeration import EncumbranceEnumeration
+from ojp2.end_time_precision_enumeration import EndTimePrecisionEnumeration
+from ojp2.end_time_status_enumeration import EndTimeStatusEnumeration
+from ojp2.endpoint_denied_access_error import EndpointDeniedAccessError
+from ojp2.endpoint_denied_access_structure import EndpointDeniedAccessStructure
+from ojp2.endpoint_not_available_access_error import (
+    EndpointNotAvailableAccessError,
+)
+from ojp2.endpoint_not_available_access_structure import (
+    EndpointNotAvailableAccessStructure,
+)
+from ojp2.entitlement_product_list_structure import (
+    EntitlementProductListStructure,
+)
+from ojp2.entitlement_product_structure import EntitlementProductStructure
+from ojp2.entrance_to_vehicle_ref import EntranceToVehicleRef
+from ojp2.entrance_to_vehicle_ref_structure import (
+    EntranceToVehicleRefStructure,
+)
+from ojp2.entry_qualifier_structure import EntryQualifierStructure
+from ojp2.envelope import Envelope
+from ojp2.envelope_type import EnvelopeType
+from ojp2.environment_reason import EnvironmentReason
+from ojp2.environment_sub_reason import EnvironmentSubReason
+from ojp2.environmental_obstruction import EnvironmentalObstruction
+from ojp2.environmental_obstruction_type_enum import (
+    EnvironmentalObstructionTypeEnum,
+)
+from ojp2.equipment_availability_structure import (
+    EquipmentAvailabilityStructure,
+)
+from ojp2.equipment_or_system_fault import EquipmentOrSystemFault
+from ojp2.equipment_or_system_fault_type_enum import (
+    EquipmentOrSystemFaultTypeEnum,
+)
+from ojp2.equipment_or_system_type_enum import EquipmentOrSystemTypeEnum
+from ojp2.equipment_reason import EquipmentReason
+from ojp2.equipment_ref_structure import EquipmentRefStructure
+from ojp2.equipment_status_enumeration import EquipmentStatusEnumeration
+from ojp2.equipment_sub_reason import EquipmentSubReason
+from ojp2.equipment_type_ref_structure import EquipmentTypeRefStructure
+from ojp2.error_code import ErrorCode
+from ojp2.error_code_structure import ErrorCodeStructure
+from ojp2.error_condition import ErrorCondition
+from ojp2.error_condition_element import ErrorConditionElement
+from ojp2.error_condition_element_structure import (
+    ErrorConditionElementStructure,
+)
+from ojp2.error_condition_structure import ErrorConditionStructure
+from ojp2.error_description_structure import ErrorDescriptionStructure
+from ojp2.error_type import ErrorType
+from ojp2.escalator_free_access import EscalatorFreeAccess
+from ojp2.exchange import Exchange
+from ojp2.exchange_points_param_structure import ExchangePointsParamStructure
+from ojp2.exchange_points_problem_type import ExchangePointsProblemType
+from ojp2.exchange_points_problem_type_enumeration import (
+    ExchangePointsProblemTypeEnumeration,
+)
+from ojp2.exchange_points_result_structure import ExchangePointsResultStructure
+from ojp2.expected_arrival_time import ExpectedArrivalTime
+from ojp2.expected_departure_capacities import ExpectedDepartureCapacities
+from ojp2.expected_departure_occupancy import ExpectedDepartureOccupancy
+from ojp2.expected_departure_time import ExpectedDepartureTime
+from ojp2.expected_headway_interval import ExpectedHeadwayInterval
+from ojp2.expected_latest_passenger_access_time import (
+    ExpectedLatestPassengerAccessTime,
+)
+from ojp2.extend_to_front_or_back_type import ExtendToFrontOrBackType
+from ojp2.extension_type import ExtensionType
+from ojp2.extensions_1 import Extensions1
+from ojp2.extensions_2 import Extensions2
+from ojp2.extensions_structure import ExtensionsStructure
+from ojp2.exterior import Exterior
+from ojp2.external_referencing import ExternalReferencing
+from ojp2.extra_interchange import ExtraInterchange
+from ojp2.facility_category_enumeration import FacilityCategoryEnumeration
+from ojp2.facility_change_element import FacilityChangeElement
+from ojp2.facility_change_structure import FacilityChangeStructure
+from ojp2.facility_condition_element import FacilityConditionElement
+from ojp2.facility_condition_structure import FacilityConditionStructure
+from ojp2.facility_location_structure import FacilityLocationStructure
+from ojp2.facility_ref import FacilityRef
+from ojp2.facility_ref_structure import FacilityRefStructure
+from ojp2.facility_status_enumeration import FacilityStatusEnumeration
+from ojp2.facility_status_structure import FacilityStatusStructure
+from ojp2.facility_structure import FacilityStructure
+from ojp2.fare_authority_ref import FareAuthorityRef
+from ojp2.fare_authority_ref_structure import FareAuthorityRefStructure
+from ojp2.fare_class import FareClass
+from ojp2.fare_class_enumeration import FareClassEnumeration
+from ojp2.fare_class_facility import FareClassFacility
+from ojp2.fare_class_facility_enumeration import FareClassFacilityEnumeration
+from ojp2.fare_classes import FareClasses
+from ojp2.fare_param_structure import FareParamStructure
+from ojp2.fare_passenger_structure import FarePassengerStructure
+from ojp2.fare_problem_type import FareProblemType
+from ojp2.fare_problem_type_enumeration import FareProblemTypeEnumeration
+from ojp2.fare_product_ref import FareProductRef
+from ojp2.fare_product_ref_structure import FareProductRefStructure
+from ojp2.fare_product_structure import FareProductStructure
+from ojp2.fare_result_structure import FareResultStructure
+from ojp2.feasibility_enumeration import FeasibilityEnumeration
+from ojp2.feature_id_ref_structure import FeatureIdRefStructure
+from ojp2.feature_ref import FeatureRef
+from ojp2.feature_ref_structure_1 import FeatureRefStructure1
+from ojp2.feature_ref_structure_2 import FeatureRefStructure2
+from ojp2.feeder_arrival_stop_ref import FeederArrivalStopRef
+from ojp2.feeder_ref import FeederRef
+from ojp2.feeder_stop_order import FeederStopOrder
+from ojp2.feeder_visit_number import FeederVisitNumber
+from ojp2.filter_exit_management import FilterExitManagement
+from ojp2.filter_reference import FilterReference
+from ojp2.first_or_last_journey import FirstOrLastJourney
+from ojp2.first_or_last_journey_enumeration import (
+    FirstOrLastJourneyEnumeration,
+)
+from ojp2.flexible_area_ref_structure import FlexibleAreaRefStructure
+from ojp2.flexible_area_structure import FlexibleAreaStructure
+from ojp2.follow_structure import FollowStructure
+from ojp2.formation_assignment_structure import FormationAssignmentStructure
+from ojp2.formation_change_enumeration import FormationChangeEnumeration
+from ojp2.formation_condition import FormationCondition
+from ojp2.formation_condition_structure import FormationConditionStructure
+from ojp2.formation_status_structure import FormationStatusStructure
+from ojp2.framed_vehicle_journey_ref_structure import (
+    FramedVehicleJourneyRefStructure,
+)
+from ojp2.from_service_journey_interchange_structure import (
+    FromServiceJourneyInterchangeStructure,
+)
+from ojp2.fuel_type_enum import FuelTypeEnum
+from ojp2.funicular_submode import FunicularSubmode
+from ojp2.funicular_submodes_of_transport_enumeration import (
+    FunicularSubmodesOfTransportEnumeration,
+)
+from ojp2.general_attribute_structure import GeneralAttributeStructure
+from ojp2.general_instruction_to_road_users import (
+    GeneralInstructionToRoadUsers,
+)
+from ojp2.general_instruction_to_road_users_type_enum import (
+    GeneralInstructionToRoadUsersTypeEnum,
+)
+from ojp2.general_network_management import GeneralNetworkManagement
+from ojp2.general_network_management_type_enum import (
+    GeneralNetworkManagementTypeEnum,
+)
+from ojp2.general_obstruction import GeneralObstruction
+from ojp2.generic_publication import GenericPublication
+from ojp2.generic_situation_record import GenericSituationRecord
+from ojp2.geo_area_structure import GeoAreaStructure
+from ojp2.geo_circle_structure import GeoCircleStructure
+from ojp2.geo_rectangle_structure import GeoRectangleStructure
+from ojp2.geo_restrictions_structure import GeoRestrictionsStructure
+from ojp2.geometric_primitive_property_type import (
+    GeometricPrimitivePropertyType,
+)
+from ojp2.geometry_array_property_type import GeometryArrayPropertyType
+from ojp2.geometry_property_type import GeometryPropertyType
+from ojp2.gml_profile_schema import GmlProfileSchema
+from ojp2.gross_weight_characteristic import GrossWeightCharacteristic
+from ojp2.group_booking_enumeration import GroupBookingEnumeration
+from ojp2.group_booking_list_of_enumerations import (
+    GroupBookingListOfEnumerations,
+)
+from ojp2.group_of_lines_ref_structure import GroupOfLinesRefStructure
+from ojp2.group_of_locations import GroupOfLocations
+from ojp2.group_of_locations_by_reference import GroupOfLocationsByReference
+from ojp2.group_of_non_ordered_locations import GroupOfNonOrderedLocations
+from ojp2.group_of_people_involved import GroupOfPeopleInvolved
+from ojp2.group_of_vehicles_involved import GroupOfVehiclesInvolved
+from ojp2.group_reservation_structure import GroupReservationStructure
+from ojp2.guidance_advice_enumeration import GuidanceAdviceEnumeration
+from ojp2.guide_dog_access import GuideDogAccess
+from ojp2.half_open_time_range_structure_1 import HalfOpenTimeRangeStructure1
+from ojp2.half_open_time_range_structure_2 import HalfOpenTimeRangeStructure2
+from ojp2.half_open_timestamp_input_range_structure import (
+    HalfOpenTimestampInputRangeStructure,
+)
+from ojp2.half_open_timestamp_output_range_structure import (
+    HalfOpenTimestampOutputRangeStructure,
+)
+from ojp2.hazardous_materials import HazardousMaterials
+from ojp2.header_information import HeaderInformation
+from ojp2.heartbeat_notification import HeartbeatNotification
+from ojp2.heartbeat_notification_structure import (
+    HeartbeatNotificationStructure,
+)
+from ojp2.heaviest_axle_weight_characteristic import (
+    HeaviestAxleWeightCharacteristic,
+)
+from ojp2.height_characteristic import HeightCharacteristic
+from ojp2.hierarchy_enumeration import HierarchyEnumeration
+from ojp2.hire_facility import HireFacility
+from ojp2.hire_facility_enumeration import HireFacilityEnumeration
+from ojp2.holiday_type_enumerationx import HolidayTypeEnumerationx
+from ojp2.humidity import Humidity
+from ojp2.humidity_information import HumidityInformation
+from ojp2.iana_country_tld_enumeration import IanaCountryTldEnumeration
+from ojp2.identifier import Identifier
+from ojp2.image_content_enumeration import ImageContentEnumeration
+from ojp2.image_structure import ImageStructure
+from ojp2.impact import Impact
+from ojp2.include_formation_enumeration import IncludeFormationEnumeration
+from ojp2.include_interchanges import IncludeInterchanges
+from ojp2.include_journey_relations import IncludeJourneyRelations
+from ojp2.include_train_formations import IncludeTrainFormations
+from ojp2.include_translations import IncludeTranslations
+from ojp2.individual_transport_option_structure import (
+    IndividualTransportOptionStructure,
+)
+from ojp2.individual_vehicle_measurements import IndividualVehicleMeasurements
+from ojp2.info_channel_ref_structure import InfoChannelRefStructure
+from ojp2.info_link import InfoLink
+from ojp2.info_link_structure_1 import InfoLinkStructure1
+from ojp2.info_link_structure_2 import InfoLinkStructure2
+from ojp2.info_links_structure import InfoLinksStructure
+from ojp2.information_status_enum import InformationStatusEnum
+from ojp2.infrastructure_damage_obstruction import (
+    InfrastructureDamageObstruction,
+)
+from ojp2.infrastructure_damage_type_enum import InfrastructureDamageTypeEnum
+from ojp2.initial_location_input_structure import InitialLocationInputStructure
+from ojp2.injury_status_type_enum import InjuryStatusTypeEnum
+from ojp2.inline_property_type import InlinePropertyType
+from ojp2.installed_equipment_structure import InstalledEquipmentStructure
+from ojp2.interchange_code import InterchangeCode
+from ojp2.interchange_ref import InterchangeRef
+from ojp2.interchange_ref_structure import InterchangeRefStructure
+from ojp2.interchange_status_enumeration import InterchangeStatusEnumeration
+from ojp2.interchange_status_type import InterchangeStatusType
+from ojp2.interior import Interior
+from ojp2.international_identifier import InternationalIdentifier
+from ojp2.international_text_structure import InternationalTextStructure
+from ojp2.invalid_data_references_error import InvalidDataReferencesError
+from ojp2.invalid_data_references_error_structure import (
+    InvalidDataReferencesErrorStructure,
+)
+from ojp2.involvement_roles_enum import InvolvementRolesEnum
+from ojp2.it_modes_structure import ItModesStructure
+from ojp2.item_ref_structure import ItemRefStructure
+from ojp2.itinerary import Itinerary
+from ojp2.journey_note import JourneyNote
+from ojp2.journey_part_info_structure import JourneyPartInfoStructure
+from ojp2.journey_part_ref_structure import JourneyPartRefStructure
+from ojp2.journey_pattern_ref import JourneyPatternRef
+from ojp2.journey_pattern_ref_structure import JourneyPatternRefStructure
+from ojp2.journey_place_ref_structure import JourneyPlaceRefStructure
+from ojp2.journey_ref import JourneyRef
+from ojp2.journey_ref_structure import JourneyRefStructure
+from ojp2.journey_relation_structure import JourneyRelationStructure
+from ojp2.journey_relation_type_enumeration import (
+    JourneyRelationTypeEnumeration,
+)
+from ojp2.journey_relations_structure import JourneyRelationsStructure
+from ojp2.key_list import KeyList
+from ojp2.key_list_structure import KeyListStructure
+from ojp2.key_value_structure import KeyValueStructure
+from ojp2.lane_enum import LaneEnum
+from ojp2.lang_value import LangValue
+from ojp2.leg_alight_structure import LegAlightStructure
+from ojp2.leg_attribute_structure import LegAttributeStructure
+from ojp2.leg_board_structure import LegBoardStructure
+from ojp2.leg_intermediate_structure import LegIntermediateStructure
+from ojp2.leg_structure import LegStructure
+from ojp2.leg_track_structure import LegTrackStructure
+from ojp2.length_characteristic import LengthCharacteristic
+from ojp2.level_ref_structure import LevelRefStructure
+from ojp2.life_cycle_management import LifeCycleManagement
+from ojp2.lift_free_access import LiftFreeAccess
+from ojp2.limitation_ref_structure import LimitationRefStructure
+from ojp2.line_direction_filter_structure import LineDirectionFilterStructure
+from ojp2.line_direction_structure import LineDirectionStructure
+from ojp2.line_information_problem_type import LineInformationProblemType
+from ojp2.line_information_problem_type_enumeration import (
+    LineInformationProblemTypeEnumeration,
+)
+from ojp2.line_ref import LineRef
+from ojp2.line_ref_structure import LineRefStructure
+from ojp2.line_result_structure import LineResultStructure
+from ojp2.line_shape_structure import LineShapeStructure
+from ojp2.line_string import LineString
+from ojp2.line_string_type import LineStringType
+from ojp2.linear import Linear
+from ojp2.linear_ring import LinearRing
+from ojp2.linear_ring_property_type import LinearRingPropertyType
+from ojp2.linear_ring_type import LinearRingType
+from ojp2.linear_shape_structure import LinearShapeStructure
+from ojp2.linear_traffic_view import LinearTrafficView
+from ojp2.link_content_enumeration import LinkContentEnumeration
+from ojp2.link_projection import LinkProjection
+from ojp2.link_projection_structure import LinkProjectionStructure
+from ojp2.load_type_enum import LoadTypeEnum
+from ojp2.local_service import LocalService
+from ojp2.local_service_structure import LocalServiceStructure
+from ojp2.location import Location
+from ojp2.location_by_reference import LocationByReference
+from ojp2.location_characteristics_override import (
+    LocationCharacteristicsOverride,
+)
+from ojp2.location_descriptor_enum import LocationDescriptorEnum
+from ojp2.location_problem_type import LocationProblemType
+from ojp2.location_problem_type_enumeration import (
+    LocationProblemTypeEnumeration,
+)
+from ojp2.location_structure import LocationStructure
+from ojp2.luggage_facility import LuggageFacility
+from ojp2.luggage_facility_enumeration import LuggageFacilityEnumeration
+from ojp2.maintenance_vehicle_actions_enum import MaintenanceVehicleActionsEnum
+from ojp2.maintenance_vehicles import MaintenanceVehicles
+from ojp2.maintenance_works import MaintenanceWorks
+from ojp2.managed_cause import ManagedCause
+from ojp2.management import Management
+from ojp2.manual_action import ManualAction
+from ojp2.manual_action_structure import ManualActionStructure
+from ojp2.matrix_fault_enum import MatrixFaultEnum
+from ojp2.matrix_sign_setting import MatrixSignSetting
+from ojp2.measure_list_type import MeasureListType
+from ojp2.measure_or_nil_reason_list_type import MeasureOrNilReasonListType
+from ojp2.measure_type import MeasureType
+from ojp2.measured_data_publication import MeasuredDataPublication
+from ojp2.measured_or_derived_data_type_enum import (
+    MeasuredOrDerivedDataTypeEnum,
+)
+from ojp2.measured_value import MeasuredValue
+from ojp2.measurement_site_record import MeasurementSiteRecord
+from ojp2.measurement_site_table import MeasurementSiteTable
+from ojp2.measurement_site_table_publication import (
+    MeasurementSiteTablePublication,
+)
+from ojp2.measurement_specific_characteristics import (
+    MeasurementSpecificCharacteristics,
+)
+from ojp2.medical_need_enumeration import MedicalNeedEnumeration
+from ojp2.message_qualifier_structure import MessageQualifierStructure
+from ojp2.message_ref_structure import MessageRefStructure
+from ojp2.metro_submode import MetroSubmode
+from ojp2.metro_submodes_of_transport_enumeration import (
+    MetroSubmodesOfTransportEnumeration,
+)
+from ojp2.miscellaneous_reason import MiscellaneousReason
+from ojp2.miscellaneous_sub_reason import MiscellaneousSubReason
+from ojp2.mobility import Mobility
+from ojp2.mobility_disruption_structure import MobilityDisruptionStructure
+from ojp2.mobility_enum import MobilityEnum
+from ojp2.mobility_enumeration import MobilityEnumeration
+from ojp2.mobility_facility import MobilityFacility
+from ojp2.mobility_facility_enumeration import MobilityFacilityEnumeration
+from ojp2.mode_and_mode_of_operation_filter_structure import (
+    ModeAndModeOfOperationFilterStructure,
+)
+from ojp2.mode_filter_structure import ModeFilterStructure
+from ojp2.mode_structure import ModeStructure
+from ojp2.modes_structure import ModesStructure
+from ojp2.modification_enumeration import ModificationEnumeration
+from ojp2.monitored_call_structure import MonitoredCallStructure
+from ojp2.monitored_counting_structure import MonitoredCountingStructure
+from ojp2.monitored_vehicle_journey_structure import (
+    MonitoredVehicleJourneyStructure,
+)
+from ojp2.monitoring_information_structure import (
+    MonitoringInformationStructure,
+)
+from ojp2.monitoring_ref_structure import MonitoringRefStructure
+from ojp2.monitoring_type_enumeration import MonitoringTypeEnumeration
+from ojp2.monitoring_validity_condition_structure import (
+    MonitoringValidityConditionStructure,
+)
+from ojp2.month_of_year_enum import MonthOfYearEnum
+from ojp2.multi_point_trip_param_structure import MultiPointTripParamStructure
+from ojp2.multi_point_trip_param_structure_cycling_profile import (
+    MultiPointTripParamStructureCyclingProfile,
+)
+from ojp2.multi_point_trip_param_structure_hiking_profile import (
+    MultiPointTripParamStructureHikingProfile,
+)
+from ojp2.multi_point_trip_result_structure import (
+    MultiPointTripResultStructure,
+)
+from ojp2.multi_point_type_enumeration import MultiPointTypeEnumeration
+from ojp2.multi_trip_fare_request_structure import (
+    MultiTripFareRequestStructure,
+)
+from ojp2.multi_trip_fare_result_structure import MultiTripFareResultStructure
+from ojp2.multilingual_string import MultilingualString
+from ojp2.multilingual_string_value import MultilingualStringValue
+from ojp2.name import Name
+from ojp2.namespace_type_ref_structure import NamespaceTypeRefStructure
+from ojp2.natural_language_place_name_structure import (
+    NaturalLanguagePlaceNameStructure,
+)
+from ojp2.natural_language_string_structure import (
+    NaturalLanguageStringStructure,
+)
+from ojp2.navigation_path_ref import NavigationPathRef
+from ojp2.navigation_path_ref_structure import NavigationPathRefStructure
+from ojp2.network_location import NetworkLocation
+from ojp2.network_management import NetworkManagement
+from ojp2.network_ref_structure import NetworkRefStructure
+from ojp2.network_structure import NetworkStructure
+from ojp2.nil_reason_enumeration_value import NilReasonEnumerationValue
+from ojp2.no_change_at_structure import NoChangeAtStructure
+from ojp2.no_info_for_topic_error import NoInfoForTopicError
+from ojp2.no_info_for_topic_error_structure import NoInfoForTopicErrorStructure
+from ojp2.non_managed_cause import NonManagedCause
+from ojp2.non_road_event_information import NonRoadEventInformation
+from ojp2.non_weather_related_road_condition_type_enum import (
+    NonWeatherRelatedRoadConditionTypeEnum,
+)
+from ojp2.non_weather_related_road_conditions import (
+    NonWeatherRelatedRoadConditions,
+)
+from ojp2.not_via_structure import NotViaStructure
+from ojp2.note_structure import NoteStructure
+from ojp2.notify_by_email_action import NotifyByEmailAction
+from ojp2.notify_by_email_action_structure import NotifyByEmailActionStructure
+from ojp2.notify_by_pager_action import NotifyByPagerAction
+from ojp2.notify_by_pager_action_structure import NotifyByPagerActionStructure
+from ojp2.notify_by_sms_action import NotifyBySmsAction
+from ojp2.notify_by_sms_action_structure import NotifyBySmsActionStructure
+from ojp2.notify_user_action import NotifyUserAction
+from ojp2.notify_user_action_structure import NotifyUserActionStructure
+from ojp2.nuisance_facility import NuisanceFacility
+from ojp2.nuisance_facility_enumeration import NuisanceFacilityEnumeration
+from ojp2.number_of_axles_characteristic import NumberOfAxlesCharacteristic
+from ojp2.obstruction import Obstruction
+from ojp2.obstruction_type_enum import ObstructionTypeEnum
+from ojp2.occupancy import Occupancy
+from ojp2.occupancy_enumeration import OccupancyEnumeration
+from ojp2.offset_distance import OffsetDistance
+from ojp2.offset_structure import OffsetStructure
+from ojp2.ojp import Ojp
+from ojp2.ojpavailability_delivery import OjpavailabilityDelivery
+from ojp2.ojpavailability_delivery_structure import (
+    OjpavailabilityDeliveryStructure,
+)
+from ojp2.ojpavailability_request import OjpavailabilityRequest
+from ojp2.ojpavailability_request_structure import (
+    OjpavailabilityRequestStructure,
+)
+from ojp2.ojperror import Ojperror
+from ojp2.ojperror_structure import OjperrorStructure
+from ojp2.ojpexchange_points_delivery import OjpexchangePointsDelivery
+from ojp2.ojpexchange_points_delivery_structure import (
+    OjpexchangePointsDeliveryStructure,
+)
+from ojp2.ojpexchange_points_request import OjpexchangePointsRequest
+from ojp2.ojpexchange_points_request_structure import (
+    OjpexchangePointsRequestStructure,
+)
+from ojp2.ojpfare_delivery import OjpfareDelivery
+from ojp2.ojpfare_delivery_structure import OjpfareDeliveryStructure
+from ojp2.ojpfare_request import OjpfareRequest
+from ojp2.ojpfare_request_structure import OjpfareRequestStructure
+from ojp2.ojpgeneric_problem_type import OjpgenericProblemType
+from ojp2.ojpgeneric_problem_type_enumeration import (
+    OjpgenericProblemTypeEnumeration,
+)
+from ojp2.ojpline_information_delivery import OjplineInformationDelivery
+from ojp2.ojpline_information_delivery_structure import (
+    OjplineInformationDeliveryStructure,
+)
+from ojp2.ojpline_information_request import OjplineInformationRequest
+from ojp2.ojpline_information_request_structure import (
+    OjplineInformationRequestStructure,
+)
+from ojp2.ojplocation_information_delivery import (
+    OjplocationInformationDelivery,
+)
+from ojp2.ojplocation_information_delivery_structure import (
+    OjplocationInformationDeliveryStructure,
+)
+from ojp2.ojplocation_information_request import OjplocationInformationRequest
+from ojp2.ojplocation_information_request_structure import (
+    OjplocationInformationRequestStructure,
+)
+from ojp2.ojpmulti_point_trip_delivery import OjpmultiPointTripDelivery
+from ojp2.ojpmulti_point_trip_delivery_structure import (
+    OjpmultiPointTripDeliveryStructure,
+)
+from ojp2.ojpmulti_point_trip_request import OjpmultiPointTripRequest
+from ojp2.ojpmulti_point_trip_request_structure import (
+    OjpmultiPointTripRequestStructure,
+)
+from ojp2.ojprequest import Ojprequest
+from ojp2.ojprequest_structure import OjprequestStructure
+from ojp2.ojpresponse import Ojpresponse
+from ojp2.ojpresponse_structure import OjpresponseStructure
+from ojp2.ojpstatus_delivery import OjpstatusDelivery
+from ojp2.ojpstatus_delivery_structure import OjpstatusDeliveryStructure
+from ojp2.ojpstatus_request import OjpstatusRequest
+from ojp2.ojpstatus_request_structure import OjpstatusRequestStructure
+from ojp2.ojpstatus_response import OjpstatusResponse
+from ojp2.ojpstatus_response_structure import OjpstatusResponseStructure
+from ojp2.ojpstop_event_delivery import OjpstopEventDelivery
+from ojp2.ojpstop_event_delivery_structure import OjpstopEventDeliveryStructure
+from ojp2.ojpstop_event_request import OjpstopEventRequest
+from ojp2.ojpstop_event_request_structure import OjpstopEventRequestStructure
+from ojp2.ojptrip_change_delivery import OjptripChangeDelivery
+from ojp2.ojptrip_change_delivery_structure import (
+    OjptripChangeDeliveryStructure,
+)
+from ojp2.ojptrip_change_request import OjptripChangeRequest
+from ojp2.ojptrip_change_request_structure import OjptripChangeRequestStructure
+from ojp2.ojptrip_delivery import OjptripDelivery
+from ojp2.ojptrip_delivery_structure import OjptripDeliveryStructure
+from ojp2.ojptrip_info_delivery import OjptripInfoDelivery
+from ojp2.ojptrip_info_delivery_structure import OjptripInfoDeliveryStructure
+from ojp2.ojptrip_info_request import OjptripInfoRequest
+from ojp2.ojptrip_info_request_structure import OjptripInfoRequestStructure
+from ojp2.ojptrip_refine_delivery import OjptripRefineDelivery
+from ojp2.ojptrip_refine_delivery_structure import (
+    OjptripRefineDeliveryStructure,
+)
+from ojp2.ojptrip_refine_request import OjptripRefineRequest
+from ojp2.ojptrip_refine_request_structure import OjptripRefineRequestStructure
+from ojp2.ojptrip_request import OjptripRequest
+from ojp2.ojptrip_request_structure import OjptripRequestStructure
+from ojp2.onward_call_structure import OnwardCallStructure
+from ojp2.onward_calls_structure import OnwardCallsStructure
+from ojp2.operating_day_ref import OperatingDayRef
+from ojp2.operating_day_ref_structure import OperatingDayRefStructure
+from ojp2.operating_days_structure import OperatingDaysStructure
+from ojp2.operating_mode_enum import OperatingModeEnum
+from ojp2.operational_unit_ref_structure import OperationalUnitRefStructure
+from ojp2.operator_action import OperatorAction
+from ojp2.operator_action_origin_enum import OperatorActionOriginEnum
+from ojp2.operator_action_status_enum import OperatorActionStatusEnum
+from ojp2.operator_filter_structure import OperatorFilterStructure
+from ojp2.operator_ref import OperatorRef
+from ojp2.operator_ref_structure import OperatorRefStructure
+from ojp2.operator_refs_rel_structure import OperatorRefsRelStructure
+from ojp2.operators_rel_structure import OperatorsRelStructure
+from ojp2.optimisation_method_enumeration import OptimisationMethodEnumeration
+from ojp2.optional_traffic_element_structure import (
+    OptionalTrafficElementStructure,
+)
+from ojp2.order import Order
+from ojp2.organisation_ref_structure import OrganisationRefStructure
+from ojp2.origin_name import OriginName
+from ojp2.origin_ref import OriginRef
+from ojp2.osm_tag_structure import OsmTagStructure
+from ojp2.other_error import OtherError
+from ojp2.other_error_structure import OtherErrorStructure
+from ojp2.other_place_equipment import OtherPlaceEquipment
+from ojp2.overall_period import OverallPeriod
+from ojp2.overall_severity_enum import OverallSeverityEnum
+from ojp2.owner_ref import OwnerRef
+from ojp2.owner_ref_structure import OwnerRefStructure
+from ojp2.parallel_service_structure import ParallelServiceStructure
+from ojp2.parameterised_action_structure import ParameterisedActionStructure
+from ojp2.parameters_ignored_error import ParametersIgnoredError
+from ojp2.parameters_ignored_error_structure import (
+    ParametersIgnoredErrorStructure,
+)
+from ojp2.parking_facility import ParkingFacility
+from ojp2.parking_facility_enumeration import ParkingFacilityEnumeration
+from ojp2.participant_ref import ParticipantRef
+from ojp2.participant_ref_structure import ParticipantRefStructure
+from ojp2.passage_between_trains_structure import PassageBetweenTrainsStructure
+from ojp2.passenger_accessibility_needs_structure import (
+    PassengerAccessibilityNeedsStructure,
+)
+from ojp2.passenger_capacity_structure import PassengerCapacityStructure
+from ojp2.passenger_category_enumeration import PassengerCategoryEnumeration
+from ojp2.passenger_comms_facility import PassengerCommsFacility
+from ojp2.passenger_comms_facility_enumeration import (
+    PassengerCommsFacilityEnumeration,
+)
+from ojp2.passenger_information_action import PassengerInformationAction
+from ojp2.passenger_information_action_structure import (
+    PassengerInformationActionStructure,
+)
+from ojp2.passenger_information_facility import PassengerInformationFacility
+from ojp2.passenger_information_facility_enumeration import (
+    PassengerInformationFacilityEnumeration,
+)
+from ojp2.path_guidance_section_structure import PathGuidanceSectionStructure
+from ojp2.path_guidance_structure import PathGuidanceStructure
+from ojp2.path_junction_ref import PathJunctionRef
+from ojp2.path_junction_ref_structure import PathJunctionRefStructure
+from ojp2.path_link_end_structure import PathLinkEndStructure
+from ojp2.path_link_structure import PathLinkStructure
+from ojp2.payload_publication import PayloadPublication
+from ojp2.period import Period
+from ojp2.person_category_enum import PersonCategoryEnum
+from ojp2.personal_modes_enumeration import PersonalModesEnumeration
+from ojp2.personal_modes_of_operation_enumeration import (
+    PersonalModesOfOperationEnumeration,
+)
+from ojp2.personnel_reason import PersonnelReason
+from ojp2.personnel_sub_reason import PersonnelSubReason
+from ojp2.perspective_enumeration import PerspectiveEnumeration
+from ojp2.place_context_structure import PlaceContextStructure
+from ojp2.place_equipment_structure import PlaceEquipmentStructure
+from ojp2.place_fare_request_structure import PlaceFareRequestStructure
+from ojp2.place_fare_result_structure import PlaceFareResultStructure
+from ojp2.place_name_structure import PlaceNameStructure
+from ojp2.place_param_structure import PlaceParamStructure
+from ojp2.place_ref_structure import PlaceRefStructure
+from ojp2.place_result_structure import PlaceResultStructure
+from ojp2.place_structure import PlaceStructure
+from ojp2.place_type_enumeration import PlaceTypeEnumeration
+from ojp2.place_usage_enumeration import PlaceUsageEnumeration
+from ojp2.places_enum import PlacesEnum
+from ojp2.places_structure import PlacesStructure
+from ojp2.planned_stop_assignment_structure import (
+    PlannedStopAssignmentStructure,
+)
+from ojp2.point import Point
+from ojp2.point_1 import Point1
+from ojp2.point_array_property_type import PointArrayPropertyType
+from ojp2.point_by_coordinates import PointByCoordinates
+from ojp2.point_coordinates import PointCoordinates
+from ojp2.point_destination import PointDestination
+from ojp2.point_of_interest_additional_information_structure import (
+    PointOfInterestAdditionalInformationStructure,
+)
+from ojp2.point_of_interest_category_structure import (
+    PointOfInterestCategoryStructure,
+)
+from ojp2.point_of_interest_filter_structure import (
+    PointOfInterestFilterStructure,
+)
+from ojp2.point_of_interest_ref import PointOfInterestRef
+from ojp2.point_of_interest_ref_structure import PointOfInterestRefStructure
+from ojp2.point_of_interest_structure import PointOfInterestStructure
+from ojp2.point_projection import PointProjection
+from ojp2.point_projection_structure import PointProjectionStructure
+from ojp2.point_property import PointProperty
+from ojp2.point_property_type import PointPropertyType
+from ojp2.point_type import PointType
+from ojp2.pollutant_type_enum import PollutantTypeEnum
+from ojp2.pollution_information import PollutionInformation
+from ojp2.pollution_measurement import PollutionMeasurement
+from ojp2.polygon import Polygon
+from ojp2.polygon_type import PolygonType
+from ojp2.poor_environment_conditions import PoorEnvironmentConditions
+from ojp2.poor_environment_type_enum import PoorEnvironmentTypeEnum
+from ojp2.pos import Pos
+from ojp2.pos_list import PosList
+from ojp2.precipitation_detail import PrecipitationDetail
+from ojp2.precipitation_information import PrecipitationInformation
+from ojp2.precipitation_type_enum import PrecipitationTypeEnum
+from ojp2.predefined_location import PredefinedLocation
+from ojp2.predefined_location_set import PredefinedLocationSet
+from ojp2.predefined_locations_publication import (
+    PredefinedLocationsPublication,
+)
+from ojp2.predictability import Predictability
+from ojp2.predictability_enumeration import PredictabilityEnumeration
+from ojp2.prediction_inaccurate import PredictionInaccurate
+from ojp2.prediction_inaccurate_reason import PredictionInaccurateReason
+from ojp2.prediction_inaccurate_reason_enumeration import (
+    PredictionInaccurateReasonEnumeration,
+)
+from ojp2.prediction_quality_structure import PredictionQualityStructure
+from ojp2.predictors_enumeration import PredictorsEnumeration
+from ojp2.previous_call_structure import PreviousCallStructure
+from ojp2.previous_calls_structure import PreviousCallsStructure
+from ojp2.private_code_structure import PrivateCodeStructure
+from ojp2.probability_of_occurrence_enum import ProbabilityOfOccurrenceEnum
+from ojp2.producer_request import ProducerRequest
+from ojp2.producer_request_endpoint_structure import (
+    ProducerRequestEndpointStructure,
+)
+from ojp2.producer_response_endpoint_structure import (
+    ProducerResponseEndpointStructure,
+)
+from ojp2.producer_response_structure import ProducerResponseStructure
+from ojp2.product_category import ProductCategory
+from ojp2.product_category_ref import ProductCategoryRef
+from ojp2.product_category_ref_structure import ProductCategoryRefStructure
+from ojp2.product_category_structure_1 import ProductCategoryStructure1
+from ojp2.product_category_structure_2 import ProductCategoryStructure2
+from ojp2.progress_between_stops_structure import ProgressBetweenStopsStructure
+from ojp2.progress_rate_enumeration import ProgressRateEnumeration
+from ojp2.provisioned_call_at_place_structure import (
+    ProvisionedCallAtPlaceStructure,
+)
+from ojp2.pt_advice_structure import PtAdviceStructure
+from ojp2.pt_consequence_structure import PtConsequenceStructure
+from ojp2.pt_consequences_structure import PtConsequencesStructure
+from ojp2.pt_situation_element import PtSituationElement
+from ojp2.pt_situation_element_structure import PtSituationElementStructure
+from ojp2.public_event import PublicEvent
+from ojp2.public_event_type_enum import PublicEventTypeEnum
+from ojp2.publish_to_alerts_action import PublishToAlertsAction
+from ojp2.publish_to_alerts_action_structure import (
+    PublishToAlertsActionStructure,
+)
+from ojp2.publish_to_display_action import PublishToDisplayAction
+from ojp2.publish_to_display_action_structure import (
+    PublishToDisplayActionStructure,
+)
+from ojp2.publish_to_mobile_action import PublishToMobileAction
+from ojp2.publish_to_mobile_action_structure import (
+    PublishToMobileActionStructure,
+)
+from ojp2.publish_to_tv_action import PublishToTvAction
+from ojp2.publish_to_tv_action_structure import PublishToTvActionStructure
+from ojp2.publish_to_web_action import PublishToWebAction
+from ojp2.publish_to_web_action_structure import PublishToWebActionStructure
+from ojp2.published_line_name import PublishedLineName
+from ojp2.publishing_action_structure import PublishingActionStructure
+from ojp2.purchase_moment_enumeration import PurchaseMomentEnumeration
+from ojp2.purchase_moment_list_of_enumerations import (
+    PurchaseMomentListOfEnumerations,
+)
+from ojp2.purchase_when_enumeration import PurchaseWhenEnumeration
+from ojp2.pushed_action_structure import PushedActionStructure
+from ojp2.pyschosensory_need_enumeration import PyschosensoryNeedEnumeration
+from ojp2.quality_index_enumeration import QualityIndexEnumeration
+from ojp2.quay_ref_structure_1 import QuayRefStructure1
+from ojp2.quay_ref_structure_2 import QuayRefStructure2
+from ojp2.quay_type import QuayType
+from ojp2.rail_submode import RailSubmode
+from ojp2.rail_submodes_of_transport_enumeration import (
+    RailSubmodesOfTransportEnumeration,
+)
+from ojp2.reason_content_structure import ReasonContentStructure
+from ojp2.reason_for_removal import ReasonForRemoval
+from ojp2.recommendation_content_structure import (
+    RecommendationContentStructure,
+)
+from ojp2.recommended_action_structure import RecommendedActionStructure
+from ojp2.recorded_departure_capacities import RecordedDepartureCapacities
+from ojp2.recorded_departure_occupancy import RecordedDepartureOccupancy
+from ojp2.reference_point_direction_enum import ReferencePointDirectionEnum
+from ojp2.reference_settings import ReferenceSettings
+from ojp2.reference_type import ReferenceType
+from ojp2.references_structure import ReferencesStructure
+from ojp2.refreshment_facility import RefreshmentFacility
+from ojp2.refreshment_facility_enumeration import (
+    RefreshmentFacilityEnumeration,
+)
+from ojp2.region_ref_structure import RegionRefStructure
+from ojp2.related_call_structure import RelatedCallStructure
+from ojp2.related_journey import RelatedJourney
+from ojp2.related_journey_part_structure import RelatedJourneyPartStructure
+from ojp2.related_journey_structure import RelatedJourneyStructure
+from ojp2.related_situation_structure import RelatedSituationStructure
+from ojp2.related_to_enumeration import RelatedToEnumeration
+from ojp2.relative_traffic_flow_enum import RelativeTrafficFlowEnum
+from ojp2.remark_content_structure import RemarkContentStructure
+from ojp2.remedy_structure import RemedyStructure
+from ojp2.remedy_type_enumeration import RemedyTypeEnumeration
+from ojp2.removed_dated_vehicle_journey_structure import (
+    RemovedDatedVehicleJourneyStructure,
+)
+from ojp2.removed_service_journey_interchange_structure import (
+    RemovedServiceJourneyInterchangeStructure,
+)
+from ojp2.report_type import ReportType
+from ojp2.report_type_enumeration import ReportTypeEnumeration
+from ojp2.request_structure import RequestStructure
+from ojp2.request_timestamp import RequestTimestamp
+from ojp2.request_type_enum import RequestTypeEnum
+from ojp2.requestor_ref import RequestorRef
+from ojp2.rerouting_management import ReroutingManagement
+from ojp2.rerouting_management_type_enum import ReroutingManagementTypeEnum
+from ojp2.reservation_needed_enumeration import ReservationNeededEnumeration
+from ojp2.reserved_space_facility import ReservedSpaceFacility
+from ojp2.reserved_space_facility_enumeration import (
+    ReservedSpaceFacilityEnumeration,
+)
+from ojp2.response_context_structure import ResponseContextStructure
+from ojp2.response_endpoint_structure import ResponseEndpointStructure
+from ojp2.response_enum import ResponseEnum
+from ojp2.response_status import ResponseStatus
+from ojp2.response_structure import ResponseStructure
+from ojp2.response_timestamp import ResponseTimestamp
+from ojp2.retail_facility import RetailFacility
+from ojp2.retail_facility_enumeration import RetailFacilityEnumeration
+from ojp2.reverse_property_name import ReversePropertyName
+from ojp2.road_conditions import RoadConditions
+from ojp2.road_maintenance_type_enum import RoadMaintenanceTypeEnum
+from ojp2.road_operator_service_disruption import RoadOperatorServiceDisruption
+from ojp2.road_operator_service_disruption_type_enum import (
+    RoadOperatorServiceDisruptionTypeEnum,
+)
+from ojp2.road_or_carriageway_or_lane_management import (
+    RoadOrCarriagewayOrLaneManagement,
+)
+from ojp2.road_or_carriageway_or_lane_management_type_enum import (
+    RoadOrCarriagewayOrLaneManagementTypeEnum,
+)
+from ojp2.road_situation_element import RoadSituationElement
+from ojp2.road_situation_element_structure import RoadSituationElementStructure
+from ojp2.road_surface_condition_information import (
+    RoadSurfaceConditionInformation,
+)
+from ojp2.road_surface_condition_measurements import (
+    RoadSurfaceConditionMeasurements,
+)
+from ojp2.roadside_assistance import RoadsideAssistance
+from ojp2.roadside_assistance_type_enum import RoadsideAssistanceTypeEnum
+from ojp2.roadside_reference_point import RoadsideReferencePoint
+from ojp2.roadside_reference_point_linear import RoadsideReferencePointLinear
+from ojp2.roadside_reference_point_primary_location import (
+    RoadsideReferencePointPrimaryLocation,
+)
+from ojp2.roadside_reference_point_secondary_location import (
+    RoadsideReferencePointSecondaryLocation,
+)
+from ojp2.roadside_service_disruption import RoadsideServiceDisruption
+from ojp2.roadside_service_disruption_type_enum import (
+    RoadsideServiceDisruptionTypeEnum,
+)
+from ojp2.roadworks import Roadworks
+from ojp2.roadworks_duration_enum import RoadworksDurationEnum
+from ojp2.roadworks_scale_enum import RoadworksScaleEnum
+from ojp2.route_link_ref_structure import RouteLinkRefStructure
+from ojp2.route_name import RouteName
+from ojp2.route_point_type import RoutePointType
+from ojp2.route_point_type_enumeration import RoutePointTypeEnumeration
+from ojp2.route_ref_structure import RouteRefStructure
+from ojp2.sanitary_facility import SanitaryFacility
+from ojp2.sanitary_facility_enumeration import SanitaryFacilityEnumeration
+from ojp2.scope_type_enumeration import ScopeTypeEnumeration
+from ojp2.section_ref_structure import SectionRefStructure
+from ojp2.self_drive_submode import SelfDriveSubmode
+from ojp2.self_drive_submodes_of_transport_enumeration import (
+    SelfDriveSubmodesOfTransportEnumeration,
+)
+from ojp2.sensitivity_enumeration import SensitivityEnumeration
+from ojp2.service_arrival_structure import ServiceArrivalStructure
+from ojp2.service_capabilities_request_structure import (
+    ServiceCapabilitiesRequestStructure,
+)
+from ojp2.service_condition_enumeration import ServiceConditionEnumeration
+from ojp2.service_delivery import ServiceDelivery
+from ojp2.service_delivery_body_structure import ServiceDeliveryBodyStructure
+from ojp2.service_delivery_error_condition_element import (
+    ServiceDeliveryErrorConditionElement,
+)
+from ojp2.service_delivery_error_condition_structure import (
+    ServiceDeliveryErrorConditionStructure,
+)
+from ojp2.service_delivery_structure import ServiceDeliveryStructure
+from ojp2.service_departure_structure import ServiceDepartureStructure
+from ojp2.service_feature import ServiceFeature
+from ojp2.service_feature_ref import ServiceFeatureRef
+from ojp2.service_feature_ref_structure import ServiceFeatureRefStructure
+from ojp2.service_feature_structure import ServiceFeatureStructure
+from ojp2.service_journey_interchange_structure import (
+    ServiceJourneyInterchangeStructure,
+)
+from ojp2.service_not_available_error import ServiceNotAvailableError
+from ojp2.service_not_available_error_structure import (
+    ServiceNotAvailableErrorStructure,
+)
+from ojp2.service_request import ServiceRequest
+from ojp2.service_request_context_structure import (
+    ServiceRequestContextStructure,
+)
+from ojp2.service_request_structure import ServiceRequestStructure
+from ojp2.service_via_point_structure import ServiceViaPointStructure
+from ojp2.severity import Severity
+from ojp2.severity_enumeration import SeverityEnumeration
+from ojp2.sign_setting import SignSetting
+from ojp2.simple_action_structure import SimpleActionStructure
+from ojp2.simple_contact_structure import SimpleContactStructure
+from ojp2.siri_schema import SiriSchema
+from ojp2.site_measurements import SiteMeasurements
+from ojp2.site_ref import SiteRef
+from ojp2.site_ref_structure import SiteRefStructure
+from ojp2.situation import Situation
+from ojp2.situation_element_structure import SituationElementStructure
+from ojp2.situation_full_ref_1 import SituationFullRef1
+from ojp2.situation_full_ref_2 import SituationFullRef2
+from ojp2.situation_full_ref_structure_1 import SituationFullRefStructure1
+from ojp2.situation_full_ref_structure_2 import SituationFullRefStructure2
+from ojp2.situation_number import SituationNumber
+from ojp2.situation_publication import SituationPublication
+from ojp2.situation_record import SituationRecord
+from ojp2.situation_ref import SituationRef
+from ojp2.situation_ref_list import SituationRefList
+from ojp2.situation_ref_structure import SituationRefStructure
+from ojp2.situation_shared_ref_structure import SituationSharedRefStructure
+from ojp2.situation_simple_ref import SituationSimpleRef
+from ojp2.situation_simple_ref_structure import SituationSimpleRefStructure
+from ojp2.situation_source_structure import SituationSourceStructure
+from ojp2.situation_source_type_enumeration import (
+    SituationSourceTypeEnumeration,
+)
+from ojp2.situation_version import SituationVersion
+from ojp2.situations_structure import SituationsStructure
+from ojp2.source import Source
+from ojp2.source_type_enum import SourceTypeEnum
+from ojp2.speed_management import SpeedManagement
+from ojp2.speed_management_type_enum import SpeedManagementTypeEnum
+from ojp2.speed_percentile import SpeedPercentile
+from ojp2.srs_name import SrsName
+from ojp2.static_fare_request_structure import StaticFareRequestStructure
+from ojp2.static_fare_result_structure import StaticFareResultStructure
+from ojp2.status import Status
+from ojp2.status_enumeration import StatusEnumeration
+from ojp2.status_problem_type import StatusProblemType
+from ojp2.status_problem_type_enumeration import StatusProblemTypeEnumeration
+from ojp2.status_response_structure import StatusResponseStructure
+from ojp2.step_free_access import StepFreeAccess
+from ojp2.stop_area_ref_structure import StopAreaRefStructure
+from ojp2.stop_assignment_structure import StopAssignmentStructure
+from ojp2.stop_event_param_structure import StopEventParamStructure
+from ojp2.stop_event_problem_type import StopEventProblemType
+from ojp2.stop_event_problem_type_enumeration import (
+    StopEventProblemTypeEnumeration,
+)
+from ojp2.stop_event_result_structure import StopEventResultStructure
+from ojp2.stop_event_structure import StopEventStructure
+from ojp2.stop_event_type_enumeration import StopEventTypeEnumeration
+from ojp2.stop_fare_request_structure import StopFareRequestStructure
+from ojp2.stop_fare_result_structure import StopFareResultStructure
+from ojp2.stop_path_link_ref_structure import StopPathLinkRefStructure
+from ojp2.stop_place_component_ref_structure import (
+    StopPlaceComponentRefStructure,
+)
+from ojp2.stop_place_component_type_enumeration import (
+    StopPlaceComponentTypeEnumeration,
+)
+from ojp2.stop_place_entrance_ref_structure import (
+    StopPlaceEntranceRefStructure,
+)
+from ojp2.stop_place_ref_1 import StopPlaceRef1
+from ojp2.stop_place_ref_2 import StopPlaceRef2
+from ojp2.stop_place_ref_structure_1 import StopPlaceRefStructure1
+from ojp2.stop_place_ref_structure_2 import StopPlaceRefStructure2
+from ojp2.stop_place_refs_structure import StopPlaceRefsStructure
+from ojp2.stop_place_space_ref_structure import StopPlaceSpaceRefStructure
+from ojp2.stop_place_structure import StopPlaceStructure
+from ojp2.stop_place_type_enumeration import StopPlaceTypeEnumeration
+from ojp2.stop_point_name import StopPointName
+from ojp2.stop_point_ref import StopPointRef
+from ojp2.stop_point_ref_structure import StopPointRefStructure
+from ojp2.stop_point_structure import StopPointStructure
+from ojp2.stop_point_type import StopPointType
+from ojp2.stop_point_type_enumeration import StopPointTypeEnumeration
+from ojp2.subject_type_of_works_enum import SubjectTypeOfWorksEnum
+from ojp2.subjects import Subjects
+from ojp2.subscription import Subscription
+from ojp2.subscription_context_structure import SubscriptionContextStructure
+from ojp2.subscription_filter_ref_structure import (
+    SubscriptionFilterRefStructure,
+)
+from ojp2.subscription_filter_structure import SubscriptionFilterStructure
+from ojp2.subscription_qualifier_structure import (
+    SubscriptionQualifierStructure,
+)
+from ojp2.subscription_ref_structure import SubscriptionRefStructure
+from ojp2.subscription_request import SubscriptionRequest
+from ojp2.subscription_request_structure import SubscriptionRequestStructure
+from ojp2.subscription_response import SubscriptionResponse
+from ojp2.subscription_response_body_structure import (
+    SubscriptionResponseBodyStructure,
+)
+from ojp2.subscription_response_structure import SubscriptionResponseStructure
+from ojp2.subscription_state_enum import SubscriptionStateEnum
+from ojp2.subscription_terminated_notification import (
+    SubscriptionTerminatedNotification,
+)
+from ojp2.subscription_terminated_notification_structure import (
+    SubscriptionTerminatedNotificationStructure,
+)
+from ojp2.suitability_enumeration import SuitabilityEnumeration
+from ojp2.suitability_structure import SuitabilityStructure
+from ojp2.summary_content_structure import SummaryContentStructure
+from ojp2.supplementary_positional_description import (
+    SupplementaryPositionalDescription,
+)
+from ojp2.surface_array_property_type import SurfaceArrayPropertyType
+from ojp2.surface_property import SurfaceProperty
+from ojp2.surface_property_type import SurfacePropertyType
+from ojp2.target import Target
+from ojp2.target_element import TargetElement
+from ojp2.targeted_interchange_structure import TargetedInterchangeStructure
+from ojp2.tariff_zone_list_in_area_structure import (
+    TariffZoneListInAreaStructure,
+)
+from ojp2.tariff_zone_ref import TariffZoneRef
+from ojp2.tariff_zone_ref_list_structure import TariffZoneRefListStructure
+from ojp2.tariff_zone_ref_structure import TariffZoneRefStructure
+from ojp2.tariff_zone_structure import TariffZoneStructure
+from ojp2.tariffzone_filter_structure import TariffzoneFilterStructure
+from ojp2.taxi_submode import TaxiSubmode
+from ojp2.taxi_submodes_of_transport_enumeration import (
+    TaxiSubmodesOfTransportEnumeration,
+)
+from ojp2.telecabin_submode import TelecabinSubmode
+from ojp2.telecabin_submodes_of_transport_enumeration import (
+    TelecabinSubmodesOfTransportEnumeration,
+)
+from ojp2.temperature import Temperature
+from ojp2.temperature_information import TemperatureInformation
+from ojp2.terminate_subscription_request import TerminateSubscriptionRequest
+from ojp2.terminate_subscription_request_body_structure import (
+    TerminateSubscriptionRequestBodyStructure,
+)
+from ojp2.terminate_subscription_request_structure import (
+    TerminateSubscriptionRequestStructure,
+)
+from ojp2.terminate_subscription_response import TerminateSubscriptionResponse
+from ojp2.terminate_subscription_response_structure import (
+    TerminateSubscriptionResponseStructure,
+)
+from ojp2.termination_response_status_structure import (
+    TerminationResponseStatusStructure,
+)
+from ojp2.textual_content_structure import TextualContentStructure
+from ojp2.ticket_restriction_enumeration import TicketRestrictionEnumeration
+from ojp2.ticket_restriction_type import TicketRestrictionType
+from ojp2.ticketing_facility import TicketingFacility
+from ojp2.ticketing_facility_enumeration import TicketingFacilityEnumeration
+from ojp2.time_period_by_hour import TimePeriodByHour
+from ojp2.time_period_of_day import TimePeriodOfDay
+from ojp2.timeband_structure import TimebandStructure
+from ojp2.timed_leg_structure import TimedLegStructure
+from ojp2.timetable_type import TimetableType
+from ojp2.timetable_type_enumeration import TimetableTypeEnumeration
+from ojp2.timing_point import TimingPoint
+from ojp2.to_service_journey_interchange_structure import (
+    ToServiceJourneyInterchangeStructure,
+)
+from ojp2.topographic_place_ref import TopographicPlaceRef
+from ojp2.topographic_place_ref_structure import TopographicPlaceRefStructure
+from ojp2.topographic_place_structure import TopographicPlaceStructure
+from ojp2.tpeg_area_descriptor import TpegAreaDescriptor
+from ojp2.tpeg_area_location import TpegAreaLocation
+from ojp2.tpeg_descriptor import TpegDescriptor
+from ojp2.tpeg_framed_point import TpegFramedPoint
+from ojp2.tpeg_geometric_area import TpegGeometricArea
+from ojp2.tpeg_height import TpegHeight
+from ojp2.tpeg_ilc_point_descriptor import TpegIlcPointDescriptor
+from ojp2.tpeg_junction import TpegJunction
+from ojp2.tpeg_junction_point_descriptor import TpegJunctionPointDescriptor
+from ojp2.tpeg_linear_location import TpegLinearLocation
+from ojp2.tpeg_loc01_area_location_subtype_enum import (
+    TpegLoc01AreaLocationSubtypeEnum,
+)
+from ojp2.tpeg_loc01_framed_point_location_subtype_enum import (
+    TpegLoc01FramedPointLocationSubtypeEnum,
+)
+from ojp2.tpeg_loc01_linear_location_subtype_enum import (
+    TpegLoc01LinearLocationSubtypeEnum,
+)
+from ojp2.tpeg_loc01_simple_point_location_subtype_enum import (
+    TpegLoc01SimplePointLocationSubtypeEnum,
+)
+from ojp2.tpeg_loc02_direction_type_enum import TpegLoc02DirectionTypeEnum
+from ojp2.tpeg_loc03_area_descriptor_subtype_enum import (
+    TpegLoc03AreaDescriptorSubtypeEnum,
+)
+from ojp2.tpeg_loc03_ilc_point_descriptor_subtype_enum import (
+    TpegLoc03IlcPointDescriptorSubtypeEnum,
+)
+from ojp2.tpeg_loc03_junction_point_descriptor_subtype_enum import (
+    TpegLoc03JunctionPointDescriptorSubtypeEnum,
+)
+from ojp2.tpeg_loc03_other_point_descriptor_subtype_enum import (
+    TpegLoc03OtherPointDescriptorSubtypeEnum,
+)
+from ojp2.tpeg_loc04_height_type_enum import TpegLoc04HeightTypeEnum
+from ojp2.tpeg_named_only_area import TpegNamedOnlyArea
+from ojp2.tpeg_non_junction_point import TpegNonJunctionPoint
+from ojp2.tpeg_other_point_descriptor import TpegOtherPointDescriptor
+from ojp2.tpeg_point import TpegPoint
+from ojp2.tpeg_point_descriptor import TpegPointDescriptor
+from ojp2.tpeg_point_location import TpegPointLocation
+from ojp2.tpeg_simple_point import TpegSimplePoint
+from ojp2.track_section_structure import TrackSectionStructure
+from ojp2.traffic_concentration import TrafficConcentration
+from ojp2.traffic_constriction_type_enum import TrafficConstrictionTypeEnum
+from ojp2.traffic_element import TrafficElement
+from ojp2.traffic_flow import TrafficFlow
+from ojp2.traffic_flow_characteristics_enum import (
+    TrafficFlowCharacteristicsEnum,
+)
+from ojp2.traffic_headway import TrafficHeadway
+from ojp2.traffic_speed import TrafficSpeed
+from ojp2.traffic_status_enum import TrafficStatusEnum
+from ojp2.traffic_status_value import TrafficStatusValue
+from ojp2.traffic_trend_type_enum import TrafficTrendTypeEnum
+from ojp2.traffic_type_enum import TrafficTypeEnum
+from ojp2.traffic_value import TrafficValue
+from ojp2.traffic_view import TrafficView
+from ojp2.traffic_view_publication import TrafficViewPublication
+from ojp2.traffic_view_record import TrafficViewRecord
+from ojp2.train import Train
+from ojp2.train_block_part_structure import TrainBlockPartStructure
+from ojp2.train_component import TrainComponent
+from ojp2.train_component_ref import TrainComponentRef
+from ojp2.train_component_ref_structure import TrainComponentRefStructure
+from ojp2.train_component_structure import TrainComponentStructure
+from ojp2.train_element import TrainElement
+from ojp2.train_element_ref import TrainElementRef
+from ojp2.train_element_ref_structure import TrainElementRefStructure
+from ojp2.train_element_structure import TrainElementStructure
+from ojp2.train_element_type_enumeration import TrainElementTypeEnumeration
+from ojp2.train_in_compound_train import TrainInCompoundTrain
+from ojp2.train_in_compound_train_ref import TrainInCompoundTrainRef
+from ojp2.train_in_compound_train_ref_structure import (
+    TrainInCompoundTrainRefStructure,
+)
+from ojp2.train_in_compound_train_structure import (
+    TrainInCompoundTrainStructure,
+)
+from ojp2.train_number_ref_structure import TrainNumberRefStructure
+from ojp2.train_part_ref_structure import TrainPartRefStructure
+from ojp2.train_ref import TrainRef
+from ojp2.train_ref_structure import TrainRefStructure
+from ojp2.train_size_enumeration import TrainSizeEnumeration
+from ojp2.train_structure import TrainStructure
+from ojp2.tram_submode import TramSubmode
+from ojp2.tram_submodes_of_transport_enumeration import (
+    TramSubmodesOfTransportEnumeration,
+)
+from ojp2.transfer_leg_structure import TransferLegStructure
+from ojp2.transfer_type_enumeration import TransferTypeEnumeration
+from ojp2.transit_information import TransitInformation
+from ojp2.transit_service_information_enum import TransitServiceInformationEnum
+from ojp2.transit_service_type_enum import TransitServiceTypeEnum
+from ojp2.transition_enumeration import TransitionEnumeration
+from ojp2.transport_description_structure import TransportDescriptionStructure
+from ojp2.travel_time_trend_type_enum import TravelTimeTrendTypeEnum
+from ojp2.travel_time_type_enum import TravelTimeTypeEnum
+from ojp2.travel_time_value import TravelTimeValue
+from ojp2.trip_change_param_structure import TripChangeParamStructure
+from ojp2.trip_change_problem_type import TripChangeProblemType
+from ojp2.trip_change_problem_type_enumeration import (
+    TripChangeProblemTypeEnumeration,
+)
+from ojp2.trip_fare_product_reference_structure import (
+    TripFareProductReferenceStructure,
+)
+from ojp2.trip_fare_request_structure import TripFareRequestStructure
+from ojp2.trip_fare_result_structure import TripFareResultStructure
+from ojp2.trip_info_param_structure import TripInfoParamStructure
+from ojp2.trip_info_problem_type import TripInfoProblemType
+from ojp2.trip_info_problem_type_enumeration import (
+    TripInfoProblemTypeEnumeration,
+)
+from ojp2.trip_info_result_structure import TripInfoResultStructure
+from ojp2.trip_location_structure import TripLocationStructure
+from ojp2.trip_param_structure import TripParamStructure
+from ojp2.trip_param_structure_cycling_profile import (
+    TripParamStructureCyclingProfile,
+)
+from ojp2.trip_param_structure_hiking_profile import (
+    TripParamStructureHikingProfile,
+)
+from ojp2.trip_problem_type import TripProblemType
+from ojp2.trip_problem_type_enumeration import TripProblemTypeEnumeration
+from ojp2.trip_refine_param_structure import TripRefineParamStructure
+from ojp2.trip_refine_param_structure_cycling_profile import (
+    TripRefineParamStructureCyclingProfile,
+)
+from ojp2.trip_refine_param_structure_hiking_profile import (
+    TripRefineParamStructureHikingProfile,
+)
+from ojp2.trip_result_structure import TripResultStructure
+from ojp2.trip_structure import TripStructure
+from ojp2.trip_summary_structure import TripSummaryStructure
+from ojp2.trip_via_structure import TripViaStructure
+from ojp2.turn_action_enumeration import TurnActionEnumeration
+from ojp2.type_of_fuel_enumeration import TypeOfFuelEnumeration
+from ojp2.type_of_nested_quay_enumeration import TypeOfNestedQuayEnumeration
+from ojp2.type_of_value import TypeOfValue
+from ojp2.type_of_value_ref_structure import TypeOfValueRefStructure
+from ojp2.type_of_value_structure import TypeOfValueStructure
+from ojp2.type_of_vehicle_fuel_structure import TypeOfVehicleFuelStructure
+from ojp2.types_of_value import TypesOfValue
+from ojp2.types_of_value_structure import TypesOfValueStructure
+from ojp2.unapproved_key_access_error import UnapprovedKeyAccessError
+from ojp2.unapproved_key_access_structure import UnapprovedKeyAccessStructure
+from ojp2.undefined_reason import UndefinedReason
+from ojp2.unknown_endpoint_error import UnknownEndpointError
+from ojp2.unknown_endpoint_error_structure import UnknownEndpointErrorStructure
+from ojp2.unknown_extensions_error import UnknownExtensionsError
+from ojp2.unknown_extensions_error_structure import (
+    UnknownExtensionsErrorStructure,
+)
+from ojp2.unknown_participant_error import UnknownParticipantError
+from ojp2.unknown_participant_error_structure import (
+    UnknownParticipantErrorStructure,
+)
+from ojp2.unknown_reason import UnknownReason
+from ojp2.unknown_subscriber_error import UnknownSubscriberError
+from ojp2.unknown_subscriber_error_structure import (
+    UnknownSubscriberErrorStructure,
+)
+from ojp2.unknown_subscription_error import UnknownSubscriptionError
+from ojp2.unknown_subscription_error_structure import (
+    UnknownSubscriptionErrorStructure,
+)
+from ojp2.update_method_enum import UpdateMethodEnum
+from ojp2.urgency_enum import UrgencyEnum
+from ojp2.url_link import UrlLink
+from ojp2.url_link_type_enum import UrlLinkTypeEnum
+from ojp2.use_realtime_data_enumeration import UseRealtimeDataEnumeration
+from ojp2.user_need_structure import UserNeedStructure
+from ojp2.validity import Validity
+from ojp2.validity_condition_structure import ValidityConditionStructure
+from ojp2.validity_conditions_structure import ValidityConditionsStructure
+from ojp2.validity_status_enum import ValidityStatusEnum
+from ojp2.value_set import ValueSet
+from ojp2.value_set_structure import ValueSetStructure
+from ojp2.values_structure import ValuesStructure
+from ojp2.variable_message_sign_setting import VariableMessageSignSetting
+from ojp2.vector import Vector
+from ojp2.vector_type import VectorType
+from ojp2.vehicle import Vehicle
+from ojp2.vehicle_at_stop import VehicleAtStop
+from ojp2.vehicle_characteristics import VehicleCharacteristics
+from ojp2.vehicle_detection_time import VehicleDetectionTime
+from ojp2.vehicle_equipment_enum import VehicleEquipmentEnum
+from ojp2.vehicle_feature import VehicleFeature
+from ojp2.vehicle_feature_ref_structure import VehicleFeatureRefStructure
+from ojp2.vehicle_features_structure import VehicleFeaturesStructure
+from ojp2.vehicle_filter_structure import VehicleFilterStructure
+from ojp2.vehicle_headway import VehicleHeadway
+from ojp2.vehicle_in_formation_status_enumeration import (
+    VehicleInFormationStatusEnumeration,
+)
+from ojp2.vehicle_in_formation_status_structure import (
+    VehicleInFormationStatusStructure,
+)
+from ojp2.vehicle_journey_ref import VehicleJourneyRef
+from ojp2.vehicle_journey_ref_structure import VehicleJourneyRefStructure
+from ojp2.vehicle_mode import VehicleMode
+from ojp2.vehicle_modes_enumeration import VehicleModesEnumeration
+from ojp2.vehicle_modes_of_transport_enumeration import (
+    VehicleModesOfTransportEnumeration,
+)
+from ojp2.vehicle_obstruction import VehicleObstruction
+from ojp2.vehicle_obstruction_type_enum import VehicleObstructionTypeEnum
+from ojp2.vehicle_occupancy_structure import VehicleOccupancyStructure
+from ojp2.vehicle_orientation_relative_to_quay import (
+    VehicleOrientationRelativeToQuay,
+)
+from ojp2.vehicle_position_structure import VehiclePositionStructure
+from ojp2.vehicle_progress_enumeration import VehicleProgressEnumeration
+from ojp2.vehicle_ref import VehicleRef
+from ojp2.vehicle_ref_structure import VehicleRefStructure
+from ojp2.vehicle_speed import VehicleSpeed
+from ojp2.vehicle_status_enum import VehicleStatusEnum
+from ojp2.vehicle_status_enumeration import VehicleStatusEnumeration
+from ojp2.vehicle_stopping_place_ref_structure import (
+    VehicleStoppingPlaceRefStructure,
+)
+from ojp2.vehicle_stopping_position_ref_structure import (
+    VehicleStoppingPositionRefStructure,
+)
+from ojp2.vehicle_type_enum import VehicleTypeEnum
+from ojp2.vehicle_usage_enum import VehicleUsageEnum
+from ojp2.verification_status import VerificationStatus
+from ojp2.verification_status_enumeration import VerificationStatusEnumeration
+from ojp2.version_ref import VersionRef
+from ojp2.version_ref_structure import VersionRefStructure
+from ojp2.versioned_object_structure import VersionedObjectStructure
+from ojp2.via_name import ViaName
+from ojp2.via_name_structure import ViaNameStructure
+from ojp2.via_ref import ViaRef
+from ojp2.visibility import Visibility
+from ojp2.visibility_information import VisibilityInformation
+from ojp2.visit_number import VisitNumber
+from ojp2.visual_signs_available import VisualSignsAvailable
+from ojp2.vms_fault_enum import VmsFaultEnum
+from ojp2.vms_type_enum import VmsTypeEnum
+from ojp2.water_submode import WaterSubmode
+from ojp2.water_submodes_of_transport_enumeration import (
+    WaterSubmodesOfTransportEnumeration,
+)
+from ojp2.weather_related_road_condition_type_enum import (
+    WeatherRelatedRoadConditionTypeEnum,
+)
+from ojp2.weather_related_road_conditions import WeatherRelatedRoadConditions
+from ojp2.weather_value import WeatherValue
+from ojp2.web_link_structure import WebLinkStructure
+from ojp2.week_of_month_enum import WeekOfMonthEnum
+from ojp2.weekday_time_period_structure import WeekdayTimePeriodStructure
+from ojp2.weekday_type_enumeration import WeekdayTypeEnumeration
+from ojp2.wheelchair_access import WheelchairAccess
+from ojp2.width_characteristic import WidthCharacteristic
+from ojp2.wind import Wind
+from ojp2.wind_information import WindInformation
+from ojp2.winter_driving_management import WinterDrivingManagement
+from ojp2.winter_equipment_management_type_enum import (
+    WinterEquipmentManagementTypeEnum,
+)
+from ojp2.workflow_status_enumeration import WorkflowStatusEnumeration
+from ojp2.zone_projection import ZoneProjection
+from ojp2.zone_projection_structure import ZoneProjectionStructure
+from ojp2.zone_ref_structure import ZoneRefStructure
+
+__all__ = [
+    "AbnormalTraffic",
+    "AbnormalTrafficTypeEnum",
+    "AbstractAssociationRole",
+    "AbstractCallStructure",
+    "AbstractCapabilitiesStructure",
+    "AbstractCurve",
+    "AbstractCurveType",
+    "AbstractDiscoveryDelivery",
+    "AbstractDiscoveryDeliveryStructure",
+    "AbstractDiscoveryRequest",
+    "AbstractDiscoveryRequestStructure",
+    "AbstractEquipmentStructure",
+    "AbstractFunctionalServiceCapabilitiesRequest",
+    "AbstractFunctionalServiceCapabilitiesResponse",
+    "AbstractFunctionalServiceDelivery",
+    "AbstractFunctionalServiceRequest",
+    "AbstractFunctionalServiceRequestStructure",
+    "AbstractFunctionalServiceSubscriptionRequest",
+    "AbstractGeometricPrimitive",
+    "AbstractGeometricPrimitiveType",
+    "AbstractGeometry",
+    "AbstractGeometryType",
+    "AbstractGml",
+    "AbstractGmltype",
+    "AbstractIdentifiedItemStructure",
+    "AbstractInlineProperty",
+    "AbstractItemStructure",
+    "AbstractMemberType",
+    "AbstractMetadataPropertyType",
+    "AbstractMonitoredCallStructure",
+    "AbstractNotificationStructure",
+    "AbstractObject",
+    "AbstractOjpserviceRequestStructure",
+    "AbstractProjection",
+    "AbstractReference",
+    "AbstractReferencingItemStructure",
+    "AbstractRequest",
+    "AbstractRequestStructure",
+    "AbstractRequiredIdentifiedItemStructure",
+    "AbstractRequiredReferencingItemStructure",
+    "AbstractResponse",
+    "AbstractRing",
+    "AbstractRingPropertyType",
+    "AbstractRingType",
+    "AbstractServiceCapabilitiesResponseStructure",
+    "AbstractServiceDeliveryStructure",
+    "AbstractServiceJourneyInterchangeStructure",
+    "AbstractServiceRequest",
+    "AbstractServiceRequestStructure",
+    "AbstractSituationElementStructure",
+    "AbstractStrictAssociationRole",
+    "AbstractSubscriptionRequestStructure",
+    "AbstractSubscriptionStructure",
+    "AbstractSurface",
+    "AbstractSurfaceType",
+    "AbstractTrackedRequest",
+    "AccessFacility",
+    "AccessFacilityEnumeration",
+    "AccessFeatureStatusEnumeration",
+    "AccessFeatureTypeEnumeration",
+    "AccessLinkRef",
+    "AccessLinkRefStructure",
+    "AccessModesEnumeration",
+    "AccessModesListOfEnumerations",
+    "AccessNotAllowedError",
+    "AccessNotAllowedErrorStructure",
+    "AccessPathLinkRefStructure",
+    "AccessSpaceRefStructure",
+    "AccessibilityAssessmentStructure",
+    "AccessibilityDetailsProfileEnumeration",
+    "AccessibilityEnumeration",
+    "AccessibilityFeatureEnumeration1",
+    "AccessibilityFeatureEnumeration2",
+    "AccessibilityFeatureTypesEnumeration",
+    "AccessibilityLimitationStructure",
+    "AccessibilityStructure",
+    "Accident",
+    "AccidentCauseEnum",
+    "AccidentTypeEnum",
+    "AccommodationFacility",
+    "AccommodationFacilityEnumeration",
+    "ActionDataStructure",
+    "ActionStatusEnumeration",
+    "ActionsStructure",
+    "Activity",
+    "ActualArrivalTime",
+    "ActualDepartureTime",
+    "ActualHeadwayInterval",
+    "AddressRef",
+    "AddressRefStructure",
+    "AddressStructure",
+    "AdministrativeAreaRefStructure",
+    "AdministrativeAreaRefsStructure",
+    "AdministrativeAreaVersionedRefStructure",
+    "AdministratorRefStructure",
+    "AdministratorVersionedRefStructure",
+    "AdviceRefStructure",
+    "AdviceTypeEnumeration",
+    "AffectedCallStructure",
+    "AffectedConnectionLinkStructure",
+    "AffectedFacilityStructure",
+    "AffectedInterchangeStructure",
+    "AffectedModesStructure",
+    "AffectedNetworkStructure",
+    "AffectedOperatorStructure",
+    "AffectedPathLinkStructure",
+    "AffectedPlaceStructure",
+    "AffectedRoadStructure",
+    "AffectedRoadsStructure",
+    "AffectedSectionStructure",
+    "AffectedStopPlaceComponentStructure",
+    "AffectedStopPlaceElementStructure",
+    "AffectedLineStructure",
+    "AffectedRouteStructure",
+    "AffectedStopPlaceStructure",
+    "AffectedStopPointStructure",
+    "AffectedVehicleJourneyStructure",
+    "AffectedVehicleStructure",
+    "AffectsScopeStructure",
+    "AimedArrivalTime",
+    "AimedArrivalTimeOfFeeder",
+    "AimedDepartureTime",
+    "AimedDepartureTimeOfDistributor",
+    "AimedFlexibleArea",
+    "AimedFlexibleAreaRef",
+    "AimedHeadwayInterval",
+    "AimedLatestPassengerAccessTime",
+    "AimedLocationName",
+    "AirSubmode",
+    "AirSubmodesOfTransportEnumeration",
+    "AlertCarea",
+    "AlertCause",
+    "AlertCauseEnumeration",
+    "AlertCdirection",
+    "AlertCdirectionEnum",
+    "AlertClinear",
+    "AlertClinearByCode",
+    "AlertClocation",
+    "AlertCmethod2Linear",
+    "AlertCmethod2Point",
+    "AlertCmethod2PrimaryPointLocation",
+    "AlertCmethod2SecondaryPointLocation",
+    "AlertCmethod4Linear",
+    "AlertCmethod4Point",
+    "AlertCmethod4PrimaryPointLocation",
+    "AlertCmethod4SecondaryPointLocation",
+    "AlertCpoint",
+    "AliasStructure",
+    "AllFacilitiesFeatureStructure",
+    "AllModesEnumeration",
+    "AllowedResourceUsageExceededError",
+    "AllowedResourceUsageExceededErrorStructure",
+    "AlternativeModesOfOperationEnumeration",
+    "AlternativeServiceStructure",
+    "AnimalPresenceObstruction",
+    "AnimalPresenceTypeEnum",
+    "AnnotatedFacilityStructure",
+    "Area",
+    "AreaDestination",
+    "AreaOfInterestEnum",
+    "AreaStructure",
+    "ArrivalBoardingActivity",
+    "ArrivalBoardingActivityEnumeration",
+    "ArrivalCancellationReason",
+    "ArrivalFormationAssignment",
+    "ArrivalOperatorRefs",
+    "ArrivalOrientationRelativeToQuay",
+    "ArrivalPlatformName",
+    "ArrivalProximityText",
+    "ArrivalStatus",
+    "AssistanceFacility",
+    "AssistanceFacilityEnumeration",
+    "AssociationName",
+    "AssociationRoleType",
+    "AudibleSignalsAvailable",
+    "AudienceEnumeration",
+    "AuthenticatedRequest",
+    "AuthenticatedRequestStructure",
+    "AuthorityOperation",
+    "AuthorityOperationTypeEnum",
+    "AuthorityRefStructure",
+    "AvailabilityProblemType",
+    "AvailabilityProblemTypeEnumeration",
+    "AvailabilityResultStructure",
+    "AxleSpacing",
+    "AxleWeight",
+    "BasicDataValue",
+    "BeyondDataHorizon",
+    "BeyondDataHorizonErrorStructure",
+    "BlockRefStructure",
+    "BlockingStructure",
+    "BoardingPositionRefStructure1",
+    "BoardingPositionRefStructure2",
+    "BoardingStructure",
+    "BookableServiceItemStructure",
+    "BookableServiceItemTypeEnumeration",
+    "BookingAccessEnumeration",
+    "BookingArrangementsContainerStructure",
+    "BookingArrangementsStructure",
+    "BookingMethodEnumeration",
+    "BookingMethodListOfEnumerations",
+    "BookingNotesStructure",
+    "BookingProcessEnumeration",
+    "BookingProcessListOfEnumerations",
+    "BookingPtlegStructure",
+    "BookingStatusEnumeration",
+    "BookingStatusType",
+    "BookingUserStructure",
+    "BookingUserStructureCyclingProfile",
+    "BookingUserStructureHikingProfile",
+    "BoundingBoxStructure",
+    "BrandingRefStructure",
+    "BrandingStructure",
+    "BusSubmode",
+    "BusSubmodesOfTransportEnumeration",
+    "CallAtNearStopStructure",
+    "CallAtStopStructure",
+    "CallStatusEnumeration",
+    "CapabilitiesRequest",
+    "CapabilitiesRequestStructure",
+    "CapabilitiesResponse",
+    "CapabilitiesResponseStructure",
+    "CapabilityGeneralInteractionStructure",
+    "CapabilityNotSupportedError",
+    "CapabilityNotSupportedErrorStructure",
+    "CapabilityRefStructure",
+    "CapabilityRequestPolicyStructure",
+    "CapabilitySubscriptionPolicyStructure",
+    "CarParkConfigurationEnum",
+    "CarParkStatusEnum",
+    "CarParks",
+    "CarriagewayEnum",
+    "CasualtiesStructure",
+    "CatalogueReference",
+    "CategoryKeyValueType",
+    "Cause",
+    "CauseTypeEnum",
+    "ChangedFlagEnum",
+    "CheckPointProcessEnumeration",
+    "CheckPointRefStructure",
+    "CheckPointServiceEnumeration",
+    "CheckPointStructure",
+    "CheckStatusRequest",
+    "CheckStatusRequestStructure",
+    "CheckStatusResponse",
+    "CheckStatusResponseBodyStructure",
+    "CheckStatusResponseStructure",
+    "CircularAreaStructure",
+    "ClearDownRefStructure",
+    "ClosedTimeRangeStructure",
+    "ClosedTimestampRangeStructure",
+    "CoachSubmode",
+    "CoachSubmodesOfTransportEnumeration",
+    "CodeListType",
+    "CodeOrNilReasonListType",
+    "CodeType",
+    "CodeWithAuthorityType",
+    "Comment",
+    "CommunicationsTransportMethodEnumeration",
+    "ComparisonOperatorEnum",
+    "ComplianceOptionEnum",
+    "CompoundTrain",
+    "CompoundTrainRef",
+    "CompoundTrainRefStructure",
+    "CompoundTrainStructure",
+    "CompressionMethodEnumeration",
+    "ComputationMethodEnum",
+    "Condition",
+    "Conditions",
+    "ConfidentialityValueEnum",
+    "CongestionEnumeration",
+    "ConnectingJourneyRefStructure",
+    "ConnectionDirectionEnumeration",
+    "ConnectionLinkRef",
+    "ConnectionLinkRefStructure",
+    "ConsequenceContentStructure",
+    "ConstructionWorkTypeEnum",
+    "ConstructionWorks",
+    "ConsumerRequestEndpointStructure",
+    "ConsumerResponseEndpointStructure",
+    "ContactDetailsStructure",
+    "ContextualisedConnectionLinkStructure",
+    "ContextualisedRequestStructure",
+    "ContinuousLegStructure",
+    "ContinuousServiceStructure",
+    "ConventionalModesOfOperationEnumeration",
+    "CoordinatesStructure",
+    "CoordinatesType",
+    "CountedFeatureUnitEnumeration",
+    "CountingTrendEnumeration",
+    "CountingTypeEnumeration",
+    "CountryEnum",
+    "CountryRefStructure",
+    "CourseOfJourneyRefStructure",
+    "CurveArrayPropertyType",
+    "CurveProperty",
+    "CurvePropertyType",
+    "D2LogicalModel",
+    "D2LogicalModel1",
+    "DangerousGoodsRegulationsEnum",
+    "DataFrameRefStructure",
+    "DataManagedObjectStructure",
+    "DataNameSpacesStructure",
+    "DataReadyAcknowledgement",
+    "DataReadyNotification",
+    "DataReadyRequestStructure",
+    "DataReadyResponseStructure",
+    "DataReceivedAcknowledgement",
+    "DataReceivedResponseStructure",
+    "DataSupplyRequest",
+    "DataSupplyRequestBodyStructure",
+    "DataSupplyRequestStructure",
+    "DatedCall",
+    "DatedCallStructure",
+    "DatedJourneyPartInfoStructure",
+    "DatedJourneyStructure",
+    "DatedVehicleJourney",
+    "DatedVehicleJourneyIndirectRefStructure",
+    "DatedVehicleJourneyRef",
+    "DatedVehicleJourneyRefStructure",
+    "DatedVehicleJourneyStructure",
+    "DatexPictogramEnum",
+    "DayEnum",
+    "DayType",
+    "DayTypeEnumeration",
+    "DayWeekMonth",
+    "DaysOfWeekEnumerationx",
+    "DefaultCodeSpace",
+    "DefaultedTextStructure",
+    "DelayBandEnum",
+    "DelayBandEnumeration",
+    "Delays",
+    "DelaysStructure",
+    "DelaysTypeEnum",
+    "DeliveryMethodEnumeration",
+    "DenyReasonEnum",
+    "DepartureBoardingActivity",
+    "DepartureBoardingActivityEnumeration",
+    "DepartureCancellationReason",
+    "DepartureFormationAssignment",
+    "DepartureOperatorRefs",
+    "DepartureOrientationRelativeToQuay",
+    "DeparturePlatformName",
+    "DepartureProximityText",
+    "DepartureStatus",
+    "DescriptionContentStructure",
+    "DescriptionReference",
+    "Destination",
+    "DestinationName",
+    "DestinationRef",
+    "DestinationRefStructure",
+    "DestinationStructure",
+    "DirectPositionListType",
+    "DirectPositionType",
+    "Direction",
+    "DirectionCompassEnum",
+    "DirectionEnum",
+    "DirectionRefStructure",
+    "DirectionStructure",
+    "DistributorDepartureStopRef",
+    "DistributorRef",
+    "DistributorStopOrder",
+    "DistributorVisitNumber",
+    "DisturbanceActivity",
+    "DisturbanceActivityTypeEnum",
+    "DriverRefStructure",
+    "DrivingConditionTypeEnum",
+    "DurationContentStructure",
+    "EasementsStructure",
+    "ElaboratedData",
+    "ElaboratedDataPublication",
+    "EmissionCo2Structure",
+    "EmptyType",
+    "EncumbranceEnumeration",
+    "EndTimePrecisionEnumeration",
+    "EndTimeStatusEnumeration",
+    "EndpointDeniedAccessError",
+    "EndpointDeniedAccessStructure",
+    "EndpointNotAvailableAccessError",
+    "EndpointNotAvailableAccessStructure",
+    "EntitlementProductListStructure",
+    "EntitlementProductStructure",
+    "EntranceToVehicleRef",
+    "EntranceToVehicleRefStructure",
+    "EntryQualifierStructure",
+    "Envelope",
+    "EnvelopeType",
+    "EnvironmentReason",
+    "EnvironmentSubReason",
+    "EnvironmentalObstruction",
+    "EnvironmentalObstructionTypeEnum",
+    "EquipmentAvailabilityStructure",
+    "EquipmentOrSystemFault",
+    "EquipmentOrSystemFaultTypeEnum",
+    "EquipmentOrSystemTypeEnum",
+    "EquipmentReason",
+    "EquipmentRefStructure",
+    "EquipmentStatusEnumeration",
+    "EquipmentSubReason",
+    "EquipmentTypeRefStructure",
+    "ErrorCode",
+    "ErrorCodeStructure",
+    "ErrorCondition",
+    "ErrorConditionElement",
+    "ErrorConditionElementStructure",
+    "ErrorConditionStructure",
+    "ErrorDescriptionStructure",
+    "ErrorType",
+    "EscalatorFreeAccess",
+    "Exchange",
+    "ExchangePointsParamStructure",
+    "ExchangePointsProblemType",
+    "ExchangePointsProblemTypeEnumeration",
+    "ExchangePointsResultStructure",
+    "ExpectedArrivalTime",
+    "ExpectedDepartureCapacities",
+    "ExpectedDepartureOccupancy",
+    "ExpectedDepartureTime",
+    "ExpectedHeadwayInterval",
+    "ExpectedLatestPassengerAccessTime",
+    "ExtendToFrontOrBackType",
+    "ExtensionType",
+    "Extensions1",
+    "Extensions2",
+    "ExtensionsStructure",
+    "Exterior",
+    "ExternalReferencing",
+    "ExtraInterchange",
+    "FacilityCategoryEnumeration",
+    "FacilityChangeElement",
+    "FacilityChangeStructure",
+    "FacilityConditionElement",
+    "FacilityConditionStructure",
+    "FacilityLocationStructure",
+    "FacilityRef",
+    "FacilityRefStructure",
+    "FacilityStatusEnumeration",
+    "FacilityStatusStructure",
+    "FacilityStructure",
+    "FareAuthorityRef",
+    "FareAuthorityRefStructure",
+    "FareClass",
+    "FareClassEnumeration",
+    "FareClassFacility",
+    "FareClassFacilityEnumeration",
+    "FareClasses",
+    "FareParamStructure",
+    "FarePassengerStructure",
+    "FareProblemType",
+    "FareProblemTypeEnumeration",
+    "FareProductRef",
+    "FareProductRefStructure",
+    "FareProductStructure",
+    "FareResultStructure",
+    "FeasibilityEnumeration",
+    "FeatureIdRefStructure",
+    "FeatureRef",
+    "FeatureRefStructure1",
+    "FeatureRefStructure2",
+    "FeederArrivalStopRef",
+    "FeederRef",
+    "FeederStopOrder",
+    "FeederVisitNumber",
+    "FilterExitManagement",
+    "FilterReference",
+    "FirstOrLastJourney",
+    "FirstOrLastJourneyEnumeration",
+    "FlexibleAreaRefStructure",
+    "FlexibleAreaStructure",
+    "FollowStructure",
+    "FormationAssignmentStructure",
+    "FormationChangeEnumeration",
+    "FormationCondition",
+    "FormationConditionStructure",
+    "FormationStatusStructure",
+    "FramedVehicleJourneyRefStructure",
+    "FromServiceJourneyInterchangeStructure",
+    "FuelTypeEnum",
+    "FunicularSubmode",
+    "FunicularSubmodesOfTransportEnumeration",
+    "GeneralAttributeStructure",
+    "GeneralInstructionToRoadUsers",
+    "GeneralInstructionToRoadUsersTypeEnum",
+    "GeneralNetworkManagement",
+    "GeneralNetworkManagementTypeEnum",
+    "GeneralObstruction",
+    "GenericPublication",
+    "GenericSituationRecord",
+    "GeoAreaStructure",
+    "GeoCircleStructure",
+    "GeoRectangleStructure",
+    "GeoRestrictionsStructure",
+    "GeometricPrimitivePropertyType",
+    "GeometryArrayPropertyType",
+    "GeometryPropertyType",
+    "GmlProfileSchema",
+    "GrossWeightCharacteristic",
+    "GroupBookingEnumeration",
+    "GroupBookingListOfEnumerations",
+    "GroupOfLinesRefStructure",
+    "GroupOfLocations",
+    "GroupOfLocationsByReference",
+    "GroupOfNonOrderedLocations",
+    "GroupOfPeopleInvolved",
+    "GroupOfVehiclesInvolved",
+    "GroupReservationStructure",
+    "GuidanceAdviceEnumeration",
+    "GuideDogAccess",
+    "HalfOpenTimeRangeStructure1",
+    "HalfOpenTimeRangeStructure2",
+    "HalfOpenTimestampInputRangeStructure",
+    "HalfOpenTimestampOutputRangeStructure",
+    "HazardousMaterials",
+    "HeaderInformation",
+    "HeartbeatNotification",
+    "HeartbeatNotificationStructure",
+    "HeaviestAxleWeightCharacteristic",
+    "HeightCharacteristic",
+    "HierarchyEnumeration",
+    "HireFacility",
+    "HireFacilityEnumeration",
+    "HolidayTypeEnumerationx",
+    "Humidity",
+    "HumidityInformation",
+    "IanaCountryTldEnumeration",
+    "Identifier",
+    "ImageContentEnumeration",
+    "ImageStructure",
+    "Impact",
+    "IncludeFormationEnumeration",
+    "IncludeInterchanges",
+    "IncludeJourneyRelations",
+    "IncludeTrainFormations",
+    "IncludeTranslations",
+    "IndividualTransportOptionStructure",
+    "IndividualVehicleMeasurements",
+    "InfoChannelRefStructure",
+    "InfoLink",
+    "InfoLinkStructure1",
+    "InfoLinkStructure2",
+    "InfoLinksStructure",
+    "InformationStatusEnum",
+    "InfrastructureDamageObstruction",
+    "InfrastructureDamageTypeEnum",
+    "InitialLocationInputStructure",
+    "InjuryStatusTypeEnum",
+    "InlinePropertyType",
+    "InstalledEquipmentStructure",
+    "InterchangeCode",
+    "InterchangeRef",
+    "InterchangeRefStructure",
+    "InterchangeStatusEnumeration",
+    "InterchangeStatusType",
+    "Interior",
+    "InternationalIdentifier",
+    "InternationalTextStructure",
+    "InvalidDataReferencesError",
+    "InvalidDataReferencesErrorStructure",
+    "InvolvementRolesEnum",
+    "ItModesStructure",
+    "ItemRefStructure",
+    "Itinerary",
+    "JourneyNote",
+    "JourneyPartInfoStructure",
+    "JourneyPartRefStructure",
+    "JourneyPatternRef",
+    "JourneyPatternRefStructure",
+    "JourneyPlaceRefStructure",
+    "JourneyRef",
+    "JourneyRefStructure",
+    "JourneyRelationStructure",
+    "JourneyRelationTypeEnumeration",
+    "JourneyRelationsStructure",
+    "KeyList",
+    "KeyListStructure",
+    "KeyValueStructure",
+    "LaneEnum",
+    "LangValue",
+    "LegAlightStructure",
+    "LegAttributeStructure",
+    "LegBoardStructure",
+    "LegIntermediateStructure",
+    "LegStructure",
+    "LegTrackStructure",
+    "LengthCharacteristic",
+    "LevelRefStructure",
+    "LifeCycleManagement",
+    "LiftFreeAccess",
+    "LimitationRefStructure",
+    "LineDirectionFilterStructure",
+    "LineDirectionStructure",
+    "LineInformationProblemType",
+    "LineInformationProblemTypeEnumeration",
+    "LineRef",
+    "LineRefStructure",
+    "LineResultStructure",
+    "LineShapeStructure",
+    "LineString",
+    "LineStringType",
+    "Linear",
+    "LinearRing",
+    "LinearRingPropertyType",
+    "LinearRingType",
+    "LinearShapeStructure",
+    "LinearTrafficView",
+    "LinkContentEnumeration",
+    "LinkProjection",
+    "LinkProjectionStructure",
+    "LoadTypeEnum",
+    "LocalService",
+    "LocalServiceStructure",
+    "Location",
+    "LocationByReference",
+    "LocationCharacteristicsOverride",
+    "LocationDescriptorEnum",
+    "LocationProblemType",
+    "LocationProblemTypeEnumeration",
+    "LocationStructure",
+    "LuggageFacility",
+    "LuggageFacilityEnumeration",
+    "MaintenanceVehicleActionsEnum",
+    "MaintenanceVehicles",
+    "MaintenanceWorks",
+    "ManagedCause",
+    "Management",
+    "ManualAction",
+    "ManualActionStructure",
+    "MatrixFaultEnum",
+    "MatrixSignSetting",
+    "MeasureListType",
+    "MeasureOrNilReasonListType",
+    "MeasureType",
+    "MeasuredDataPublication",
+    "MeasuredOrDerivedDataTypeEnum",
+    "MeasuredValue",
+    "MeasurementSiteRecord",
+    "MeasurementSiteTable",
+    "MeasurementSiteTablePublication",
+    "MeasurementSpecificCharacteristics",
+    "MedicalNeedEnumeration",
+    "MessageQualifierStructure",
+    "MessageRefStructure",
+    "MetroSubmode",
+    "MetroSubmodesOfTransportEnumeration",
+    "MiscellaneousReason",
+    "MiscellaneousSubReason",
+    "Mobility",
+    "MobilityDisruptionStructure",
+    "MobilityEnum",
+    "MobilityEnumeration",
+    "MobilityFacility",
+    "MobilityFacilityEnumeration",
+    "ModeAndModeOfOperationFilterStructure",
+    "ModeFilterStructure",
+    "ModeStructure",
+    "ModesStructure",
+    "ModificationEnumeration",
+    "MonitoredCallStructure",
+    "MonitoredCountingStructure",
+    "MonitoredVehicleJourneyStructure",
+    "MonitoringInformationStructure",
+    "MonitoringRefStructure",
+    "MonitoringTypeEnumeration",
+    "MonitoringValidityConditionStructure",
+    "MonthOfYearEnum",
+    "MultiPointTripParamStructure",
+    "MultiPointTripParamStructureCyclingProfile",
+    "MultiPointTripParamStructureHikingProfile",
+    "MultiPointTripResultStructure",
+    "MultiPointTypeEnumeration",
+    "MultiTripFareRequestStructure",
+    "MultiTripFareResultStructure",
+    "MultilingualString",
+    "MultilingualStringValue",
+    "Name",
+    "NamespaceTypeRefStructure",
+    "NaturalLanguagePlaceNameStructure",
+    "NaturalLanguageStringStructure",
+    "NavigationPathRef",
+    "NavigationPathRefStructure",
+    "NetworkLocation",
+    "NetworkManagement",
+    "NetworkRefStructure",
+    "NetworkStructure",
+    "NilReasonEnumerationValue",
+    "NoChangeAtStructure",
+    "NoInfoForTopicError",
+    "NoInfoForTopicErrorStructure",
+    "NonManagedCause",
+    "NonRoadEventInformation",
+    "NonWeatherRelatedRoadConditionTypeEnum",
+    "NonWeatherRelatedRoadConditions",
+    "NotViaStructure",
+    "NoteStructure",
+    "NotifyByEmailAction",
+    "NotifyByEmailActionStructure",
+    "NotifyByPagerAction",
+    "NotifyByPagerActionStructure",
+    "NotifyBySmsAction",
+    "NotifyBySmsActionStructure",
+    "NotifyUserAction",
+    "NotifyUserActionStructure",
+    "NuisanceFacility",
+    "NuisanceFacilityEnumeration",
+    "NumberOfAxlesCharacteristic",
+    "Obstruction",
+    "ObstructionTypeEnum",
+    "Occupancy",
+    "OccupancyEnumeration",
+    "OffsetDistance",
+    "OffsetStructure",
+    "Ojp",
+    "OjpavailabilityDelivery",
+    "OjpavailabilityDeliveryStructure",
+    "OjpavailabilityRequest",
+    "OjpavailabilityRequestStructure",
+    "Ojperror",
+    "OjperrorStructure",
+    "OjpexchangePointsDelivery",
+    "OjpexchangePointsDeliveryStructure",
+    "OjpexchangePointsRequest",
+    "OjpexchangePointsRequestStructure",
+    "OjpfareDelivery",
+    "OjpfareDeliveryStructure",
+    "OjpfareRequest",
+    "OjpfareRequestStructure",
+    "OjpgenericProblemType",
+    "OjpgenericProblemTypeEnumeration",
+    "OjplineInformationDelivery",
+    "OjplineInformationDeliveryStructure",
+    "OjplineInformationRequest",
+    "OjplineInformationRequestStructure",
+    "OjplocationInformationDelivery",
+    "OjplocationInformationDeliveryStructure",
+    "OjplocationInformationRequest",
+    "OjplocationInformationRequestStructure",
+    "OjpmultiPointTripDelivery",
+    "OjpmultiPointTripDeliveryStructure",
+    "OjpmultiPointTripRequest",
+    "OjpmultiPointTripRequestStructure",
+    "Ojprequest",
+    "OjprequestStructure",
+    "Ojpresponse",
+    "OjpresponseStructure",
+    "OjpstatusDelivery",
+    "OjpstatusDeliveryStructure",
+    "OjpstatusRequest",
+    "OjpstatusRequestStructure",
+    "OjpstatusResponse",
+    "OjpstatusResponseStructure",
+    "OjpstopEventDelivery",
+    "OjpstopEventDeliveryStructure",
+    "OjpstopEventRequest",
+    "OjpstopEventRequestStructure",
+    "OjptripChangeDelivery",
+    "OjptripChangeDeliveryStructure",
+    "OjptripChangeRequest",
+    "OjptripChangeRequestStructure",
+    "OjptripDelivery",
+    "OjptripDeliveryStructure",
+    "OjptripInfoDelivery",
+    "OjptripInfoDeliveryStructure",
+    "OjptripInfoRequest",
+    "OjptripInfoRequestStructure",
+    "OjptripRefineDelivery",
+    "OjptripRefineDeliveryStructure",
+    "OjptripRefineRequest",
+    "OjptripRefineRequestStructure",
+    "OjptripRequest",
+    "OjptripRequestStructure",
+    "OnwardCallStructure",
+    "OnwardCallsStructure",
+    "OperatingDayRef",
+    "OperatingDayRefStructure",
+    "OperatingDaysStructure",
+    "OperatingModeEnum",
+    "OperationalUnitRefStructure",
+    "OperatorAction",
+    "OperatorActionOriginEnum",
+    "OperatorActionStatusEnum",
+    "OperatorFilterStructure",
+    "OperatorRef",
+    "OperatorRefStructure",
+    "OperatorRefsRelStructure",
+    "OperatorsRelStructure",
+    "OptimisationMethodEnumeration",
+    "OptionalTrafficElementStructure",
+    "Order",
+    "OrganisationRefStructure",
+    "OriginName",
+    "OriginRef",
+    "OsmTagStructure",
+    "OtherError",
+    "OtherErrorStructure",
+    "OtherPlaceEquipment",
+    "OverallPeriod",
+    "OverallSeverityEnum",
+    "OwnerRef",
+    "OwnerRefStructure",
+    "ParallelServiceStructure",
+    "ParameterisedActionStructure",
+    "ParametersIgnoredError",
+    "ParametersIgnoredErrorStructure",
+    "ParkingFacility",
+    "ParkingFacilityEnumeration",
+    "ParticipantRef",
+    "ParticipantRefStructure",
+    "PassageBetweenTrainsStructure",
+    "PassengerAccessibilityNeedsStructure",
+    "PassengerCapacityStructure",
+    "PassengerCategoryEnumeration",
+    "PassengerCommsFacility",
+    "PassengerCommsFacilityEnumeration",
+    "PassengerInformationAction",
+    "PassengerInformationActionStructure",
+    "PassengerInformationFacility",
+    "PassengerInformationFacilityEnumeration",
+    "PathGuidanceSectionStructure",
+    "PathGuidanceStructure",
+    "PathJunctionRef",
+    "PathJunctionRefStructure",
+    "PathLinkEndStructure",
+    "PathLinkStructure",
+    "PayloadPublication",
+    "Period",
+    "PersonCategoryEnum",
+    "PersonalModesEnumeration",
+    "PersonalModesOfOperationEnumeration",
+    "PersonnelReason",
+    "PersonnelSubReason",
+    "PerspectiveEnumeration",
+    "PlaceContextStructure",
+    "PlaceEquipmentStructure",
+    "PlaceFareRequestStructure",
+    "PlaceFareResultStructure",
+    "PlaceNameStructure",
+    "PlaceParamStructure",
+    "PlaceRefStructure",
+    "PlaceResultStructure",
+    "PlaceStructure",
+    "PlaceTypeEnumeration",
+    "PlaceUsageEnumeration",
+    "PlacesEnum",
+    "PlacesStructure",
+    "PlannedStopAssignmentStructure",
+    "Point",
+    "Point1",
+    "PointArrayPropertyType",
+    "PointByCoordinates",
+    "PointCoordinates",
+    "PointDestination",
+    "PointOfInterestAdditionalInformationStructure",
+    "PointOfInterestCategoryStructure",
+    "PointOfInterestFilterStructure",
+    "PointOfInterestRef",
+    "PointOfInterestRefStructure",
+    "PointOfInterestStructure",
+    "PointProjection",
+    "PointProjectionStructure",
+    "PointProperty",
+    "PointPropertyType",
+    "PointType",
+    "PollutantTypeEnum",
+    "PollutionInformation",
+    "PollutionMeasurement",
+    "Polygon",
+    "PolygonType",
+    "PoorEnvironmentConditions",
+    "PoorEnvironmentTypeEnum",
+    "Pos",
+    "PosList",
+    "PrecipitationDetail",
+    "PrecipitationInformation",
+    "PrecipitationTypeEnum",
+    "PredefinedLocation",
+    "PredefinedLocationSet",
+    "PredefinedLocationsPublication",
+    "Predictability",
+    "PredictabilityEnumeration",
+    "PredictionInaccurate",
+    "PredictionInaccurateReason",
+    "PredictionInaccurateReasonEnumeration",
+    "PredictionQualityStructure",
+    "PredictorsEnumeration",
+    "PreviousCallStructure",
+    "PreviousCallsStructure",
+    "PrivateCodeStructure",
+    "ProbabilityOfOccurrenceEnum",
+    "ProducerRequest",
+    "ProducerRequestEndpointStructure",
+    "ProducerResponseEndpointStructure",
+    "ProducerResponseStructure",
+    "ProductCategory",
+    "ProductCategoryRef",
+    "ProductCategoryRefStructure",
+    "ProductCategoryStructure1",
+    "ProductCategoryStructure2",
+    "ProgressBetweenStopsStructure",
+    "ProgressRateEnumeration",
+    "ProvisionedCallAtPlaceStructure",
+    "PtAdviceStructure",
+    "PtConsequenceStructure",
+    "PtConsequencesStructure",
+    "PtSituationElement",
+    "PtSituationElementStructure",
+    "PublicEvent",
+    "PublicEventTypeEnum",
+    "PublishToAlertsAction",
+    "PublishToAlertsActionStructure",
+    "PublishToDisplayAction",
+    "PublishToDisplayActionStructure",
+    "PublishToMobileAction",
+    "PublishToMobileActionStructure",
+    "PublishToTvAction",
+    "PublishToTvActionStructure",
+    "PublishToWebAction",
+    "PublishToWebActionStructure",
+    "PublishedLineName",
+    "PublishingActionStructure",
+    "PurchaseMomentEnumeration",
+    "PurchaseMomentListOfEnumerations",
+    "PurchaseWhenEnumeration",
+    "PushedActionStructure",
+    "PyschosensoryNeedEnumeration",
+    "QualityIndexEnumeration",
+    "QuayRefStructure1",
+    "QuayRefStructure2",
+    "QuayType",
+    "RailSubmode",
+    "RailSubmodesOfTransportEnumeration",
+    "ReasonContentStructure",
+    "ReasonForRemoval",
+    "RecommendationContentStructure",
+    "RecommendedActionStructure",
+    "RecordedDepartureCapacities",
+    "RecordedDepartureOccupancy",
+    "ReferencePointDirectionEnum",
+    "ReferenceSettings",
+    "ReferenceType",
+    "ReferencesStructure",
+    "RefreshmentFacility",
+    "RefreshmentFacilityEnumeration",
+    "RegionRefStructure",
+    "RelatedCallStructure",
+    "RelatedJourney",
+    "RelatedJourneyPartStructure",
+    "RelatedJourneyStructure",
+    "RelatedSituationStructure",
+    "RelatedToEnumeration",
+    "RelativeTrafficFlowEnum",
+    "RemarkContentStructure",
+    "RemedyStructure",
+    "RemedyTypeEnumeration",
+    "RemovedDatedVehicleJourneyStructure",
+    "RemovedServiceJourneyInterchangeStructure",
+    "ReportType",
+    "ReportTypeEnumeration",
+    "RequestStructure",
+    "RequestTimestamp",
+    "RequestTypeEnum",
+    "RequestorRef",
+    "ReroutingManagement",
+    "ReroutingManagementTypeEnum",
+    "ReservationNeededEnumeration",
+    "ReservedSpaceFacility",
+    "ReservedSpaceFacilityEnumeration",
+    "ResponseContextStructure",
+    "ResponseEndpointStructure",
+    "ResponseEnum",
+    "ResponseStatus",
+    "ResponseStructure",
+    "ResponseTimestamp",
+    "RetailFacility",
+    "RetailFacilityEnumeration",
+    "ReversePropertyName",
+    "RoadConditions",
+    "RoadMaintenanceTypeEnum",
+    "RoadOperatorServiceDisruption",
+    "RoadOperatorServiceDisruptionTypeEnum",
+    "RoadOrCarriagewayOrLaneManagement",
+    "RoadOrCarriagewayOrLaneManagementTypeEnum",
+    "RoadSituationElement",
+    "RoadSituationElementStructure",
+    "RoadSurfaceConditionInformation",
+    "RoadSurfaceConditionMeasurements",
+    "RoadsideAssistance",
+    "RoadsideAssistanceTypeEnum",
+    "RoadsideReferencePoint",
+    "RoadsideReferencePointLinear",
+    "RoadsideReferencePointPrimaryLocation",
+    "RoadsideReferencePointSecondaryLocation",
+    "RoadsideServiceDisruption",
+    "RoadsideServiceDisruptionTypeEnum",
+    "Roadworks",
+    "RoadworksDurationEnum",
+    "RoadworksScaleEnum",
+    "RouteLinkRefStructure",
+    "RouteName",
+    "RoutePointType",
+    "RoutePointTypeEnumeration",
+    "RouteRefStructure",
+    "SanitaryFacility",
+    "SanitaryFacilityEnumeration",
+    "ScopeTypeEnumeration",
+    "SectionRefStructure",
+    "SelfDriveSubmode",
+    "SelfDriveSubmodesOfTransportEnumeration",
+    "SensitivityEnumeration",
+    "ServiceArrivalStructure",
+    "ServiceCapabilitiesRequestStructure",
+    "ServiceConditionEnumeration",
+    "ServiceDelivery",
+    "ServiceDeliveryBodyStructure",
+    "ServiceDeliveryErrorConditionElement",
+    "ServiceDeliveryErrorConditionStructure",
+    "ServiceDeliveryStructure",
+    "ServiceDepartureStructure",
+    "ServiceFeature",
+    "ServiceFeatureRef",
+    "ServiceFeatureRefStructure",
+    "ServiceFeatureStructure",
+    "ServiceJourneyInterchangeStructure",
+    "ServiceNotAvailableError",
+    "ServiceNotAvailableErrorStructure",
+    "ServiceRequest",
+    "ServiceRequestContextStructure",
+    "ServiceRequestStructure",
+    "ServiceViaPointStructure",
+    "Severity",
+    "SeverityEnumeration",
+    "SignSetting",
+    "SimpleActionStructure",
+    "SimpleContactStructure",
+    "SiriSchema",
+    "SiteMeasurements",
+    "SiteRef",
+    "SiteRefStructure",
+    "Situation",
+    "SituationElementStructure",
+    "SituationFullRef1",
+    "SituationFullRef2",
+    "SituationFullRefStructure1",
+    "SituationFullRefStructure2",
+    "SituationNumber",
+    "SituationPublication",
+    "SituationRecord",
+    "SituationRef",
+    "SituationRefList",
+    "SituationRefStructure",
+    "SituationSharedRefStructure",
+    "SituationSimpleRef",
+    "SituationSimpleRefStructure",
+    "SituationSourceStructure",
+    "SituationSourceTypeEnumeration",
+    "SituationVersion",
+    "SituationsStructure",
+    "Source",
+    "SourceTypeEnum",
+    "SpeedManagement",
+    "SpeedManagementTypeEnum",
+    "SpeedPercentile",
+    "SrsName",
+    "StaticFareRequestStructure",
+    "StaticFareResultStructure",
+    "Status",
+    "StatusEnumeration",
+    "StatusProblemType",
+    "StatusProblemTypeEnumeration",
+    "StatusResponseStructure",
+    "StepFreeAccess",
+    "StopAreaRefStructure",
+    "StopAssignmentStructure",
+    "StopEventParamStructure",
+    "StopEventProblemType",
+    "StopEventProblemTypeEnumeration",
+    "StopEventResultStructure",
+    "StopEventStructure",
+    "StopEventTypeEnumeration",
+    "StopFareRequestStructure",
+    "StopFareResultStructure",
+    "StopPathLinkRefStructure",
+    "StopPlaceComponentRefStructure",
+    "StopPlaceComponentTypeEnumeration",
+    "StopPlaceEntranceRefStructure",
+    "StopPlaceRef1",
+    "StopPlaceRef2",
+    "StopPlaceRefStructure1",
+    "StopPlaceRefStructure2",
+    "StopPlaceRefsStructure",
+    "StopPlaceSpaceRefStructure",
+    "StopPlaceStructure",
+    "StopPlaceTypeEnumeration",
+    "StopPointName",
+    "StopPointRef",
+    "StopPointRefStructure",
+    "StopPointStructure",
+    "StopPointType",
+    "StopPointTypeEnumeration",
+    "SubjectTypeOfWorksEnum",
+    "Subjects",
+    "Subscription",
+    "SubscriptionContextStructure",
+    "SubscriptionFilterRefStructure",
+    "SubscriptionFilterStructure",
+    "SubscriptionQualifierStructure",
+    "SubscriptionRefStructure",
+    "SubscriptionRequest",
+    "SubscriptionRequestStructure",
+    "SubscriptionResponse",
+    "SubscriptionResponseBodyStructure",
+    "SubscriptionResponseStructure",
+    "SubscriptionStateEnum",
+    "SubscriptionTerminatedNotification",
+    "SubscriptionTerminatedNotificationStructure",
+    "SuitabilityEnumeration",
+    "SuitabilityStructure",
+    "SummaryContentStructure",
+    "SupplementaryPositionalDescription",
+    "SurfaceArrayPropertyType",
+    "SurfaceProperty",
+    "SurfacePropertyType",
+    "Target",
+    "TargetElement",
+    "TargetedInterchangeStructure",
+    "TariffZoneListInAreaStructure",
+    "TariffZoneRef",
+    "TariffZoneRefListStructure",
+    "TariffZoneRefStructure",
+    "TariffZoneStructure",
+    "TariffzoneFilterStructure",
+    "TaxiSubmode",
+    "TaxiSubmodesOfTransportEnumeration",
+    "TelecabinSubmode",
+    "TelecabinSubmodesOfTransportEnumeration",
+    "Temperature",
+    "TemperatureInformation",
+    "TerminateSubscriptionRequest",
+    "TerminateSubscriptionRequestBodyStructure",
+    "TerminateSubscriptionRequestStructure",
+    "TerminateSubscriptionResponse",
+    "TerminateSubscriptionResponseStructure",
+    "TerminationResponseStatusStructure",
+    "TextualContentStructure",
+    "TicketRestrictionEnumeration",
+    "TicketRestrictionType",
+    "TicketingFacility",
+    "TicketingFacilityEnumeration",
+    "TimePeriodByHour",
+    "TimePeriodOfDay",
+    "TimebandStructure",
+    "TimedLegStructure",
+    "TimetableType",
+    "TimetableTypeEnumeration",
+    "TimingPoint",
+    "ToServiceJourneyInterchangeStructure",
+    "TopographicPlaceRef",
+    "TopographicPlaceRefStructure",
+    "TopographicPlaceStructure",
+    "TpegAreaDescriptor",
+    "TpegAreaLocation",
+    "TpegDescriptor",
+    "TpegFramedPoint",
+    "TpegGeometricArea",
+    "TpegHeight",
+    "TpegIlcPointDescriptor",
+    "TpegJunction",
+    "TpegJunctionPointDescriptor",
+    "TpegLinearLocation",
+    "TpegLoc01AreaLocationSubtypeEnum",
+    "TpegLoc01FramedPointLocationSubtypeEnum",
+    "TpegLoc01LinearLocationSubtypeEnum",
+    "TpegLoc01SimplePointLocationSubtypeEnum",
+    "TpegLoc02DirectionTypeEnum",
+    "TpegLoc03AreaDescriptorSubtypeEnum",
+    "TpegLoc03IlcPointDescriptorSubtypeEnum",
+    "TpegLoc03JunctionPointDescriptorSubtypeEnum",
+    "TpegLoc03OtherPointDescriptorSubtypeEnum",
+    "TpegLoc04HeightTypeEnum",
+    "TpegNamedOnlyArea",
+    "TpegNonJunctionPoint",
+    "TpegOtherPointDescriptor",
+    "TpegPoint",
+    "TpegPointDescriptor",
+    "TpegPointLocation",
+    "TpegSimplePoint",
+    "TrackSectionStructure",
+    "TrafficConcentration",
+    "TrafficConstrictionTypeEnum",
+    "TrafficElement",
+    "TrafficFlow",
+    "TrafficFlowCharacteristicsEnum",
+    "TrafficHeadway",
+    "TrafficSpeed",
+    "TrafficStatusEnum",
+    "TrafficStatusValue",
+    "TrafficTrendTypeEnum",
+    "TrafficTypeEnum",
+    "TrafficValue",
+    "TrafficView",
+    "TrafficViewPublication",
+    "TrafficViewRecord",
+    "Train",
+    "TrainBlockPartStructure",
+    "TrainComponent",
+    "TrainComponentRef",
+    "TrainComponentRefStructure",
+    "TrainComponentStructure",
+    "TrainElement",
+    "TrainElementRef",
+    "TrainElementRefStructure",
+    "TrainElementStructure",
+    "TrainElementTypeEnumeration",
+    "TrainInCompoundTrain",
+    "TrainInCompoundTrainRef",
+    "TrainInCompoundTrainRefStructure",
+    "TrainInCompoundTrainStructure",
+    "TrainNumberRefStructure",
+    "TrainPartRefStructure",
+    "TrainRef",
+    "TrainRefStructure",
+    "TrainSizeEnumeration",
+    "TrainStructure",
+    "TramSubmode",
+    "TramSubmodesOfTransportEnumeration",
+    "TransferLegStructure",
+    "TransferTypeEnumeration",
+    "TransitInformation",
+    "TransitServiceInformationEnum",
+    "TransitServiceTypeEnum",
+    "TransitionEnumeration",
+    "TransportDescriptionStructure",
+    "TravelTimeTrendTypeEnum",
+    "TravelTimeTypeEnum",
+    "TravelTimeValue",
+    "TripChangeParamStructure",
+    "TripChangeProblemType",
+    "TripChangeProblemTypeEnumeration",
+    "TripFareProductReferenceStructure",
+    "TripFareRequestStructure",
+    "TripFareResultStructure",
+    "TripInfoParamStructure",
+    "TripInfoProblemType",
+    "TripInfoProblemTypeEnumeration",
+    "TripInfoResultStructure",
+    "TripLocationStructure",
+    "TripParamStructure",
+    "TripParamStructureCyclingProfile",
+    "TripParamStructureHikingProfile",
+    "TripProblemType",
+    "TripProblemTypeEnumeration",
+    "TripRefineParamStructure",
+    "TripRefineParamStructureCyclingProfile",
+    "TripRefineParamStructureHikingProfile",
+    "TripResultStructure",
+    "TripStructure",
+    "TripSummaryStructure",
+    "TripViaStructure",
+    "TurnActionEnumeration",
+    "TypeOfFuelEnumeration",
+    "TypeOfNestedQuayEnumeration",
+    "TypeOfValue",
+    "TypeOfValueRefStructure",
+    "TypeOfValueStructure",
+    "TypeOfVehicleFuelStructure",
+    "TypesOfValue",
+    "TypesOfValueStructure",
+    "UnapprovedKeyAccessError",
+    "UnapprovedKeyAccessStructure",
+    "UndefinedReason",
+    "UnknownEndpointError",
+    "UnknownEndpointErrorStructure",
+    "UnknownExtensionsError",
+    "UnknownExtensionsErrorStructure",
+    "UnknownParticipantError",
+    "UnknownParticipantErrorStructure",
+    "UnknownReason",
+    "UnknownSubscriberError",
+    "UnknownSubscriberErrorStructure",
+    "UnknownSubscriptionError",
+    "UnknownSubscriptionErrorStructure",
+    "UpdateMethodEnum",
+    "UrgencyEnum",
+    "UrlLink",
+    "UrlLinkTypeEnum",
+    "UseRealtimeDataEnumeration",
+    "UserNeedStructure",
+    "Validity",
+    "ValidityConditionStructure",
+    "ValidityConditionsStructure",
+    "ValidityStatusEnum",
+    "ValueSet",
+    "ValueSetStructure",
+    "ValuesStructure",
+    "VariableMessageSignSetting",
+    "Vector",
+    "VectorType",
+    "Vehicle",
+    "VehicleAtStop",
+    "VehicleCharacteristics",
+    "VehicleDetectionTime",
+    "VehicleEquipmentEnum",
+    "VehicleFeature",
+    "VehicleFeatureRefStructure",
+    "VehicleFeaturesStructure",
+    "VehicleFilterStructure",
+    "VehicleHeadway",
+    "VehicleInFormationStatusEnumeration",
+    "VehicleInFormationStatusStructure",
+    "VehicleJourneyRef",
+    "VehicleJourneyRefStructure",
+    "VehicleMode",
+    "VehicleModesEnumeration",
+    "VehicleModesOfTransportEnumeration",
+    "VehicleObstruction",
+    "VehicleObstructionTypeEnum",
+    "VehicleOccupancyStructure",
+    "VehicleOrientationRelativeToQuay",
+    "VehiclePositionStructure",
+    "VehicleProgressEnumeration",
+    "VehicleRef",
+    "VehicleRefStructure",
+    "VehicleSpeed",
+    "VehicleStatusEnum",
+    "VehicleStatusEnumeration",
+    "VehicleStoppingPlaceRefStructure",
+    "VehicleStoppingPositionRefStructure",
+    "VehicleTypeEnum",
+    "VehicleUsageEnum",
+    "VerificationStatus",
+    "VerificationStatusEnumeration",
+    "VersionRef",
+    "VersionRefStructure",
+    "VersionedObjectStructure",
+    "ViaName",
+    "ViaNameStructure",
+    "ViaRef",
+    "Visibility",
+    "VisibilityInformation",
+    "VisitNumber",
+    "VisualSignsAvailable",
+    "VmsFaultEnum",
+    "VmsTypeEnum",
+    "WaterSubmode",
+    "WaterSubmodesOfTransportEnumeration",
+    "WeatherRelatedRoadConditionTypeEnum",
+    "WeatherRelatedRoadConditions",
+    "WeatherValue",
+    "WebLinkStructure",
+    "WeekOfMonthEnum",
+    "WeekdayTimePeriodStructure",
+    "WeekdayTypeEnumeration",
+    "WheelchairAccess",
+    "WidthCharacteristic",
+    "Wind",
+    "WindInformation",
+    "WinterDrivingManagement",
+    "WinterEquipmentManagementTypeEnum",
+    "WorkflowStatusEnumeration",
+    "ZoneProjection",
+    "ZoneProjectionStructure",
+    "ZoneRefStructure",
+]

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OJP xmlns="http://www.vdv.de/ojp" xmlns:siri="http://www.siri.org.uk/siri" version="2.0">
+<!-- https://tools.odpch.ch/ojp-demo-v2/search?from=8571342&to=8504102&trip_datetime=2025-07-17%2016:57 -->
+  <OJPRequest>
+    <siri:ServiceRequest>
+      <siri:ServiceRequestContext>
+        <siri:Language>de</siri:Language>
+      </siri:ServiceRequestContext>
+      <siri:RequestTimestamp>2025-07-22T12:51:35.026Z</siri:RequestTimestamp>
+      <siri:RequestorRef>OJP_DemoApp_Beta_OJP2.0</siri:RequestorRef>
+      <OJPTripRequest>
+        <siri:RequestTimestamp>2025-07-22T12:51:35.027Z</siri:RequestTimestamp>
+        <Origin>
+          <PlaceRef>
+            <StopPlaceRef>8571342</StopPlaceRef>
+            <Name>
+              <Text>Bern</Text>
+            </Name>
+          </PlaceRef>
+        </Origin>
+        <Destination>
+          <PlaceRef>
+            <StopPlaceRef>8504102</StopPlaceRef>
+            <Name>
+              <Text>Schmitten FR</Text>
+            </Name>
+          </PlaceRef>
+        </Destination>
+        <Params>
+          <IncludeAllRestrictedLines>true</IncludeAllRestrictedLines>
+          <NumberOfResults>5</NumberOfResults>
+          <IncludeTrackSections>true</IncludeTrackSections>
+          <IncludeLegProjection>false</IncludeLegProjection>
+          <IncludeTurnDescription>true</IncludeTurnDescription>
+          <IncludeIntermediateStops>true</IncludeIntermediateStops>
+          <UseRealtimeData>explanatory</UseRealtimeData>
+        </Params>
+      </OJPTripRequest>
+    </siri:ServiceRequest>
+  </OJPRequest>
+</OJP>

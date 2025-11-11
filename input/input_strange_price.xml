@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<siri:OJP xmlns="http://www.vdv.de/ojp" xmlns:siri="http://www.siri.org.uk/siri" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.vdv.de/ojp" version="1.0">
+  <siri:OJPRequest>
+    <siri:ServiceRequest>
+      <siri:ServiceRequestContext>
+        <siri:Language>fr</siri:Language>
+      </siri:ServiceRequestContext>
+      <siri:RequestTimestamp>2025-03-20T18:20:08.618Z</siri:RequestTimestamp>
+      <siri:RequestorRef>OJP_JS_SDK_v0.12.6</siri:RequestorRef>
+      <OJPTripRequest>
+        <siri:RequestTimestamp>2025-03-21T18:20:08.618Z</siri:RequestTimestamp>
+        <Origin>
+          <PlaceRef>
+            <GeoPosition>
+              <siri:Longitude>8.96205</siri:Longitude>
+              <siri:Latitude>46.01076</siri:Latitude>
+            </GeoPosition>
+            <LocationName>
+              <Text> Via agli Orti 5, 6962 Viganello, Suisse</Text>
+            </LocationName>
+          </PlaceRef>
+        </Origin>
+        <Destination>
+          <PlaceRef>
+             <GeoPosition>
+              <siri:Longitude>8.94427</siri:Longitude>
+              <siri:Latitude>45.99177</siri:Latitude>
+            </GeoPosition>
+            <LocationName>
+              <Text> Vicolo Geretta 6, 6900 Paradiso, Svizzera</Text>
+            </LocationName>
+          </PlaceRef>
+        </Destination>
+        <Params>
+          <NumberOfResults>1</NumberOfResults>
+          <IncludeTrackSections>false</IncludeTrackSections>
+          <IncludeLegProjection>false</IncludeLegProjection>
+          <IncludeTurnDescription>false</IncludeTurnDescription>
+          <IncludeIntermediateStops>true</IncludeIntermediateStops>
+          <UseRealtimeData>explanatory</UseRealtimeData>
+        </Params>
+      </OJPTripRequest>
+    </siri:ServiceRequest>
+  </siri:OJPRequest>
+</siri:OJP>
