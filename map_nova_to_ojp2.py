@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import datetime
+import xml_logger
 from decimal import Decimal
 from typing import List, Optional, Dict
 
@@ -10,7 +11,6 @@ from nova import ErstellePreisAuskunftResponse, KlassenTypCode, PreisAuspraegung
     PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput
 from ojp2 import OjpfareDelivery, FareResultStructure, FareProductStructure, TripFareResultStructure, \
     FareClassEnumeration
-from logger import log
 from configuration import VATRATE
 from fare_products import products
 def map_klasse_to_fareclass(klasse: KlassenTypCode) -> Optional[FareClassEnumeration]:
@@ -91,5 +91,5 @@ if __name__ == '__main__':
     if soap:
         ojp_fare_delivery = test_nova_to_ojp2(soap)
         ojp_fare_delivery_xml = serializer.render(ojp_fare_delivery)
-        log('generated/ojp_fare_reply.xml', ojp_fare_delivery_xml)
+        xml_logger.log_serialized('generated/ojp_fare_reply.xml', ojp_fare_delivery_xml)
         print(ojp_fare_delivery_xml)

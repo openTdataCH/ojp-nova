@@ -5,8 +5,8 @@ from typing import Optional
 
 from configuration import USE_HTA
 from ojp import Ojp, Ojprequest, ServiceRequest, OjpfareRequest, FareParamStructure, PassengerCategoryEnumeration, \
-    TypeOfFareClassEnumeration, FarePassengerStructure, TripFareRequestStructure, TripStructure, OjptripRequest, \
-    TripResultStructure, EntitlementProductRef, OjptripDeliveryStructure
+    TypeOfFareClassEnumeration, FarePassengerStructure, TripFareRequestStructure, TripStructure, \
+    OjptripDeliveryStructure
 
 from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.parsers.config import ParserConfig

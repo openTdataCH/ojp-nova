@@ -1,7 +1,6 @@
 # CONFIGURATION:
 from typing import List
 import logging
-from ojp import VatRateEnumeration
 from os import getenv
 
 _enabled_values = ['true', 'enabled']
@@ -23,13 +22,16 @@ OJP_TOKEN = getenv("OJP_TOKEN")
 
 OJP_2_URL_API = "https://api.opentransportdata.swiss/ojp20"
 OJP_2_TOKEN = getenv("OJP2_TOKEN")
+
 OJP_FARE_TOKEN=""
 
 LOG_FILE_HANDLER_ENABLED = getenv("LOG_FILE_HANDLER_ENABLED", "true").lower() in _enabled_values
 LOG_DIR = getenv("LOG_DIR", "logs")
 LOG_FILE = LOG_DIR + "/my_log.log"
 LOG_LEVEL = getenv("LOG_LEVEL", logging.getLevelName(logging.INFO))
-DEBUGGING = True
+
+XML_LOG_ENABLED = getenv("XML_LOG_HANDLER_ENABLED", "true").lower() in _enabled_values
+XML_LOG_DIR = "generated"
 
 DIDOK_PERMALINK = "https://opentransportdata.swiss/de/dataset/service-points-full/permalink"
 HTTPS = False

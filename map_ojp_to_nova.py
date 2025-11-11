@@ -5,10 +5,11 @@ from nova import ErstellePreisAuskunft, VerbindungPreisAuskunftRequest, ClientId
     TaxonomieFilter, TaxonomieKlassePfad, ReisendenInfoPreisAuskunft, ReisendenTypCode, VerbindungPreisAuskunft, \
     FahrplanVerbindungsSegment, VerkehrsMittelGattung, ZwischenHaltContextTripContext, \
     PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput, EmptyType
-from logger import log
+
 from ojp import Ojp, TimedLegStructure, FarePassengerStructure, PassengerCategoryEnumeration
 from support import OJPError, process_operating_ref,sloid2didok
 import random
+import xml_logger
 
 def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindungsSegment:
     einstieg = sloid2didok(timed_leg.leg_board.stop_point_ref)
@@ -185,7 +186,7 @@ def test_ojp_fare_request_to_nova_request(ojp: Ojp) -> PreisAuskunftServicePortT
     if nova_request is None:
         raise OJPError("Was not able to generate NOVA request from OJPFare Request:\n")
     nova_request_xml = serializer.render(nova_request)
-    log('generated/nova_request.xml',nova_request_xml)
+    xml_logger.log_serialized('generated/nova_request.xml',nova_request_xml)
     return nova_request
 
 if __name__ == '__main__':

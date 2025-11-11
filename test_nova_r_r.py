@@ -12,6 +12,7 @@ from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 from xml.dom.minidom import parseString
 
+import xml_logger
 from configuration import *
 from test_create_ojp_request import *
 from map_nova_to_ojp import test_nova_to_ojp
@@ -25,7 +26,6 @@ from map_ojp2_to_ojp2 import parse_ojp2, map_ojp2_trip_result_to_ojp2_fare_reque
 
 from nova import PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunft
 from ojp import Ojp
-from logger import log
 from xslt_transform import transform_xml, is_version_2_0
 ns_map = {'': 'http://www.siri.org.uk/siri', 'ojp': 'http://www.vdv.de/ojp'}
 
@@ -106,7 +106,7 @@ if __name__ == '__main__':
         #nova_response_xml = serializer.render(nova_response)
         dom=parseString(nova_response.text)
         pretty_xml=dom.toprettyxml(indent="  ")
-        log('generated/nova_response_direct.xml',pretty_xml)
+        xml_logger.log_serialized('generated/nova_response_direct.xml',pretty_xml)
 
 
 

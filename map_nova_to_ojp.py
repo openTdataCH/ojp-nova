@@ -9,7 +9,6 @@ from nova import ErstellePreisAuskunftResponse, KlassenTypCode, PreisAuspraegung
     PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput
 from ojp import OjpfareDelivery, FareResultStructure, FareProductStructure, TripFareResultStructure, \
     TypeOfFareClassEnumeration, VatRateEnumeration
-from logger import log
 from configuration import VATRATE
 from fare_products import products
 def map_klasse_to_fareclass(klasse: KlassenTypCode) -> TypeOfFareClassEnumeration:
@@ -19,6 +18,7 @@ def map_klasse_to_fareclass(klasse: KlassenTypCode) -> TypeOfFareClassEnumeratio
         return TypeOfFareClassEnumeration.SECOND
     else:
         return TypeOfFareClassEnumeration.ALL
+import xml_logger
 
 def map_preis_auspraegung_to_trip_fare_result(preis_auspraegungen: List[PreisAuspraegung]) -> Optional[FareResultStructure]:
     referenz = preis_auspraegungen[0].externe_verbindungs_referenz_id
@@ -94,5 +94,5 @@ if __name__ == '__main__':
     if soap:
         ojp_fare_delivery = test_nova_to_ojp(soap)
         ojp_fare_delivery_xml = serializer.render(ojp_fare_delivery)
-        log('generated/ojp_fare_reply.xml', ojp_fare_delivery_xml)
+        xml_logger.log_serialized('generated/ojp_fare_reply.xml', ojp_fare_delivery_xml)
         print(ojp_fare_delivery_xml)
