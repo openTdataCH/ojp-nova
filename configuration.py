@@ -1,4 +1,5 @@
 # CONFIGURATION:
+from typing import List
 import logging
 from os import getenv
 
@@ -16,12 +17,16 @@ NOVA_URL_API = getenv("NOVA_BASE_URL")
 OJP_URL_API = "https://api.opentransportdata.swiss/ojp2020"
 OJP_TOKEN = getenv("OJP_TOKEN")
 
+OJP_2_URL_API = "https://api.opentransportdata.swiss/ojp20"
+OJP_2_TOKEN = getenv("OJP2_TOKEN")
+
+OJP_FARE_TOKEN=""
+
 LOG_FILE_HANDLER_ENABLED = getenv("LOG_FILE_HANDLER_ENABLED", "true").lower() in _enabled_values
 LOG_DIR = getenv("LOG_DIR", "logs")
 LOG_FILE = LOG_DIR + "/my_log.log"
 LOG_LEVEL = getenv("LOG_LEVEL", logging.getLevelName(logging.INFO))
 
-# Configure logging of XML files into a directory of the filesystem
 XML_LOG_ENABLED = getenv("XML_LOG_ENABLED", "true").lower() in _enabled_values
 XML_LOG_DIR = getenv("XML_LOG_DIR", "generated")
 
@@ -32,34 +37,16 @@ SSL_CERTFILE = ''
 HTTP_HOST = '127.0.0.1'
 HTTP_PORT = 8000
 HTTP_SLUG = "ojp2023"
-
 READTRIPREQUESTFILE = True
-VATRATE = 8.1  # Percent
-USE_HTA = False  # if in the tests half price should be used
-READFILE = []
-# READFILE.append("input/input_oev_shart_plus_long.xml")
-# READFILE.append("input/input_walk_only.xml")
-# READFILE.append("input/input_Zuerich_Chur.xml")
-# READFILE.append("input/input_Bern_Chur_SOB_Zukunft.xml" ) #time must be reset before run. Check if discounts exist on www.sbb.ch
-# READFILE.append("input/input_Bern_Zweisimmen_BLS_Zukunft.xml")  #time must be reset before run. Check if discounts exist on www.sbb.ch
-# READFILE.append("input/input_Visp_SaaS_Fee_problem_1_preis.xml") #1. class price problematic
-# READFILE.append("input/input_Zuerich_Bern.xml")
-# READFILE.append("input/input_Basel_Sargans.xml")
-# READFILE.append("input/input_Bern_Interlaken_Ost.xml")
-# READFILE.append("input/input_Bern_Interlaken_Gymnasium.xml")
-# READFILE.append("input/input_Bern_Guisanplatz_Interlaken_Gymnasium.xml")
-# READFILE.append("input/input_local.xml")
-# READFILE.append("input/input_oev_shart_plus_long.xml")
-# READFILE.append("input/input_sharing_intercity.xml")
-# READFILE.append(input/input_sharing_only.xml")
-# READFILE.append("input/input_odv_alone.xml")
-# READFILE.append("input/input_demand_responsive_saturday_after_1500.xml")
-# READFILE.append("input/input_bus_postauto.xml")
-# READFILE.append("input/input_in_the_past_not_handeled_well_in_Preisauskunft.xml")
-# READFILE.append("input/input_problematic_case_vasile.xml")
-READFILE.append("input/input_Europaplatz.xml")
-# READFILE.append("input/input_aller_retour.xml")
+VATRATE= 8.1  # Percent
+USE_HTA = True # if in the tests half price should be used
+READFILE: List[str]  = [] # contains the test files to read
 
+# if there exists a test_configuration it is loaded.
+try:
+    from test_configuration import *
+except:
+    pass
 # if there exists a local_configuration it is used.
 try:
     from local_configuration import *

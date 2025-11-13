@@ -6,7 +6,7 @@ __pycache__/
 /venv/*
 /.idea/*
 /generated/*.log
-/logs/*.log
+/logs/*.*
 /generated/*.xml
 /generated/*.gz
 /generated/*.zip

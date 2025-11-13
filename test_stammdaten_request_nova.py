@@ -2,7 +2,6 @@
 import csv
 import gzip
 import json
-import logging
 import shutil
 import traceback
 import xml.etree.ElementTree as ET
@@ -17,8 +16,7 @@ from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
 import xml_logger
-from configuration import NOVA_URL_TOKEN, DIDOK_PERMALINK, NOVA_URL_API, XML_LOG_DIR, NOVA_CLIENT_ID, NOVA_CLIENT_SECRET
-import xml_logger
+from configuration import *
 from nova.vertriebsstammdaten_service_port_type_soapv14_get_stammdaten_file import *
 from nova.vertriebsstammdaten_service_port_type_soapv14_get_stammdaten_file_input import *
 from ojp import Ojp
@@ -27,16 +25,18 @@ logger = logging.getLogger(__name__)
 
 ns_map = {'': 'http://www.siri.org.uk/siri', 'ojp': 'http://www.vdv.de/ojp'}
 
-NOVA_URL_S_API = NOVA_URL_API + "/novaan/vertrieb/public/v14/VertriebsstammdatenService"
+NOVA_STAMMDATEN_FILE = xml_logger.path("nova_stammdaten.gz")
+NOVA_STAMMDATEN_FILE_UNZIPPED = xml_logger.path("nova_stammdaten.xml")
+NOVA_PARKPLATZ_FILE = xml_logger.path("nova_parkplatz.csv")
 
 def load_didok_stammdaten():
     r0 = requests.get(DIDOK_PERMALINK)
     res = {}
-    print(r0.url)
+    print (r0.url)
     r1 = requests.get(r0.url)  # using redirect
-    chunk_size = 200000
+    chunk_size=200000
     with open(xml_logger.path("servicepoints.zip"), "wb") as out:
-        data = r1.content
+        data =r1.content
         out.write(data)
     with ZipFile(xml_logger.path("servicepoints.zip")) as myzip:
         myzip.extract(myzip.filelist[0], XML_LOG_DIR)
@@ -45,29 +45,26 @@ def load_didok_stammdaten():
         with open(xml_logger.path(myzip.filelist[0].filename), encoding="utf-8") as csvfile:
             spamreader = csv.reader(csvfile, delimiter=';')
             for row in spamreader:
-                lin = []
-                sloid = row[2]
+                lin=[]
+                sloid= row[2]
                 lin.append(sloid)
-                didok = ""
+                didok=""
                 try:
-                    didok = str(100000 * int(row[1]) + int(row[0]))
+                    didok = str(100000*int(row[1])+int(row[0]))
                 except:
-                    # do nothing
-                    print("no valid didok")
+                    #do nothing
+                    print ("no valid didok")
                 lin.append(didok)
-                name = row[7]
+                name= row[7]
                 lin.append(name)
-                lon = row[49]
+                lon= row[49]
                 lin.append(lon)
-                lat = row[50]
+                lat= row[50]
                 lin.append(lat)
-                res[name] = lin
+                res[name]=lin
     print(res["Bern"])
     return res
-
-
-def parse_nova_stammdaten_request(
-        body: str) -> VertriebsstammdatenServicePortTypeSoapv14GetStammdatenFileInput:
+def parse_nova_stammdaten_request(body: str) -> VertriebsstammdatenServicePortTypeSoapv14GetStammdatenFileInput:
     config = ParserConfig(
         base_url=None,
         process_xinclude=False,
@@ -75,9 +72,7 @@ def parse_nova_stammdaten_request(
         fail_on_unknown_attributes=False,
     )
     parser = XmlParser(config)
-    return parser.from_string(body[body.find('<'):],
-                              VertriebsstammdatenServicePortTypeSoapv14GetStammdatenFileInput)
-
+    return parser.from_string(body[body.find('<'):], VertriebsstammdatenServicePortTypeSoapv14GetStammdatenFileInput)
 
 class OAuth2Helper:
     # Credits: https://developer.byu.edu/docs/consume-api/use-api/oauth-20/oauth-20-python-sample-code
@@ -90,20 +85,17 @@ class OAuth2Helper:
 
     def get_token(self, new_token=False):
         if new_token or not self.current_token:
-            data = {'grant_type': 'client_credentials',
-                    'scope': 'api://e1710a9f-d3e8-4751-b662-42f242e79f20/.default'}
-            access_token_response = requests.post(NOVA_URL_TOKEN, data=data, verify=False,
-                                                  allow_redirects=False,
+            data = {'grant_type': 'client_credentials', 'scope': 'api://e1710a9f-d3e8-4751-b662-42f242e79f20/.default'}
+            access_token_response = requests.post(NOVA_URL_TOKEN, data=data, verify=False, allow_redirects=False,
                                                   auth=(self.client_id, self.client_secret))
             self.current_token = json.loads(access_token_response.text)
         return self.current_token['access_token']
-
 
 def get_nova_client():
     # TODO: It might be more elegant to cache this client in some way, but we would need to handle the expiry of the token
     oauth_helper = OAuth2Helper(client_id=NOVA_CLIENT_ID, client_secret=NOVA_CLIENT_SECRET)
     access_token = oauth_helper.get_token()
-    headers = {'Authorization': 'Bearer ' + access_token, "User-Agent": "OJP2NOVA/0.2"}
+    headers = {'Authorization': 'Bearer ' + access_token, "User-Agent": "OJP2NOVA/0.2" }
 
     config = ParserConfig(
         base_url=None,
@@ -113,15 +105,13 @@ def get_nova_client():
     )
     parser = XmlParser(config)
 
-    client = Client.from_service(VertriebsstammdatenServicePortTypeSoapv14GetStammdatenFile,
-                                 location=NOVA_URL_S_API, encoding="utf-8")
+    client = Client.from_service(VertriebsstammdatenServicePortTypeSoapv14GetStammdatenFile, location=NOVA_URL_S_API, encoding="utf-8")
     client.parser = parser
 
     return client
 
-
 def test_get_nova_stammdaten_request():
-    astr = """
+    astr="""
 <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
   <soapenv:Header/>
   <soapenv:Body>
@@ -137,8 +127,6 @@ def test_get_nova_stammdaten_request():
 </soapenv:Envelope>
     """
     return astr
-
-
 def test_nova_stammdaten_request_reply(ojp: Ojp):
     oauth_helper = OAuth2Helper(client_id=NOVA_CLIENT_ID, client_secret=NOVA_CLIENT_SECRET)
     access_token = oauth_helper.get_token()
@@ -147,35 +135,33 @@ def test_nova_stammdaten_request_reply(ojp: Ojp):
     nova_client = get_nova_client()
     nova_response = nova_client.send(nova_request, headers=headers)
     if nova_response:
-        xml_logger.log_object_as_xml('nova_stammdaten.xml', nova_response)
+        xml_logger.log_object_as_xml('nova_stammdaten.xml',nova_response)
         return nova_response
 
-
 def check_configuration():
-    if (len(NOVA_CLIENT_SECRET) == 0):
+    if (len(NOVA_CLIENT_SECRET)==0):
         print("Secrets not set in the configuration")
         exit(1)
-
 
 def extractUrlStammdaten(nova_response: VertriebsstammdatenServicePortTypeSoapv14GetStammdatenFile):
     return nova_response.body.get_stammdaten_file_response.stammdaten_file_response.stammdaten_file_path
 
 
 if __name__ == '__main__':
-    # check configuration
-    ojp_trip_request_xml = ''
+    #check configuration
+    ojp_trip_request_xml=''
     check_configuration()
 
     # build didok list
-    dlist = load_didok_stammdaten()
+    dlist=load_didok_stammdaten()
     # start working
     oauth_helper = OAuth2Helper(client_id=NOVA_CLIENT_ID, client_secret=NOVA_CLIENT_SECRET)
     access_token = oauth_helper.get_token()
     headers = {'Authorization': 'Bearer ' + access_token, "User-Agent": "OJP2NOVA/0.2"}
     serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
-    serializer = XmlSerializer(serializer_config)
+    serializer = XmlSerializer(config=serializer_config)
     try:
-        areqbody = '''
+        areqbody='''
   <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
   <soapenv:Header/>
   <soapenv:Body>
@@ -190,57 +176,52 @@ if __name__ == '__main__':
   </soapenv:Body>
 </soapenv:Envelope>
         '''
-        nova_request = parse_nova_stammdaten_request(areqbody)
-        xml_logger.log_object_as_xml('nova_stammdaten_response.xml', nova_request)
+        nova_request=parse_nova_stammdaten_request(areqbody)
+        xml_logger.log_object_as_xml('nova_stammdaten_request.xml', nova_request)
         nova_client = get_nova_client()
         nova_response = nova_client.send(nova_request, headers=headers)
-        xml_logger.log_object_as_xml('nova_stammdaten_response.xml', nova_response)
-
+        if nova_response:
+            xml_logger.log_object_as_xml('nova_stammdaten_response.xml', nova_response)
         # get file from response
         url = extractUrlStammdaten(nova_response)
         r = requests.get(url, allow_redirects=True)
-        nova_stammdaten_file = xml_logger.path("nova_stammdaten.gz")
-        nova_stammdaten_file_unzipped = xml_logger.path("nova_stammdaten.xml")
-        open(nova_stammdaten_file, 'wb').write(r.content)
-        with gzip.open(nova_stammdaten_file, 'rb') as file_in:
-            with open(nova_stammdaten_file_unzipped, 'wb') as file_out:
+        open(NOVA_STAMMDATEN_FILE,'wb').write(r.content)
+        with gzip.open(NOVA_STAMMDATEN_FILE,'rb') as file_in:
+            with open(NOVA_STAMMDATEN_FILE_UNZIPPED,'wb') as file_out:
                 shutil.copyfileobj(file_in, file_out)
-                print("Stammdaten kopiert")
-        tree = ET.parse(nova_stammdaten_file_unzipped)
-        root = tree.getroot()
-        a = root.findall(
-            './/{http://nova.voev.ch/services/v14/vertrieb/vertriebsstammdaten}moeglicherParkplatz')
-        b = root.findall(
-            './/{http://nova.voev.ch/services/v14/vertrieb/vertriebsstammdaten}moeglicheParkplaetze')
-        respl = {}
+                print ("Stammdaten kopiert")
+        tree=ET.parse(NOVA_STAMMDATEN_FILE_UNZIPPED)
+        root=tree.getroot()
+        a=root.findall('.//{http://nova.voev.ch/services/v14/vertrieb/vertriebsstammdaten}moeglicherParkplatz')
+        b=root.findall('.//{http://nova.voev.ch/services/v14/vertrieb/vertriebsstammdaten}moeglicheParkplaetze')
+        respl={}
         for pl in a:
-            bezeichnung = pl.get('{http://nova.voev.ch/services/v14/vertriebsbase}bezeichnung')
-            parkplatzCode = pl.get('{http://nova.voev.ch/services/v14/vertriebsbase}parkplatzCode')
+            bezeichnung=pl.get('{http://nova.voev.ch/services/v14/vertriebsbase}bezeichnung')
+            parkplatzCode=pl.get('{http://nova.voev.ch/services/v14/vertriebsbase}parkplatzCode')
             if dlist.get(bezeichnung):
-                respl[bezeichnung] = ([bezeichnung, parkplatzCode] + dlist[bezeichnung])
+                respl[bezeichnung]=([bezeichnung,parkplatzCode]+dlist[bezeichnung])
             else:
-                respl[bezeichnung] = ([bezeichnung, parkplatzCode] + ["", "", "", "", ""])
+                respl[bezeichnung]=([bezeichnung,parkplatzCode]+["","","","",""])
         for pl in b:
             bezeichnung = pl.get('{http://nova.voev.ch/services/v14/vertriebsbase}bezeichnung')
             parkplatzCode = pl.get('{http://nova.voev.ch/services/v14/vertriebsbase}parkplatzCode')
             if dlist.get(bezeichnung):
-                respl[bezeichnung] = ([bezeichnung, parkplatzCode] + dlist[bezeichnung])
+                respl[bezeichnung]=([bezeichnung,parkplatzCode]+dlist[bezeichnung])
             else:
-                respl[bezeichnung] = ([bezeichnung, parkplatzCode] + ["", "", "", "", ""])
-        # write list as csv
-        fields = ['Bezeichnung', 'Code', 'sloid', 'Didok', 'offName', 'lon', 'lat']
+                respl[bezeichnung]=([bezeichnung,parkplatzCode]+["","","","",""])
+        #write list as csv
+        fields=['Bezeichnung','Code','sloid','Didok','offName','lon','lat']
         thelist = respl.items()
-        rows = []
+        rows =[]
         for l in thelist:
             rows.append(l[1])
-        nova_parkplatz_file = xml_logger.path("nova_parkplatz.csv")
-        with open(nova_parkplatz_file, 'w', newline='', encoding='utf-8') as f:
-            write = csv.writer(f, delimiter=",", quotechar='"', quoting=csv.QUOTE_ALL)
+        with open(NOVA_PARKPLATZ_FILE,'w',newline='',encoding='utf-8') as f:
+            write = csv.writer(f,delimiter=",", quotechar='"',quoting=csv.QUOTE_ALL)
             write.writerow(fields)
             write.writerows(rows)
     except Exception as e:
         # not yet really sophisticated handling of all other errors during the work (should be regular OJPDeliveries with OtherError set
         xml_logger.log_serialized('error_file.xml', str(e))
-        logger.error(e, stack_info=True, exc_info=True)
-        print(str(e))
+        logger.exception(e)
+        print (str(e))
         print(traceback.format_exc())

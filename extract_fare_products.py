@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
 import os
+
 from configuration import XML_LOG_DIR
 
 current_directory = os.getcwd()

@@ -1,0 +1,25 @@
+description = "A price service for Switzerland based on OJPFare for OJP v1.0 and v2.0"
+authors = ["Matthias Günter <matthias.guenter@sbb.ch>","Stefan de Konink <stefan@konink.de>"]
+dependencies = [
+"requests",
+"fastapi[all]",
+"uvicorn",
+    "dateutils",
+    "pyproj",
+    "xsdata[cli,soap,lxml]>=24.12",
+]
+requires-python = ">=3.12"
+
+[tool.black]
+exclude = "nova"
+preview = true
+line-length = 160
+skip-string-normalization = true
+
+[tool.mypy]
+strict = true
+ignore_missing_imports = true
+exclude = "nova/.*"
+
+[tool.ruff]
+exclude = ["nova","ojp","ojp2"]

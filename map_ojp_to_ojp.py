@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
 
 import datetime
+from typing import Optional
+
 from configuration import USE_HTA
 from ojp import Ojp, Ojprequest, ServiceRequest, OjpfareRequest, FareParamStructure, PassengerCategoryEnumeration, \
-    TypeOfFareClassEnumeration, FarePassengerStructure, TripFareRequestStructure, TripStructure, OjptripRequest, \
-    TripResultStructure, EntitlementProductRef, OjptripDeliveryStructure
+    TypeOfFareClassEnumeration, FarePassengerStructure, TripFareRequestStructure, TripStructure, \
+    OjptripDeliveryStructure
 
 from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.parsers.config import ParserConfig
 from xsdata.models.datatype import XmlDateTime
 
-# from ojp.ojptrip_refine_request import OjptripRefineRequest
-# from ojp.trip_refine_param_structure import TripRefineParamStructure
+from support import OJPError
 
 config = ParserConfig(
     base_url=None,
@@ -67,17 +68,21 @@ def map_to_individual_ojpfarerequest(trip: TripStructure, now: XmlDateTime) -> O
 #                                  ojprefinement_request=refinerequest)))
 
 def preprocess_stops_to_commercial_stops(delivery: OjptripDeliveryStructure) -> OjptripDeliveryStructure:
-    #prepocessing every StopPointRef is replaced with the highestmost parent for the processing in fares
-    #parse context and create a dictionnary of the highest parent
+    #prepocessing every StopPointRef is replaced with the highest level of parent for the processing in fares
+    #parse context and create a dictionary of the highest parent
     parent = {}
     #TODO we do it once only, but in future we might to change it
-    for place in delivery.trip_response_context.places.location:
-        if place.stop_point is not None:
-            if place.stop_point.parent_ref is not None:
-                parent[place.stop_point.stop_point_ref]=place.stop_point.parent_ref
-
+    if not delivery.trip_response_context:
+        return delivery
+    if delivery.trip_response_context.places:
+        for place in delivery.trip_response_context.places.location:
+            if place.stop_point is not None:
+                if place.stop_point.parent_ref is not None:
+                    parent[place.stop_point.stop_point_ref]=place.stop_point.parent_ref
     #foreach trip
         for trip_result in delivery.trip_result:
+            if trip_result.trip.trip_leg is None:
+                raise OJPError("ERR104: No legs in Trip.")
             for leg in trip_result.trip.trip_leg:
                 if leg.timed_leg is None:
                     continue
@@ -95,20 +100,23 @@ def preprocess_stops_to_commercial_stops(delivery: OjptripDeliveryStructure) -> 
                     leg_intermediate.stop_point_ref = parent.get(leg_intermediate.stop_point_ref,leg_intermediate.stop_point_ref)
     return delivery
 
-def map_ojp_trip_result_to_ojp_fare_request(ojp: Ojp) -> Ojp:
-    if len(ojp.ojpresponse.service_delivery.ojptrip_delivery) != 1:
+def map_ojp_trip_result_to_ojp_fare_request(ojp: Ojp) -> Optional[Ojp]:
+    if ojp.ojpresponse is None or ojp.ojpresponse.service_delivery is None or ojp.ojpresponse.service_delivery.ojptrip_delivery is None or len(ojp.ojpresponse.service_delivery.ojptrip_delivery) != 1:
         return None
 
-    now = datetime.datetime.utcnow()
-    now = XmlDateTime.from_datetime(now)
+    now1 = datetime.datetime.utcnow()
+    now = XmlDateTime.from_datetime(now1)
 
 
     farerequest = []
+    if ojp.ojpresponse.service_delivery is None or ojp.ojpresponse.service_delivery.ojptrip_delivery is None :
+        OJPError("ERR106: No service delivery could be genrated")
     for ojptrip_delivery in ojp.ojpresponse.service_delivery.ojptrip_delivery:
         # preprocess trip result to translate the quays to the commercial stop
         ojptrip_delivery=preprocess_stops_to_commercial_stops(ojptrip_delivery)
         for trip_result in ojptrip_delivery.trip_result:
-            farerequest += [map_to_individual_ojpfarerequest(trip_result.trip, now)]
+            if trip_result.trip:
+                farerequest += [map_to_individual_ojpfarerequest(trip_result.trip, now)]
 
     return Ojp(ojprequest=
                Ojprequest(service_request=

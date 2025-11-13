@@ -1,0 +1,23 @@
+from dataclasses import dataclass, field
+from typing import Optional
+
+from xsdata.models.datatype import XmlDuration
+
+__NAMESPACE__ = "http://www.siri.org.uk/siri"
+
+
+@dataclass
+class ExpectedHeadwayInterval:
+    """
+    For frequency based services, expected interval between vehicles at stop.
+    """
+
+    class Meta:
+        namespace = "http://www.siri.org.uk/siri"
+
+    value: Optional[XmlDuration] = field(
+        default=None,
+        metadata={
+            "required": True,
+        },
+    )
