@@ -9,7 +9,10 @@ from nova import ErstellePreisAuskunft, VerbindungPreisAuskunftRequest, ClientId
 from ojp import Ojp, TimedLegStructure, FarePassengerStructure, PassengerCategoryEnumeration
 from support import OJPError, process_operating_ref,sloid2didok
 import random
+import logging
 import xml_logger
+
+logger = logging.getLogger(__name__)
 
 def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindungsSegment:
     einstieg = sloid2didok(timed_leg.leg_board.stop_point_ref)
@@ -121,6 +124,7 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
             segments += [map_timed_leg_to_segment(leg.timed_leg)]
         if leg_start is None:
             #no pricable legs found.
+            logger.warning("No pricable legs found.")
             break
             #raise OJPError("no pricable legs found.") #TODO we should not raise an error when there are other priced TripResults. Currently one non-pricable raises the error
 

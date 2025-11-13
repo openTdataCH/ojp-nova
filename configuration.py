@@ -27,8 +27,8 @@ LOG_DIR = getenv("LOG_DIR", "logs")
 LOG_FILE = LOG_DIR + "/my_log.log"
 LOG_LEVEL = getenv("LOG_LEVEL", logging.getLevelName(logging.INFO))
 
-XML_LOG_ENABLED = getenv("XML_LOG_HANDLER_ENABLED", "true").lower() in _enabled_values
-XML_LOG_DIR = "generated"
+XML_LOG_ENABLED = getenv("XML_LOG_ENABLED", "true").lower() in _enabled_values
+XML_LOG_DIR = getenv("XML_LOG_DIR", "generated")
 
 DIDOK_PERMALINK = "https://opentransportdata.swiss/de/dataset/service-points-full/permalink"
 HTTPS = False
