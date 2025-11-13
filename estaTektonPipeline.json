@@ -27,7 +27,7 @@
     {
       "stageName": "int",
       "argoCD": {
-        "argoCdAppName": "skiplus-ojp-nova",
+        "argoCdAppName": "skiplus-ojp-nova-int",
         "autoSync": true,
         "argoCdSecret": "argocd-env-secret"
       },
