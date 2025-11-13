@@ -87,7 +87,6 @@
       "build": {
         "buildDockerImage": true,
         "packageAndDeployHelmChart": true,
-        "versionTag": "${VERSION_TAG}",
         "failOnQualityGateFailure": false,
         "deployArtifacts": true
       },
