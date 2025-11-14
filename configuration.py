@@ -11,7 +11,10 @@ NOVA_URL_TOKEN = getenv("NOVA_TOKEN_URL")
 NOVA_CLIENT_ID = getenv("NOVA_CLIENT_ID")
 NOVA_CLIENT_SECRET = getenv("NOVA_CLIENT_SECRET")
 NOVA_SCOPE = getenv("NOVA_SCOPE")
-NOVA_URL_API = getenv("NOVA_BASE_URL")
+NOVA_BASE_URL = getenv("NOVA_BASE_URL")
+NOVA_URL_API = NOVA_BASE_URL + "/novaan/vertrieb/public/v14/PreisauskunftService"
+NOVA_URL_V_API = NOVA_BASE_URL + "/novaan/vertrieb/public/v14/VertriebsService"
+NOVA_URL_S_API = NOVA_BASE_URL + "/novaan/vertrieb/public/v14/VertriebsstammdatenService"
 
 # OJP_Token can be obtained at: https://opentransportdata.swiss/dev-dashboard
 OJP_URL_API = "https://api.opentransportdata.swiss/ojp2020"
