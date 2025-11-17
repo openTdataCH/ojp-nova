@@ -2,7 +2,7 @@ READFILE = []
 
 
 READFILE.append("input/input_Bodensee_2.xml")
-
+#READFILE.append("input/input_Bern_Zweisimmen_BLS_Zukunft.xml")
 
 '''
 ----------------------------------------------------------------

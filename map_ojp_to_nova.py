@@ -23,14 +23,16 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
 
     # unfortunately it is not in line_ref, but in Extension/ojp:PublishedJourneyNumber
     _, verkehrs_mittel_nummer, _ = line_ref.split(':')
-    # This is an other hack. TODO Unfortunatley it should be part of the Lineref for FAE. NOVA was unable to process the extension with PublishedJourneyNumber
-    #  so we need to rework this section eventually and find out, when we need what.
+    # We try to extract the line for NOVA
     verkehrs_mittel_nummer = ''.join(filter(lambda x: x.isdigit(), verkehrs_mittel_nummer))
-    #try:
-    #    # Set verkehrs_mittel_nummer to timed_leg.extension.publishedjourneynumber?
-    #    verkehrs_mittel_nummer = [x.children[0].text for x in timed_leg.extension.children if x.qname == '{http://www.vdv.de/ojp}PublishedJourneyNumber'][0]
-    #except:
-    #    pass
+    # For trains and in OJP 1.0 it is needed to extract the train number from the extension
+    # e.g. necessary for discounts of BLS in future travel
+    # TODO perhaps do only for rail
+    try:
+        # Set verkehrs_mittel_nummer to timed_leg.extension.publishedjourneynumber?
+        verkehrs_mittel_nummer = [x.children[0].text for x in timed_leg.extension.children if x.qname == '{http://www.vdv.de/ojp}PublishedJourneyNumber'][0]
+    except:
+        pass
 
     if operator_ref:
         verwaltungs_code= process_operating_ref(operator_ref)
