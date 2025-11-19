@@ -101,6 +101,7 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
         leg_start = None
         leg_end = None
         leg_nr=0
+        no_pricable_leg=False
         for leg in legs:
             leg_nr = leg_nr + 1
             # Only handled TimedLegs, everything else we should ignore (for now)
@@ -123,10 +124,11 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
             segments += [map_timed_leg_to_segment(leg.timed_leg)]
         if leg_start is None:
             #no pricable legs found.
-            break
+            no_pricable_leg=True
             #raise OJPError("no pricable legs found.") #TODO we should not raise an error when there are other priced TripResults. Currently one non-pricable raises the error
 
-        verbindungen += [VerbindungPreisAuskunft(externe_verbindungs_referenz_id=externeVerbindungsReferenzId + "_" + leg_start + "_" + leg_end, segment_hin_fahrt=segments)]
+        if no_pricable_leg is False:
+            verbindungen += [VerbindungPreisAuskunft(externe_verbindungs_referenz_id=externeVerbindungsReferenzId + "_" + leg_start + "_" + leg_end, segment_hin_fahrt=segments)]
         reisende =[]
         for traveler in travellers:
             # we only do one for the time being TODO

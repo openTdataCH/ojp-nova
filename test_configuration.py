@@ -1,8 +1,9 @@
 READFILE = []
 
 
-READFILE.append("input/input_Bodensee_2.xml")
-#READFILE.append("input/input_Bern_Zweisimmen_BLS_Zukunft.xml")
+
+READFILE.append("input/input_sharing_intercity.xml")
+
 
 '''
 ----------------------------------------------------------------
@@ -33,7 +34,10 @@ READFILE.append("input/input_ojp_2_test.xml")
 READFILE.append("input/input_problematic_Europaplatz_ojp1.xml")
 READFILE.append("input/input_problematic_Europaplatz_ojp2.xml")
 READFILE.append("input/input_Bodensee_2.xml")
-input_Bodensee_2.xml
+READFILE.append("input/input_problem_footpath.xml")
+
+
+
 # No result, but no result is ok
 READFILE.append("input/input_walk_only.xml")
 READFILE.append("input/input_sharing_only.xml")
