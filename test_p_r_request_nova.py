@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import json
+import traceback
+
 import requests
 import urllib3
 from xsdata.formats.dataclass.client import Client
@@ -9,16 +11,14 @@ from xsdata.formats.dataclass.parsers.config import ParserConfig
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
-
+import xml_logger
 from configuration import *
-from map_nova_to_ojp import test_nova_to_ojp
 from nova import *
 from ojp import Ojp
-from logger import log
-import traceback
+
+logger = logging.getLogger(__name__)
 
 ns_map = {'': 'http://www.siri.org.uk/siri', 'ojp': 'http://www.vdv.de/ojp'}
-
 
 
 def parse_nova_request(body: str) -> VertriebsServicePortTypeSoapv14ErstelleAngeboteInput:
@@ -131,10 +131,7 @@ def test_nova_request_reply(ojp: Ojp):
     nova_client = get_nova_client()
     nova_response = nova_client.send(nova_request, headers=headers)
     if nova_response:
-        serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
-        serializer = XmlSerializer(config=serializer_config)
-        nova_response_xml = serializer.render(nova_response)
-        log('generated/nova_response.xml',nova_response_xml)
+        xml_logger.log_serialized('nova_response.xml',nova_response)
         return nova_response
 
 def check_configuration():
@@ -180,16 +177,14 @@ if __name__ == '__main__':
         '''
         nova_request=parse_nova_request(areqbody)
         nova_request_xml = serializer.render(nova_request)
-        log('generated/nova_p_r_request.xml', nova_request_xml)
+        xml_logger.log_object_as_xml('nova_p_r_request.xml', nova_request)
         nova_client = get_nova_client()
         nova_response = nova_client.send(nova_request, headers=headers)
         if nova_response:
-            serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
-            serializer = XmlSerializer(config=serializer_config)
-            nova_response_xml = serializer.render(nova_response)
-            log('generated/nova_p_r_response.xml', nova_response_xml)
+            xml_logger.log_object_as_xml('nova_p_r_response.xml', nova_response)
     except Exception as e:
         # not yet really sophisticated handling of all other errors during the work (should be regular OJPDeliveries with OtherError set
-        log('generated/error_file.xml', str(e))
+        xml_logger.log_serialized('error_file.xml', str(e))
+        logger.exception(e)
         print (str(e))
         print(traceback.format_exc())

@@ -4,9 +4,11 @@ from ojp import Ojp, Ojpresponse, ServiceDelivery, ServiceDeliveryStructure, Oth
 from xsdata.models.datatype import XmlDateTime
 
 import datetime
+import logging
 
 from ojp2 import OperatorRef
 
+logger = logging.getLogger(__name__)
 
 # err_str = "" #global error string
 
@@ -90,6 +92,7 @@ class OJPError(Exception) :
     # Constructor or Initializer
     def __init__(self, value:str) -> None:
         self.value = value
+        logger.error(value)
 
     # __str__ is to print() the value
     def __str__(self)->str:

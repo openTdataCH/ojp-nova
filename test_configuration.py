@@ -2,8 +2,11 @@ READFILE = []
 
 
 
-READFILE.append("input/input_sharing_intercity.xml")
-
+READFILE.append("input/input_ojp_2_test.xml")
+READFILE.append("input/input_problematic_Europaplatz_ojp1.xml")
+READFILE.append("input/input_problematic_Europaplatz_ojp2.xml")
+READFILE.append("input/input_Bodensee_2.xml")
+READFILE.append("input/input_problem_footpath.xml")
 
 '''
 ----------------------------------------------------------------

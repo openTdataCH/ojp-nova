@@ -1,35 +1,15 @@
 #!/usr/bin/env python3
 
 import json
-import traceback
+from xml.dom.minidom import parseString
 
 import requests
 import urllib3
-from xsdata.formats.dataclass.client import Client
-from xsdata.formats.dataclass.parsers import XmlParser
-from xsdata.formats.dataclass.parsers.config import ParserConfig
-from xsdata.formats.dataclass.serializers import XmlSerializer
-from xsdata.formats.dataclass.serializers.config import SerializerConfig
-from xml.dom.minidom import parseString
 
+import xml_logger
 from configuration import *
-from test_create_ojp_request import *
-from map_nova_to_ojp import test_nova_to_ojp
-from map_nova_to_ojp2 import test_nova_to_ojp2
 
-from map_ojp_to_nova import test_ojp_fare_request_to_nova_request
-from map_ojp2_to_nova import test_ojp2_fare_request_to_nova_request
-
-from map_ojp_to_ojp import parse_ojp, map_ojp_trip_result_to_ojp_fare_request #, map_ojp_trip_result_to_ojp_refine_request
-from map_ojp2_to_ojp2 import parse_ojp2, map_ojp2_trip_result_to_ojp2_fare_request #, map_ojp_trip_result_to_ojp_refine_request
-
-from nova import PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunft
-from ojp import Ojp
-from logger import log
-from xslt_transform import transform_xml, is_version_2_0
 ns_map = {'': 'http://www.siri.org.uk/siri', 'ojp': 'http://www.vdv.de/ojp'}
-
-
 
 
 class OAuth2Helper:
@@ -87,7 +67,7 @@ if __name__ == '__main__':
     check_configuration()
     # read NOVA request file
 
-    READFILE="generated/nova_request.xml"
+    READFILE=xml_logger.path("nova_request.xml")
     print(f'Processing {READFILE}\n\n')
     with open(READFILE, 'r', encoding='utf-8') as inputfile:
         nova_request = inputfile.read()
@@ -106,7 +86,7 @@ if __name__ == '__main__':
         #nova_response_xml = serializer.render(nova_response)
         dom=parseString(nova_response.text)
         pretty_xml=dom.toprettyxml(indent="  ")
-        log('generated/nova_response_direct.xml',pretty_xml)
+        xml_logger.log_serialized('nova_response_direct.xml',pretty_xml)
 
 
 

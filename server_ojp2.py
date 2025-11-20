@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
-import datetime
 
-from fastapi import FastAPI, Request, Response, HTTPException
+from fastapi import FastAPI, Request, Response
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
-from xsdata.models.datatype import XmlDateTime
 
 from map_nova_to_ojp2 import test_nova_to_ojp2
 from map_ojp2_to_ojp2 import parse_ojp2
@@ -14,9 +12,6 @@ from ojp2 import (
     Ojp,
     Ojpresponse,
     ServiceDelivery,
-    ServiceDeliveryStructure,
-    OtherError,
-    OjpfareDelivery,
     ParticipantRefStructure,
 )
 from test_network_flow import call_ojp_20, test_nova_request_reply_for_ojp2
@@ -27,11 +22,13 @@ from configuration import (
     SSL_CERTFILE,
     SSL_KEYFILE,
     HTTP_SLUG,
-
 )
-import logger
 
-# from support import add_error_response
+import logging
+import app_logging
+
+app_logging.setup_logging()
+logger = logging.getLogger(__name__)
 
 app = FastAPI(title="OJP2TONOVA")
 
@@ -40,11 +37,21 @@ serializer = XmlSerializer(config=serializer_config)
 
 ns_map = {"": "http://www.siri.org.uk/siri", "ojp": "http://www.vdv.de/ojp"}
 
+# implements basic liveness probe
+@app.get("/health/liveness", tags=["Health"])
+async def liveness(fastapi_req: Request):
+    return Response("Liveness: OK", media_type="text/plain; charset=utf-8")
+
+
+# implements basic readiness probe
+@app.get("/health/readiness", tags=["Health"])
+async def readiness(fastapi_req: Request):
+    return Response("Readiness: OK", media_type="text/plain; charset=utf-8")
 
 @app.post("/" + HTTP_SLUG, tags=["Open Journey Planner"])
 async def post_request(fastapi_req: Request) ->Response:
     body = await fastapi_req.body()
-    logger.log_entry("Received request: " + str(body))
+    logger.debug("Received request: " + str(body))
 
     ojp_fare_request = None
     error = None
@@ -58,7 +65,7 @@ async def post_request(fastapi_req: Request) ->Response:
             # a request was made and it seems legit
             if ojp_fare_request.ojprequest.service_request.ojpfare_request:
                 # we deal with a OJPFare Request and will ask NOVA
-                logger.log_entry("Query to NOVA: " + str(ojp_fare_request))
+                logger.debug("Query to NOVA: " + str(ojp_fare_request))
                 nova_response = test_nova_request_reply_for_ojp2(ojp_fare_request)
                 if nova_response:
                     # we got a valid response
@@ -66,7 +73,7 @@ async def post_request(fastapi_req: Request) ->Response:
                     if ojp_fare_delivery:
                         # we have a OJPFareDelivery to work with
                         # we add the warnings
-                        logger.log_entry(
+                        logger.debug(
                             "Workable NOVA response put into OJP: "
                             + str(ojp_fare_delivery)
                         )
@@ -89,7 +96,7 @@ async def post_request(fastapi_req: Request) ->Response:
                             xml, media_type="application/xml; charset=utf-8"
                         )
                     else:
-                        logger.log_entry(
+                        logger.warning(
                             "There was a NOVA response, but it can't be used:"
                             + str(nova_response)
                         )
@@ -103,7 +110,7 @@ async def post_request(fastapi_req: Request) ->Response:
                             status_code=400,
                             media_type="application/xml; charset=utf-8",
                         )
-                logger.log_entry("There was no NOVA response")
+                logger.error("There was no NOVA response")
                 return Response(
                     serializer.render(
                         error_response("There was no NOVA response"), ns_map=ns_map
@@ -112,7 +119,7 @@ async def post_request(fastapi_req: Request) ->Response:
                     media_type="application/xml; charset=utf-8",
                 )
             else:
-                logger.log_entry(
+                logger.debug(
                     "Returning the call to the OJP server:" + str(body.decode("utf-8"))
                 )
                 s, r = call_ojp_20(body.decode("utf-8"))
@@ -123,7 +130,7 @@ async def post_request(fastapi_req: Request) ->Response:
             # very general errors
             if error:
                 # an error message was provided in the exception
-                logger.log_entry("Couldn't extract a valid OJP request")
+                logger.error("Couldn't extract a valid OJP request")
                 return Response(
                     serializer.render(
                         error_response(
@@ -136,7 +143,7 @@ async def post_request(fastapi_req: Request) ->Response:
                 )
             else:
                 # no error message was provided in the exception
-                logger.log_entry("No valid OJP request")
+                logger.warning("No valid OJP request")
                 return Response(
                     serializer.render(
                         error_response("There was no (valid) OJP request"),
@@ -147,7 +154,7 @@ async def post_request(fastapi_req: Request) ->Response:
                 )
     except Exception as e:
         # not yet really sophisticated handling of all other errors during the work (should be regular OJPDeliveries with OtherError set
-        logger.log_entry("Some other error occured: " + str(e))
+        logger.exception(e)
         return Response(
             serializer.render(error_response(str(e)), ns_map=ns_map),
             status_code=400,
