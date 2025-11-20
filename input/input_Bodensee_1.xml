@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OJP xmlns:ojp="http://www.vdv.de/ojp" xmlns="http://www.siri.org.uk/siri" version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.siri.org.uk/siri ../OJP4/OJP.xsd">
+	<OJPRequest>
+		<ServiceRequest>
+			<ServiceRequestContext>
+				<Language>de</Language>
+			</ServiceRequestContext>
+			<RequestTimestamp>2025-11-13T13:31:54.334Z</RequestTimestamp>
+			<RequestorRef>OJP_DemoApp_Beta_OJP1.0</RequestorRef>
+			<ojp:OJPTripRequest>
+				<RequestTimestamp>2025-11-13T13:31:54.334Z</RequestTimestamp>
+				<ojp:Origin>
+					<ojp:PlaceRef>
+						<ojp:StopPlaceRef>8506346</ojp:StopPlaceRef>
+						<ojp:LocationName>
+							<ojp:Text>Romanshorn Autoquai (Romanshorn)</ojp:Text>
+						</ojp:LocationName>
+					</ojp:PlaceRef>
+				</ojp:Origin>
+				<ojp:Destination>
+					<ojp:PlaceRef>
+						<ojp:StopPlaceRef>8011121</ojp:StopPlaceRef>
+						<ojp:LocationName>
+							<ojp:Text>Friedrichshafen Fähre (Unbekannt)</ojp:Text>
+						</ojp:LocationName>
+					</ojp:PlaceRef>
+				</ojp:Destination>
+				<ojp:Params>
+					<ojp:NumberOfResults>5</ojp:NumberOfResults>
+					<ojp:IncludeTrackSections>false</ojp:IncludeTrackSections>
+					<ojp:IncludeLegProjection>false</ojp:IncludeLegProjection>
+					<ojp:IncludeTurnDescription>false</ojp:IncludeTurnDescription>
+					<ojp:IncludeIntermediateStops>true</ojp:IncludeIntermediateStops>
+				</ojp:Params>
+			</ojp:OJPTripRequest>
+		</ServiceRequest>
+	</OJPRequest>
+</OJP>

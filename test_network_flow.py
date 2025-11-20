@@ -180,7 +180,7 @@ if __name__ == '__main__':
                 # We work on a OJP 1.0 request
                 status,r = call_ojp_2000(ojp_trip_request_xml)
                 if status != 200:
-                    message = f"call returned a wrong status {status}"
+                    message = f"call returned a wrong status {status}:\n{r}"
                     raise IOError(message)
                 ojp_trip_result1 = parse_ojp(r)
                 ojp_trip_result_xml1 = serializer.render(ojp_trip_result1, ns_map=ns_map)
