@@ -97,6 +97,7 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
         leg_start = None
         leg_end = None
         leg_nr=0
+        no_pricable_leg = False
         for leg in legs:
             leg_nr = leg_nr + 1
             # Only handled TimedLegs, everything else we should ignore (for now)
@@ -119,9 +120,12 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
             segments += [map_timed_leg_to_segment(leg.timed_leg)]
         if leg_start is None:
             #no pricable legs found.
-            raise OJPError("no pricable legs found.")
+            # raise OJPError("no pricable legs found.")
+            # we skip to the next trip. This one is dead
+            no_pricable_leg=True
 
-        verbindungen += [VerbindungPreisAuskunft(externe_verbindungs_referenz_id=externeVerbindungsReferenzId + "_" + leg_start + "_" + leg_end, segment_hin_fahrt=segments)]
+        if no_pricable_leg is False:
+            verbindungen += [VerbindungPreisAuskunft(externe_verbindungs_referenz_id=externeVerbindungsReferenzId + "_" + leg_start + "_" + leg_end, segment_hin_fahrt=segments)]
         reisende =[]
         for traveler in travellers:
             # we only do one for the time being TODO
@@ -183,7 +187,7 @@ def test_ojp2_fare_request_to_nova_request(ojp: Ojp) -> PreisAuskunftServicePort
     if nova_request is None or not nova_request:
         raise OJPError("Was not able to generate NOVA request from OJPFare Request:\n")
     nova_request_xml = serializer.render(nova_request)
-    log('generated/nova_request_2.0.xml',nova_request_xml)
+    log('generated/nova_request.xml',nova_request_xml)
     return nova_request
 
 if __name__ == '__main__':
@@ -197,7 +201,7 @@ if __name__ == '__main__':
         fail_on_unknown_attributes=False,
     )
     parser = XmlParser(parser_config)
-    ojp = parser.parse('generated/ojp_fare_request_2.0.xml', Ojp)
+    ojp = parser.parse('generated/ojp_fare_request.xml', Ojp)
 
     if ojp:
         print(test_ojp2_fare_request_to_nova_request(ojp))
