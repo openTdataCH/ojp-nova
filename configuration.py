@@ -16,6 +16,13 @@ NOVA_URL_API = NOVA_BASE_URL + "/novaan/vertrieb/public/v14/PreisauskunftService
 NOVA_URL_V_API = NOVA_BASE_URL + "/novaan/vertrieb/public/v14/VertriebsService"
 NOVA_URL_S_API = NOVA_BASE_URL + "/novaan/vertrieb/public/v14/VertriebsstammdatenService"
 
+# NOVA channel parameters
+NOVA_KANAL_CODE = int(getenv("NOVA_KANAL_CODE","41"))
+NOVA_LEISTUNGS_VERMITTLER = int(getenv("NOVA_LEISTUNGS_VERMITTLER","11"))
+NOVA_VERKAUFS_STELLE = int(getenv("NOVA_VERKAUFS_STELLE","16437"))
+NOVA_VERTRIEBS_PUNKT = int(getenv("NOVA_VERTRIEBS_PUNKT","16437"))
+NOVA_VERKAUFS_GERAETE_ID = getenv("NOVA_VERKAUFS_GERAETE_ID","236")
+
 # OJP_Token can be obtained at: https://opentransportdata.swiss/dev-dashboard
 OJP_URL_API = "https://api.opentransportdata.swiss/ojp2020"
 OJP_TOKEN = getenv("OJP_TOKEN")
