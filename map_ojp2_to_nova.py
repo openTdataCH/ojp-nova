@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from typing import List, Optional
+from configuration import NOVA_KANAL_CODE, NOVA_LEISTUNGS_VERMITTLER, NOVA_VERKAUFS_STELLE, NOVA_VERKAUFS_GERAETE_ID, NOVA_VERTRIEBS_PUNKT
 from nova import ErstellePreisAuskunft, VerbindungPreisAuskunftRequest, ClientIdentifier, CorrelationKontext, \
     TaxonomieFilter, TaxonomieKlassePfad, ReisendenInfoPreisAuskunft, ReisendenTypCode, VerbindungPreisAuskunft, \
     FahrplanVerbindungsSegment, VerkehrsMittelGattung, ZwischenHaltContextTripContext, \
@@ -162,9 +163,9 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
             erstelle_preis_auskunft=ErstellePreisAuskunft(
                 preis_auskunft_request=VerbindungPreisAuskunftRequest(kunden_segmente_gruppieren=False,
                                                                       client_identifier=ClientIdentifier(
-                                                                          leistungs_vermittler=11, kanal_code=41,
-                                                                          verkaufs_stelle=16437, vertriebs_punkt=16437,
-                                                                          verkaufs_geraete_id="236"),
+                                                                          leistungs_vermittler=NOVA_LEISTUNGS_VERMITTLER, kanal_code=NOVA_KANAL_CODE,
+                                                                          verkaufs_stelle=NOVA_VERKAUFS_STELLE, vertriebs_punkt=NOVA_VERTRIEBS_PUNKT,
+                                                                          verkaufs_geraete_id=NOVA_VERKAUFS_GERAETE_ID),
                                                                       correlation_kontext=CorrelationKontext(
                                                                           correlation_id="87482634-560b-4da3-b6a1-155c37490fed",
                                                                           geschaefts_prozess_id="1781786f-57ba-4e9a-bc29-287e2aa97f9a"),
