@@ -1,4 +1,4 @@
-xsdata[cli,lxml,soap]~=24.12
+xsdata[cli,lxml,soap]~=26.1
 requests~=2.31.0
 fastapi[standard]>=0.113.0,<0.114.0
 uvicorn~=0.23.2
