@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import uuid
 from typing import List, Optional
 
 from configuration import NOVA_KANAL_CODE, NOVA_LEISTUNGS_VERMITTLER, NOVA_VERKAUFS_STELLE, NOVA_VERKAUFS_GERAETE_ID, NOVA_VERTRIEBS_PUNKT
@@ -176,7 +177,7 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
                                                                           verkaufs_stelle=NOVA_VERKAUFS_STELLE, vertriebs_punkt=NOVA_VERTRIEBS_PUNKT,
                                                                           verkaufs_geraete_id=NOVA_VERKAUFS_GERAETE_ID),
                                                                       correlation_kontext=CorrelationKontext(
-                                                                          correlation_id="87482634-560b-4da3-b6a1-155c37490fed",
+                                                                          correlation_id=str(uuid.uuid1()),
                                                                           geschaefts_prozess_id="1781786f-57ba-4e9a-bc29-287e2aa97f9a"),
                                                                       angebots_filter=[TaxonomieFilter(
                                                                           produkt_taxonomie="SBB Preisauskunft",
