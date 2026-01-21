@@ -10,6 +10,7 @@ from ojp2 import Ojp, TimedLegStructure, FarePassengerStructure, PassengerCatego
 from support import OJPError, process_operating_ref_ojp2,sloid2didok
 import xml_logger
 import random
+import uuid
 
 def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindungsSegment:
     einstieg = sloid2didok(timed_leg.leg_board.stop_point_ref)
@@ -167,7 +168,7 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
                                                                           verkaufs_stelle=NOVA_VERKAUFS_STELLE, vertriebs_punkt=NOVA_VERTRIEBS_PUNKT,
                                                                           verkaufs_geraete_id=NOVA_VERKAUFS_GERAETE_ID),
                                                                       correlation_kontext=CorrelationKontext(
-                                                                          correlation_id="87482634-560b-4da3-b6a1-155c37490fed",
+                                                                          correlation_id=str(uuid.uuid1()),
                                                                           geschaefts_prozess_id="1781786f-57ba-4e9a-bc29-287e2aa97f9a"),
                                                                       angebots_filter=[TaxonomieFilter(
                                                                           produkt_taxonomie="SBB Preisauskunft",
