@@ -7,14 +7,14 @@ _enabled_values = ['true', 'enabled']
 
 # For keys and connection to NOVA contact opendata@sbb.ch if necessary.
 # However, those access keys only are provided under special circumstances.
-NOVA_URL_TOKEN = getenv("NOVA_TOKEN_URL")
+NOVA_TOKEN_URL = getenv("NOVA_TOKEN_URL")
 NOVA_CLIENT_ID = getenv("NOVA_CLIENT_ID")
 NOVA_CLIENT_SECRET = getenv("NOVA_CLIENT_SECRET")
 NOVA_SCOPE = getenv("NOVA_SCOPE")
 NOVA_BASE_URL = getenv("NOVA_BASE_URL","https://nova-inte-int.api.sbb.ch")
-NOVA_URL_API = NOVA_BASE_URL + "/novaan/vertrieb/public/v14/PreisauskunftService"
-NOVA_URL_V_API = NOVA_BASE_URL + "/novaan/vertrieb/public/v14/VertriebsService"
-NOVA_URL_S_API = NOVA_BASE_URL + "/novaan/vertrieb/public/v14/VertriebsstammdatenService"
+NOVA_PREISAUSKUNFT_PATH = "/novaan/vertrieb/public/v14/PreisauskunftService"
+NOVA_VERTRIEBS_PATH = "/novaan/vertrieb/public/v14/VertriebsService"
+NOVA_VERTRIEBSSTAMMDATEN_PATH = "/novaan/vertrieb/public/v14/VertriebsstammdatenService"
 
 # NOVA channel parameters
 NOVA_KANAL_CODE = int(getenv("NOVA_KANAL_CODE","41"))
