@@ -72,7 +72,7 @@ class OAuth2Helper:
     def get_token(self, new_token=False):
         if new_token or not self.current_token:
             data = {'grant_type': 'client_credentials', 'scope': 'api://e1710a9f-d3e8-4751-b662-42f242e79f20/.default'}
-            access_token_response = requests.post(NOVA_URL_TOKEN, data=data, verify=False, allow_redirects=False,
+            access_token_response = requests.post(NOVA_TOKEN_URL, data=data, verify=False, allow_redirects=False,
                                                   auth=(self.client_id, self.client_secret))
             self.current_token = json.loads(access_token_response.text)
         return self.current_token['access_token']
@@ -91,7 +91,8 @@ def get_nova_client():
     )
     parser = XmlParser(config)
 
-    client = Client.from_service(VertriebsServicePortTypeSoapv14ErstelleAngebote, location=NOVA_URL_V_API, encoding="utf-8")
+    location = NOVA_BASE_URL + NOVA_VERTRIEBS_PATH
+    client = Client.from_service(VertriebsServicePortTypeSoapv14ErstelleAngebote, location=location, encoding="utf-8")
     client.parser = parser
 
     return client
