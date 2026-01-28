@@ -56,6 +56,15 @@ def sloid2didok(sloid:str)->int:
     # TODO this is a hack for the timetable change 2024/2025 must be done correctly in map_ojp_to_ojp.py by replacing the stoppoints with the correct didoks
     #if a didok code, just return it
     my_dict: Dict[str,str] ={
+        "8507082": "8504108",
+        "8503088": "8503000",
+        "8519342": "8504014",
+        "8014488": "8503467",
+        "8014482": "8503466",
+        "8014483": "8503465",
+        "8014484": "8503464",
+        "8014485": "853463",
+        "8014487": "8503462",
     }
     #dict from https://confluence.sbb.ch/pages/viewpage.action?pageId=2608861819
     #"8507082": "8504108",
