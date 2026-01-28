@@ -3,6 +3,13 @@ READFILE = []
 
 READFILE.append("input/input_Bern_Belp.xml")
 
+
+'''
+----------------------------------------------------------------
+Reservoir for tests
+
+# Working OJP 1.0 examples
+
 READFILE.append("input/input_oev_shart_plus_long.xml")
 READFILE.append("input/input_Zuerich_Chur.xml")
 READFILE.append("input/input_Visp_SaaS_Fee_problem_1_preis.xml") #1. class price problematic
