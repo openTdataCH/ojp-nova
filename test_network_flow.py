@@ -67,16 +67,17 @@ def call_ojp_20(request_body:str) -> Tuple[int,str]:
 class OAuth2Helper:
     # Credits: https://developer.byu.edu/docs/consume-api/use-api/oauth-20/oauth-20-python-sample-code
 
-    def __init__(self, client_id:str, client_secret:str):
+    def __init__(self, client_id:str, client_secret:str, scope:str):
         urllib3.disable_warnings()
         self.client_id = client_id
         self.client_secret = client_secret
+        self.scope = scope
         self.current_token = None
 
     def get_token(self, new_token:bool=False) ->Any:
         if new_token or not self.current_token:
-            data = {'grant_type': 'client_credentials', 'scope': 'api://e1710a9f-d3e8-4751-b662-42f242e79f20/.default'}
-            access_token_response = requests.post(NOVA_URL_TOKEN, data=data, verify=False, allow_redirects=False,
+            data = {'grant_type': 'client_credentials', 'scope': self.scope}
+            access_token_response = requests.post(NOVA_TOKEN_URL, data=data, verify=False, allow_redirects=False,
                                                   auth=(self.client_id, self.client_secret))
             self.current_token = json.loads(access_token_response.text)
         if self.current_token is None:
@@ -85,7 +86,7 @@ class OAuth2Helper:
 
 def get_nova_client() -> Client:
     # TODO: It might be more elegant to cache this client in some way, but we would need to handle the expiry of the token
-    oauth_helper = OAuth2Helper(client_id=NOVA_CLIENT_ID, client_secret=NOVA_CLIENT_SECRET)
+    oauth_helper = OAuth2Helper(client_id=NOVA_CLIENT_ID, client_secret=NOVA_CLIENT_SECRET, scope=NOVA_SCOPE)
     access_token = oauth_helper.get_token()
     headers = {'Authorization': 'Bearer ' + access_token, "User-Agent": "OJP2NOVA/0.2" }
 
@@ -96,14 +97,14 @@ def get_nova_client() -> Client:
         fail_on_unknown_attributes=False,
     )
     parser = XmlParser(config)
-
-    client = Client.from_service(PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunft, location=NOVA_URL_API, encoding="utf-8")
+    location = NOVA_BASE_URL + NOVA_PREISAUSKUNFT_PATH
+    client = Client.from_service(PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunft, location=location, encoding="utf-8")
     client.parser = parser
 
     return client
 
 def test_nova_request_reply(ojp: Ojp)->Optional[PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput]:
-    oauth_helper = OAuth2Helper(client_id=NOVA_CLIENT_ID, client_secret=NOVA_CLIENT_SECRET)
+    oauth_helper = OAuth2Helper(client_id=NOVA_CLIENT_ID, client_secret=NOVA_CLIENT_SECRET, scope=NOVA_SCOPE)
     access_token = oauth_helper.get_token()
     headers = {'Authorization': 'Bearer ' + access_token, "User-Agent": "OJP2NOVA/0.2"}
     nova_request = test_ojp_fare_request_to_nova_request(ojp)
@@ -115,8 +116,9 @@ def test_nova_request_reply(ojp: Ojp)->Optional[PreisAuskunftServicePortTypeSoap
     return nova_response
 
 
+
 def test_nova_request_reply_for_ojp2(ojp: Ojp2)->Optional[PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput]:
-    oauth_helper = OAuth2Helper(client_id=NOVA_CLIENT_ID, client_secret=NOVA_CLIENT_SECRET)
+    oauth_helper = OAuth2Helper(client_id=NOVA_CLIENT_ID, client_secret=NOVA_CLIENT_SECRET, scope=NOVA_SCOPE)
     access_token = oauth_helper.get_token()
     headers = {'Authorization': 'Bearer ' + access_token, "User-Agent": "OJP2NOVA/0.2"}
     nova_request = test_ojp2_fare_request_to_nova_request(ojp)

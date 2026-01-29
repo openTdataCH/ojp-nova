@@ -15,16 +15,17 @@ ns_map = {'': 'http://www.siri.org.uk/siri', 'ojp': 'http://www.vdv.de/ojp'}
 class OAuth2Helper:
     # Credits: https://developer.byu.edu/docs/consume-api/use-api/oauth-20/oauth-20-python-sample-code
 
-    def __init__(self, client_id, client_secret):
+    def __init__(self, client_id: str, client_secret: str, scope: str):
         urllib3.disable_warnings()
         self.client_id = client_id
         self.client_secret = client_secret
+        self.scope = scope
         self.current_token = None
 
     def get_token(self, new_token=False):
         if new_token or not self.current_token:
-            data = {'grant_type': 'client_credentials', 'scope': 'api://e1710a9f-d3e8-4751-b662-42f242e79f20/.default'}
-            access_token_response = requests.post(NOVA_URL_TOKEN, data=data, verify=False, allow_redirects=False,
+            data = {'grant_type': 'client_credentials', 'scope': self.scope}
+            access_token_response = requests.post(NOVA_TOKEN_URL, data=data, verify=False, allow_redirects=False,
                                                   auth=(self.client_id, self.client_secret))
             self.current_token = json.loads(access_token_response.text)
         return self.current_token['access_token']
@@ -79,7 +80,7 @@ if __name__ == '__main__':
                'Content-Type':'text/xml; charset=utf-8',
                "User-Agent": "OJP2NOVA/0.2" }
 
-    nova_response=send_nova(NOVA_URL_API, headers, nova_request)
+    nova_response=send_nova(NOVA_BASE_URL + NOVA_PREISAUSKUNFT_PATH, headers, nova_request)
     if nova_response:
         #serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
         #serializer = XmlSerializer(config=serializer_config)
