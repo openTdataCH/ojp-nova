@@ -12,11 +12,7 @@ import app_logging
 app_logging.setup_logging()
 logger = logging.getLogger(__name__)
 app = FastAPI(title="OJPTONOVA")
-
 fare_service1 = FareServiceOjp1()
-fare_service2 = FareServiceOjp2()
-
-version_parser = OjpVersionParser()
 
 # implements basic liveness probe
 @app.get("/health/liveness", tags=["Health"])
@@ -32,12 +28,7 @@ async def readiness(fastapi_req: Request):
 async def post_request(fastapi_req: Request) ->Response:
     body = await fastapi_req.body()
     logger.debug("Received request: " + str(body))
-
-    version = version_parser.parse_version(str(body))
-    if version == "1.0":
-        return fare_service1.handle_request(body)
-    else:
-        return fare_service2.handle_request(body)
+    return fare_service1.handle_request(body)
 
 if __name__ == "__main__":
     import uvicorn

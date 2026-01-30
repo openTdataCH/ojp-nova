@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from fastapi import FastAPI, Request, Response
-from api.FareServiceOjp2 import FareServiceOjp2
+from api.ojp2.FareServiceOjp2 import FareServiceOjp2
 from configuration import (
     HTTP_HOST,
     HTTP_PORT,
@@ -19,6 +19,16 @@ logger = logging.getLogger(__name__)
 app = FastAPI(title="OJP2TONOVA")
 
 fare_service = FareServiceOjp2()
+
+# implements basic liveness probe
+@app.get("/health/liveness", tags=["Health"])
+async def liveness(fastapi_req: Request):
+    return Response("Liveness: OK", media_type="text/plain; charset=utf-8")
+
+# implements basic readiness probe
+@app.get("/health/readiness", tags=["Health"])
+async def readiness(fastapi_req: Request):
+    return Response("Readiness: OK", media_type="text/plain; charset=utf-8")
 
 @app.post("/" + HTTP_SLUG, tags=["Open Journey Planner"])
 async def post_request(fastapi_req: Request) ->Response:
