@@ -25,18 +25,16 @@ class FareServiceOjp1(FareService):
         try:
             ojp_fare_request = _parse_request(body)
             _validate_request(ojp_fare_request)
+            self.logger.debug("Request passed validation: " + str(ojp_fare_request))
 
             if ojp_fare_request.ojprequest.service_request.ojpfare_request:
-                self.logger.debug("Query to NOVA: " + str(ojp_fare_request))
+                self.logger.debug("Fare request - about to query NOVA: " + str(ojp_fare_request))
                 nova_response = test_nova_request_reply(ojp_fare_request)
-
-
                 ojp_fare_delivery = map_nova_reply_to_ojp_fare_delivery(nova_response)
-
                 self.logger.debug("Workable NOVA response put into OJP: " + str(ojp_fare_delivery))
                 return _create_response(ojp_fare_delivery)
             else:
-                self.logger.debug("Returning the call to the OJP server:" + str(body.decode("utf-8")))
+                self.logger.debug("OJP request - returning the call to the OJP server:" + str(body.decode("utf-8")))
                 s, r = call_ojp_2000(body.decode("utf-8"))
                 return Response(r, media_type="application/xml; charset=utf-8", status_code=s)
 
