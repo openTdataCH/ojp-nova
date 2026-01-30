@@ -1,3 +1,4 @@
+import logging
 import unittest
 
 from api.ErrorHandler import ErrorHandler
@@ -9,26 +10,29 @@ from api.ojp2.ErrorResponseProviderOjp2 import ErrorResponseProviderOjp2
 
 class ErrorHandlerTest(unittest.TestCase):
 
-    def test_internal_server_error_ojp1(self):
+    logger = logging.getLogger(__name__)
+
+    def test_ojp1_WHEN_internal_server_error_EXPECT_error_response(self):
         self._catch_internal_server_error(ErrorResponseProviderOjp1())
 
-    def test_api_error(self):
-        self._catch_api_error(ErrorResponseProviderOjp1())
-
-    def test_internal_server_error_ojp2(self):
+    def test_ojp2_WHEN_internal_server_EXPECT_error_response(self):
         self._catch_internal_server_error(ErrorResponseProviderOjp2())
+
+    def test_ojp1_WHEN_api_error_EXPECT_error_response(self):
+        self._catch_api_error(ErrorResponseProviderOjp1())
 
     def _catch_internal_server_error(self, error_response_provider: ErrorResponseProvider):
 
         # prepare test case
         error_handler = ErrorHandler(error_response_provider)
         self.assertIsNotNone(error_handler)
-        message = "Oups, Terrible Failure ;-)"
+        message = "Oups, terrible failure ;-)"
         try:
             raise InternalServerError(message)
 
         # run test case
         except InternalServerError as e:
+            self.logger.info("caught InternalServerError ...")
             response = error_handler.handle_error(e)
 
             # assert expectations
@@ -39,12 +43,13 @@ class ErrorHandlerTest(unittest.TestCase):
         # prepare test case
         error_handler = ErrorHandler(error_response_provider)
         self.assertIsNotNone(error_handler)
-        message = "Oups, Terrible Failure ;-)"
+        message = "Oups, terrible failure ;-)"
         try:
             raise InternalServerError(message)
 
         # run test case
         except ApiError as e:
+            self.logger.info("caught ApiError ...")
             response = error_handler.handle_error(e)
 
             # assert expectations
