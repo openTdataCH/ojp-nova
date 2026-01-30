@@ -13,6 +13,7 @@ from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
 import ojp.fare_result_structure
+from api.errors.NoNovaResponseError import NoNovaResponseError
 from configuration import *
 from support import OJPError
 from test_create_ojp_request import *
@@ -109,10 +110,12 @@ def test_nova_request_reply(ojp: Ojp)->Optional[PreisAuskunftServicePortTypeSoap
     nova_request = test_ojp_fare_request_to_nova_request(ojp)
     nova_client = get_nova_client()
     nova_response :Optional[PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput] = nova_client.send(nova_request, headers=headers)
-    if nova_response:
-        xml_logger.log_object_as_xml('nova_response.xml',nova_response)
-        return nova_response
-    return None
+    if nova_response is None:
+        raise NoNovaResponseError()
+    xml_logger.log_object_as_xml('nova_response.xml',nova_response)
+    return nova_response
+
+
 
 def test_nova_request_reply_for_ojp2(ojp: Ojp2)->Optional[PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput]:
     oauth_helper = OAuth2Helper(client_id=NOVA_CLIENT_ID, client_secret=NOVA_CLIENT_SECRET, scope=NOVA_SCOPE)
@@ -121,10 +124,10 @@ def test_nova_request_reply_for_ojp2(ojp: Ojp2)->Optional[PreisAuskunftServicePo
     nova_request = test_ojp2_fare_request_to_nova_request(ojp)
     nova_client = get_nova_client()
     nova_response : PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput = nova_client.send(nova_request, headers=headers)
-    if nova_response:
-        xml_logger.log_object_as_xml('nova_response.xml',nova_response)
-        return nova_response
-    return None
+    if nova_response is None:
+        raise NoNovaResponseError()
+    xml_logger.log_object_as_xml('nova_response.xml',nova_response)
+    return nova_response
 
 def check_configuration() ->None:
     if (len(NOVA_CLIENT_SECRET)==0):
