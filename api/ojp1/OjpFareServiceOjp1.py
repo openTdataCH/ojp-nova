@@ -12,7 +12,7 @@ from api.ojp1.ErrorResponseContentProviderOjp1 import ErrorResponseContentProvid
 from map_nova_to_ojp import map_nova_reply_to_ojp_fare_delivery
 from map_ojp_to_ojp import parse_ojp
 from ojp import OjpfareDelivery, Ojpresponse, ServiceDelivery, Ojp
-from test_network_flow import test_nova_request_reply,call_ojp_2000
+from test_network_flow import test_nova_request_reply, call_ojp_2000
 
 
 class FareServiceOjp1(OjpFareService):
@@ -21,6 +21,9 @@ class FareServiceOjp1(OjpFareService):
         super().__init__(*args, **kwargs)
 
     def handle_request(self, body: bytes) -> Response:
+        """
+        Handles an ojp1 request.
+        """
         error_handler = ErrorHandler(ErrorResponseContentProviderOjp1())
         try:
             ojp_fare_request = _parse_request(body)

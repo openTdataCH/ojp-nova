@@ -13,6 +13,9 @@ class ErrorHandler:
         self.logger = logging.getLogger(__name__)
 
     def handle_error(self, error: type[ApiError]) -> Response:
+        """
+        Handles an ApiError and creates an according Response using a ErrorResponseContentProvider.
+        """
         error.log_error()
         return Response(
             self.response_provider.provide_error_response_content(error.message),

@@ -8,6 +8,7 @@ from api.errors.InternalServerError import InternalServerError
 from api.ojp1.ErrorResponseContentProviderOjp1 import ErrorResponseContentProviderOjp1
 from api.ojp2.ErrorResponseContentProviderOjp2 import ErrorResponseProviderOjp2
 
+
 class ErrorHandlerTest(unittest.TestCase):
 
     logger = logging.getLogger(__name__)

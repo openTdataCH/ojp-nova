@@ -21,6 +21,9 @@ class FareServiceOjp2(OjpFareService):
         super().__init__(*args, **kwargs)
 
     def handle_request(self, body: bytes) -> Response:
+        """
+        Handles an ojp2 request.
+        """
         error_handler = ErrorHandler(ErrorResponseProviderOjp2())
         try:
             ojp_fare_request = _parse_request(body)

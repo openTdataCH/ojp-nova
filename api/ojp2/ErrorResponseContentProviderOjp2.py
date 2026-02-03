@@ -2,8 +2,8 @@ import datetime
 
 from xsdata.models.datatype import XmlDateTime
 
-from api.SerializerUtil import SerializerUtil
 from api.ErrorResponseContentProvider import ErrorResponseContentProvider
+from api.SerializerUtil import SerializerUtil
 from ojp2 import Ojp, Ojpresponse, ServiceDelivery, ServiceDeliveryStructure, OtherError
 
 
@@ -12,6 +12,9 @@ class ErrorResponseProviderOjp2(ErrorResponseContentProvider):
     serializer = SerializerUtil.serializer
 
     def provide_error_response_content(self, message: str) -> str:
+        """
+        Provides the ojp2 error response content for the given error message.
+        """
         ojp = Ojp(ojpresponse=Ojpresponse(service_delivery=
                                           ServiceDelivery(response_timestamp=XmlDateTime.from_datetime(
                                               datetime.datetime.now(datetime.timezone.utc)),

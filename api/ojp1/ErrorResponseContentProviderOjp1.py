@@ -12,6 +12,9 @@ class ErrorResponseContentProviderOjp1(ErrorResponseContentProvider):
     serializer = SerializerUtil.serializer
 
     def provide_error_response_content(self, message: str) -> str:
+        """
+        Provides the ojp1 error response content for the given error message.
+        """
         ojp = Ojp(ojpresponse=Ojpresponse(service_delivery=
                                           ServiceDelivery(response_timestamp=XmlDateTime.from_datetime(
                                               datetime.datetime.now(datetime.timezone.utc)),

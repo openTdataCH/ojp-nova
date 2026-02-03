@@ -11,4 +11,7 @@ class OjpFareService(ABC):
 
     @abstractmethod
     def handle_request(self, body: bytes) -> Response:
+        """
+        Handles an ojp request.
+        """
         return Response(body)
