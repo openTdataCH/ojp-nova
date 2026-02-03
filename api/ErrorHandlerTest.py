@@ -6,7 +6,7 @@ from api.ErrorResponseContentProvider import ErrorResponseContentProvider
 from api.errors.ApiError import ApiError
 from api.errors.InternalServerError import InternalServerError
 from api.ojp1.ErrorResponseContentProviderOjp1 import ErrorResponseContentProviderOjp1
-from api.ojp2.ErrorResponseContentProviderOjp2 import ErrorResponseProviderOjp2
+from api.ojp2.ErrorResponseContentProviderOjp2 import ErrorResponseContentProviderOjp2
 
 
 class ErrorHandlerTest(unittest.TestCase):
@@ -17,7 +17,7 @@ class ErrorHandlerTest(unittest.TestCase):
         self._catch_internal_server_error(ErrorResponseContentProviderOjp1())
 
     def test_ojp2_WHEN_internal_server_EXPECT_error_response(self):
-        self._catch_internal_server_error(ErrorResponseProviderOjp2())
+        self._catch_internal_server_error(ErrorResponseContentProviderOjp2())
 
     def test_ojp1_WHEN_api_error_EXPECT_error_response(self):
         self._catch_api_error(ErrorResponseContentProviderOjp1())
