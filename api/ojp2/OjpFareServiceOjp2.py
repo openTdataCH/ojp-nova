@@ -8,7 +8,7 @@ from api.SerializerUtil import SerializerUtil
 from api.errors.ApiError import ApiError
 from api.errors.InvalidOjpRequestError import InvalidOjpRequestError
 from api.errors.OjpRequestParseError import OjpRequestParseError
-from api.ojp2.ErrorResponseContentProviderOjp2 import ErrorResponseProviderOjp2
+from api.ojp2.ErrorResponseContentProviderOjp2 import ErrorResponseContentProviderOjp2
 from map_nova_to_ojp2 import map_nova_reply_to_ojp_fare_delivery
 from map_ojp2_to_ojp2 import parse_ojp2
 from ojp2 import Ojp, OjpfareDelivery, Ojpresponse, ServiceDelivery, ParticipantRefStructure
@@ -24,7 +24,7 @@ class FareServiceOjp2(OjpFareService):
         """
         Handles an ojp2 request.
         """
-        error_handler = ErrorHandler(ErrorResponseProviderOjp2())
+        error_handler = ErrorHandler(ErrorResponseContentProviderOjp2())
         try:
             ojp_fare_request = _parse_request(body)
             _validate_request(ojp_fare_request)
