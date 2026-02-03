@@ -41,7 +41,8 @@ async def post_request(fastapi_req: Request) ->Response:
     body = await fastapi_req.body()
     logger.debug("Received request: " + str(body))
 
-    version = version_parser.parse_version(str(body))
+    version = version_parser.parse_version(body.decode("utf-8"))
+    logger.debug("Received version: " + str(version))
     if version == "1.0":
         return fare_service1.handle_request(body)
     else:
