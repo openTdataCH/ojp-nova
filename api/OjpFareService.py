@@ -4,7 +4,7 @@ from abc import abstractmethod, ABC
 from fastapi import Response
 
 
-class FareService(ABC):
+class OjpFareService(ABC):
 
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)

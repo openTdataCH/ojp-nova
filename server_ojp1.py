@@ -3,8 +3,8 @@
 from fastapi import FastAPI, Request, Response
 
 from api.OjpVersionParser import OjpVersionParser
-from api.ojp1.FareServiceOjp1 import FareServiceOjp1
-from api.ojp2.FareServiceOjp2 import FareServiceOjp2
+from api.ojp1.OjpFareServiceOjp1 import FareServiceOjp1
+from api.ojp2.OjpFareServiceOjp2 import FareServiceOjp2
 from configuration import HTTP_HOST, HTTP_PORT, HTTPS, SSL_CERTFILE, SSL_KEYFILE, HTTP_SLUG
 import logging
 import app_logging

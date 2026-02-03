@@ -2,12 +2,12 @@ import datetime
 
 from xsdata.models.datatype import XmlDateTime
 
+from api.ErrorResponseContentProvider import ErrorResponseContentProvider
 from api.SerializerUtil import SerializerUtil
-from api.ErrorResponseProvider import ErrorResponseProvider
-from ojp2 import Ojp, Ojpresponse, ServiceDelivery, ServiceDeliveryStructure, OtherError
+from ojp import Ojp, Ojpresponse, ServiceDelivery, ServiceDeliveryStructure, OtherError
 
 
-class ErrorResponseProviderOjp2(ErrorResponseProvider):
+class ErrorResponseContentProviderOjp1(ErrorResponseContentProvider):
     ns_map = SerializerUtil.ns_map
     serializer = SerializerUtil.serializer
 

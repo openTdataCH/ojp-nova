@@ -2,13 +2,13 @@ import logging
 
 from fastapi import Response
 
-from api.ErrorResponseProvider import ErrorResponseProvider
+from api.ErrorResponseContentProvider import ErrorResponseContentProvider
 from api.errors import ApiError
 
 
 class ErrorHandler:
 
-    def __init__(self, response_provider: ErrorResponseProvider):
+    def __init__(self, response_provider: ErrorResponseContentProvider):
         self.response_provider = response_provider
         self.logger = logging.getLogger(__name__)
 

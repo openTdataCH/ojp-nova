@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from fastapi import FastAPI, Request, Response
-from api.ojp2.FareServiceOjp2 import FareServiceOjp2
+from api.ojp2.OjpFareServiceOjp2 import FareServiceOjp2
 from configuration import (
     HTTP_HOST,
     HTTP_PORT,
