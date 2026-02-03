@@ -31,17 +31,28 @@ The main configuration is stored in configuration.py. However, you need addition
 We suggest to use local_configuration.py (is omitted through .gitignore).
 
 If you need some configuration it may be discussed. Contact opendata@sbb.ch, if necessary. Be aware, that the NOVA product team needs to agree. However, the access is and will remain limited.
-Relevant element that need to be filled:
+
+Variables that need to be set for the NOVA channel:
 ```
-NOVA_URL_TOKEN = ""
-NOVA_CLIENT_ID = ''
-NOVA_CLIENT_SECRET = ''
-NOVA_URL_API = ""
-OJP_URL_API = "https://api.opentransportdata.swiss/ojp2020"
-OJP_TOKEN = ''
-OJP2_URL_API = "https://api.opentransportdata.swiss/ojp20"
-OJP2_TOKEN = ''
-xxx
+NOVA_KANAL_CODE
+NOVA_LEISTUNGS_VERMITTLER
+NOVA_VERKAUFS_STELLE
+NOVA_VERTRIEBS_PUNKT
+NOVA_VERKAUFS_GERAETE_ID
+```
+
+Variables that need to be set for the NOVA client (differs depending on the environment, INT or PROD):
+```
+NOVA_BASE_URL
+NOVA_CLIENT_ID
+NOVA_CLIENT_SECRET
+NOVA_SCOPE
+```
+
+Variables that need to be set for the OJP clients:
+```
+OJP_TOKEN
+OJP2_TOKEN
 ```
 
 ### Testing the configuration
