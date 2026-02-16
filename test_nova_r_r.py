@@ -73,7 +73,7 @@ if __name__ == '__main__':
     with open(READFILE, 'r', encoding='utf-8') as inputfile:
         nova_request = inputfile.read()
     # send it to NOVA
-    oauth_helper = OAuth2Helper(client_id=NOVA_CLIENT_ID, client_secret=NOVA_CLIENT_SECRET)
+    oauth_helper = OAuth2Helper(client_id=NOVA_CLIENT_ID, client_secret=NOVA_CLIENT_SECRET, scope=NOVA_SCOPE)
     access_token = oauth_helper.get_token()
     headers = {'Authorization': 'Bearer ' + access_token,
                'SOAPAction': 'http://nova.voev.ch/services/v14/preisauskunft/erstellePreisAuskunft',
