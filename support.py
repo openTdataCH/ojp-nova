@@ -71,7 +71,7 @@ def sloid2didok(sloid:str)->int:
         "8014485": "8503463",
         "8014487": "8503462",
     }
-    sloid="ch:1:sloid:7082:1:1"
+
     try:
         # sloids are not integer, but didok are. So we first try to convert to id. If this works, we assume, it is a didok code
         didok=int(sloid)
@@ -90,6 +90,7 @@ def sloid2didok(sloid:str)->int:
         tmp= 8500000+int(tmp)
         tmp=my_dict.get(str(tmp),str(tmp)) # replaces if it is in the table or gets the value back
         return tmp
+
 
 # raising an error and sending it back. Does not add values from err_str
 class OJPError(Exception) :
