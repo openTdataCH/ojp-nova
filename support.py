@@ -53,38 +53,41 @@ def process_operating_ref(operator_ref:str) ->str:
         return operator_ref
 
 def sloid2didok(sloid:str)->int:
-    # TODO this is a hack for the timetable change 2024/2025 must be done correctly in map_ojp_to_ojp.py by replacing the stoppoints with the correct didoks
-    #if a didok code, just return it
+    # We make sure that whatever we get is a didok in the end.
+    # It might be a didok, when we return it as integer
+    # It might be a sloid, then we transform it into a didok (as integer)
+    # With the sloid it is important that we go from the Quay level to the StopPlace level
+    # An important part is that we transform to the commercial stops.
+    # For this the dict is used
+    # The list here is derived from https://confluence.sbb.ch/pages/viewpage.action?pageId=2608861819
     my_dict: Dict[str,str] ={
+        "8507082": "8504108",
+        "8503088": "8503000",
+        "8519342": "8504014",
+        "8014488": "8503467",
+        "8014482": "8503466",
+        "8014483": "8503465",
+        "8014484": "8503464",
+        "8014485": "853463",
+        "8014487": "8503462",
     }
-    #dict from https://confluence.sbb.ch/pages/viewpage.action?pageId=2608861819
-    #"8507082": "8504108",
-    #"8503088": "8503000",
-    #"8519342": "8504014",
-    #"8014488": "8503467",
-    #"8014482": "8503466",
-    #"8014483": "8503465",
-    #"8014484": "8503464",
-    #"8014485": "853463",
-    #"8014487": "8503462",
-    #if type(sloid)!=str:
-    #    #must be a StopPointRef or StopPlaceRef TODO:Why is this different in OJP 1 and 2
-    #    sloid=sloid.value
     try:
+        # sloids are not integer, but didok are. So we first try to convert to id. If this works, we assume, it is a didok code
         didok=int(sloid)
         didok=int(my_dict.get(str(didok),str(didok))) # replaces if it is in the table or gets the value back
         return didok
     except:
         #remove left part of sloid
         sloid=sloid.replace('ch:1:sloid:','')
-        if ':' in sloid:
-            sloid = sloid[:sloid.find(':')]
         #remove the right part of sloid, if it exist
-        #if bigger than 100000 -> no add
-        sloid=my_dict.get(str(sloid),str(sloid)) # replaces if it is in the table or gets the value back
-        if int(sloid)>100000:
-            return int(sloid)
-        return 8500000+int(sloid)
+        if ':' in sloid:
+            tmp = sloid[:sloid.find(':')]
+        tmp=my_dict.get(str(tmp),str(tmp)) # replaces if it is in the table or gets the value back
+        # if bigger than 100000 -> no add. This is used for the 11-14 prefixes that are used for sloid that are used for local public transport
+        # outside Switzerland
+        if int(tmp)>100000:
+            return int(tmp)
+        return 8500000+int(tmp)
 
 # raising an error and sending it back. Does not add values from err_str
 class OJPError(Exception) :
