@@ -92,8 +92,6 @@ def sloid2didok(sloid:str)->int:
         tmp=my_dict.get(str(tmp),str(tmp)) # replaces if it is in the table or gets the value back
         return tmp
 
-
-
 # raising an error and sending it back. Does not add values from err_str
 class OJPError(Exception) :
 
