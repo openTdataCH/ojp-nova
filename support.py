@@ -83,6 +83,7 @@ def sloid2didok(sloid:str)->int:
         #remove the right part of sloid, if it exist
         if ':' in sloid:
             tmp = sloid[:sloid.find(':')]
+
         # if bigger than 100000 -> no add. This is used for the 11-14 prefixes that are used for sloid that are used for local public transport
         # outside Switzerland
         if int(tmp)>100000:
@@ -90,6 +91,7 @@ def sloid2didok(sloid:str)->int:
         tmp= 8500000+int(tmp)
         tmp=my_dict.get(str(tmp),str(tmp)) # replaces if it is in the table or gets the value back
         return tmp
+
 
 
 # raising an error and sending it back. Does not add values from err_str
