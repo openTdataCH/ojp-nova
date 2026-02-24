@@ -5,7 +5,7 @@ import logging
 from fastapi import FastAPI, Request, Response
 
 import app_logging
-from api.ojp2.OjpFareServiceOjp2 import FareServiceOjp2
+from api.ojp2 import FareServiceOjp2
 from configuration import (
     HTTP_HOST,
     HTTP_PORT,
@@ -17,7 +17,7 @@ from configuration import (
 
 app_logging.setup_logging()
 logger = logging.getLogger(__name__)
-app = FastAPI(title="OJP2TONOVA")
+app = FastAPI(title="ojp-fare API for OJP2")
 
 fare_service = FareServiceOjp2()
 
@@ -26,6 +26,7 @@ async def liveness(fastapi_req: Request):
     """
     Implements liveness probe.
     """
+    logger.debug("Received liveness probe request: " + str(fastapi_req))
     return Response("Liveness: OK", media_type="text/plain; charset=utf-8")
 
 # implements basic readiness probe
@@ -34,6 +35,7 @@ async def readiness(fastapi_req: Request):
     """
     Implements readiness probe.
     """
+    logger.debug("Received readiness probe request: " + str(fastapi_req))
     return Response("Readiness: OK", media_type="text/plain; charset=utf-8")
 
 @app.post("/" + HTTP_SLUG, tags=["Open Journey Planner"])

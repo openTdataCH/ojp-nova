@@ -1,18 +1,28 @@
+import datetime
 import logging
 
 from fastapi import Response
+from xsdata.models.datatype import XmlDateTime
 
-from api.ErrorHandler import ErrorHandler
-from api.OjpFareService import OjpFareService
-from api.SerializerUtil import SerializerUtil
-from api.errors.ApiError import ApiError
-from api.errors.InvalidOjpRequestError import InvalidOjpRequestError
-from api.errors.OjpRequestParseError import OjpRequestParseError
-from api.ojp1.ErrorResponseContentProviderOjp1 import ErrorResponseContentProviderOjp1
+from api.common import OjpFareService, ns_map, serializer
+from api.errors import (
+    ApiError,
+    ErrorHandler,
+    ErrorResponseContentProvider,
+    InvalidOjpRequestError,
+    OjpRequestParseError,
+)
 from map_nova_to_ojp import map_nova_reply_to_ojp_fare_delivery
 from map_ojp_to_ojp import parse_ojp
-from ojp import OjpfareDelivery, Ojpresponse, ServiceDelivery, Ojp
-from test_network_flow import test_nova_request_reply, call_ojp_2000
+from ojp import (
+    Ojp,
+    OjpfareDelivery,
+    Ojpresponse,
+    OtherError,
+    ServiceDelivery,
+    ServiceDeliveryStructure,
+)
+from test_network_flow import call_ojp_2000, test_nova_request_reply
 
 
 class FareServiceOjp1(OjpFareService):
@@ -31,15 +41,24 @@ class FareServiceOjp1(OjpFareService):
             self.logger.debug("Request passed validation: " + str(ojp_fare_request))
 
             if ojp_fare_request.ojprequest.service_request.ojpfare_request:
-                self.logger.debug("Fare request - about to query NOVA: " + str(ojp_fare_request))
+                self.logger.debug(
+                    "Fare request - about to query NOVA: " + str(ojp_fare_request)
+                )
                 nova_response = test_nova_request_reply(ojp_fare_request)
                 ojp_fare_delivery = map_nova_reply_to_ojp_fare_delivery(nova_response)
-                self.logger.debug("Workable NOVA response put into OJP: " + str(ojp_fare_delivery))
+                self.logger.debug(
+                    "Workable NOVA response put into OJP: " + str(ojp_fare_delivery)
+                )
                 return _create_response(ojp_fare_delivery)
             else:
-                self.logger.debug("OJP request - returning the call to the OJP server:" + str(body.decode("utf-8")))
+                self.logger.debug(
+                    "OJP request - returning the call to the OJP server:"
+                    + str(body.decode("utf-8"))
+                )
                 s, r = call_ojp_2000(body.decode("utf-8"))
-                return Response(r, media_type="application/xml; charset=utf-8", status_code=s)
+                return Response(
+                    r, media_type="application/xml; charset=utf-8", status_code=s
+                )
 
         except ApiError as error:
             return error_handler.handle_error(error)
@@ -47,7 +66,7 @@ class FareServiceOjp1(OjpFareService):
 
 def _validate_request(ojp_fare_request: Ojp):
     if ojp_fare_request.ojprequest is None:
-        raise InvalidOjpRequestError(message="missing Element OJPRequest.");
+        raise InvalidOjpRequestError(message="missing Element OJPRequest.")
 
     if ojp_fare_request.ojprequest.service_request.ojpfare_request is None:
         raise InvalidOjpRequestError()
@@ -61,7 +80,7 @@ def _parse_request(body: bytes) -> Ojp:
 
 
 def _create_response(ojp_fare_delivery: OjpfareDelivery) -> Response:
-    xml = SerializerUtil.serializer.render(
+    xml = serializer.render(
         Ojp(
             ojpresponse=Ojpresponse(
                 service_delivery=ServiceDelivery(
@@ -71,6 +90,27 @@ def _create_response(ojp_fare_delivery: OjpfareDelivery) -> Response:
                 )
             )
         ),
-        ns_map=SerializerUtil.ns_map,
+        ns_map=ns_map,
     )
     return Response(xml, media_type="application/xml; charset=utf-8")
+
+
+class ErrorResponseContentProviderOjp1(ErrorResponseContentProvider):
+    def provide_error_response_content(self, message: str) -> str:
+        """
+        Provides the ojp1 error response content for the given error message.
+        """
+        ojp = Ojp(
+            ojpresponse=Ojpresponse(
+                service_delivery=ServiceDelivery(
+                    response_timestamp=XmlDateTime.from_datetime(
+                        datetime.datetime.now(datetime.timezone.utc)
+                    ),
+                    producer_ref="OJP2NOVA",
+                    error_condition=ServiceDeliveryStructure.ErrorCondition(
+                        other_error=OtherError(message)
+                    ),
+                )
+            )
+        )
+        return serializer.render(ojp, ns_map=ns_map)
