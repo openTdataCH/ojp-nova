@@ -82,9 +82,10 @@ class NoNovaResponseError(ApiError):
 
 
 class OjpRequestParseError(ApiError):
-    def __init__(self, cause: Exception = None, message="Failed to parse OJP request."):
+    def __init__(self, cause: Exception = None):
         self.cause = cause
-        super().__init__(message, 400)
+        self.message = f"Failed to parse OJP request: '{cause}'"
+        super().__init__(self.message, 400)
 
     def log_error(self):
         self.logger.warning(self.message + ": " + str(self.cause))
@@ -140,7 +141,6 @@ class ErrorHandlerTest(unittest.TestCase):
 
             # assert expectations
             self.assertIsNotNone(response)
-
 
 if __name__ == "__main__":
     unittest.main()
