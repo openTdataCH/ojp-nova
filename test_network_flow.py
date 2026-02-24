@@ -13,7 +13,7 @@ from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
 import ojp.fare_result_structure
-from api.errors.NoNovaResponseError import NoNovaResponseError
+from api.errors import NoNovaResponseError
 from configuration import *
 from support import OJPError
 from test_create_ojp_request import *

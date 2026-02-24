@@ -5,7 +5,7 @@ from typing import List, Optional, Dict
 
 from xsdata.models.datatype import XmlDateTime
 
-from api.errors.InvalidNovaResponseError import InvalidNovaResponseError
+from api.errors import InvalidNovaResponseError
 from nova import ErstellePreisAuskunftResponse, KlassenTypCode, PreisAuspraegung, \
     PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput
 from ojp import OjpfareDelivery, FareResultStructure, FareProductStructure, TripFareResultStructure, \
