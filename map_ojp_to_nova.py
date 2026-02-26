@@ -85,17 +85,26 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
             and ojp.ojprequest.service_request.ojpfare_request[0].trip_fare_request.trip
             and len(ojp.ojprequest.service_request.ojpfare_request[0].trip_fare_request.trip.trip_leg) > 0):
         return None
-
+    #handling of abos (monthly) otherwise the product_taxonomie is set to the standard
+    produkt_taxonomie = "SBB Preisauskunft"
     try:
+            if "NOVA-Subscription" in ojp.ojprequest.service_request.ojpfare_request[0].params.fare_authority_filter[0] :
+                produkt_taxonomie="SBB Abonnemente"
+    except:
+        pass
+    #handling of traveller
+    travellers = []
+    try:
+        #TODO im MOment behandeln wir nur den ersten Request!!!
         if ojp.ojprequest.service_request.ojpfare_request[0].params.traveller is None:
-            travellers = []
-            travellers.append(FarePassengerStructure(age=25, entitlement_product=["HTA"]))
+            travellers.append(FarePassengerStructure(age=25, entitlement_product=["HTA"])) #fix for bad data in traveller
         else:
-            if not(ojp.ojprequest.service_request.ojpfare_request[0].params.traveller[0].age is int):
-                age = ojp.ojprequest.service_request.ojpfare_request[0].params.traveller[0].age
-            else:
-                age=25
-            travellers = ojp.ojprequest.service_request.ojpfare_request[0].params.traveller
+            # we go through all travellers
+            for traveller in ojp.ojprequest.service_request.ojpfare_request[0].params.traveller:
+                #TODO we set age, but this might be wrong
+                if not(traveller.age is int):
+                    traveller.age=25
+                travellers.append(traveller)
     except:
         pass
 
@@ -136,14 +145,15 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
 
         if no_pricable_leg is False:
             verbindungen += [VerbindungPreisAuskunft(externe_verbindungs_referenz_id=externeVerbindungsReferenzId + "_" + leg_start + "_" + leg_end, segment_hin_fahrt=segments)]
+
+        # we process now the travellers into the nova strcuture
         reisende =[]
         for traveler in travellers:
-            # we only do one for the time being TODO
             r_alter=25
             if traveler.age == None:
-                t_alter=25
+                r_alter=25
             else:
-                t_alter=traveler.age
+                r_alter=traveler.age
             r_typ = ReisendenTypCode.PERSON
             if traveler.passenger_category is None:
                 r_typ =ReisendenTypCode.PERSON
@@ -151,22 +161,72 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
                 r_typ = ReisendenTypCode.HUND
             elif traveler.passenger_category.value == "Bicycle":
                 r_typ = ReisendenTypCode.VELO
+            elif traveler.passenger_category.value == "Adult":
+                r_typ = ReisendenTypCode.PERSON
+            elif traveler.passenger_category.value == "Child":
+                r_typ = ReisendenTypCode.PERSON
+            elif traveler.passenger_category.value == "Senior":
+                r_typ = ReisendenTypCode.PERSON
+            elif traveler.passenger_category.value == "Youth":
+                r_typ = ReisendenTypCode.PERSON
+            elif traveler.passenger_category.value == "Disabled":
+                r_typ = ReisendenTypCode.PERSON
+            elif traveler.passenger_category.value == "Motorcycle":
+                r_typ = ReisendenTypCode.PERSON
+                #TODO Raise error
+            elif traveler.passenger_category.value == "Car":
+                r_typ = ReisendenTypCode.PERSON
+                #TODO Raise error
+            elif traveler.passenger_category.value == "Truck":
+                r_typ = ReisendenTypCode.PERSON
+                #TODO Raise error
+            elif traveler.passenger_category.value == "Group":
+                r_typ = ReisendenTypCode.PERSON
+                #TODO Raise error
             else:
                 r_typ = ReisendenTypCode.PERSON
+                #TODO Raise error
             digits = "0123456789"
             r_referenz= ''.join(random.choice(digits) for _ in range(6))
             # we only process HTA for the time being!
-            reisender = ReisendenInfoPreisAuskunft(alter=r_alter,
-                                                   externe_reisenden_referenz_id=r_referenz,
-                                                   reisenden_typ=r_typ,
-                                                   ermaessigungs_karte_code=[])
+            # reisender = ReisendenInfoPreisAuskunft(alter=r_alter,
+            #                                       externe_reisenden_referenz_id=r_referenz,
+            #                                       reisenden_typ=r_typ,
+            #                                       ermaessigungs_karte_code=[])
 
+            entitlements =[]
             for entitlement_product in traveler.entitlement_product:
                 if "HTA" in entitlement_product:
-                    reisender = ReisendenInfoPreisAuskunft(alter=r_alter,
-                                                           externe_reisenden_referenz_id=r_referenz,
-                                                           reisenden_typ=r_typ,
-                                                           ermaessigungs_karte_code=["HTA"])
+                    entitlements.append("HTA")
+                elif "JUNIORKARTE" in entitlement_product:
+                    entitlements.append("JUNIORKARTE")
+                elif "EURAIL_CH_1KL" in entitlement_product:
+                    entitlements.append("EURAIL_CH_1KL")
+                elif "EURAIL_CH_2KL" in entitlement_product:
+                    entitlements.append("EURAIL_CH_2KL")
+                elif "INTERRAIL_CH_1KL" in entitlement_product:
+                    entitlements.append("INTERRAIL_CH_1KL")
+                elif "INTERRAIL_CH_2KL" in entitlement_product:
+                    entitlements.append("INTERRAIL_CH_2KL")
+                elif "GA_2KL" in entitlement_product:
+                    entitlements.append("GA_2KL")
+                elif "GA_1KL" in entitlement_product:
+                    entitlements.append("GA_1KL")
+                elif "ST_PASS_2KL" in entitlement_product:
+                    entitlements.append("ST_PASS_2KL")
+                elif "ST_PASS_1KL" in entitlement_product:
+                    entitlements.append("ST_PASS_1KL")
+                elif "KEINE_ERMAESSIGUNGSKARTE":
+                    #Keine Ermässigungskarte
+                    pass
+                else:
+                    #TODO error ungültige Karte
+                    pass
+
+            reisender = ReisendenInfoPreisAuskunft(alter=r_alter,
+                                                externe_reisenden_referenz_id=r_referenz,
+                                                   reisenden_typ=r_typ,
+                                                   ermaessigungs_karte_code=entitlements)
             reisende.append(reisender)
     return PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput(
         body=PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput.Body(

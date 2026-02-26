@@ -3,47 +3,34 @@ READFILE = []
 
 READFILE.append("input/input_Bern_Belp.xml")
 
-'''
-----------------------------------------------------------------
-Reservoir for tests
 
-# Working OJP 1.0 examples
+#READFILE.append("input/input_Monatsabo_test.xml")
 
-
-READFILE.append("input/input_oev_shart_plus_long.xml")
-READFILE.append("input/input_Zuerich_Chur.xml")
-READFILE.append("input/input_Visp_SaaS_Fee_problem_1_preis.xml") #1. class price problematic
-READFILE.append("input/input_strange_price.xml")
-READFILE.append("input/input_Zuerich_Bern.xml")
-READFILE.append("input/input_Basel_Sargans.xml")
-READFILE.append("input/input_Bern_Interlaken_Ost.xml")
-READFILE.append("input/input_Bern_Interlaken_Gymnasium.xml")
-READFILE.append("input/input_Bern_Guisanplatz_Interlaken_Gymnasium.xml")
-READFILE.append("input/input_local.xml")
-READFILE.append("input/input_oev_shart_plus_long.xml")
-READFILE.append("input/input_bus_postauto.xml")
-READFILE.append("input/input_sharing_intercity.xml")
-READFILE.append("input/input_problematic_case_vasile.xml")
-READFILE.append("input/input_Europaplatz.xml")
-READFILE.append("input/input_Bodensee_1.xml")
-READFILE.append("input/input_test_europaplatz.xml")
-
-
-# Working OJP 2.0 example
-#READFILE.append("input/input_ojp_1_test.xml")
-READFILE.append("input/input_ojp_2_test.xml")
-READFILE.append("input/input_problematic_Europaplatz_ojp1.xml")
-READFILE.append("input/input_problematic_Europaplatz_ojp2.xml")
-READFILE.append("input/input_Bodensee_2.xml")
-READFILE.append("input/input_problem_footpath.xml")
-READFILE.append("input/input_problematic_Europaplatz_4.xml")
 
 '''
+[
+    {
+    "file": "input/input_Bern_Belp.xml",
+    "travellers": [
+            {
+            "age":2,
+            "entitlements":"HTA GA_1KL",
+            typ: "PERSON",
+            "tkid": "1231231"
+            }
+        ],
+    "subscriptions": true,
+    "relationship": "KEINE_REISENDENBEZIEHUNG"
+
+    }
+]
+
 ----------------------------------------------------------------
 Reservoir for tests
 
 # Working OJP 1.0 examples
 READFILE.append("input/input_Bern_Belp.xml")
+READFILE.append("input/input_test_dornbir.xml")
 
 READFILE.append("input/input_oev_shart_plus_long.xml")
 READFILE.append("input/input_Zuerich_Chur.xml")
