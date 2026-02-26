@@ -101,11 +101,11 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
             travellers.append(FarePassengerStructure(age=25, entitlement_product=["HTA"])) #fix for bad data in traveller
         else:
             # we go through all travellers
-            for traveller in ojp.ojprequest.service_request.ojpfare_request[0].params.traveller:
+            for traveler in ojp.ojprequest.service_request.ojpfare_request[0].params.traveller:
                 #TODO we set age, but this might be wrongs
-                if not(traveller.age is int):
-                    traveller.age=25
-                travellers.append(traveller)
+                if not(traveler.age is int):
+                    traveler.age=25
+                travellers.append(traveler)
     except:
         pass
 
@@ -192,27 +192,27 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
 
             entitlements =[]
             for entitlement_product in traveler.entitlement_product:
-                if "HTA" in entitlement_product:
+                if "HTA" in entitlement_product.entitlement_product_ref:
                     entitlements.append("HTA")
-                elif "JUNIORKARTE" in entitlement_product:
+                elif "JUNIORKARTE" in entitlement_product.entitlement_product_ref:
                     entitlements.append("JUNIORKARTE")
-                elif "EURAIL_CH_1KL" in entitlement_product:
+                elif "EURAIL_CH_1KL" in entitlement_product.entitlement_product_ref:
                     entitlements.append("EURAIL_CH_1KL")
-                elif "EURAIL_CH_2KL" in entitlement_product:
+                elif "EURAIL_CH_2KL" in entitlement_product.entitlement_product_ref:
                     entitlements.append("EURAIL_CH_2KL")
-                elif "INTERRAIL_CH_1KL" in entitlement_product:
+                elif "INTERRAIL_CH_1KL" in entitlement_product.entitlement_product_ref:
                     entitlements.append("INTERRAIL_CH_1KL")
-                elif "INTERRAIL_CH_2KL" in entitlement_product:
+                elif "INTERRAIL_CH_2KL" in entitlement_product.entitlement_product_ref:
                     entitlements.append("INTERRAIL_CH_2KL")
-                elif "GA_2KL" in entitlement_product:
+                elif "GA_2KL" in entitlement_product.entitlement_product_ref:
                     entitlements.append("GA_2KL")
-                elif "GA_1KL" in entitlement_product:
+                elif "GA_1KL" in entitlement_product.entitlement_product_ref:
                     entitlements.append("GA_1KL")
-                elif "ST_PASS_2KL" in entitlement_product:
+                elif "ST_PASS_2KL" in entitlement_product.entitlement_product_ref:
                     entitlements.append("ST_PASS_2KL")
-                elif "ST_PASS_1KL" in entitlement_product:
+                elif "ST_PASS_1KL" in entitlement_product.entitlement_product_ref:
                     entitlements.append("ST_PASS_1KL")
-                elif "KEINE_ERMAESSIGUNGSKARTE":
+                elif "KEINE_ERMAESSIGUNGSKARTE" in entitlement_product.entitlement_product_ref:
                     #Keine Ermässigungskarte
                     pass
                 else:

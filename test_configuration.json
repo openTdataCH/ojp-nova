@@ -17,6 +17,77 @@
     ],
     "subscriptions": true,
     "relationship": "KEINE_REISENDENBEZIEHUNG",
-    "active": true
+    "active": false
+  },
+    {
+    "file": "input/input_Bern_Belp.xml",
+    "travellers": [
+      {
+        "age": 25,
+        "entitlements": "HTA",
+        "typ": "PERSON",
+        "tkid": "1231231"
+      }
+    ],
+    "subscriptions": false,
+    "relationship": "KEINE_REISENDENBEZIEHUNG",
+    "active": false
+  },
+
+    {
+    "file": "input/input_Bodensee_2.xml",
+    "travellers": [
+      {
+        "age": 75,
+        "entitlements": "",
+        "typ": "PERSON",
+        "tkid": "12331231"
+      }
+    ],
+    "subscriptions": false,
+    "relationship": "KEINE_REISENDENBEZIEHUNG",
+     "active": false
+  },
+      {
+    "file": "input/input_Bodensee_2.xml",
+    "travellers": [
+      {
+        "age": 75,
+        "entitlements": "HTA",
+        "typ": "PERSON",
+        "tkid": "12331231"
+      }
+    ],
+    "subscriptions": false,
+    "relationship": "KEINE_REISENDENBEZIEHUNG",
+     "active": false
+  },
+      {
+    "file": "input/input_bus_postauto.xml",
+    "travellers": [
+      {
+        "age": 13,
+        "entitlements": "",
+        "typ": "PERSON",
+        "tkid": "12331231"
+      }
+    ],
+    "subscriptions": false,
+    "relationship": "KEINE_REISENDENBEZIEHUNG",
+     "active": false
+  },
+      {
+    "file": "input/input_ojp_2_test.xml",
+    "travellers": [
+      {
+        "age": 25,
+        "entitlements": "",
+        "typ": "PERSON",
+        "tkid": "12331231"
+      }
+    ],
+    "subscriptions": false,
+    "relationship": "KEINE_REISENDENBEZIEHUNG",
+     "active": true
   }
 ]

@@ -31,7 +31,7 @@ from ojp2 import Ojp as Ojp2, FareParamStructure as FareParamStructure2, \
     FarePassengerStructure as FarePassengerStructure2, FareAuthorityRefStructure as FareAuthorityRefStructure2, \
     PassengerCategoryEnumeration, FareClassEnumeration, EntitlementProductStructure, EntitlementProductListStructure
 from ojp import Ojp, OjpfareDelivery, FareParamStructure, FarePassengerStructure, FareAuthorityRef, \
-    TypeOfFareClassEnumeration, PassengerCategoryEnumeration
+    TypeOfFareClassEnumeration, PassengerCategoryEnumeration,  EntitlementProductRef
 from xslt_transform import transform_xml, is_version_2_0
 import xml_logger
 import logging
@@ -184,10 +184,44 @@ def build_ojp2_fare_params(travellers, subscriptions, relationship) -> FareParam
     if relationship:
         #TODO we will have to process relationships, need to put this in extensions
         pass
-
-
-
     return FareParamStructure2(fare_authority_filter=filters,traveller=ojptravellers,passenger_category=[PassengerCategoryEnumeration.ADULT],fare_class =FareClassEnumeration.SECOND_CLASS)
+
+
+
+def build_ojp_fare_params(travellers, subscriptions, relationship) -> FareParamStructure:
+
+    #travellers can't be empty. we already checked
+    ojptravellers = []
+    for t_idx, traveller in enumerate(travellers):
+        if not isinstance(traveller, dict):
+            continue
+        typ = traveller.get("typ")
+        tkid = traveller.get("tkid") # we cannot process this for the time being
+        raw_ent = traveller.get("entitlements")
+        ent_list = split_entitlements(raw_ent)
+        entitlements=[]
+        for ent in ent_list:
+            entitlements.append(EntitlementProductStructure(fare_authority_ref="NOVA",entitlement_product_ref=ent, entitlement_product_name=ent))
+        passenger_category = traveller.get("passenger_category")
+        birthday = traveller.get("birthday") #we cannot process this for the time being
+        age = traveller.get("age")
+
+        ojptraveller = FarePassengerStructure(age=age,passenger_category=passenger_category,entitlement_product=entitlements)
+        ojptravellers.append(ojptraveller)
+    filters =[]
+    if subscriptions:
+        # we use subscriptions instead of regular tickets
+        filters.append(FareAuthorityRef(value="NOVA-Subscription"))
+    else:
+        filters.append(FareAuthorityRef(value="NOVA"))
+    if relationship:
+        #TODO we will have to process relationships, need to put this in extensions
+        pass
+
+
+
+    return FareParamStructure(fare_authority_filter=filters,traveller=ojptravellers,passenger_category=[PassengerCategoryEnumeration.ADULT],travel_class =FareClassEnumeration.SECOND_CLASS)
+
 
 if __name__ == '__main__':
     #check configuration
@@ -274,7 +308,7 @@ if __name__ == '__main__':
                     ojp_trip_result1 = parse_ojp(r)
                     ojp_trip_result_xml1 = serializer.render(ojp_trip_result1, ns_map=ns_map)
                     xml_logger.log_serialized('ojp_trip_reply.xml', ojp_trip_result_xml1)
-                    ojp_fare_params = build_ojp2_fare_params(travellers, subscriptions, relationship)
+                    ojp_fare_params = build_ojp_fare_params(travellers, subscriptions, relationship)
                     ojp_fare_request1 = map_ojp_trip_result_to_ojp_fare_request(ojp_trip_result1,ojp_fare_params)
                     ojp_fare_request_xml1 = serializer.render(ojp_fare_request1, ns_map=ns_map)
                     xml_logger.log_serialized('ojp_fare_request.xml', ojp_fare_request_xml1)
