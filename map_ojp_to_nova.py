@@ -95,13 +95,14 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
     #handling of traveller
     travellers = []
     try:
-        #TODO im MOment behandeln wir nur den ersten Request!!!
+
         if ojp.ojprequest.service_request.ojpfare_request[0].params.traveller is None:
+            #if we have no traveller, we invent one (with HTA) TODO perhaps we should instead throw an error
             travellers.append(FarePassengerStructure(age=25, entitlement_product=["HTA"])) #fix for bad data in traveller
         else:
             # we go through all travellers
             for traveller in ojp.ojprequest.service_request.ojpfare_request[0].params.traveller:
-                #TODO we set age, but this might be wrong
+                #TODO we set age, but this might be wrongs
                 if not(traveller.age is int):
                     traveller.age=25
                 travellers.append(traveller)
@@ -240,7 +241,7 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
                                                                           correlation_id=str(uuid.uuid1()),
                                                                           geschaefts_prozess_id="1781786f-57ba-4e9a-bc29-287e2aa97f9a"),
                                                                       angebots_filter=[TaxonomieFilter(
-                                                                          produkt_taxonomie="SBB Preisauskunft",
+                                                                          produkt_taxonomie=produkt_taxonomie,
                                                                           taxonomie_klasse_pfad=[TaxonomieKlassePfad(EmptyType())])],
                                                                       reisender=reisende,
                                                                       verbindung=verbindungen
