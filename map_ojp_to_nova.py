@@ -189,11 +189,6 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
                 #TODO Raise error
             digits = "0123456789"
             r_referenz= ''.join(random.choice(digits) for _ in range(6))
-            # we only process HTA for the time being!
-            # reisender = ReisendenInfoPreisAuskunft(alter=r_alter,
-            #                                       externe_reisenden_referenz_id=r_referenz,
-            #                                       reisenden_typ=r_typ,
-            #                                       ermaessigungs_karte_code=[])
 
             entitlements =[]
             for entitlement_product in traveler.entitlement_product:
