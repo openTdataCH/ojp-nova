@@ -27,8 +27,11 @@ from map_ojp2_to_ojp2 import parse_ojp2, map_ojp2_trip_result_to_ojp2_fare_reque
 
 from nova import PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunft, \
     PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput
-from ojp2 import Ojp as Ojp2
-from ojp import Ojp, OjpfareDelivery
+from ojp2 import Ojp as Ojp2, FareParamStructure as FareParamStructure2, \
+    FarePassengerStructure as FarePassengerStructure2, FareAuthorityRefStructure as FareAuthorityRefStructure2, \
+    PassengerCategoryEnumeration, FareClassEnumeration, EntitlementProductStructure, EntitlementProductListStructure
+from ojp import Ojp, OjpfareDelivery, FareParamStructure, FarePassengerStructure, FareAuthorityRef, \
+    TypeOfFareClassEnumeration, PassengerCategoryEnumeration
 from xslt_transform import transform_xml, is_version_2_0
 import xml_logger
 import logging
@@ -131,88 +134,173 @@ def check_configuration() ->None:
         logger.error("Nova client secret not set in the configuration")
         exit(1)
 
+
+def split_entitlements(value: Any) -> List[str]:
+    """
+    Convert entitlements field into a list of strings.
+    - If value is None or empty string -> return empty list.
+    - If value is already a list -> return a shallow copy.
+    - If value is a string -> split on whitespace.
+    - Otherwise -> convert to string and split.
+    """
+    if value is None:
+        return []
+    if isinstance(value, list):
+        return value.copy()
+    if isinstance(value, str):
+        # split on any whitespace and ignore extra spaces
+        parts = value.split()
+        return parts
+    # Fallback: convert to string
+    return str(value).split()
+
+def build_ojp2_fare_params(travellers, subscriptions, relationship) -> FareParamStructure2:
+
+    #travellers can't be empty. we already checked
+    ojptravellers = []
+    for t_idx, traveller in enumerate(travellers):
+        if not isinstance(traveller, dict):
+            continue
+        typ = traveller.get("typ")
+        tkid = traveller.get("tkid") # we cannot process this for the time being
+        raw_ent = traveller.get("entitlements")
+        ent_list = split_entitlements(raw_ent)
+        entitlements = []
+        for ent in ent_list:
+            entitlements.append(EntitlementProductStructure(fare_authority_ref="NOVA",entitlement_product_ref=ent,entitlement_product_name=ent))
+        entitlement_list=EntitlementProductListStructure(entitlement_product=entitlements)
+        passenger_category = traveller.get("passenger_category")
+        birthday = traveller.get("birthday") #we cannot process this for the time being
+        age = traveller.get("age")
+
+        ojptraveller = FarePassengerStructure2(age=age,passenger_category=passenger_category,entitlement_products=entitlement_list)
+        ojptravellers.append(ojptraveller)
+    filters =[]
+    if subscriptions:
+        # we use subscriptions instead of regular tickets
+        filters.append(FareAuthorityRefStructure2(value="NOVA-Subscription"))
+    else:
+        filters.append(FareAuthorityRefStructure2(value="NOVA"))
+    if relationship:
+        #TODO we will have to process relationships, need to put this in extensions
+        pass
+
+
+
+    return FareParamStructure2(fare_authority_filter=filters,traveller=ojptravellers,passenger_category=[PassengerCategoryEnumeration.ADULT],fare_class =FareClassEnumeration.SECOND_CLASS)
+
 if __name__ == '__main__':
     #check configuration
     ojp_trip_request_xml=''
     check_configuration()
     serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
     serializer = XmlSerializer(config=serializer_config)
-    for rf in READFILE:
-        if (not READTRIPREQUESTFILE):
-            ojp_trip_request = test_create_ojp_trip_request_simple_1()
-            ojp_trip_request_xml = serializer.render(ojp_trip_request, ns_map=ns_map)
-        else:
-            inputfile = open(rf, 'r', encoding='utf-8')
+    """
+    Load JSON from json_path into test_run_dict, then loop through all top-level elements
+    and process those with "active": true.
+
+    Example action: print file name and number of travellers. Replace the print block
+    with whatever processing you need.
+    """
+    # Read file
+    with open("test_configuration.json", "r", encoding="utf-8") as f:
+        test_run_dict = json.load(f)
+
+    # test_run_dict is typically a list (as in your example). If it's a dict containing
+    # the list under some key, adapt accordingly.
+    if not isinstance(test_run_dict, list):
+        raise ValueError("Expected JSON top-level to be a list of test runs")
+
+    # Loop through active elements
+    for idx, element in enumerate(test_run_dict):
+        # Skip non-dict entries
+        if not isinstance(element, dict):
+            continue
+
+        active = element.get("active", False)
+        if active:
+            file_name = element.get("file")
+            travellers = element.get("travellers", [])
+            subscriptions = element.get("subscriptions")
+            relationship = element.get("relationship")
+            print(
+                f"\n**************************************************************************************\n")
+            print(f"Active element #{idx}: file={file_name}")
+            print(f"  travellers: {len(travellers)}")
+            print(f"  subscriptions: {subscriptions}")
+            print(f"  relationship: {relationship}")
+            inputfile = open(file_name, 'r', encoding='utf-8')
             ojp_trip_request_xml = inputfile.read()
             inputfile.close()
-        xml_logger.log_serialized('ojp_trip_request.xml', ojp_trip_request_xml)
-        try:
-            print (f"\n********************************************\n{rf}\n********************************************\n")
-            if  is_version_2_0(ojp_trip_request_xml):
-                #We process an OJP 2 request
-                status, r = call_ojp_20(ojp_trip_request_xml)
-                if status != 200:
-                    message = f"call returned a wrong status {status}"
-                    raise IOError(message)
-                ojp_trip_result = parse_ojp2(r)
-                ojp_trip_result_xml = serializer.render(ojp_trip_result, ns_map=ns_map)
-                xml_logger.log_serialized('ojp_trip_reply.xml', ojp_trip_result_xml)
-                ojp_fare_request = map_ojp2_trip_result_to_ojp2_fare_request(ojp_trip_result)
-                if ojp_fare_request is None:
-                    raise OJPError("ERR102: No fare request could be generated from trip delivery.")
-                else:
-                    ojp_fare_request_xml = serializer.render(ojp_fare_request, ns_map=ns_map)
-                xml_logger.log_serialized('ojp_fare_request.xml', ojp_fare_request_xml)
-                nova_response = test_nova_request_reply_for_ojp2(ojp_fare_request)
-                if nova_response:
-                    ojp_fare_result = test_nova_to_ojp2(nova_response)
-                    if not(ojp_fare_result):
-                        ojp_fare_result_xml="Not a valid nova fare response received." #TODO Improve with better handling
-                        xml_logger.log_serialized('ojp_fare_result.xml', ojp_fare_result_xml)
+            xml_logger.log_serialized('ojp_trip_request.xml', ojp_trip_request_xml)
+            try:
+
+                if is_version_2_0(ojp_trip_request_xml):
+                    # We process an OJP 2 request
+                    status, r = call_ojp_20(ojp_trip_request_xml)
+                    if status != 200:
+                        message = f"call returned a wrong status {status}"
+                        raise IOError(message)
+                    ojp_trip_result = parse_ojp2(r)
+                    ojp_trip_result_xml = serializer.render(ojp_trip_result, ns_map=ns_map)
+                    xml_logger.log_serialized('ojp_trip_reply.xml', ojp_trip_result_xml)
+                    ojp_fare_params = build_ojp2_fare_params(travellers, subscriptions, relationship)
+                    ojp_fare_request = map_ojp2_trip_result_to_ojp2_fare_request(ojp_trip_result, ojp_fare_params)
+                    if ojp_fare_request is None:
+                        raise OJPError("ERR102: No fare request could be generated from trip delivery.")
                     else:
-                        ojp_fare_result_xml = serializer.render(ojp_fare_result, ns_map=ns_map)
-                        for fr1 in ojp_fare_result.fare_result:
-                            for fr in fr1.trip_fare_result:
-                                print("Legs: " + str(fr.from_leg_id_ref) + "-" + str(fr.to_leg_id_ref))
-                                print(fr.fare_product)
-                                print("\n")
-                        xml_logger.log_serialized('ojp_fare_result.xml', ojp_fare_result_xml)
-
-
-            else:
-                # We work on a OJP 1.0 request
-                status,r = call_ojp_2000(ojp_trip_request_xml)
-                if status != 200:
-                    message = f"call returned a wrong status {status}:\n{r}"
-                    raise IOError(message)
-                ojp_trip_result1 = parse_ojp(r)
-                ojp_trip_result_xml1 = serializer.render(ojp_trip_result1, ns_map=ns_map)
-                xml_logger.log_serialized('ojp_trip_reply.xml', ojp_trip_result_xml1)
-                ojp_fare_request1 = map_ojp_trip_result_to_ojp_fare_request(ojp_trip_result1)
-                ojp_fare_request_xml1 = serializer.render(ojp_fare_request1, ns_map=ns_map)
-                xml_logger.log_serialized('ojp_fare_request.xml', ojp_fare_request_xml1)
-
-                if ojp_fare_request1 :
-                    nova_response1 = test_nova_request_reply(ojp_fare_request1)
+                        ojp_fare_request_xml = serializer.render(ojp_fare_request, ns_map=ns_map)
+                    xml_logger.log_serialized('ojp_fare_request.xml', ojp_fare_request_xml)
+                    nova_response = test_nova_request_reply_for_ojp2(ojp_fare_request)
+                    if nova_response:
+                        ojp_fare_result = test_nova_to_ojp2(nova_response)
+                        if not (ojp_fare_result):
+                            ojp_fare_result_xml = "Not a valid nova fare response received."  # TODO Improve with better handling
+                            xml_logger.log_serialized('ojp_fare_result.xml', ojp_fare_result_xml)
+                        else:
+                            ojp_fare_result_xml = serializer.render(ojp_fare_result, ns_map=ns_map)
+                            for fr1 in ojp_fare_result.fare_result:
+                                for fr in fr1.trip_fare_result:
+                                    print("Legs: " + str(fr.from_leg_id_ref) + "-" + str(fr.to_leg_id_ref))
+                                    print(fr.fare_product)
+                                    print("\n")
+                            xml_logger.log_serialized('ojp_fare_result.xml', ojp_fare_result_xml)
                 else:
-                    nova_response1 = None
-                if nova_response1:
-                    ojp_fare_result1 : OjpfareDelivery = test_nova_to_ojp(nova_response1)
-                    ojp_fare_result_xml1 = serializer.render(ojp_fare_result1, ns_map=ns_map)
-                    if ojp_fare_result1 is None:
-                        raise OJPError("ERR100: No OJP Fare result obtained.")
-                    for fr in ojp_fare_result1.fare_result:
-                        for fr1 in fr.trip_fare_result:
-                            print("Legs: " + str(fr1.from_trip_leg_id_ref) + "-" + str(fr1.to_trip_leg_id_ref))
-                            print(fr1.fare_product)
-                            print("\n")
-                    xml_logger.log_serialized('ojp_fare_result.xml', ojp_fare_result_xml1)
+                    # We work on a OJP 1.0 request
+                    status, r = call_ojp_2000(ojp_trip_request_xml)
+                    if status != 200:
+                        message = f"call returned a wrong status {status}:\n{r}"
+                        raise IOError(message)
+                    ojp_trip_result1 = parse_ojp(r)
+                    ojp_trip_result_xml1 = serializer.render(ojp_trip_result1, ns_map=ns_map)
+                    xml_logger.log_serialized('ojp_trip_reply.xml', ojp_trip_result_xml1)
+                    ojp_fare_params = build_ojp2_fare_params(travellers, subscriptions, relationship)
+                    ojp_fare_request1 = map_ojp_trip_result_to_ojp_fare_request(ojp_trip_result1,ojp_fare_params)
+                    ojp_fare_request_xml1 = serializer.render(ojp_fare_request1, ns_map=ns_map)
+                    xml_logger.log_serialized('ojp_fare_request.xml', ojp_fare_request_xml1)
+
+                    if ojp_fare_request1:
+                        nova_response1 = test_nova_request_reply(ojp_fare_request1)
+                    else:
+                        nova_response1 = None
+                    if nova_response1:
+                        ojp_fare_result1: OjpfareDelivery = test_nova_to_ojp(nova_response1)
+                        ojp_fare_result_xml1 = serializer.render(ojp_fare_result1, ns_map=ns_map)
+                        if ojp_fare_result1 is None:
+                            raise OJPError("ERR100: No OJP Fare result obtained.")
+                        for fr in ojp_fare_result1.fare_result:
+                            for fr1 in fr.trip_fare_result:
+                                print("Legs: " + str(fr1.from_trip_leg_id_ref) + "-" + str(fr1.to_trip_leg_id_ref))
+                                print(fr1.fare_product)
+                                print("\n")
+                        xml_logger.log_serialized('ojp_fare_result.xml', ojp_fare_result_xml1)
 
 
-        except Exception as e:
-            # not yet really sophisticated handling of all other errors during the work (should be regular OJPDeliveries with OtherError set
-            logger.exception(e)
-            xml_logger.log_serialized('error_file.xml', str(e))
-            traceback.print_exc()
+
+            except Exception as e:
+                # not yet really sophisticated handling of all other errors during the work (should be regular OJPDeliveries with OtherError set
+                logger.exception(e)
+                xml_logger.log_serialized('error_file.xml', str(e))
+                traceback.print_exc()
 
 

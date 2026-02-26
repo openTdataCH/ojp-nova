@@ -15,12 +15,19 @@ READFILE.append("input/input_Bern_Belp.xml")
             {
             "age":2,
             "entitlements":"HTA GA_1KL",
-            typ: "PERSON",
-            "tkid": "1231231"
-            }
+            "typ": "PERSON",
+            "tkid": "1231231",
+            "birthday": "1999-10-01"
+            },
+            {
+            "entitlements":"",
+            "typ": "DOG",
+            "tkid": "123131231",
+            }            
         ],
     "subscriptions": true,
-    "relationship": "KEINE_REISENDENBEZIEHUNG"
+    "relationship": "KEINE_REISENDENBEZIEHUNG",
+    "active": true
 
     }
 ]
