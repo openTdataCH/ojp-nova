@@ -88,7 +88,8 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
     #handling of abos (monthly) otherwise the product_taxonomie is set to the standard
     produkt_taxonomie = "SBB Preisauskunft"
     try:
-            if "NOVA-Subscription" in ojp.ojprequest.service_request.ojpfare_request[0].params.fare_authority_filter[0] :
+            val = ojp.ojprequest.service_request.ojpfare_request[0].params.fare_authority_filter[0]
+            if "NOVA-Subscription" in val.value:
                 produkt_taxonomie="SBB Abonnemente"
     except:
         pass

@@ -160,9 +160,9 @@ They are used as "TC-<the value>". The value needs to be transferred to nova for
 
 # Usage notes
 - The TripResult used in the OJP fare service should not be based on short-term real-time information. So the TripRequest should usually contain a UseRealtime set to false.
-- The price is only in one direction. If the full price in both directions is needed and artificial trip must be constructed, that contains all necessary legs in both direction (and works from the time view): Search A to B, some delay, search B to A, concatenate the trips into one. This IS necessary as sometimes the trip in  both direction is cheaper than two single trips.
+- The price is only for A to B. If the full price in both directions is needed and artificial trip must be constructed, that contains all necessary legs in both direction (and works from the time view): Search A to B, some delay, search B to A, concatenate the trips into one. This IS necessary as sometimes the trip in  both direction is cheaper than two single trips.
 - We base on the commercial stops (as BPUIC). The calls are more and more based on the SLOID. It is important only provide the commerical stops to NOVA. In some cases the commercial stop is no longer directly based on the other one (e.g. Europaplatz). The right one must be obtained from the PlaceContext (done in `sloid2didok` function).
-
+- While OJP generelly supports multiple request. The current version of the software only processes the first request.
 
 # Testing
 In the folder `input` there are possible xml files. Some work, some are problematic

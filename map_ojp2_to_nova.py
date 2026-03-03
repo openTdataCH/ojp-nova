@@ -79,6 +79,14 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
             and len(ojp.ojprequest.service_request.ojpfare_request[0].trip_fare_request.trip.leg) > 0):
         return None
 
+    #handling of abos (monthly) otherwise the product_taxonomie is set to the standard
+    produkt_taxonomie = "SBB Preisauskunft"
+    try:
+            val = ojp.ojprequest.service_request.ojpfare_request[0].params.fare_authority_filter[0]
+            if "NOVA-Subscription" in val.value:
+                produkt_taxonomie="SBB Abonnemente"
+    except:
+        pass
     try:
         if ojp.ojprequest.service_request.ojpfare_request[0].params.traveller is None:
             travellers = []
@@ -171,7 +179,7 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
                                                                           correlation_id=str(uuid.uuid1()),
                                                                           geschaefts_prozess_id="1781786f-57ba-4e9a-bc29-287e2aa97f9a"),
                                                                       angebots_filter=[TaxonomieFilter(
-                                                                          produkt_taxonomie="SBB Preisauskunft",
+                                                                          produkt_taxonomie=produkt_taxonomie,
                                                                           taxonomie_klasse_pfad=[TaxonomieKlassePfad(EmptyType())])],
                                                                       reisender=reisende,
                                                                       verbindung=verbindungen
