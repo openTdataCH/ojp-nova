@@ -1,118 +1,55 @@
 #!/usr/bin/env python3
 
-from fastapi import FastAPI, Request, Response
-from xsdata.formats.dataclass.serializers import XmlSerializer
-from xsdata.formats.dataclass.serializers.config import SerializerConfig
-
-from map_nova_to_ojp import test_nova_to_ojp
-from map_ojp_to_ojp import parse_ojp
-from support import error_response
-from ojp import Ojp, Ojpresponse, ServiceDelivery
-from test_network_flow import test_nova_request_reply, call_ojp_2000
-from configuration import HTTP_HOST, HTTP_PORT, HTTPS, SSL_CERTFILE, SSL_KEYFILE, HTTP_SLUG
-
 import logging
-import app_logging
 
-# from support import add_error_response
+from fastapi import FastAPI, Request, Response
+
+import app_logging
+from api.ojp1 import FareServiceOjp1
+from api.ojp2 import FareServiceOjp2
+from api.versions import OjpVersionParser
+
+from configuration import HTTP_HOST, HTTP_PORT, HTTPS, SSL_CERTFILE, SSL_KEYFILE, HTTP_SLUG
 
 app_logging.setup_logging()
 logger = logging.getLogger(__name__)
+app = FastAPI(title="ojp-fare API for OJP1 and OJP2")
 
-app = FastAPI(title="OJPTONOVA")
+fare_service1 = FareServiceOjp1()
+fare_service2 = FareServiceOjp2()
 
-serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
-serializer = XmlSerializer(config=serializer_config)
+version_parser = OjpVersionParser()
 
-ns_map = {'': 'http://www.siri.org.uk/siri', 'ojp': 'http://www.vdv.de/ojp'}
-
-# implements basic liveness probe
 @app.get("/health/liveness", tags=["Health"])
 async def liveness(fastapi_req: Request):
+    """
+    Implements liveness probe.
+    """
+    logger.debug("Received liveness probe request: " + str(fastapi_req))
     return Response("Liveness: OK", media_type="text/plain; charset=utf-8")
 
-
-# implements basic readiness probe
 @app.get("/health/readiness", tags=["Health"])
 async def readiness(fastapi_req: Request):
+    """
+    Implements readiness probe.
+    """
+    logger.debug("Received readiness probe request: " + str(fastapi_req))
     return Response("Readiness: OK", media_type="text/plain; charset=utf-8")
 
 @app.post("/" + HTTP_SLUG, tags=["Open Journey Planner"])
-async def post_request(fastapi_req: Request) -> Response:
+async def post_request(fastapi_req: Request) ->Response:
+    """
+    Handles OjpFare requests: for ojp1 or ojp2.
+    """
     body = await fastapi_req.body()
     logger.debug("Received request: " + str(body))
 
-    ojp_fare_request = None
-    error = None
-    try:
-        ojp_fare_request = parse_ojp(body.decode('utf-8'))
-    except Exception as e:
-        error = e
-
-    try:
-        if ojp_fare_request and ojp_fare_request.ojprequest:
-            # a request was made and it seems legit
-            if ojp_fare_request.ojprequest.service_request and ojp_fare_request.ojprequest.service_request.ojpfare_request:
-                # we deal with a OJPFare Request and will ask NOVA
-                logger.debug("Query to NOVA: " + str(ojp_fare_request))
-                nova_response = test_nova_request_reply(ojp_fare_request)
-                if nova_response:
-                    # we got a valid response
-                    ojp_fare_delivery = test_nova_to_ojp(nova_response)
-                    if ojp_fare_delivery:
-                        # we have a OJPFareDelivery to work with
-                        # we add the warnings
-                        logger.debug("Workable NOVA response put into OJP: " + str(ojp_fare_delivery))
-                        # ojp_fare_delivery=add_error_response(ojp_fare_delivery)
-                        xml = serializer.render(
-                            Ojp(
-                                ojpresponse=Ojpresponse(
-                                    service_delivery=ServiceDelivery(
-                                        response_timestamp=ojp_fare_delivery.response_timestamp, producer_ref="OJP2NOVA", ojpfare_delivery=[ojp_fare_delivery]
-                                    )
-                                )
-                            ),
-                            ns_map=ns_map,
-                        )
-                        return Response(xml, media_type="application/xml; charset=utf-8")
-                    else:
-                        logger.warning("There was a NOVA response, but it can't be used:" + str(nova_response))
-                        return Response(
-                            serializer.render(error_response("There was a NOVA response, but it cannot be used"), ns_map=ns_map),
-                            status_code=400,
-                            media_type="application/xml; charset=utf-8",
-                        )
-                logger.error("There was no NOVA response")
-                return Response(
-                    serializer.render(error_response("There was no NOVA response"), ns_map=ns_map), status_code=400, media_type="application/xml; charset=utf-8"
-                )
-            else:
-                logger.debug("Returning the call to the OJP server:" + str(body.decode('utf-8')))
-                s, r = call_ojp_2000(body.decode('utf-8'))
-                return Response(r, media_type="application/xml; charset=utf-8", status_code=s)
-        else:
-            # very general errors
-            if error:
-                # an error message was provided in the exception
-                logger.error("Couldn't extract a valid OJP request")
-                return Response(
-                    serializer.render(error_response("There was no (valid) OJP request\n" + str(error)), ns_map=ns_map),
-                    status_code=400,
-                    media_type="application/xml; charset=utf-8",
-                )
-            else:
-                # no error message was provided in the exception
-                logger.warning("No valid OJP request")
-                return Response(
-                    serializer.render(error_response("There was no (valid) OJP request"), ns_map=ns_map),
-                    status_code=400,
-                    media_type="application/xml; charset=utf-8",
-                )
-    except Exception as e:
-        # not yet really sophisticated handling of all other errors during the work (should be regular OJPDeliveries with OtherError set
-        logger.exception(e)
-        return Response(serializer.render(error_response(str(e)), ns_map=ns_map), status_code=400, media_type="application/xml; charset=utf-8")
-
+    version = version_parser.parse_version(body.decode("utf-8"))
+    logger.debug("Received version: " + str(version))
+    if version == "1.0":
+        return fare_service1.handle_request(body)
+    else:
+        return fare_service2.handle_request(body)
 
 if __name__ == "__main__":
     import uvicorn

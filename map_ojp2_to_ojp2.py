@@ -3,17 +3,30 @@
 import datetime
 from typing import Optional
 
-from configuration import USE_HTA
-from ojp2 import Ojp, Ojprequest, ServiceRequest, OjpfareRequest, FareParamStructure, PassengerCategoryEnumeration, \
-    FareClassEnumeration, FarePassengerStructure, TripFareRequestStructure, TripStructure, OjptripRequest, \
-    TripResultStructure,  OjptripDeliveryStructure, EntitlementProductListStructure, EntitlementProductStructure,StopPlaceSpaceRefStructure, StopPointRef, StopPointRefStructure, FareAuthorityRef, RequestTimestamp
-
 from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.parsers.config import ParserConfig
 from xsdata.models.datatype import XmlDateTime
 
-# from ojp.ojptrip_refine_request import OjptripRefineRequest
-# from ojp.trip_refine_param_structure import TripRefineParamStructure
+import ojp2.ojp
+from ojp2 import (
+    EntitlementProductListStructure,
+    EntitlementProductStructure,
+    FareAuthorityRef,
+    FareClassEnumeration,
+    FareParamStructure,
+    FarePassengerStructure,
+    Ojp,
+    OjpfareRequest,
+    Ojprequest,
+    OjptripDeliveryStructure,
+    PassengerCategoryEnumeration,
+    RequestTimestamp,
+    ServiceRequest,
+    TripFareRequestStructure,
+    TripStructure,
+)
+from configuration import USE_HTA
+
 
 config = ParserConfig(
     base_url=None,
@@ -22,10 +35,9 @@ config = ParserConfig(
     fail_on_unknown_attributes=False,
 )
 
-
 def parse_ojp2(body: str) -> Ojp:
     parser = XmlParser(config)
-    return parser.from_string(body, Ojp)
+    return parser.from_string(body, ojp2.ojp.Ojp)
 
 def map_to_individual_ojpfarerequest(trip: TripStructure, now: XmlDateTime, ojp_fare_params:FareParamStructure) -> OjpfareRequest:
     if ojp_fare_params is None:
@@ -105,14 +117,11 @@ def preprocess_stops_to_commercial_stops(delivery: OjptripDeliveryStructure) -> 
                 # we can't deal with demandResponsive in NOVA currently.
                 continue
             ## only timed. we now replace the stop_point_ref with the parent
-            leg.timed_leg.leg_board.stop_point_ref = parent.get(leg.timed_leg.leg_board.stop_point_ref.value,
-                                                                leg.timed_leg.leg_board.stop_point_ref)
-            leg.timed_leg.leg_alight.stop_point_ref = parent.get(leg.timed_leg.leg_alight.stop_point_ref.value,
-                                                                 leg.timed_leg.leg_alight.stop_point_ref)
+            leg.timed_leg.leg_board.stop_point_ref.value = parent.get(leg.timed_leg.leg_board.stop_point_ref.value,"")
+            leg.timed_leg.leg_alight.stop_point_ref.value = parent.get(leg.timed_leg.leg_alight.stop_point_ref.value, "")
             leg_intermediates = leg.timed_leg.leg_intermediate
             for leg_intermediate in leg_intermediates:
-                leg_intermediate.stop_point_ref = parent.get(leg_intermediate.stop_point_ref.value,
-                                                             leg_intermediate.stop_point_ref)
+                leg_intermediate.stop_point_ref.value = parent.get(leg_intermediate.stop_point_ref.value,"")
 
     return delivery
 
