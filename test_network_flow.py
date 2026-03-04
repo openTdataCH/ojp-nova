@@ -33,7 +33,7 @@ from ojp2 import Ojp as Ojp2, FareParamStructure as FareParamStructure2, \
     PassengerCategoryEnumeration, FareClassEnumeration, EntitlementProductStructure, EntitlementProductListStructure
 from ojp import Ojp, OjpfareDelivery, FareParamStructure, FarePassengerStructure, FareAuthorityRef, \
     TypeOfFareClassEnumeration, PassengerCategoryEnumeration,  EntitlementProductRef
-from xslt_transform import transform_xml, is_version_2_0
+from support import is_version_2_0
 import xml_logger
 import logging
 

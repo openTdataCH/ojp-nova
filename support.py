@@ -92,6 +92,23 @@ def sloid2didok(sloid:str)->int:
         tmp=my_dict.get(str(tmp),str(tmp)) # replaces if it is in the table or gets the value back
         return tmp
 
+def is_version_2_0(xml_string:str) -> bool:
+    #simple test to see if the xml is OJP version 2.0 (or should be)
+    # Split the string into lines
+    lines = xml_string.splitlines()
+
+    # Check if there are at least two lines
+    if len(lines) < 2:
+        return False
+    #check the first line for the version (when the xml header was omitted)
+    if 'version="2.0"' in lines[0]:
+        return True
+    # Check the second line for the version
+    second_line = lines[1]
+    if 'version="2.0"' in second_line:
+        return True
+    return False
+
 # raising an error and sending it back. Does not add values from err_str
 class OJPError(Exception) :
 
