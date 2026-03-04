@@ -7,6 +7,7 @@ from typing import List, Optional, Dict
 
 from xsdata.models.datatype import XmlDateTime
 
+from api.errors import InvalidNovaResponseError
 from nova import ErstellePreisAuskunftResponse, KlassenTypCode, PreisAuspraegung, \
     PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput
 from ojp2 import OjpfareDelivery, FareResultStructure, FareProductStructure, TripFareResultStructure, \
@@ -47,9 +48,10 @@ def map_preis_auspraegung_to_trip_fare_result(preis_auspraegungen: List[PreisAus
     return FareResultStructure(id=id, trip_fare_result=tripfareresults)
 
 
+
 def map_nova_reply_to_ojp_fare_delivery(soap: PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput) -> Optional[OjpfareDelivery]:
     if not soap.body.erstelle_preis_auskunft_response.preis_auskunft_response.preis_auspraegung:
-        return None
+        raise InvalidNovaResponseError()
 
     bonded_trips :Dict[str,PreisAuspraegung]= {}
     for preis_auspraegung in soap.body.erstelle_preis_auskunft_response.preis_auskunft_response.preis_auspraegung:

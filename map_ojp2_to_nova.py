@@ -13,8 +13,8 @@ import random
 import uuid
 
 def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindungsSegment:
-    einstieg = sloid2didok(timed_leg.leg_board.stop_point_ref)
-    ausstieg = sloid2didok(timed_leg.leg_alight.stop_point_ref)
+    einstieg = sloid2didok(timed_leg.leg_board.stop_point_ref.value)
+    ausstieg = sloid2didok(timed_leg.leg_alight.stop_point_ref.value)
     abfahrts_zeit = timed_leg.leg_board.service_departure.timetabled_time
     ankunfts_zeit = timed_leg.leg_alight.service_arrival.timetabled_time
     line_ref = timed_leg.service.line_ref.value
@@ -34,8 +34,8 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
     verwaltungs_code= process_operating_ref_ojp2(operator_ref)
 
     leg_intermediates = timed_leg.leg_intermediate
-    zwischenhalten = [sloid2didok(timed_leg.leg_board.stop_point_ref)] + [sloid2didok(leg_intermediate.stop_point_ref)
-                      for leg_intermediate in leg_intermediates] + [sloid2didok(timed_leg.leg_alight.stop_point_ref)]
+    zwischenhalten = [sloid2didok(timed_leg.leg_board.stop_point_ref.value)] + [sloid2didok(leg_intermediate.stop_point_ref.value)
+                      for leg_intermediate in leg_intermediates] + [sloid2didok(timed_leg.leg_alight.stop_point_ref.value)]
 
     #handling of Tariff code TC
     attr2=timed_leg.service.attribute
