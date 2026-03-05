@@ -32,9 +32,8 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
     _, verkehrs_mittel_nummer, _ = line_ref.split(':')
     # We try to extract the line for NOVA
     verkehrs_mittel_nummer = ''.join(filter(lambda x: x.isdigit(), verkehrs_mittel_nummer))
-    # For trains and in OJP 1.0 it is needed to extract the train number from the extension
+    # For trains and in OJP 1.0 it is needed to extract the train number from the extension PublihedJourneyNumber
     # e.g. necessary for discounts of BLS in future travel
-    # TODO perhaps do only for rail
     try:
         # Set verkehrs_mittel_nummer to timed_leg.extension.publishedjourneynumber?
         verkehrs_mittel_nummer = [x.children[0].text for x in timed_leg.extension.children if x.qname == '{http://www.vdv.de/ojp}PublishedJourneyNumber'][0]
@@ -175,6 +174,7 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
                 r_typ = ReisendenTypCode.PERSON
             elif traveler.passenger_category.value == "Motorcycle":
                 r_typ = ReisendenTypCode.PERSON
+
                 #TODO Raise error
             elif traveler.passenger_category.value == "Car":
                 r_typ = ReisendenTypCode.PERSON

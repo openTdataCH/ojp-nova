@@ -17,7 +17,7 @@
     ],
     "subscriptions": true,
     "relationship": "KEINE_REISENDENBEZIEHUNG",
-    "active": false
+    "active": true
   },
     {
     "file": "input/input_Bern_Belp.xml",
@@ -161,6 +161,22 @@
       }
     ],
     "subscriptions": true,
+    "relationship": "KEINE_REISENDENBEZIEHUNG",
+     "active": false
+  },
+
+    {
+    "description":"Test Bern - Zweisimmen. Achtung: Datum muss gesetzt werden",
+    "file": "input/input_Bern_Zweisimmen_BLS_Zukunft.xml",
+    "travellers": [
+      {
+        "age": 25,
+        "entitlements": "HTA",
+        "typ": "PERSON",
+        "tkid": "123312312"
+      }
+    ],
+    "subscriptions": false,
     "relationship": "KEINE_REISENDENBEZIEHUNG",
      "active": true
   }
