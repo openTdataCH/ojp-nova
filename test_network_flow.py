@@ -3,7 +3,8 @@
 import json
 import traceback
 from typing import Tuple, Any, Optional
-
+import argparse
+import sys
 import requests
 import urllib3
 from xsdata.formats.dataclass.client import Client
@@ -15,7 +16,7 @@ from xsdata.formats.dataclass.serializers.config import SerializerConfig
 import ojp.fare_result_structure
 from api.errors import NoNovaResponseError
 from configuration import *
-from support import OJPError
+from support import OJPError, inject_departure_datetime
 from test_create_ojp_request import *
 from map_nova_to_ojp import test_nova_to_ojp
 from map_nova_to_ojp2 import test_nova_to_ojp2
@@ -225,8 +226,34 @@ def build_ojp_fare_params(travellers, subscriptions, relationship) -> FareParamS
 
     return FareParamStructure(fare_authority_filter=filters,traveller=ojptravellers,passenger_category=[PassengerCategoryEnumeration.ADULT],travel_class =FareClassEnumeration.SECOND_CLASS)
 
+def non_negative_int(value: str) -> int:
+    """argparse type function: ensures the provided value is a non-negative integer."""
+    try:
+        ivalue = int(value)
+    except ValueError:
+        raise argparse.ArgumentTypeError(f"invalid int value: {value!r}")
+    if ivalue < 0:
+        raise argparse.ArgumentTypeError(f"value must be non-negative: {value}")
+    return ivalue
 
-if __name__ == '__main__':
+def parse_args(argv=None):
+    parser = argparse.ArgumentParser(description="Run network flow tests.")
+    # allow either --all or --id, or neither. If both provided prefer --id.
+    parser.add_argument("--all", action="store_true", help="Run all tests")
+    parser.add_argument("--id", type=non_negative_int, metavar="N", help="Run the test with the given id (non-negative integer)")
+    return parser.parse_args(argv)
+
+def main(argv=None) ->int:
+    args = parse_args(argv)
+
+    # Priority: --id if provided, else --all, else default_action()
+    if args.id is not None:
+        processing="id"+str(args.id)+"id"
+    elif args.all:
+        processing="all"
+    else:
+        processing="active"
+
     #check configuration
     ojp_trip_request_xml=''
     check_configuration()
@@ -248,37 +275,59 @@ if __name__ == '__main__':
     if not isinstance(test_run_dict, list):
         raise ValueError("Expected JSON top-level to be a list of test runs")
 
-    # Loop through active elements
+    # Loop through the elements
     for idx, element in enumerate(test_run_dict):
         # Skip non-dict entries
         if not isinstance(element, dict):
             continue
 
         active = element.get("active", False)
-        if active:
+        if "all" in processing or "id"+str(element.get("id"))+"id" in processing or (active and "active" in processing):
+            id= element.get("id")
             file_name = element.get("file")
             travellers = element.get("travellers", [])
             subscriptions = element.get("subscriptions")
             relationship = element.get("relationship")
+            start_time = element.get("start_time")
+            daysinthefuture = element.get("future")
+            expectedstatus=element.get("status")
+            asserttext=element.get("assert")
+
+
             print(
                 f"\n**************************************************************************************\n")
             print(f"Active element #{idx}: file={file_name}")
-            print(f"  travellers: {len(travellers)}")
-            print(f"  subscriptions: {subscriptions}")
+            print(f"  id: {id}")
             print(f"  relationship: {relationship}")
+            print(f"  subscriptions: {subscriptions}")
+            print(f"  travellers: {travellers}")
+            if start_time:
+                print(f"  start_time: {start_time}")
+            if daysinthefuture:
+                print(f"  number of days in the future: {daysinthefuture}")
+            print(f"  expected status: {expectedstatus}")
+            if asserttext:
+                print(f"  assertion that the following string is in the response (usually a price): {asserttext}")
+
+
             inputfile = open(file_name, 'r', encoding='utf-8')
             ojp_trip_request_xml = inputfile.read()
             inputfile.close()
+            #inject date if necessary
+            if daysinthefuture is not None or start_time is not None:
+                ojp_trip_request_xml=inject_departure_datetime(ojp_trip_request_xml,daysinthefuture,start_time)
             xml_logger.log_serialized('ojp_trip_request.xml', ojp_trip_request_xml)
             try:
 
                 if is_version_2_0(ojp_trip_request_xml):
+                    print(f"  OJP version: 2.0")
                     # We process an OJP 2 request
                     status, r = call_ojp_20(ojp_trip_request_xml)
                     if status != 200:
                         message = f"call returned a wrong status {status}"
                         raise IOError(message)
                     ojp_trip_result = parse_ojp2(r)
+
                     ojp_trip_result_xml = serializer.render(ojp_trip_result, ns_map=ns_map)
                     xml_logger.log_serialized('ojp_trip_reply.xml', ojp_trip_result_xml)
                     ojp_fare_params = build_ojp2_fare_params(travellers, subscriptions, relationship)
@@ -302,8 +351,12 @@ if __name__ == '__main__':
                                     print(fr.fare_product)
                                     print("\n")
                             xml_logger.log_serialized('ojp_fare_result.xml', ojp_fare_result_xml)
+                        if asserttext:
+                            if not (asserttext in ojp_fare_result_xml):
+                                print(f"Assertion from test case failed! {asserttext} not found.")
                 else:
                     # We work on a OJP 1.0 request
+                    print(f"  OJP version: 1.0")
                     status, r = call_ojp_2000(ojp_trip_request_xml)
                     if status != 200:
                         message = f"call returned a wrong status {status}:\n{r}"
@@ -331,6 +384,10 @@ if __name__ == '__main__':
                                 print(fr1.fare_product)
                                 print("\n")
                         xml_logger.log_serialized('ojp_fare_result.xml', ojp_fare_result_xml1)
+                        if asserttext:
+                            if not (asserttext in ojp_fare_result_xml1):
+                                print(f"Assertion from test casefailed! {asserttext} not found.")
+
 
 
 
@@ -341,3 +398,6 @@ if __name__ == '__main__':
                 traceback.print_exc()
 
 
+if __name__ == '__main__':
+    exit_code = main()
+    sys.exit(exit_code)

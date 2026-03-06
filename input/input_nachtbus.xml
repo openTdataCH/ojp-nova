@@ -16,7 +16,7 @@
               <ojp:Text>Bern, Bahnhof (Bern)</ojp:Text>
             </ojp:LocationName>
           </ojp:PlaceRef>
-          <ojp:DepArrTime>2025-11-01T00:00:45.343Z</ojp:DepArrTime>
+          <!--<ojp:DepArrTime>2025-11-01T00:00:45.343Z</ojp:DepArrTime>-->
         </ojp:Origin>
         <ojp:Destination>
           <ojp:PlaceRef>

@@ -13,7 +13,7 @@
               <ojp:Text>Bern</ojp:Text>
             </ojp:LocationName>
           </ojp:PlaceRef>
-          <ojp:DepArrTime>2024-12-08T16:30:40</ojp:DepArrTime> -->
+         <!-- <ojp:DepArrTime>2024-12-08T16:30:40</ojp:DepArrTime> -->
         </ojp:Origin>
         <ojp:Destination>
           <ojp:PlaceRef>

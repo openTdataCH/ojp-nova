@@ -1,42 +1,6 @@
 READFILE = []
 
 
-READFILE.append("input/input_Bern_Belp.xml")
-
-
-#READFILE.append("input/input_Monatsabo_test.xml")
-
-
-'''
-[
-    {
-    "file": "input/input_Bern_Belp.xml",
-    "travellers": [
-            {
-            "age":2,
-            "entitlements":"HTA GA_1KL",
-            "typ": "PERSON",
-            "tkid": "1231231",
-            "birthday": "1999-10-01"
-            },
-            {
-            "entitlements":"",
-            "typ": "DOG",
-            "tkid": "123131231",
-            }            
-        ],
-    "subscriptions": true,
-    "relationship": "KEINE_REISENDENBEZIEHUNG",
-    "active": true
-
-    }
-]
-
-----------------------------------------------------------------
-Reservoir for tests
-
-# Working OJP 1.0 examples
-READFILE.append("input/input_Bern_Belp.xml")
 READFILE.append("input/input_test_dornbir.xml")
 
 READFILE.append("input/input_oev_shart_plus_long.xml")

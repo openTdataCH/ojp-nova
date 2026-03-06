@@ -166,13 +166,35 @@ They are used as "TC-<the value>". The value needs to be transferred to nova for
 
 # Testing
 In the folder `input` there are possible xml files. Some work, some are problematic
-The selection of files to use in `test_network_flow.py` is done by `test_configuration.py` which basically contains an array
-of the files to use. `test_configuration.py` contains the explanaition on what works and what not.
+The selection of files to use in `test_network_flow.py` is done by `test_configuration.json`.
 
-Be aware: For some discount tickets the trip needs to be several days in the future. Currently this needs to be set manually in the respective 
+Be aware: For some discount tickets the trip needs to be several days in the future. Currently, this needs to be set manually in the respective 
 request file in `input`. We don't use the `<ojp:DepArrTime>2025-10-10T15:30:40</ojp:DepArrTime>` in many cases, as trips in the past don't have prives.
 If it is omitted, then `now` is used. but we keep it in the files commented out, so that you just can put in the time.
 
+test_configuration.json contains an array of test cases:
+- id: the identifier
+- description: The description of the test case
+- file: the file to be loaded (contains an OJPTripRequest)
+- travellers: the information about the travelers
+  - age
+  - entitlements: the list of entitlement products (there is only a short list available. Most important HTA)
+  - typ: PERSON, DOG, xxx
+  - tkid: not supported yet
+  - birthday: not supported yet
+  - gender: not supported yet
+- subscription: true or false. one ticket or a subscription
+- relationship: a list of relevant relationships between the travelers. not supported yet
+- result: pass or fail. Should there be a price. 
+- assert: if set, then the value provided should be found in the answer. not supported yet
+- active: saying if this test is active when running the whole file
+- future: if set indicates when in the future should be searched (days). The system then uses a random time between 8:00 and 12:00 to start
+- start_time: HH:MM:SS, used to test a night bus.
+
+`test_network_flow.py` can be used with at most one parameter:
+- `--all`: tests all tests in the test file
+- `--id=<xx>`: tests the test with the given id
+- Without parameter all tests that are set to active are tested.
 
 # Changelog
 
@@ -182,6 +204,7 @@ If it is omitted, then `now` is used. but we keep it in the files commented out,
 
 ## 1.2 prepared for dockerization
 - Make sure that we can run this in our new environment.
+- Fixed more bugs.
 
 ## 1.1 Bug fixes, better documentation, better testing
 - OJP 2.0 support (first version)
