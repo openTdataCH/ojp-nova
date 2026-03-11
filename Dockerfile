@@ -6,5 +6,6 @@ COPY *.py .
 COPY ojp/ ojp/
 COPY ojp2/ ojp2/
 COPY nova/ nova/
+COPY api/ api/
 EXPOSE 8000
 CMD ["fastapi","run","/app/server.py","--port", "8000"]
