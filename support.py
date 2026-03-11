@@ -7,8 +7,13 @@ import datetime
 import logging
 
 from ojp2 import OperatorRef
+from datetime import datetime, timedelta, timezone
+import random
+import re
+from typing import Pattern
 
 logger = logging.getLogger(__name__)
+
 
 # err_str = "" #global error string
 
@@ -19,20 +24,6 @@ def error_response(error_text:str) -> Ojp:
                     ServiceDelivery(response_timestamp=XmlDateTime.from_datetime(datetime.datetime.utcnow()),
                                     producer_ref="OJP2NOVA",
                                     error_condition=ServiceDeliveryStructure.ErrorCondition(other_error=OtherError(error_text)))))
-
-# storing warnings to be sent with the answer
-#def add_error(error_text:str):
-#    global err_str
-#    err_str=err_str+error_text
-#    return
-
-# include accumulated warnings into the response. Status not affected (so should be warnings)
-# def add_error_response(sd:ServiceDeliveryStructure):
-#   global err_str
-# if err_str=="":
-#     return sd
-# sd.ErrorCondition(other_error=OtherError(err_str))
-# return sd
 
 def process_operating_ref_ojp2(operator_ref:OperatorRef) ->str:
     operator_ref_str=operator_ref.value
@@ -71,7 +62,6 @@ def sloid2didok(sloid:str)->int:
         "8014485": "8503463",
         "8014487": "8503462",
     }
-
     try:
         # sloids are not integer, but didok are. So we first try to convert to id. If this works, we assume, it is a didok code
         didok=int(sloid)
@@ -83,6 +73,7 @@ def sloid2didok(sloid:str)->int:
         #remove the right part of sloid, if it exist
         if ':' in sloid:
             tmp = sloid[:sloid.find(':')]
+
         # if bigger than 100000 -> no add. This is used for the 11-14 prefixes that are used for sloid that are used for local public transport
         # outside Switzerland
         if int(tmp)>100000:
@@ -91,6 +82,78 @@ def sloid2didok(sloid:str)->int:
         tmp=my_dict.get(str(tmp),str(tmp)) # replaces if it is in the table or gets the value back
         return tmp
 
+def is_version_2_0(xml_string:str) -> bool:
+    #simple test to see if the xml is OJP version 2.0 (or should be)
+    # Split the string into lines
+    lines = xml_string.splitlines()
+
+    # Check if there are at least two lines
+    if len(lines) < 2:
+        return False
+    #check the first line for the version (when the xml header was omitted)
+    if 'version="2.0"' in lines[0]:
+        return True
+    # Check the second line for the version
+    second_line = lines[1]
+    if 'version="2.0"' in second_line:
+        return True
+    return False
+
+
+def build_timestamp(days_in_future: int | None = None, start_time: str | None = None) -> str:
+    if days_in_future is None and start_time is None:
+        raise ValueError("Either days_in_future or start_time must be provided.")
+    if days_in_future is not None:
+        if not isinstance(days_in_future, int) or days_in_future < 0:
+            raise ValueError("days_in_future must be a non-negative integer.")
+
+    if start_time is not None:
+        TIME_RE = re.compile(r'^(\d{2}):(\d{2}):(\d{2})$')
+        m = TIME_RE.match(start_time)
+        if not m:
+            raise ValueError('start_time must be in "HH:MM:SS" format.')
+        h, mnt, s = map(int, m.groups())
+        if not (0 <= h <= 23 and 0 <= mnt <= 59 and 0 <= s <= 59):
+            raise ValueError("start_time components out of range.")
+        hours, minutes, seconds = h, mnt, s
+    else:
+        start_sec = 8 * 3600
+        end_sec = 12 * 3600
+        rand_sec = random.randint(start_sec, end_sec - 1)
+        hours = rand_sec // 3600
+        minutes = (rand_sec % 3600) // 60
+        seconds = rand_sec % 60
+
+    days = 0 if days_in_future is None else days_in_future
+
+    now_utc = datetime.now(timezone.utc)
+    target_date = (now_utc + timedelta(days=days)).replace(hour=hours, minute=minutes, second=seconds, microsecond=random.randrange(0,1000)*1000, tzinfo=timezone.utc)
+    # isoformat with Z
+    iso = target_date.isoformat(timespec='milliseconds')
+    if iso.endswith('+00:00'):
+        iso = iso[:-6] + 'Z'
+    return iso
+
+
+def insert_before_line_with_substring(text: str, pattern: str, insert: str) -> str:
+    lines = text.splitlines(keepends=True)
+    for i, line in enumerate(lines):
+        if pattern in line:
+            lines.insert(i, insert)
+            return ''.join(lines)
+    return text
+
+def inject_departure_datetime(ojp_trip_request_xml : str, daysinthefuture : int,start_time : str) -> str:
+     # TODO: shaky
+     # build the date
+     ts=build_timestamp(daysinthefuture,start_time)
+     if is_version_2_0(ojp_trip_request_xml):
+         #wrap the result
+         ts="<DepArrTime>"+ts+"</DepArrTime>"
+         return insert_before_line_with_substring(ojp_trip_request_xml,"</Origin>",ts)
+     #wrap the result
+     ts="<ojp:DepArrTime>"+ts+"</ojp:DepArrTime>"
+     return insert_before_line_with_substring(ojp_trip_request_xml,"</ojp:Origin>",ts)
 
 # raising an error and sending it back. Does not add values from err_str
 class OJPError(Exception) :
@@ -103,3 +166,5 @@ class OJPError(Exception) :
     # __str__ is to print() the value
     def __str__(self)->str:
         return (repr(self.value))
+
+

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OJP xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xmlns="http://www.vdv.de/ojp" xmlns:siri="http://www.siri.org.uk/siri">
+    <OJPRequest>
+        <siri:ServiceRequest>
+            <siri:ServiceRequestContext>
+                <siri:Language>de</siri:Language>
+            </siri:ServiceRequestContext>
+            <siri:RequestTimestamp>2026-02-25T13:01:28Z</siri:RequestTimestamp>
+            <siri:RequestorRef>BLS_IOS_SDK_1.3.3</siri:RequestorRef>
+            <OJPTripRequest>
+                <siri:RequestTimestamp>2026-02-25T13:01:28Z</siri:RequestTimestamp>
+                <Origin>
+                    <PlaceRef>
+                        <StopPlaceRef>8102329</StopPlaceRef>
+                        <Name>
+                            <Text>Dornbirn</Text>
+                        </Name>
+                    </PlaceRef>
+                </Origin>
+                <Destination>
+                    <PlaceRef>
+                        <StopPlaceRef>8506314</StopPlaceRef>
+                        <Name>
+                            <Text>St. Margrethen SG</Text>
+                        </Name>
+                    </PlaceRef>
+                </Destination>
+                <Params>
+                    <NumberOfResults>6</NumberOfResults>
+                    <IncludeLegProjection>false</IncludeLegProjection>
+                    <IncludeIntermediateStops>true</IncludeIntermediateStops>
+                    <IncludeAllRestrictedLines>true</IncludeAllRestrictedLines>
+                    <UseRealtimeData>explanatory</UseRealtimeData>
+                </Params>
+            </OJPTripRequest>
+        </siri:ServiceRequest>
+    </OJPRequest>
+</OJP>

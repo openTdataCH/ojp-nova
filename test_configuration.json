@@ -1,0 +1,717 @@
+[
+	{
+		"id": 1,
+		"description": "Check prices in Europaplatz",
+		"file": "input/input_problematic_Europaplatz_ojp2.xml",
+		"travellers": [
+			{
+				"age": 14,
+				"entitlements": "HTA GA_1KL",
+				"typ": "PERSON",
+				"tkid": "1231231",
+				"birthday": "1999-10-01"
+			},
+			{
+				"entitlements": "",
+				"typ": "DOG",
+				"tkid": "123131231"
+			}
+		],
+		"subscriptions": true,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"result": "pass",
+		"assert": "162.00",
+		"active": true
+	},
+	{
+		"id": 2,
+		"description": "Bern- Belp with Europplatz",
+		"file": "input/input_Bern_Belp.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "1231231"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": false
+	},
+	{
+		"id": 3,
+		"description": "Special ticket with boat",
+		"file": "input/input_Bodensee_2.xml",
+		"travellers": [
+			{
+				"age": 75,
+				"entitlements": "",
+				"typ": "PERSON",
+				"tkid": "12331231"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"result": "pass",
+		"assert": "12:80",
+		"active": false
+	},
+	{
+		"id": 4,
+		"description": "Bodensee part 2",
+		"file": "input/input_Bodensee_2.xml",
+		"travellers": [
+			{
+				"age": 75,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "12331231"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"result": "pass",
+		"assert": "6.40",
+		"active": false
+	},
+	{
+		"id": 5,
+		"description": "Test with Postauto",
+		"file": "input/input_bus_postauto.xml",
+		"travellers": [
+			{
+				"age": 13,
+				"entitlements": "",
+				"typ": "PERSON",
+				"tkid": "12331231"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"result": "pass",
+		"assert": "3.30",
+		"active": false
+	},
+	{
+		"id": 6,
+		"description": "Basic OJP 2 test.",
+		"file": "input/input_ojp_2_test.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "",
+				"typ": "PERSON",
+				"tkid": "12331231"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"result": "pass",
+		"assert": "24.40",
+		"active": false
+	},
+	{
+		"id": 7,
+		"description": "OJP test with multiple travellers",
+		"file": "input/input_ojp_2_test.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			},
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312313"
+			},
+			{
+				"age": 25,
+				"entitlements": "",
+				"typ": "PERSON",
+				"tkid": "123312314"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"result": "pass",
+		"assert": "24.40",
+		"active": false
+	},
+	{
+		"id": 8,
+		"description": "Test für Mattelift",
+		"file": "input/input_Mattelift.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"result": "fail",
+		"assert": "",
+		"active": false
+	},
+	{
+		"id": 9,
+		"description": "Test mit Koordinaten für Arbeitsweg (Abos).",
+		"file": "input/input_coordinates.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": true,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"result": "pass",
+		"assert": "72.00",
+		"active": false
+	},
+	{
+		"id": 10,
+		"description": "Test mit Koordinaten für Arbeitsweg (Abos).OJP 2.0",
+		"file": "input/input_coordinates_ojp2.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": true,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"result": "pass",
+		"assert": "82.00",
+		"active": false
+	},
+	{
+		"id": 11,
+		"description": "Test Bern - Zweisimmen. Achtung: Datum muss gesetzt werden",
+		"file": "input/input_Bern_Zweisimmen_BLS_Zukunft.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": false
+	},
+	{
+		"id": 12,
+		"description": "Test Luzern - Menusio, am 10. März. Achtung Datum",
+		"file": "input/input_menusio.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
+	},
+	{
+		"id": 13,
+		"description": "Monatsabo test",
+		"file": "input/input_Monatsabo_test.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": true,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
+	},
+	{
+		"id": 14,
+		"description": "",
+		"file": "input/input_test_dornbir.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
+	},
+	{
+		"id": 15,
+		"description": "",
+		"file": "input/input_oev_shart_plus_long.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
+	},
+	{
+		"id": 16,
+		"description": "",
+		"file": "input/input_oev_shart_plus_long.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
+	},
+	{
+		"id": 17,
+		"description": "",
+		"file": "input/input_Zuerich_Chur.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
+	},
+	{
+		"id": 18,
+		"description": "",
+		"file": "input/input_Visp_SaaS_Fee_problem_1_preis.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
+	},
+	{
+		"id": 19,
+		"description": "",
+		"file": "input/input_strange_price.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
+	},
+	{
+		"id": 20,
+		"description": "",
+		"file": "input/input_Zuerich_Bern.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
+	},
+	{
+		"id": 21,
+		"description": "",
+		"file": "input/input_Basel_Sargans.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
+	},
+	{
+		"id": 22,
+		"description": "",
+		"file": "input/input_Bern_Interlaken_Ost.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
+	},
+	{
+		"id": 23,
+		"description": "",
+		"file": "input/input_Bern_Interlaken_Gymnasium.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
+	},
+	{
+		"id": 24,
+		"description": "",
+		"file": "input/input_Bern_Guisanplatz_Interlaken_Gymnasium.xml",
+		"travellers": [
+			{
+				"age": 70,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
+	},
+	{
+		"id": 25,
+		"description": "",
+		"file": "input/input_local.xml",
+		"travellers": [
+			{
+				"age": 12,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
+	},
+	{
+		"id": 26,
+		"description": "",
+		"file": "input/input_sharing_intercity.xml",
+		"travellers": [
+			{
+				"age": 12,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
+	},
+	{
+		"id": 27,
+		"description": "",
+		"file": "input/input_problematic_case_vasile.xml",
+		"travellers": [
+			{
+				"age": 12,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
+	},
+	{
+		"id": 28,
+		"description": "",
+		"file": "input/input_Europaplatz.xml",
+		"travellers": [
+			{
+				"age": 12,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
+	},
+	{
+		"id": 29,
+		"description": "",
+		"file": "input/input_Bodensee_1.xml",
+		"travellers": [
+			{
+				"age": 12,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
+	},
+	{
+		"id": 30,
+		"description": "",
+		"file": "input/input_test_europaplatz.xml",
+		"travellers": [
+			{
+				"age": 12,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
+	},
+	{
+		"id": 31,
+		"description": "",
+		"file": "input/input_problematic_Europaplatz_ojp1.xml",
+		"travellers": [
+			{
+				"age": 12,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
+	},
+	{
+		"id": 32,
+		"description": "",
+		"file": "input/input_problem_footpath.xml",
+		"travellers": [
+			{
+				"age": 12,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
+	},
+	{
+		"id": 33,
+		"description": "",
+		"file": "input/input_problematic_Europaplatz_4.xml",
+		"travellers": [
+			{
+				"age": 12,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
+	},
+	{
+		"id": 34,
+		"description": "",
+		"file": "input/input_walk_only.xml",
+		"travellers": [
+			{
+				"age": 12,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"status": "fail",
+		"active": true
+	},
+	{
+		"id": 35,
+		"description": "",
+		"file": "input/input_sharing_only.xml",
+		"travellers": [
+			{
+				"age": 12,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"status": "fail",
+		"active": true
+	},
+	{
+		"id": 36,
+		"description": "",
+		"file": "input/input_odv_alone.xml",
+		"travellers": [
+			{
+				"age": 12,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"status": "fail",
+		"active": true
+	},
+	{
+		"id": 37,
+		"description": "time must be reset before run. Check if discounts exist on www.sbb.ch",
+		"file": "input/input_Bern_Chur_SOB_Zukunft.xml",
+		"travellers": [
+			{
+				"age": 12,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"future": 3,
+		"active": true
+	},
+	{
+		"id": 38,
+		"description": "Past is not handled",
+		"file": "input/input_in_the_past_not_handeled_well_in_Preisauskunft.xml",
+		"travellers": [
+			{
+				"age": 12,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
+	},
+	{
+		"id": 39,
+		"description": "Ptime must be reset before run. Check if discounts exist on www.sbb.ch",
+		"file": "input/input_Bern_Zweisimmen_BLS_Zukunft.xml",
+		"travellers": [
+			{
+				"age": 12,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"future": 6,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
+	},
+	{
+		"id": 40,
+		"description": "time must be reset before run. Check if discounts exist on www.sbb.ch",
+		"file": "input/input_bern_riehen.xml",
+		"travellers": [
+			{
+				"age": 12,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"future": 8,
+		"active": true
+	},
+	{
+		"id": 41,
+		"description": "xxx work needed",
+		"file": "input/input_aller_retour.xml",
+		"travellers": [
+			{
+				"age": 18,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
+	},
+	{
+		"id": 42,
+		"description": "xxx ",
+		"file": "input/input_Nachtbus.xml",
+		"travellers": [
+			{
+				"age": 12,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"start_time": "23:55:00",
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
+	}
+]

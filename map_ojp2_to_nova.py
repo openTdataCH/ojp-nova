@@ -21,15 +21,17 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
     operator_ref = timed_leg.service.operator_ref  # needs to be processed afterwards to get the verwaltungs_code
     gattungs_code = timed_leg.service.mode.short_name.text[0].value  # is correct, but a bit of a hack
 
+    # in OJP 2.' the number is in the TrainNumber
+    verkehrs_mittel_nummer=timed_leg.service.train_number
     # unfortunately it is not in line_ref, but in Extension/ojp:PublishedJourneyNumber
-    _, verkehrs_mittel_nummer, _ = line_ref.split(':')
+    #_, verkehrs_mittel_nummer, _ = line_ref.split(':')
     # This is an other hack.
-    verkehrs_mittel_nummer = ''.join(filter(lambda x: x.isdigit(), verkehrs_mittel_nummer))
-    try:
+    #verkehrs_mittel_nummer = ''.join(filter(lambda x: x.isdigit(), verkehrs_mittel_nummer))
+    #try:
         # Set verkehrs_mittel_nummer to timed_leg.extension.publishedjourneynumber?
-        verkehrs_mittel_nummer = [x.children[0].text for x in timed_leg.extension.childen if x.qname == '{http://www.vdv.de/ojp}PublishedJourneyNumber'][0]
-    except:
-        pass
+    #    verkehrs_mittel_nummer = [x.children[0].text for x in timed_leg.extension.childen if x.qname == '{http://www.vdv.de/ojp}PublishedJourneyNumber'][0]
+    #except:
+    #    pass
 
     verwaltungs_code= process_operating_ref_ojp2(operator_ref)
 
@@ -79,6 +81,14 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
             and len(ojp.ojprequest.service_request.ojpfare_request[0].trip_fare_request.trip.leg) > 0):
         return None
 
+    #handling of abos (monthly) otherwise the product_taxonomie is set to the standard
+    produkt_taxonomie = "SBB Preisauskunft"
+    try:
+            val = ojp.ojprequest.service_request.ojpfare_request[0].params.fare_authority_filter[0]
+            if "NOVA-Subscription" in val.value:
+                produkt_taxonomie="SBB Abonnemente"
+    except:
+        pass
     try:
         if ojp.ojprequest.service_request.ojpfare_request[0].params.traveller is None:
             travellers = []
@@ -171,7 +181,7 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
                                                                           correlation_id=str(uuid.uuid1()),
                                                                           geschaefts_prozess_id="1781786f-57ba-4e9a-bc29-287e2aa97f9a"),
                                                                       angebots_filter=[TaxonomieFilter(
-                                                                          produkt_taxonomie="SBB Preisauskunft",
+                                                                          produkt_taxonomie=produkt_taxonomie,
                                                                           taxonomie_klasse_pfad=[TaxonomieKlassePfad(EmptyType())])],
                                                                       reisender=reisende,
                                                                       verbindung=verbindungen

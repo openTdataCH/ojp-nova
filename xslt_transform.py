@@ -10,7 +10,9 @@ def is_version_2_0(xml_string:str) -> bool:
     # Check if there are at least two lines
     if len(lines) < 2:
         return False
-
+    #check the first line for the version (when the xml header was omitted)
+    if 'version="2.0"' in lines[0]:
+        return True
     # Check the second line for the version
     second_line = lines[1]
     if 'version="2.0"' in second_line:

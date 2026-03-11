@@ -39,22 +39,31 @@ def parse_ojp2(body: str) -> Ojp:
     parser = XmlParser(config)
     return parser.from_string(body, ojp2.ojp.Ojp)
 
-def map_to_individual_ojpfarerequest(trip: TripStructure, now: XmlDateTime) -> OjpfareRequest:
-    travellers=[]
-    if USE_HTA:
-        entitlementproduct=EntitlementProductStructure(fare_authority_ref=FareAuthorityRef("NOVA"),entitlement_product_name="HTA", entitlement_product_ref="HTA") #TODO correct fare_authority_ref
+def map_to_individual_ojpfarerequest(trip: TripStructure, now: XmlDateTime, ojp_fare_params:FareParamStructure) -> OjpfareRequest:
+    if ojp_fare_params is None:
+        travellers=[]
+        if USE_HTA:
+            entitlementproduct = EntitlementProductStructure(fare_authority_ref=FareAuthorityRef("NOVA"),
+                                                             entitlement_product_name="HTA",
+                                                             entitlement_product_ref="HTA")  # TODO correct fare_authority_ref
 
-        entitlementproducts=EntitlementProductListStructure(entitlement_product=[entitlementproduct])
-        travellers.append(FarePassengerStructure(age=25, entitlement_products = entitlementproducts))
+            entitlementproducts = EntitlementProductListStructure(entitlement_product=[entitlementproduct])
+            travellers.append(FarePassengerStructure(age=25, entitlement_products=entitlementproducts))
+        else:
+            travellers.append(
+                FarePassengerStructure(passenger_category=PassengerCategoryEnumeration.ADULT, entitlement_products=[]))
+
+        ojp_fare_params=FareParamStructure(fare_authority_filter=[FareAuthorityRef("ch:1:NOVA")],
+                       passenger_category=[PassengerCategoryEnumeration.ADULT],
+                       fare_class=FareClassEnumeration.SECOND_CLASS,
+                       traveller=travellers)
     else:
-        travellers.append(FarePassengerStructure(passenger_category=PassengerCategoryEnumeration.ADULT,entitlement_products = []))
-
+        # the FareParamStructure is directly added
+        # TODO: Perhaps we should check it in more details
+        pass
     return OjpfareRequest(
         request_timestamp=RequestTimestamp(now),
-        params=FareParamStructure(fare_authority_filter=[FareAuthorityRef("ch:1:NOVA")],
-                                  passenger_category=[PassengerCategoryEnumeration.ADULT],
-                                  fare_class=FareClassEnumeration.SECOND_CLASS,
-                                  traveller=travellers),
+        params=ojp_fare_params,
         trip_fare_request=TripFareRequestStructure(trip=trip))
 
 # def map_to_individual_ojptriprefinerequest(trip_result: TripResultStructure, now: XmlDateTime) -> OjptripRefineRequest:
@@ -116,7 +125,7 @@ def preprocess_stops_to_commercial_stops(delivery: OjptripDeliveryStructure) -> 
 
     return delivery
 
-def map_ojp2_trip_result_to_ojp2_fare_request(ojp: Ojp) -> Optional[Ojp]:
+def map_ojp2_trip_result_to_ojp2_fare_request(ojp: Ojp, ojp_fare_params: FareParamStructure) -> Optional[Ojp]:
     if len(ojp.ojpresponse.service_delivery.ojptrip_delivery) != 1:
         return None
 
@@ -129,7 +138,7 @@ def map_ojp2_trip_result_to_ojp2_fare_request(ojp: Ojp) -> Optional[Ojp]:
     #    # preprocess trip result to translate the quays to the commercial stop
         ojptrip_delivery=preprocess_stops_to_commercial_stops(ojptrip_delivery)
         for trip_result in ojptrip_delivery.trip_result:
-            farerequest += [map_to_individual_ojpfarerequest(trip_result.trip, now)]
+            farerequest += [map_to_individual_ojpfarerequest(trip_result.trip, now,ojp_fare_params)]
 
     return Ojp(ojprequest=
                Ojprequest(service_request=

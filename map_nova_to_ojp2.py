@@ -42,7 +42,7 @@ def map_preis_auspraegung_to_trip_fare_result(preis_auspraegungen: List[PreisAus
                                                                    net_price=round(float(preis_auspraegung.preis.betrag)*(1.0-VATRATE/100),2),
                                                                    currency=preis_auspraegung.preis.waehrung,
                                                                    required_card=required_card,
-                                                                   vat_rate=Decimal(VATRATE),
+                                                                   vat_rate=Decimal(VATRATE).quantize(Decimal("0.1")),
                                                                    fare_class=map_klasse_to_fareclass(preis_auspraegung.produkt_einfluss_faktoren.klasse))]))
 
     return FareResultStructure(id=id, trip_fare_result=tripfareresults)
