@@ -24,10 +24,10 @@ NOVA_VERTRIEBS_PUNKT = int(getenv("NOVA_VERTRIEBS_PUNKT","16437"))
 NOVA_VERKAUFS_GERAETE_ID = getenv("NOVA_VERKAUFS_GERAETE_ID","236")
 
 # OJP_Token can be obtained at: https://opentransportdata.swiss/dev-dashboard
-OJP_URL_API = "https://api.opentransportdata.swiss/ojp2020"
+OJP_URL_API = getenv("OJP_BASE_URL","https://api.opentransportdata.swiss/ojp2020")
 OJP_TOKEN = getenv("OJP_TOKEN")
 
-OJP_2_URL_API = "https://api.opentransportdata.swiss/ojp20"
+OJP_2_URL_API = getenv("OJP2_BASE_URL","https://api.opentransportdata.swiss/ojp20")
 OJP_2_TOKEN = getenv("OJP2_TOKEN")
 
 OJP_FARE_TOKEN=""
