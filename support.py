@@ -27,6 +27,8 @@ def error_response(error_text:str) -> Ojp:
 
 def process_operating_ref_ojp2(operator_ref:OperatorRef) ->str:
     operator_ref_str=operator_ref.value
+#    if operator_ref_str == "L7____":
+#        operator_ref_str="351"
     return process_operating_ref(operator_ref_str)
 
 def process_operating_ref(operator_ref:str) ->str:

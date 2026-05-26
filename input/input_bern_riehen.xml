@@ -1,38 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
 <OJP xmlns="http://www.vdv.de/ojp" xmlns:siri="http://www.siri.org.uk/siri" version="2.0">
   <OJPRequest>
     <siri:ServiceRequest>
       <siri:ServiceRequestContext>
         <siri:Language>de</siri:Language>
       </siri:ServiceRequestContext>
-      <siri:RequestTimestamp>2025-10-14T13:58:07.719Z</siri:RequestTimestamp>
+      <siri:RequestTimestamp>2026-04-30T12:17:04.217Z</siri:RequestTimestamp>
       <siri:RequestorRef>OJP_DemoApp_Beta_OJP2.0</siri:RequestorRef>
       <OJPTripRequest>
-        <siri:RequestTimestamp>2025-10-14T13:58:07.719Z</siri:RequestTimestamp>
+        <siri:RequestTimestamp>2026-04-30T12:17:04.217Z</siri:RequestTimestamp>
         <Origin>
           <PlaceRef>
-            <StopPlaceRef>8507000</StopPlaceRef>
+            <StopPlaceRef>8590011</StopPlaceRef>
             <Name>
-              <Text>Bern (Bern)</Text>
+              <Text>n/a</Text>
             </Name>
           </PlaceRef>
         </Origin>
         <Destination>
           <PlaceRef>
-            <StopPlaceRef>8014439</StopPlaceRef>
+            <StopPlaceRef>8589451</StopPlaceRef>
             <Name>
-              <Text>Riehen (Riehen)</Text>
+              <Text>n/a</Text>
             </Name>
           </PlaceRef>
         </Destination>
         <Params>
           <NumberOfResults>5</NumberOfResults>
-          <IncludeAllRestrictedLines>true</IncludeAllRestrictedLines>
-          <IncludeTrackSections>false</IncludeTrackSections>
-          <IncludeLegProjection>false</IncludeLegProjection>
-          <IncludeTurnDescription>false</IncludeTurnDescription>
-          <IncludeIntermediateStops>false</IncludeIntermediateStops>
           <UseRealtimeData>explanatory</UseRealtimeData>
+          <IncludeAllRestrictedLines>true</IncludeAllRestrictedLines>
+          <IncludeTrackSections>true</IncludeTrackSections>
+          <IncludeLegProjection>true</IncludeLegProjection>
+          <IncludeIntermediateStops>true</IncludeIntermediateStops>
         </Params>
       </OJPTripRequest>
     </siri:ServiceRequest>

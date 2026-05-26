@@ -713,5 +713,22 @@
 		"start_time": "23:55:00",
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
 		"active": true
+	},
+	{
+		"id": 43,
+		"description": "More experiments ",
+		"file": "input/input_bern_riehen_2.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"start_time": "16:55:00",
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true
 	}
 ]
