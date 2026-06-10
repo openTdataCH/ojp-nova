@@ -72,6 +72,10 @@ def sloid2didok(sloid:str)->int:
         "8014487": "8503462",
     }
 
+    # if _gen is in the sloid, we remove _gen and everything to the right
+    if '_gen' in sloid:
+        sloid= sloid.split("_gen", 1)[0]
+        #this gives us a clean sloid of the stop for further processing
     try:
         # sloids are not integer, but didok are. So we first try to convert to id. If this works, we assume, it is a didok code
         didok=int(sloid)
@@ -79,17 +83,18 @@ def sloid2didok(sloid:str)->int:
         return didok
     except:
         #remove left part of sloid
-        sloid=sloid.replace('ch:1:sloid:','')
-        #remove the right part of sloid, if it exist
+        sloid = sloid.replace('ch:1:sloid:','')
+        #remove the right part of sloid, if it exists
+        tmp=sloid
         if ':' in sloid:
             tmp = sloid[:sloid.find(':')]
         # if bigger than 100000 -> no add. This is used for the 11-14 prefixes that are used for sloid that are used for local public transport
         # outside Switzerland
         if int(tmp)>100000:
             return int(tmp)
-        tmp= 8500000+int(tmp)
-        tmp=my_dict.get(str(tmp),str(tmp)) # replaces if it is in the table or gets the value back
-        return tmp
+        tmp = 8500000+int(tmp)
+        tmp = my_dict.get(str(tmp),str(tmp)) # replaces if it is in the table or gets the value back
+        return int(tmp)
 
 
 # raising an error and sending it back. Does not add values from err_str
