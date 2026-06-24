@@ -104,8 +104,13 @@ def preprocess_stops_to_commercial_stops(delivery: OjptripDeliveryStructure) -> 
             # if the timed leg is an on demand bus -> also ignore
             if leg.timed_leg.service.mode is None:
                 continue
-            if leg.timed_leg.service.mode.bus_submode == "demandResponsive":
-                # we can't deal with demandResponsive in NOVA currently.
+            if (
+                leg.timed_leg.service.mode.bus_submode == "demandResponsive"
+                or leg.timed_leg.service.mode.bus_submode == "expressBus"
+                or leg.timed_leg.service.mode == "coach"
+                or leg.timed_leg.service.mode.rail_submode == "carTransportRail"
+            ):
+                # we can't deal with demandResponsive, carTransportRail and international coaches in NOVA currently.
                 continue
             ## only timed. we now replace the stop_point_ref with the parent
             leg.timed_leg.leg_board.stop_point_ref.value = parent.get(leg.timed_leg.leg_board.stop_point_ref.value,"")
@@ -113,7 +118,6 @@ def preprocess_stops_to_commercial_stops(delivery: OjptripDeliveryStructure) -> 
             leg_intermediates = leg.timed_leg.leg_intermediate
             for leg_intermediate in leg_intermediates:
                 leg_intermediate.stop_point_ref.value = parent.get(leg_intermediate.stop_point_ref.value,"")
-
     return delivery
 
 def map_ojp2_trip_result_to_ojp2_fare_request(ojp: Ojp) -> Optional[Ojp]:
