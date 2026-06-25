@@ -66,6 +66,12 @@ READFILE.append("input/input_demand_responsive_saturday_after_1500.xml")
 #sometimes not working
 READFILE.append("input/input_sharing_intercity.xml")
 
+# Bug with flx: sloids - https://github.com/openTdataCH/ojp-nova/pull/103
+# works only with OJP2.0 DEV, update following vars in local_configuration.py
+# OJP_2_URL_API = "https://odpch-api.clients.liip.ch/ojp20-dev"
+# OJP_2_TOKEN = "..."
+READFILE.append("input/input_flixbus_international_coach.xml")
+
 '''
 
 
