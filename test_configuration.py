@@ -1,6 +1,6 @@
 READFILE = []
 
-READFILE.append("input/input_sloid_test_with_didok_request.xml")
+READFILE.append("input/input_flixbus_international_coach.xml")
 
 
 
