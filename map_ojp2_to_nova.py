@@ -21,13 +21,13 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
     operator_ref = timed_leg.service.operator_ref  # needs to be processed afterwards to get the verwaltungs_code
     gattungs_code = timed_leg.service.mode.short_name.text[0].value  # is correct, but a bit of a hack
 
-    # unfortunately it is not in line_ref, but in Extension/ojp:PublishedJourneyNumber
+    # unfortunately it is not in line_ref, but in trainNumber/TrainNumber for OJP 20
     _, verkehrs_mittel_nummer, _ = line_ref.split(':')
     # This is an other hack.
     verkehrs_mittel_nummer = ''.join(filter(lambda x: x.isdigit(), verkehrs_mittel_nummer))
     try:
-        # Set verkehrs_mittel_nummer to timed_leg.extension.publishedjourneynumber?
-        verkehrs_mittel_nummer = [x.children[0].text for x in timed_leg.extension.childen if x.qname == '{http://www.vdv.de/ojp}PublishedJourneyNumber'][0]
+        # Set verkehrs_mittel_nummer to the TrainNumber
+        verkehrs_mittel_nummer = timed_leg.service.train_number
     except:
         pass
 

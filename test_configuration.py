@@ -1,8 +1,14 @@
 READFILE = []
 
-READFILE.append("input/input_flixbus_international_coach.xml")
-
-
+#READFILE.append("input/input_ojp_1_test.xml")
+READFILE.append("input/input_ojp_2_test.xml")
+READFILE.append("input/input_problematic_Europaplatz_ojp1.xml")
+READFILE.append("input/input_problematic_Europaplatz_ojp2.xml")
+READFILE.append("input/input_Bodensee_2.xml")
+READFILE.append("input/input_problem_footpath.xml")
+READFILE.append("input/input_problematic_Europaplatz_4.xml")
+READFILE.append("input/input_sloid_test.xml")
+READFILE.append("input/input_sloid_test_with_didok_request.xml")
 
 '''
 ----------------------------------------------------------------
@@ -65,6 +71,7 @@ READFILE.append("input/input_demand_responsive_saturday_after_1500.xml")
 
 #sometimes not working
 READFILE.append("input/input_sharing_intercity.xml")
+READFILE.append("input/input_flixbus_international_coach.xml")
 
 # Bug with flx: sloids - https://github.com/openTdataCH/ojp-nova/pull/103
 # works only with OJP2.0 DEV, update following vars in local_configuration.py
