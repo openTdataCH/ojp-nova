@@ -54,7 +54,7 @@
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
 		"result": "pass",
-		"assert": "12:80",
+		"assert": "12.80",
 		"active": false
 	},
 	{
@@ -226,7 +226,7 @@
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
 		"active": true,
-      "result": "fail"
+      "result": "pass"
 	},
 	{
 		"id": 13,
@@ -242,7 +242,8 @@
 		],
 		"subscriptions": true,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
-		"active": true
+		"active": true,
+        "result": "pass"
 	},
 	{
 		"id": 14,
@@ -258,7 +259,8 @@
 		],
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
-		"active": true
+		"active": true,
+        "result": "pass"
 	},
 	{
 		"id": 15,
@@ -275,7 +277,7 @@
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
 		"active": true,
-        "result" : "fail"
+        "result" : "pass"
 	},
 	{
 		"id": 16,
@@ -292,7 +294,7 @@
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
 		"active": true,
-        "result" : "fail"
+        "result" : "pass"
 	},
 	{
 		"id": 17,
@@ -326,7 +328,7 @@
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
 		"active": true,
-        "result": "fail"
+        "result": "pass"
 	},
 	{
 		"id": 19,
@@ -359,7 +361,7 @@
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
 		"active": true,
-        "result" : "fail"
+        "result" : "pass"
 	},
 	{
 		"id": 21,
@@ -376,7 +378,7 @@
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
 		"active": true,
-        "result": "fail"
+        "result": "pass"
 	},
 	{
 		"id": 22,
@@ -443,7 +445,8 @@
 		],
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
-		"active": true
+		"active": true,
+        "result": "pass"
 	},
 	{
 		"id": 26,
@@ -539,7 +542,8 @@
 		],
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
-		"active": true
+		"active": true,
+        "result" : "fail"
 	},
 	{
 		"id": 32,
@@ -555,7 +559,8 @@
 		],
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
-		"active": true
+		"active": true,
+        "result": "pass"
 	},
 	{
 		"id": 33,
@@ -571,7 +576,9 @@
 		],
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
-		"active": true
+		"active": true,
+        "result" : "pass",
+        "assert" : "7.20"
 	},
 	{
 		"id": 34,
@@ -588,7 +595,8 @@
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
 		"status": "fail",
-		"active": true
+		"active": true,
+        "result": "fail"
 	},
 	{
 		"id": 35,
@@ -605,7 +613,8 @@
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
 		"status": "fail",
-		"active": true
+		"active": true,
+        "result" : "fail"
 	},
 	{
 		"id": 36,
@@ -622,7 +631,8 @@
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
 		"status": "fail",
-		"active": true
+		"active": true,
+        "result": "fail"
 	},
 	{
 		"id": 37,
@@ -655,7 +665,8 @@
 		],
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
-		"active": true
+		"active": true,
+        "result": "fail"
 	},
 	{
 		"id": 39,
@@ -705,7 +716,8 @@
 		],
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
-		"active": true
+		"active": true,
+        "result": "fail"
 	},
 	{
 		"id": 42,
@@ -722,7 +734,8 @@
 		"subscriptions": false,
 		"start_time": "23:55:00",
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
-		"active": true
+		"active": true,
+        "result": "fail"
 	},
 	{
 		"id": 43,
@@ -739,7 +752,8 @@
 		"subscriptions": false,
 		"start_time": "16:55:00",
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
-		"active": true
+		"active": true,
+        "result" : "fail"
 	},
 	{
 		"id": 44,
@@ -758,5 +772,23 @@
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
 		"active": true,
         "result": "pass"
+	},
+	{
+		"id": 45,
+		"description": "First test Flixbus",
+		"file": "input/input_flixbus_international_coach.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"start_time": "16:55:00",
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true,
+        "result": "fail"
 	}
 ]

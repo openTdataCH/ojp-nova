@@ -32,7 +32,7 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
         if verkehrs_mittel_nummer.strip()== '':
             # hack TODO
             verkehrs_mittel_nummer=timed_leg.service.published_service_name.text[0].value
-    # unfortunately it is not in line_ref, but in Extension/ojp:PublishedJourneyNumber
+    # unfortunately it is not in line_ref, but in rainNumber/TrainNumber for OJP 20
     #_, verkehrs_mittel_nummer, _ = line_ref.split(':')
     # This is an other hack.
     #verkehrs_mittel_nummer = ''.join(filter(lambda x: x.isdigit(), verkehrs_mittel_nummer))
