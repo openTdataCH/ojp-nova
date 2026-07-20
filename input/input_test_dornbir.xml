@@ -19,7 +19,7 @@
                 </Origin>
                 <Destination>
                     <PlaceRef>
-                        <StopPlaceRef>8506314</StopPlaceRef>
+                        <StopPlaceRef>ch:1:sloid:6314</StopPlaceRef>
                         <Name>
                             <Text>St. Margrethen SG</Text>
                         </Name>

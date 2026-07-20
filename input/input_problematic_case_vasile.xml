@@ -8,7 +8,7 @@
         <RequestTimestamp>2023-08-08T11:35:38.145Z</RequestTimestamp>
         <ojp:Origin>
           <ojp:PlaceRef>
-            <StopPointRef>8506346</StopPointRef>
+            <StopPointRef>ch:1:sloid:6346</StopPointRef>
             <ojp:LocationName>
               <ojp:Text>Romanshorn Autoquai</ojp:Text>
             </ojp:LocationName>           

@@ -11,7 +11,7 @@
         <siri:RequestTimestamp>2025-11-13T10:20:41.852Z</siri:RequestTimestamp>
         <Origin>
           <PlaceRef>
-            <StopPlaceRef>8506346</StopPlaceRef>
+            <StopPlaceRef>ch:1:sloid:6346</StopPlaceRef>
             <Name>
               <Text>Romanshorn</Text>
             </Name>

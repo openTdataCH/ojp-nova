@@ -11,7 +11,7 @@
 				<RequestTimestamp>2025-11-13T13:31:54.334Z</RequestTimestamp>
 				<ojp:Origin>
 					<ojp:PlaceRef>
-						<ojp:StopPlaceRef>8506346</ojp:StopPlaceRef>
+						<ojp:StopPlaceRef>ch:1:sloid:6346</ojp:StopPlaceRef>
 						<ojp:LocationName>
 							<ojp:Text>Romanshorn Autoquai (Romanshorn)</ojp:Text>
 						</ojp:LocationName>

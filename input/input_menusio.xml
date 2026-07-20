@@ -10,16 +10,15 @@
         <siri:RequestTimestamp>2026-03-05T15:57:19.971Z</siri:RequestTimestamp>
         <Origin>
           <PlaceRef>
-            <StopPlaceRef>8505000</StopPlaceRef>
+            <StopPlaceRef>ch:1:sloid:5000</StopPlaceRef>
             <Name>
               <Text>n/a</Text>
             </Name>
           </PlaceRef>
-          <DepArrTime>2026-03-24T21:00:00.000Z</DepArrTime>
         </Origin>
         <Destination>
           <PlaceRef>
-            <StopPlaceRef>8505417</StopPlaceRef>
+            <StopPlaceRef>ch:1:sloid:5417</StopPlaceRef>
             <Name>
               <Text>n/a</Text>
             </Name>

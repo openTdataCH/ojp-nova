@@ -8,7 +8,7 @@
         <RequestTimestamp>2023-08-08T11:35:38.145Z</RequestTimestamp>
         <ojp:Origin>
           <ojp:PlaceRef>
-            <StopPointRef>8571342</StopPointRef>
+            <StopPointRef>ch:1:sloid:71342</StopPointRef>
             <ojp:LocationName>
               <ojp:Text>Bern</ojp:Text>
             </ojp:LocationName>
@@ -16,7 +16,7 @@
         </ojp:Origin>
         <ojp:Destination>
           <ojp:PlaceRef>
-            <StopPointRef>8504102</StopPointRef>
+            <StopPointRef>ch:1:sloid:4102</StopPointRef>
             <ojp:LocationName>
               <ojp:Text>Schmitten FR</ojp:Text>
             </ojp:LocationName>

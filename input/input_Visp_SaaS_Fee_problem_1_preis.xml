@@ -8,7 +8,7 @@
         <RequestTimestamp>2023-08-08T11:35:38.145Z</RequestTimestamp>
         <ojp:Origin>
           <ojp:PlaceRef>
-            <StopPointRef>8571075</StopPointRef>
+            <StopPointRef>ch:1:sloid:71075</StopPointRef>
             <ojp:LocationName>
               <ojp:Text>Visp</ojp:Text>
             </ojp:LocationName>
@@ -16,7 +16,7 @@
         </ojp:Origin>
         <ojp:Destination>
           <ojp:PlaceRef>
-            <StopPointRef>8501782</StopPointRef>
+            <StopPointRef>ch:1:sloid:1782</StopPointRef>
             <ojp:LocationName>
               <ojp:Text>Santa Fee</ojp:Text>
             </ojp:LocationName>
