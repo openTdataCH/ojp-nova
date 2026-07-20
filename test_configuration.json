@@ -543,7 +543,7 @@
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
 		"active": true,
-        "result" : "fail"
+        "result" : "pass"
 	},
 	{
 		"id": 32,
@@ -649,7 +649,8 @@
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
 		"future": 3,
-		"active": true
+		"active": true,
+        "result" : "pass"
 	},
 	{
 		"id": 38,
@@ -683,7 +684,8 @@
 		"subscriptions": false,
 		"future": 6,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
-		"active": true
+		"active": true,
+        "result": "pass"
 	},
 	{
 		"id": 40,
@@ -700,7 +702,8 @@
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
 		"future": 8,
-		"active": true
+		"active": true,
+        "result" : "pass"
 	},
 	{
 		"id": 41,
@@ -722,7 +725,7 @@
 	{
 		"id": 42,
 		"description": "xxx ",
-		"file": "input/input_Nachtbus.xml",
+		"file": "input/input_nachtbus.xml",
 		"travellers": [
 			{
 				"age": 12,
@@ -735,7 +738,7 @@
 		"start_time": "23:55:00",
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
 		"active": true,
-        "result": "fail"
+        "result": "pass"
 	},
 	{
 		"id": 43,
@@ -753,7 +756,7 @@
 		"start_time": "16:55:00",
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
 		"active": true,
-        "result" : "fail"
+        "result" : "pass"
 	},
 	{
 		"id": 44,
