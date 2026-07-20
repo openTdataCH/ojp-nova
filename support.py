@@ -64,6 +64,11 @@ def sloid2didok(sloid:str)->int:
         "8014485": "8503463",
         "8014487": "8503462",
     }
+
+    # if _gen is in the sloid, we remove _gen and everything to the right
+    if '_gen' in sloid:
+        sloid= sloid.split("_gen", 1)[0]
+        #this gives us a clean sloid of the stop for further processing
     try:
         # sloids are not integer, but didok are. So we first try to convert to id. If this works, we assume, it is a didok code
         didok=int(sloid)
@@ -71,8 +76,9 @@ def sloid2didok(sloid:str)->int:
         return didok
     except:
         #remove left part of sloid
-        sloid=sloid.replace('ch:1:sloid:','')
-        #remove the right part of sloid, if it exist
+        sloid = sloid.replace('ch:1:sloid:','')
+        #remove the right part of sloid, if it exists
+        tmp=sloid
         if ':' in sloid:
             tmp = sloid[:sloid.find(':')]
 
@@ -80,9 +86,9 @@ def sloid2didok(sloid:str)->int:
         # outside Switzerland
         if int(tmp)>100000:
             return int(tmp)
-        tmp= 8500000+int(tmp)
-        tmp=my_dict.get(str(tmp),str(tmp)) # replaces if it is in the table or gets the value back
-        return tmp
+        tmp = 8500000+int(tmp)
+        tmp = my_dict.get(str(tmp),str(tmp)) # replaces if it is in the table or gets the value back
+        return int(tmp)
 
 def is_version_2_0(xml_string:str) -> bool:
     #simple test to see if the xml is OJP version 2.0 (or should be)
