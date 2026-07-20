@@ -225,7 +225,8 @@
 		],
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
-		"active": true
+		"active": true,
+      "result": "fail"
 	},
 	{
 		"id": 13,
@@ -273,7 +274,8 @@
 		],
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
-		"active": true
+		"active": true,
+        "result" : "fail"
 	},
 	{
 		"id": 16,
@@ -289,7 +291,8 @@
 		],
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
-		"active": true
+		"active": true,
+        "result" : "fail"
 	},
 	{
 		"id": 17,
@@ -305,7 +308,8 @@
 		],
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
-		"active": true
+		"active": true,
+        "result": "pass"
 	},
 	{
 		"id": 18,
@@ -321,7 +325,8 @@
 		],
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
-		"active": true
+		"active": true,
+        "result": "fail"
 	},
 	{
 		"id": 19,
@@ -337,7 +342,7 @@
 		],
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
-		"active": true
+		"active": "pass"
 	},
 	{
 		"id": 20,
@@ -353,7 +358,8 @@
 		],
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
-		"active": true
+		"active": true,
+        "result" : "fail"
 	},
 	{
 		"id": 21,
@@ -369,7 +375,8 @@
 		],
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
-		"active": true
+		"active": true,
+        "result": "fail"
 	},
 	{
 		"id": 22,
@@ -385,7 +392,8 @@
 		],
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
-		"active": true
+		"active": true,
+        "result": "fail"
 	},
 	{
 		"id": 23,
@@ -401,7 +409,8 @@
 		],
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
-		"active": true
+		"active": true,
+        "result": "fail"
 	},
 	{
 		"id": 24,
