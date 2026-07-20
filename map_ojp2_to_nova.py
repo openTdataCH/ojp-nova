@@ -19,10 +19,19 @@ def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindung
     ankunfts_zeit = timed_leg.leg_alight.service_arrival.timetabled_time
     line_ref = timed_leg.service.line_ref.value
     operator_ref = timed_leg.service.operator_ref  # needs to be processed afterwards to get the verwaltungs_code
-    gattungs_code = timed_leg.service.mode.short_name.text[0].value  # is correct, but a bit of a hack
+    if timed_leg.service.mode.short_name is not None:
+        gattungs_code = timed_leg.service.mode.short_name.text[0].value  # is correct, but a bit of a hack
+    else:
+        # we had cases currently, where there was a problem with service.mode, so we assume B for the time being. TODO revisit
+        gattungs_code="B"
 
     # in OJP 2.' the number is in the TrainNumber
-    verkehrs_mittel_nummer=timed_leg.service.train_number
+    verkehrs_mittel_nummer=-1
+    if getattr(getattr(timed_leg, "service", None), "train_number", None) is not None:
+        verkehrs_mittel_nummer=timed_leg.service.train_number
+        if verkehrs_mittel_nummer.strip()== '':
+            # hack TODO
+            verkehrs_mittel_nummer=timed_leg.service.published_service_name.text[0].value
     # unfortunately it is not in line_ref, but in Extension/ojp:PublishedJourneyNumber
     #_, verkehrs_mittel_nummer, _ = line_ref.split(':')
     # This is an other hack.
