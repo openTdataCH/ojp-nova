@@ -1,0 +1,37 @@
+<OJP xmlns="http://www.vdv.de/ojp" xmlns:siri="http://www.siri.org.uk/siri" version="2.0">
+  <OJPRequest>
+    <siri:ServiceRequest>
+      <siri:ServiceRequestContext>
+        <siri:Language>de</siri:Language>
+      </siri:ServiceRequestContext>
+      <siri:RequestTimestamp>2026-07-20T13:56:56.855Z</siri:RequestTimestamp>
+      <siri:RequestorRef>OJP_DemoApp_OJP2.0</siri:RequestorRef>
+      <OJPTripRequest>
+        <siri:RequestTimestamp>2026-07-20T13:56:56.855Z</siri:RequestTimestamp>
+        <Origin>
+          <PlaceRef>
+            <StopPlaceRef>ch:1:sloid:3000</StopPlaceRef>
+            <Name>
+              <Text>n/a</Text>
+            </Name>
+          </PlaceRef></Origin>
+        <Destination>
+          <PlaceRef>
+            <StopPlaceRef>ch:1:sloid:2679</StopPlaceRef>
+            <Name>
+              <Text>n/a</Text>
+            </Name>
+          </PlaceRef>
+        </Destination>
+        <Params>
+          <NumberOfResults>5</NumberOfResults>
+          <UseRealtimeData>explanatory</UseRealtimeData>
+          <IncludeAllRestrictedLines>false</IncludeAllRestrictedLines>
+          <IncludeTrackSections>false</IncludeTrackSections>
+          <IncludeLegProjection>false</IncludeLegProjection>
+          <IncludeIntermediateStops>true</IncludeIntermediateStops>
+        </Params>
+      </OJPTripRequest>
+    </siri:ServiceRequest>
+  </OJPRequest>
+</OJP>
