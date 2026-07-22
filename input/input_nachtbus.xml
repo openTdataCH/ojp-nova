@@ -11,16 +11,16 @@
         <RequestTimestamp>2025-10-31T13:41:15.549Z</RequestTimestamp>
         <ojp:Origin>
           <ojp:PlaceRef>
-            <ojp:StopPlaceRef>8576646</ojp:StopPlaceRef>
+            <ojp:StopPlaceRef>ch:1:sloid:76646</ojp:StopPlaceRef>
             <ojp:LocationName>
               <ojp:Text>Bern, Bahnhof (Bern)</ojp:Text>
             </ojp:LocationName>
           </ojp:PlaceRef>
-          <ojp:DepArrTime>2025-11-01T00:00:45.343Z</ojp:DepArrTime>
+          <!--<ojp:DepArrTime>2025-11-01T00:00:45.343Z</ojp:DepArrTime>-->
         </ojp:Origin>
         <ojp:Destination>
           <ojp:PlaceRef>
-            <ojp:StopPlaceRef>8507006</ojp:StopPlaceRef>
+            <ojp:StopPlaceRef>ch:1:sloid:7006</ojp:StopPlaceRef>
             <ojp:LocationName>
               <ojp:Text>Münsingen (Münsingen (CH))</ojp:Text>
             </ojp:LocationName>

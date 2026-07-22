@@ -5,36 +5,33 @@
       <siri:ServiceRequestContext>
         <siri:Language>de</siri:Language>
       </siri:ServiceRequestContext>
-      <siri:RequestTimestamp>2025-11-13T10:20:41.852Z</siri:RequestTimestamp>
+      <siri:RequestTimestamp>2026-03-03T12:36:55.154Z</siri:RequestTimestamp>
       <siri:RequestorRef>OJP_DemoApp_Beta_OJP2.0</siri:RequestorRef>
       <OJPTripRequest>
-        <siri:RequestTimestamp>2025-11-13T10:20:41.852Z</siri:RequestTimestamp>
+        <siri:RequestTimestamp>2026-03-03T12:36:55.154Z</siri:RequestTimestamp>
         <Origin>
           <PlaceRef>
-            <StopPlaceRef>ch:1:sloid:6346</StopPlaceRef>
+            <StopPlaceRef>8500258</StopPlaceRef>
             <Name>
-              <Text>Romanshorn</Text>
+              <Text>n/a</Text>
             </Name>
           </PlaceRef>
-          <IndividualTransportOption/>
         </Origin>
         <Destination>
           <PlaceRef>
-            <StopPlaceRef>8011121</StopPlaceRef>
+            <StopPlaceRef>8500249</StopPlaceRef>
             <Name>
-              <Text>Unbekannt</Text>
+              <Text>n/a</Text>
             </Name>
           </PlaceRef>
-          <IndividualTransportOption/>
         </Destination>
         <Params>
-          <NumberOfResults>5</NumberOfResults>
-          <IncludeAllRestrictedLines>false</IncludeAllRestrictedLines>
+          <NumberOfResults>1</NumberOfResults>
+          <UseRealtimeData>explanatory</UseRealtimeData>
+          <IncludeAllRestrictedLines>true</IncludeAllRestrictedLines>
           <IncludeTrackSections>false</IncludeTrackSections>
           <IncludeLegProjection>false</IncludeLegProjection>
-          <IncludeTurnDescription>false</IncludeTurnDescription>
           <IncludeIntermediateStops>true</IncludeIntermediateStops>
-          <UseRealtimeData>explanatory</UseRealtimeData>
         </Params>
       </OJPTripRequest>
     </siri:ServiceRequest>

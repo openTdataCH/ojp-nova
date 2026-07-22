@@ -19,7 +19,7 @@
         </ojp:Origin>
         <ojp:Destination>
           <ojp:PlaceRef>
-            <StopPointRef>8500010</StopPointRef>
+            <StopPointRef>ch:1:sloid:10</StopPointRef>
             <ojp:LocationName>
               <ojp:Text>Basel SBB (Basel)</ojp:Text>
             </ojp:LocationName>

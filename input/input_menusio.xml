@@ -1,40 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
 <OJP xmlns="http://www.vdv.de/ojp" xmlns:siri="http://www.siri.org.uk/siri" version="2.0">
   <OJPRequest>
     <siri:ServiceRequest>
       <siri:ServiceRequestContext>
         <siri:Language>de</siri:Language>
       </siri:ServiceRequestContext>
-      <siri:RequestTimestamp>2025-11-13T10:20:41.852Z</siri:RequestTimestamp>
+      <siri:RequestTimestamp>2026-03-05T15:57:19.971Z</siri:RequestTimestamp>
       <siri:RequestorRef>OJP_DemoApp_Beta_OJP2.0</siri:RequestorRef>
       <OJPTripRequest>
-        <siri:RequestTimestamp>2025-11-13T10:20:41.852Z</siri:RequestTimestamp>
+        <siri:RequestTimestamp>2026-03-05T15:57:19.971Z</siri:RequestTimestamp>
         <Origin>
           <PlaceRef>
-            <StopPlaceRef>ch:1:sloid:6346</StopPlaceRef>
+            <StopPlaceRef>ch:1:sloid:5000</StopPlaceRef>
             <Name>
-              <Text>Romanshorn</Text>
+              <Text>n/a</Text>
             </Name>
           </PlaceRef>
-          <IndividualTransportOption/>
         </Origin>
         <Destination>
           <PlaceRef>
-            <StopPlaceRef>8011121</StopPlaceRef>
+            <StopPlaceRef>ch:1:sloid:5417</StopPlaceRef>
             <Name>
-              <Text>Unbekannt</Text>
+              <Text>n/a</Text>
             </Name>
           </PlaceRef>
-          <IndividualTransportOption/>
         </Destination>
         <Params>
           <NumberOfResults>5</NumberOfResults>
-          <IncludeAllRestrictedLines>false</IncludeAllRestrictedLines>
-          <IncludeTrackSections>false</IncludeTrackSections>
-          <IncludeLegProjection>false</IncludeLegProjection>
-          <IncludeTurnDescription>false</IncludeTurnDescription>
-          <IncludeIntermediateStops>true</IncludeIntermediateStops>
           <UseRealtimeData>explanatory</UseRealtimeData>
+          <IncludeAllRestrictedLines>true</IncludeAllRestrictedLines>
+          <IncludeTrackSections>true</IncludeTrackSections>
+          <IncludeLegProjection>true</IncludeLegProjection>
+          <IncludeIntermediateStops>true</IncludeIntermediateStops>
         </Params>
       </OJPTripRequest>
     </siri:ServiceRequest>

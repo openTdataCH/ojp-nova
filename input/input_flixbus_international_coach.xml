@@ -1,24 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
 <OJP xmlns="http://www.vdv.de/ojp" xmlns:siri="http://www.siri.org.uk/siri" version="2.0">
   <OJPRequest>
     <siri:ServiceRequest>
       <siri:ServiceRequestContext>
-        <siri:Language>de</siri:Language>
+        <siri:Language>en</siri:Language>
       </siri:ServiceRequestContext>
-      <siri:RequestTimestamp>2026-04-30T12:17:04.217Z</siri:RequestTimestamp>
-      <siri:RequestorRef>OJP_DemoApp_Beta_OJP2.0</siri:RequestorRef>
+      <siri:RequestTimestamp>2026-06-25T06:46:54.143Z</siri:RequestTimestamp>
+      <siri:RequestorRef>OJP_DemoApp_OJP2.0</siri:RequestorRef>
       <OJPTripRequest>
-        <siri:RequestTimestamp>2026-04-30T12:17:04.217Z</siri:RequestTimestamp>
+        <siri:RequestTimestamp>2026-06-25T06:46:54.143Z</siri:RequestTimestamp>
         <Origin>
           <PlaceRef>
-            <StopPlaceRef>8590011</StopPlaceRef>
+            <StopPlaceRef>flx:KA</StopPlaceRef>
             <Name>
               <Text>n/a</Text>
             </Name>
           </PlaceRef>
+          <DepArrTime>2026-07-20T08:00:00.000Z</DepArrTime>
         </Origin>
         <Destination>
           <PlaceRef>
-            <StopPlaceRef>8589451</StopPlaceRef>
+            <StopPlaceRef>flx:M</StopPlaceRef>
             <Name>
               <Text>n/a</Text>
             </Name>

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import datetime
+from decimal import Decimal
 from typing import List, Optional, Dict
 
 from xsdata.models.datatype import XmlDateTime
@@ -42,10 +43,10 @@ def map_preis_auspraegung_to_trip_fare_result(preis_auspraegungen: List[PreisAus
                                                                    fare_authority_ref='ch:1:sboid:101704',
                                                                    fare_authority_text='Alliance SwissPass',
                                                                    price=preis_auspraegung.preis.betrag,
-                                                                   net_price=round(float(preis_auspraegung.preis.betrag)*(1.0-VATRATE/100),2),
+                                                                   net_price=round(float(preis_auspraegung.preis.betrag)*(1.0-  VATRATE/100),2),
                                                                    currency=preis_auspraegung.preis.waehrung,
                                                                    required_card=required_card,
-                                                                   vat_rate=VATRATE,
+                                                                   vat_rate=Decimal(VATRATE).quantize(Decimal("0.1")),
                                                                    travel_class=map_klasse_to_fareclass(preis_auspraegung.produkt_einfluss_faktoren.klasse))]))
 
     return FareResultStructure(result_id=id, trip_fare_result=tripfareresults)

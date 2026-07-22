@@ -8,7 +8,7 @@
         <RequestTimestamp>2023-08-08T11:35:38.145Z</RequestTimestamp>
         <ojp:Origin>
           <ojp:PlaceRef>
-            <StopPointRef>8500010</StopPointRef>
+            <StopPointRef>ch:1:sloid:10</StopPointRef>
             <ojp:LocationName>
               <ojp:Text>Basel SBB</ojp:Text>
             </ojp:LocationName>
@@ -16,7 +16,7 @@
         </ojp:Origin>
         <ojp:Destination>
           <ojp:PlaceRef>
-            <StopPointRef>8509411</StopPointRef>
+            <StopPointRef>ch:1:sloid:9411</StopPointRef>
             <ojp:LocationName>
               <ojp:Text>Sargans</ojp:Text>
             </ojp:LocationName>
