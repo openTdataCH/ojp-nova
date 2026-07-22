@@ -344,7 +344,8 @@
 		],
 		"subscriptions": false,
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
-		"active": "pass"
+		"active": true,
+		"result": "pass"
 	},
 	{
 		"id": 20,
