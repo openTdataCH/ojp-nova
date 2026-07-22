@@ -397,7 +397,7 @@ def main(argv=None) ->int:
                 if not expectedstatus == "fail":
                     traceback.print_exc()
                     if args.abort:
-                        print("******************** ABORTING - TEST FAILED. ********************")
+                        print("******************** ABORTING - TEST FAILED ********************")
                         return 1
                     else:
                         number_of_failed_tests+=1
@@ -406,6 +406,8 @@ def main(argv=None) ->int:
     print(f"Number of failed tests: {number_of_failed_tests}")
     if number_of_failed_tests==0:
         print("******************** TESTS SUCCEEDED ********************")
+    else:
+        print("******************** TEST FAILED ********************")
 
 if __name__ == '__main__':
     exit_code = main()
