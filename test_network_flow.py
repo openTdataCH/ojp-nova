@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 
+import argparse
 import json
+import logging
+import sys
 import traceback
 from typing import Tuple, Any, Optional
-import argparse
-import sys
+
 import requests
 import urllib3
 from xsdata.formats.dataclass.client import Client
@@ -13,30 +15,26 @@ from xsdata.formats.dataclass.parsers.config import ParserConfig
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
-import ojp.fare_result_structure
+import xml_logger
 from api.errors import NoNovaResponseError
 from configuration import *
-from support import OJPError, inject_departure_datetime
-from test_create_ojp_request import *
 from map_nova_to_ojp import test_nova_to_ojp
 from map_nova_to_ojp2 import test_nova_to_ojp2
-
-from map_ojp_to_nova import test_ojp_fare_request_to_nova_request
 from map_ojp2_to_nova import test_ojp2_fare_request_to_nova_request
-
-from map_ojp_to_ojp import parse_ojp, map_ojp_trip_result_to_ojp_fare_request #, map_ojp_trip_result_to_ojp_refine_request
-from map_ojp2_to_ojp2 import parse_ojp2, map_ojp2_trip_result_to_ojp2_fare_request #, map_ojp_trip_result_to_ojp_refine_request
-
+from map_ojp2_to_ojp2 import parse_ojp2, \
+    map_ojp2_trip_result_to_ojp2_fare_request  # , map_ojp_trip_result_to_ojp_refine_request
+from map_ojp_to_nova import test_ojp_fare_request_to_nova_request
+from map_ojp_to_ojp import parse_ojp, \
+    map_ojp_trip_result_to_ojp_fare_request  # , map_ojp_trip_result_to_ojp_refine_request
 from nova import PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunft, \
     PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput
+from ojp import Ojp, OjpfareDelivery, FareParamStructure, FarePassengerStructure, FareAuthorityRef, \
+    PassengerCategoryEnumeration
 from ojp2 import Ojp as Ojp2, FareParamStructure as FareParamStructure2, \
     FarePassengerStructure as FarePassengerStructure2, FareAuthorityRefStructure as FareAuthorityRefStructure2, \
     PassengerCategoryEnumeration, FareClassEnumeration, EntitlementProductStructure, EntitlementProductListStructure
-from ojp import Ojp, OjpfareDelivery, FareParamStructure, FarePassengerStructure, FareAuthorityRef, \
-    TypeOfFareClassEnumeration, PassengerCategoryEnumeration,  EntitlementProductRef
+from support import OJPError, inject_departure_datetime
 from support import is_version_2_0
-import xml_logger
-import logging
 
 logger = logging.getLogger(__name__)
 
@@ -241,10 +239,14 @@ def parse_args(argv=None):
     # allow either --all or --id, or neither. If both provided prefer --id.
     parser.add_argument("--all", action="store_true", help="Run all tests")
     parser.add_argument("--id", type=non_negative_int, metavar="N", help="Run the test with the given id (non-negative integer)")
+    parser.add_argument('--abort', action='store_true', default=False,
+                   help='Abort after failure')
     return parser.parse_args(argv)
 
 def main(argv=None) ->int:
     args = parse_args(argv)
+
+    number_of_failed_tests = 0
 
     # Priority: --id if provided, else --all, else default_action()
     if args.id is not None:
@@ -290,7 +292,7 @@ def main(argv=None) ->int:
             relationship = element.get("relationship")
             start_time = element.get("start_time")
             daysinthefuture = element.get("future")
-            expectedstatus=element.get("status")
+            expectedstatus=element.get("result")
             asserttext=element.get("assert")
 
 
@@ -388,15 +390,22 @@ def main(argv=None) ->int:
                             if not (asserttext in ojp_fare_result_xml1):
                                 print(f"Assertion from test casefailed! {asserttext} not found.")
 
-
-
-
             except Exception as e:
                 # not yet really sophisticated handling of all other errors during the work (should be regular OJPDeliveries with OtherError set
                 logger.exception(e)
                 xml_logger.log_serialized('error_file.xml', str(e))
-                traceback.print_exc()
-
+                if not expectedstatus == "fail":
+                    traceback.print_exc()
+                    if args.abort:
+                        print("******************** ABORTING - TEST FAILED. ********************")
+                        return 1
+                    else:
+                        number_of_failed_tests+=1
+                else:
+                    print("-> *** Testcase failure expected. ***")
+    print(f"Number of failed tests: {number_of_failed_tests}")
+    if number_of_failed_tests==0:
+        print("******************** TESTS SUCCEEDED ********************")
 
 if __name__ == '__main__':
     exit_code = main()
