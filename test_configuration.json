@@ -793,5 +793,41 @@
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
 		"active": true,
         "result": "fail"
+	},
+	{
+		"id": 46,
+		"description": "Tests sortiment",
+		"file": "input/input_test_sortiment.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"start_time": "16:55:00",
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true,
+        "result": "pass"
+	},
+  	{
+		"id": 47,
+		"description": "Tests sortiment Biel - Basel",
+		"file": "input/input_test_sortiment_b_b.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+		"start_time": "16:55:00",
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true,
+        "result": "pass"
 	}
 ]
