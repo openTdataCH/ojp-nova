@@ -85,13 +85,36 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
             and len(ojp.ojprequest.service_request.ojpfare_request[0].trip_fare_request.trip.trip_leg) > 0):
         return None
     #handling of abos (monthly) otherwise the product_taxonomie is set to the standard
-    produkt_taxonomie = "SBB Preisauskunft"
     try:
-            val = ojp.ojprequest.service_request.ojpfare_request[0].params.fare_authority_filter[0]
-            if "NOVA-Subscription" in val.value:
+            val = ojp.ojprequest.service_request.ojpfare_request[0].params.fare_authority_filter[0] # TODO does this work?
+            if "NOVA-Subscription" == val:
                 produkt_taxonomie="SBB Abonnemente"
+            if "NOVA-NoDiscount" == val:
+                produkt_taxonomie="Basistaxonomie"
     except:
         pass
+    # handling of NOVA-NoDiscounts then the Taxonomiefilter must be set
+    # TODO in a future version we might use extensions to pass it through and then even productNummerFilter is possible.
+    angebots_filters  = []
+    if produkt_taxonomie != "Basistaxonomie":
+        angebots_filters = []
+        angebots_filters.append(
+                TaxonomieFilter(
+                    produkt_taxonomie=produkt_taxonomie,
+                    taxonomie_klasse_pfad=[TaxonomieKlassePfad(EmptyType())]
+                )
+        )
+    else:
+        taxonomie_klasse_pfad= []
+        taxonomie_klasse_pfad.append(TaxonomieKlassePfad(klassen_name="Einzelbillette"))
+        taxonomie_klasse_pfad.append(TaxonomieKlassePfad(klassen_name="DV"))
+        taxonomie_klasse_pfad.append(TaxonomieKlassePfad(klassen_name="Einzelfahrten"))
+        angebots_filters.append(TaxonomieFilter(produkt_taxonomie=produkt_taxonomie, taxonomie_klasse_pfad=taxonomie_klasse_pfad))
+        taxonomie_klasse_pfad= []
+        taxonomie_klasse_pfad.append(TaxonomieKlassePfad(klassen_name="Einzelbillette"))
+        taxonomie_klasse_pfad.append(TaxonomieKlassePfad(klassen_name="Verbund"))
+        taxonomie_klasse_pfad.append(TaxonomieKlassePfad(klassen_name="Einzelfahrten"))
+        angebots_filters.append(TaxonomieFilter(produkt_taxonomie=produkt_taxonomie, taxonomie_klasse_pfad=taxonomie_klasse_pfad))
     #handling of traveller
     travellers = []
     try:
@@ -236,9 +259,7 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
                                                                       correlation_kontext=CorrelationKontext(
                                                                           correlation_id=str(uuid.uuid1()),
                                                                           geschaefts_prozess_id="1781786f-57ba-4e9a-bc29-287e2aa97f9a"),
-                                                                      angebots_filter=[TaxonomieFilter(
-                                                                          produkt_taxonomie=produkt_taxonomie,
-                                                                          taxonomie_klasse_pfad=[TaxonomieKlassePfad(EmptyType())])],
+                                                                      angebots_filter=angebots_filters,
                                                                       reisender=reisende,
                                                                       verbindung=verbindungen
                                                                       ))))

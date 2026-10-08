@@ -178,7 +178,9 @@ def build_ojp2_fare_params(travellers, subscriptions, relationship) -> FareParam
         ojptraveller = FarePassengerStructure2(age=age,passenger_category=passenger_category,entitlement_products=entitlement_list)
         ojptravellers.append(ojptraveller)
     filters =[]
-    if subscriptions:
+    if subscriptions == "nodiscount":
+        filters.append(FareAuthorityRefStructure2(value="NOVA-NoDiscount"))
+    elif subscriptions == True:
         # we use subscriptions instead of regular tickets
         filters.append(FareAuthorityRefStructure2(value="NOVA-Subscription"))
     else:
@@ -288,7 +290,10 @@ def main(argv=None) ->int:
             id= element.get("id")
             file_name = element.get("file")
             travellers = element.get("travellers", [])
+            # subscriptions also incorporates nodiscounts
             subscriptions = element.get("subscriptions")
+            if element.get("nodiscounts") is True:
+                subscriptions="nodiscount"
             relationship = element.get("relationship")
             start_time = element.get("start_time")
             daysinthefuture = element.get("future")

@@ -184,6 +184,7 @@ test_configuration.json contains an array of test cases:
   - birthday: not supported yet
   - gender: not supported yet
 - subscription: true or false. one ticket or a subscription
+- nodiscounts: true or false. If active then only a subset of tickets is checked (TaxonomiePfad). Superseeds subscription.
 - relationship: a list of relevant relationships between the travelers. not supported yet
 - result: pass or fail. Should there be a price. 
 - assert: if set, then the value provided should be found in the answer. not supported yet
@@ -197,6 +198,10 @@ test_configuration.json contains an array of test cases:
 - Without parameter all tests that are set to active are tested.
 
 # Changelog
+
+## 1.5 
+in preparation 
+## 1.4 Fixing problems with some sloids
 
 ## 1.3 Improving
 - Better error handling
