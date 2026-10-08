@@ -201,6 +201,9 @@ test_configuration.json contains an array of test cases:
 
 ## 1.5 
 in preparation 
+- nodiscounts parameter: It will only search some TaxonomiePfad (Einzelbillette)
+- 
+
 ## 1.4 Fixing problems with some sloids
 
 ## 1.3 Improving
