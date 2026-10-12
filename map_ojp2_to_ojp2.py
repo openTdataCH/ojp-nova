@@ -113,15 +113,15 @@ def preprocess_stops_to_commercial_stops(delivery: OjptripDeliveryStructure) -> 
             # if the timed leg is an on demand bus -> also ignore
             if leg.timed_leg.service.mode is None:
                 continue
-            if leg.timed_leg.service.mode.bus_submode == "demandResponsive":
-                if (
-                        leg.timed_leg.service.mode.bus_submode == "demandResponsive"
-                        or leg.timed_leg.service.mode.bus_submode == "expressBus"
-                        or leg.timed_leg.service.mode == "coach"
-                        or leg.timed_leg.service.mode.rail_submode == "carTransportRail"
-                ):
-                    # we can't deal with demandResponsive, carTransportRail and international coaches in NOVA currently.
-                    continue
+            if (
+                leg.timed_leg.service.mode.bus_submode == "demandResponsive"
+                or leg.timed_leg.service.mode.bus_submode == "expressBus"
+                or leg.timed_leg.service.mode == "coach"
+                or leg.timed_leg.service.mode.rail_submode == "carTransportRail"
+                or leg.timed_leg.service.mode.coach_submode == "internationalCoach"
+            ):
+                # we can't deal with demandResponsive, carTransportRail and international coaches in NOVA currently.
+                continue
             ## only timed. we now replace the stop_point_ref with the parent
             leg.timed_leg.leg_board.stop_point_ref.value = parent.get(leg.timed_leg.leg_board.stop_point_ref.value,"")
             leg.timed_leg.leg_alight.stop_point_ref.value = parent.get(leg.timed_leg.leg_alight.stop_point_ref.value, "")

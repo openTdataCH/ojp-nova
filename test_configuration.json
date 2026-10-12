@@ -831,5 +831,81 @@
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
 		"active": true,
         "result": "pass"
+	},
+  	{
+		"id": 48,
+		"description": "Tests sortiment Bern - Zweisimmen",
+		"file": "input/input_test_sortiment_b_z.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+        "nodiscounts" : true,
+		"start_time": "16:55:00",
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true,
+        "result": "pass"
+	},
+  {
+		"id": 49,
+		"description": "Tests sortiment Bern - Zweisimmen",
+		"file": "input/input_test_sortiment_v_l.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+        "nodiscounts" : true,
+		"start_time": "16:55:00",
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true,
+        "result": "pass"
+	},
+  {
+		"id": 50,
+		"description": "Test LEX",
+		"file": "input/input_test_g_annemasse.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+        "nodiscounts" : true,
+		"start_time": "16:55:00",
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true,
+        "result": "pass"
+	},
+  {
+		"id": 51,
+		"description": "Test Flixbus",
+		"file": "input/input_test_flixbus.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": false,
+        "nodiscounts" : true,
+		"start_time": "16:55:00",
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true,
+        "result": "pass"
 	}
 ]
