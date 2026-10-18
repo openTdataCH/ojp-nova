@@ -2,12 +2,12 @@
 from time import sleep
 
 import requests
-from configuration import *
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
-from test_create_ojp_request import test_create_ojp_trip_request_simple_3
+from configuration import HTTP_HOST, HTTP_PORT, HTTP_SLUG, HTTPS, OJP_FARE_TOKEN
 from map_ojp_to_ojp import map_ojp_trip_result_to_ojp_fare_request, parse_ojp
+from test_create_ojp_request import test_create_ojp_trip_request_simple_3
 
 ns_map = {'': 'http://www.siri.org.uk/siri', 'ojp': 'http://www.vdv.de/ojp'}
 
@@ -19,7 +19,7 @@ if __name__ == '__main__':
             serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
             serializer = XmlSerializer(config=serializer_config)
 
-            if (HTTPS):
+            if HTTPS:
                 if HTTP_PORT == '':
                     url = f"https://{HTTP_HOST}/{HTTP_SLUG}"
                 else:
@@ -40,16 +40,12 @@ if __name__ == '__main__':
             r = requests.post(url, data=ojp_fare_request_xml.encode("utf-8"), headers=headers, verify=False)
             r.encoding = r.apparent_encoding
             print(r.text)
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             print(str(e))
-
-
-
 
     # faulty file sent to OJPFare must be handled gracefully
     print("Testing faulty OJPFare request")
     ojp_fare_request_xml = "<xml></xml>"
-    r = requests.post(url, data=ojp_fare_request_xml.encode("utf-8"), headers=headers,  verify=False)
+    r = requests.post(url, data=ojp_fare_request_xml.encode("utf-8"), headers=headers, verify=False)
     r.encoding = r.apparent_encoding
     print(r.text)
-

@@ -1,135 +1,166 @@
 #!/usr/bin/env python3
-from typing import List, Optional
-from configuration import NOVA_KANAL_CODE, NOVA_LEISTUNGS_VERMITTLER, NOVA_VERKAUFS_STELLE, NOVA_VERKAUFS_GERAETE_ID, NOVA_VERTRIEBS_PUNKT
-from nova import ErstellePreisAuskunft, VerbindungPreisAuskunftRequest, ClientIdentifier, CorrelationKontext, \
-    TaxonomieFilter, TaxonomieKlassePfad, ReisendenInfoPreisAuskunft, ReisendenTypCode, VerbindungPreisAuskunft, \
-    FahrplanVerbindungsSegment, VerkehrsMittelGattung, ZwischenHaltContextTripContext, \
-    PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput, EmptyType
-from ojp2 import Ojp, TimedLegStructure, FarePassengerStructure, PassengerCategoryEnumeration, \
-    EntitlementProductStructure
-from support import OJPError, process_operating_ref_ojp2,sloid2didok
-import xml_logger
 import random
 import uuid
+
+import xml_logger
+from configuration import (
+    NOVA_KANAL_CODE,
+    NOVA_LEISTUNGS_VERMITTLER,
+    NOVA_VERKAUFS_GERAETE_ID,
+    NOVA_VERKAUFS_STELLE,
+    NOVA_VERTRIEBS_PUNKT,
+)
+from nova import (
+    ClientIdentifier,
+    CorrelationKontext,
+    EmptyType,
+    ErstellePreisAuskunft,
+    FahrplanVerbindungsSegment,
+    PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput,
+    ReisendenInfoPreisAuskunft,
+    ReisendenTypCode,
+    TaxonomieFilter,
+    TaxonomieKlassePfad,
+    VerbindungPreisAuskunft,
+    VerbindungPreisAuskunftRequest,
+    VerkehrsMittelGattung,
+    ZwischenHaltContextTripContext,
+)
+from ojp2 import (
+    EntitlementProductStructure,
+    FarePassengerStructure,
+    Ojp,
+    PassengerCategoryEnumeration,
+    TimedLegStructure,
+)
+from support import OJPError, process_operating_ref_ojp2, sloid2didok
+
 
 def map_timed_leg_to_segment(timed_leg: TimedLegStructure) -> FahrplanVerbindungsSegment:
     einstieg = sloid2didok(timed_leg.leg_board.stop_point_ref.value)
     ausstieg = sloid2didok(timed_leg.leg_alight.stop_point_ref.value)
     abfahrts_zeit = timed_leg.leg_board.service_departure.timetabled_time
     ankunfts_zeit = timed_leg.leg_alight.service_arrival.timetabled_time
-    line_ref = timed_leg.service.line_ref.value
     operator_ref = timed_leg.service.operator_ref  # needs to be processed afterwards to get the verwaltungs_code
     if timed_leg.service.mode.short_name is not None:
         gattungs_code = timed_leg.service.mode.short_name.text[0].value  # is correct, but a bit of a hack
     else:
         # we had cases currently, where there was a problem with service.mode, so we assume B for the time being. TODO revisit
-        gattungs_code="B"
+        gattungs_code = "B"
 
     # in OJP 2.' the number is in the TrainNumber
-    verkehrs_mittel_nummer=-1
+    verkehrs_mittel_nummer = -1
     if getattr(getattr(timed_leg, "service", None), "train_number", None) is not None:
-        verkehrs_mittel_nummer=timed_leg.service.train_number
-        if verkehrs_mittel_nummer.strip()== '':
+        verkehrs_mittel_nummer = timed_leg.service.train_number
+        if verkehrs_mittel_nummer.strip() == '':
             # hack TODO
-            verkehrs_mittel_nummer=timed_leg.service.published_service_name.text[0].value
+            verkehrs_mittel_nummer = timed_leg.service.published_service_name.text[0].value
     # unfortunately it is not in line_ref, but in rainNumber/TrainNumber for OJP 20
-    #_, verkehrs_mittel_nummer, _ = line_ref.split(':')
+    # _, verkehrs_mittel_nummer, _ = line_ref.split(':')
     # This is an other hack.
-    #verkehrs_mittel_nummer = ''.join(filter(lambda x: x.isdigit(), verkehrs_mittel_nummer))
-    #try:
-        # Set verkehrs_mittel_nummer to timed_leg.extension.publishedjourneynumber?
+    # verkehrs_mittel_nummer = ''.join(filter(lambda x: x.isdigit(), verkehrs_mittel_nummer))
+    # try:
+    # Set verkehrs_mittel_nummer to timed_leg.extension.publishedjourneynumber?
     #    verkehrs_mittel_nummer = [x.children[0].text for x in timed_leg.extension.childen if x.qname == '{http://www.vdv.de/ojp}PublishedJourneyNumber'][0]
-    #except:
+    # except:
     #    pass
 
-    verwaltungs_code= process_operating_ref_ojp2(operator_ref)
+    verwaltungs_code = process_operating_ref_ojp2(operator_ref)
     leg_intermediates = timed_leg.leg_intermediate
-    #zwischenhalten = [sloid2didok(timed_leg.leg_board.stop_point_ref.value)] + [sloid2didok(leg_intermediate.stop_point_ref.value)
+    # zwischenhalten = [sloid2didok(timed_leg.leg_board.stop_point_ref.value)] + [sloid2didok(leg_intermediate.stop_point_ref.value)
     #                  for leg_intermediate in leg_intermediates] + [sloid2didok(timed_leg.leg_alight.stop_point_ref.value)]
-    zwischenhalten =  [sloid2didok(leg_intermediate.stop_point_ref.value) for leg_intermediate in leg_intermediates]
-    #handling of Tariff code TC
-    attr2=timed_leg.service.attribute
-    tariff_code=""
+    zwischenhalten = [sloid2didok(leg_intermediate.stop_point_ref.value) for leg_intermediate in leg_intermediates]
+    # handling of Tariff code TC
+    attr2 = timed_leg.service.attribute
+    tariff_code = ""
     for attr in attr2:
-        attr_text= attr.user_text.text
+        attr_text = attr.user_text.text
         if attr_text[0].value.startswith("TC-"):
-            #tariff code found in OJP data
-            tariff_code=attr_text[0].value[3:]
-    if tariff_code=="":
-        return FahrplanVerbindungsSegment(einstieg=int(einstieg), ausstieg=int(ausstieg),
-                                          verwaltungs_code=verwaltungs_code,
-                                          abfahrts_zeit=abfahrts_zeit,
-                                          ankunfts_zeit=ankunfts_zeit,
-                                          verkehrs_mittel=VerkehrsMittelGattung(
-                                              gattungs_code=gattungs_code,
-                                              verkehrs_mittel_nummer=int(verkehrs_mittel_nummer)),
-                                          zwischen_halt_context=[FahrplanVerbindungsSegment.ZwischenHaltContext(
-                                              uic_code=int(zwischenhalt),
-                                              trip_context=ZwischenHaltContextTripContext.PLANNED) for zwischenhalt in
-                                              zwischenhalten]
-                                          )
+            # tariff code found in OJP data
+            tariff_code = attr_text[0].value[3:]
+    if tariff_code == "":
+        return FahrplanVerbindungsSegment(
+            einstieg=int(einstieg),
+            ausstieg=int(ausstieg),
+            verwaltungs_code=verwaltungs_code,
+            abfahrts_zeit=abfahrts_zeit,
+            ankunfts_zeit=ankunfts_zeit,
+            verkehrs_mittel=VerkehrsMittelGattung(gattungs_code=gattungs_code, verkehrs_mittel_nummer=int(verkehrs_mittel_nummer)),
+            zwischen_halt_context=[
+                FahrplanVerbindungsSegment.ZwischenHaltContext(uic_code=int(zwischenhalt), trip_context=ZwischenHaltContextTripContext.PLANNED)
+                for zwischenhalt in zwischenhalten
+            ],
+        )
 
-    return FahrplanVerbindungsSegment(einstieg=int(einstieg), ausstieg=int(ausstieg),
-                               verwaltungs_code=verwaltungs_code,
-                               info_plus_tarif_code =tariff_code,
-                               abfahrts_zeit=abfahrts_zeit,
-                               ankunfts_zeit=ankunfts_zeit,
-                               verkehrs_mittel=VerkehrsMittelGattung(
-                                   gattungs_code=gattungs_code,
-                                   verkehrs_mittel_nummer=int(verkehrs_mittel_nummer)),
-                               zwischen_halt_context=[FahrplanVerbindungsSegment.ZwischenHaltContext(
-                                       uic_code=int(zwischenhalt),
-                                       trip_context=ZwischenHaltContextTripContext.PLANNED) for zwischenhalt in zwischenhalten]
-                               )
+    return FahrplanVerbindungsSegment(
+        einstieg=int(einstieg),
+        ausstieg=int(ausstieg),
+        verwaltungs_code=verwaltungs_code,
+        info_plus_tarif_code=tariff_code,
+        abfahrts_zeit=abfahrts_zeit,
+        ankunfts_zeit=ankunfts_zeit,
+        verkehrs_mittel=VerkehrsMittelGattung(gattungs_code=gattungs_code, verkehrs_mittel_nummer=int(verkehrs_mittel_nummer)),
+        zwischen_halt_context=[
+            FahrplanVerbindungsSegment.ZwischenHaltContext(uic_code=int(zwischenhalt), trip_context=ZwischenHaltContextTripContext.PLANNED)
+            for zwischenhalt in zwischenhalten
+        ],
+    )
 
-def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput]:
-    if not (ojp.ojprequest and ojp.ojprequest.service_request and ojp.ojprequest.service_request.ojpfare_request
-            and len(ojp.ojprequest.service_request.ojpfare_request) > 0 and ojp.ojprequest.service_request.ojpfare_request[0].trip_fare_request
-            and ojp.ojprequest.service_request.ojpfare_request[0].trip_fare_request.trip
-            and len(ojp.ojprequest.service_request.ojpfare_request[0].trip_fare_request.trip.leg) > 0):
+
+def map_fare_request_to_nova_request(ojp: Ojp, age: int = 30) -> PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput | None:
+    if not (
+        ojp.ojprequest
+        and ojp.ojprequest.service_request
+        and ojp.ojprequest.service_request.ojpfare_request
+        and len(ojp.ojprequest.service_request.ojpfare_request) > 0
+        and ojp.ojprequest.service_request.ojpfare_request[0].trip_fare_request
+        and ojp.ojprequest.service_request.ojpfare_request[0].trip_fare_request.trip
+        and len(ojp.ojprequest.service_request.ojpfare_request[0].trip_fare_request.trip.leg) > 0
+    ):
         return None
 
-    #handling of abos (monthly) otherwise the product_taxonomie is set to the standard
+    # handling of abos (monthly) otherwise the product_taxonomie is set to the standard
     produkt_taxonomie = "SBB Preisauskunft"
     try:
-            val = ojp.ojprequest.service_request.ojpfare_request[0].params.fare_authority_filter[0]
-            if "NOVA-Subscription" in val.value:
-                produkt_taxonomie="SBB Abonnemente"
-            if "NOVA-NoDiscount" in val.value:
-                produkt_taxonomie="Basistaxonomie"
-    except:
+        val = ojp.ojprequest.service_request.ojpfare_request[0].params.fare_authority_filter[0]
+        if "NOVA-Subscription" in val.value:
+            produkt_taxonomie = "SBB Abonnemente"
+        if "NOVA-NoDiscount" in val.value:
+            produkt_taxonomie = "Basistaxonomie"
+    except (AttributeError, IndexError, TypeError):
         pass
-    # handling of NOVA-NoDiscounts then the Taxonomiefilter must be set 
+    # handling of NOVA-NoDiscounts then the Taxonomiefilter must be set
     # TODO in a future version we might use extensions to pass it through and then even productNummerFilter is possible.
-    angebots_filters  = []
+    angebots_filters: list[TaxonomieFilter] = []
     if produkt_taxonomie != "Basistaxonomie":
         angebots_filters = []
-        angebots_filters.append(
-                TaxonomieFilter(
-                    produkt_taxonomie=produkt_taxonomie,
-                    taxonomie_klasse_pfad=[TaxonomieKlassePfad(EmptyType())]
-                )
-        )
+        angebots_filters.append(TaxonomieFilter(produkt_taxonomie=produkt_taxonomie, taxonomie_klasse_pfad=[TaxonomieKlassePfad(EmptyType())]))
     else:
-        taxonomie_klasse_pfad= []
+        taxonomie_klasse_pfad = []
         taxonomie_klasse_pfad.append(TaxonomieKlassePfad(klassen_name="Einzelbillette"))
         taxonomie_klasse_pfad.append(TaxonomieKlassePfad(klassen_name="DV"))
         taxonomie_klasse_pfad.append(TaxonomieKlassePfad(klassen_name="Einzelfahrten"))
         angebots_filters.append(TaxonomieFilter(produkt_taxonomie=produkt_taxonomie, taxonomie_klasse_pfad=taxonomie_klasse_pfad))
-        taxonomie_klasse_pfad= []
+        taxonomie_klasse_pfad = []
         taxonomie_klasse_pfad.append(TaxonomieKlassePfad(klassen_name="Einzelbillette"))
         taxonomie_klasse_pfad.append(TaxonomieKlassePfad(klassen_name="Verbund"))
         taxonomie_klasse_pfad.append(TaxonomieKlassePfad(klassen_name="Einzelfahrten"))
         angebots_filters.append(TaxonomieFilter(produkt_taxonomie=produkt_taxonomie, taxonomie_klasse_pfad=taxonomie_klasse_pfad))
-    #travellers
+    # travellers
     try:
         if ojp.ojprequest.service_request.ojpfare_request[0].params.traveller is None:
             travellers = []
-            travellers.append(FarePassengerStructure(age=25, entitlement_products=[EntitlementProductStructure(entitlement_product_ref="HTA",entitlement_product_name="HTA",fare_authority_ref="NOVA")]))
+            travellers.append(
+                FarePassengerStructure(
+                    age=25,
+                    entitlement_products=[
+                        EntitlementProductStructure(entitlement_product_ref="HTA", entitlement_product_name="HTA", fare_authority_ref="NOVA")
+                    ],
+                )
+            )
         else:
-            age = ojp.ojprequest.service_request.ojpfare_request[0].params.traveller[0].age
             travellers = ojp.ojprequest.service_request.ojpfare_request[0].params.traveller
-    except Exception:
+    except (AttributeError, IndexError, TypeError):
         pass
 
     verbindungen = []
@@ -137,10 +168,10 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
         legs = fare_request.trip_fare_request.trip.leg
         externeVerbindungsReferenzId = fare_request.trip_fare_request.trip.id
         segments = []
-        reisende:List[ReisendenInfoPreisAuskunft] = []
+        reisende: list[ReisendenInfoPreisAuskunft] = []
         leg_start = None
         leg_end = None
-        leg_nr=0
+        leg_nr = 0
         no_pricable_leg = False
         for leg in legs:
             leg_nr = leg_nr + 1
@@ -154,7 +185,7 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
             if leg.timed_leg.service.mode is None:
                 continue
             if leg.timed_leg.service.mode.bus_submode and leg.timed_leg.service.mode.bus_submode.value.value == "demandAndResponseBus":
-                #we can't deal with demandResponsive in NOVA currently.
+                # we can't deal with demandResponsive in NOVA currently.
                 continue
             if leg.timed_leg.service.mode.coach_submode and leg.timed_leg.service.mode.coach_submode.value.value == "internationalCoach":
                 # Can't deal with Flixbus
@@ -166,24 +197,28 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
             leg_end = leg_id
             segments += [map_timed_leg_to_segment(leg.timed_leg)]
         if leg_start is None:
-            #no pricable legs found.
+            # no pricable legs found.
             # raise OJPError("no pricable legs found.")
             # we skip to the next trip. This one is dead
-            no_pricable_leg=True
+            no_pricable_leg = True
 
         if no_pricable_leg is False:
-            verbindungen += [VerbindungPreisAuskunft(externe_verbindungs_referenz_id=externeVerbindungsReferenzId + "_" + leg_start + "_" + leg_end, segment_hin_fahrt=segments)]
-        reisende =[]
+            verbindungen += [
+                VerbindungPreisAuskunft(
+                    externe_verbindungs_referenz_id=externeVerbindungsReferenzId + "_" + leg_start + "_" + leg_end, segment_hin_fahrt=segments
+                )
+            ]
+        reisende = []
         for traveler in travellers:
             # we only do one for the time being TODO
-            r_alter=25
+            r_alter = 25
             if traveler.age is None:
-                r_alter=25
+                r_alter = 25
             else:
-                r_alter=traveler.age
+                r_alter = traveler.age
             r_typ = ReisendenTypCode.PERSON
             if traveler.passenger_category is None:
-                r_typ =ReisendenTypCode.PERSON
+                r_typ = ReisendenTypCode.PERSON
             elif traveler.passenger_category == PassengerCategoryEnumeration.DOG:
                 r_typ = ReisendenTypCode.HUND
             elif traveler.passenger_category == PassengerCategoryEnumeration.BICYCLE:
@@ -191,48 +226,51 @@ def map_fare_request_to_nova_request(ojp: Ojp, age: int=30) -> Optional[PreisAus
             else:
                 r_typ = ReisendenTypCode.PERSON
             digits = "0123456789"
-            r_referenz= ''.join(random.choice(digits) for _ in range(6))
+            r_referenz = ''.join(random.choice(digits) for _ in range(6))
             # we only process HTA for the time being!
-            reisender = ReisendenInfoPreisAuskunft(alter=r_alter,
-                                                   externe_reisenden_referenz_id=r_referenz,
-                                                   reisenden_typ=r_typ,
-                                                   ermaessigungs_karte_code=[])
+            reisender = ReisendenInfoPreisAuskunft(alter=r_alter, externe_reisenden_referenz_id=r_referenz, reisenden_typ=r_typ, ermaessigungs_karte_code=[])
 
             for entitlement_product in traveler.entitlement_products.entitlement_product:
-                if entitlement_product.entitlement_product_ref=="HTA":
-                    reisender = ReisendenInfoPreisAuskunft(alter=r_alter,
-                                                           externe_reisenden_referenz_id=r_referenz,
-                                                           reisenden_typ=r_typ,
-                                                           ermaessigungs_karte_code=["HTA"])
+                if entitlement_product.entitlement_product_ref == "HTA":
+                    reisender = ReisendenInfoPreisAuskunft(
+                        alter=r_alter, externe_reisenden_referenz_id=r_referenz, reisenden_typ=r_typ, ermaessigungs_karte_code=["HTA"]
+                    )
             reisende.append(reisender)
     return PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput(
         body=PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput.Body(
             erstelle_preis_auskunft=ErstellePreisAuskunft(
-                preis_auskunft_request=VerbindungPreisAuskunftRequest(kunden_segmente_gruppieren=False,
-                                                                      client_identifier=ClientIdentifier(
-                                                                          leistungs_vermittler=NOVA_LEISTUNGS_VERMITTLER, kanal_code=NOVA_KANAL_CODE,
-                                                                          verkaufs_stelle=NOVA_VERKAUFS_STELLE, vertriebs_punkt=NOVA_VERTRIEBS_PUNKT,
-                                                                          verkaufs_geraete_id=NOVA_VERKAUFS_GERAETE_ID),
-                                                                      correlation_kontext=CorrelationKontext(
-                                                                          correlation_id=str(uuid.uuid1()),
-                                                                          geschaefts_prozess_id="1781786f-57ba-4e9a-bc29-287e2aa97f9a"),
-                                                                      angebots_filter=angebots_filters,
-                                                                      reisender=reisende,
-                                                                      verbindung=verbindungen
-                                                                      ))))
+                preis_auskunft_request=VerbindungPreisAuskunftRequest(
+                    kunden_segmente_gruppieren=False,
+                    client_identifier=ClientIdentifier(
+                        leistungs_vermittler=NOVA_LEISTUNGS_VERMITTLER,
+                        kanal_code=NOVA_KANAL_CODE,
+                        verkaufs_stelle=NOVA_VERKAUFS_STELLE,
+                        vertriebs_punkt=NOVA_VERTRIEBS_PUNKT,
+                        verkaufs_geraete_id=NOVA_VERKAUFS_GERAETE_ID,
+                    ),
+                    correlation_kontext=CorrelationKontext(correlation_id=str(uuid.uuid1()), geschaefts_prozess_id="1781786f-57ba-4e9a-bc29-287e2aa97f9a"),
+                    angebots_filter=angebots_filters,
+                    reisender=reisende,
+                    verbindung=verbindungen,
+                )
+            )
+        )
+    )
+
 
 def test_ojp2_fare_request_to_nova_request(ojp: Ojp) -> PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftInput:
     from xsdata.formats.dataclass.serializers import XmlSerializer
     from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
     serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
-    serializer = XmlSerializer(config=serializer_config)
+    XmlSerializer(config=serializer_config)
 
     nova_request = map_fare_request_to_nova_request(ojp)
     if nova_request is None or not nova_request:
         raise OJPError("Was not able to generate NOVA request from OJPFare Request:\n")
-    xml_logger.log_object_as_xml('nova_request.xml',nova_request)
+    xml_logger.log_object_as_xml('nova_request.xml', nova_request)
     return nova_request
+
 
 if __name__ == '__main__':
     from xsdata.formats.dataclass.parsers import XmlParser
@@ -246,7 +284,6 @@ if __name__ == '__main__':
     )
     parser = XmlParser(parser_config)
     ojp = parser.parse(xml_logger.path('ojp_fare_request.xml'), Ojp)
-
 
     if ojp:
         print(test_ojp2_fare_request_to_nova_request(ojp))

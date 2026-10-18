@@ -1,32 +1,32 @@
 #!/usr/bin/env python3
 
 import pathlib
+from typing import Any
 
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
-from configuration import XML_LOG_ENABLED, XML_LOG_DIR
+from configuration import XML_LOG_DIR, XML_LOG_ENABLED
 
 # Make sure the path exists
 if XML_LOG_ENABLED:
     pathlib.Path(XML_LOG_DIR).mkdir(parents=True, exist_ok=True)
 
 
-def path(filename) -> str:
-    ''' Returns the path of a generated file for xml file logging.'''
+def path(filename: str) -> str:
+    '''Returns the path of a generated file for xml file logging.'''
+    return str(XML_LOG_DIR) + '/' + filename
 
-    return XML_LOG_DIR + '/' + filename
 
-
-def log_serialized(filename, xml):
-    ''' Writes the serialized xml to file if the xml logger is enabled.'''
+def log_serialized(filename: str, xml: str) -> None:
+    '''Writes the serialized xml to file if the xml logger is enabled.'''
     if XML_LOG_ENABLED:
         with open(path(filename), 'w', encoding='utf-8') as f:
             f.write(xml)
 
 
-def log_object_as_xml(filename, obj):
-    ''' Serializes the object to XML and writes the rendered xml to file if the logger is enabled. '''
+def log_object_as_xml(filename: str, obj: Any) -> None:
+    '''Serializes the object to XML and writes the rendered xml to file if the logger is enabled.'''
     serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
     serializer = XmlSerializer(config=serializer_config)
     xml = serializer.render(obj)

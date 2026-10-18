@@ -5,7 +5,7 @@ import json
 import logging
 import sys
 import traceback
-from typing import Tuple, Any, Optional
+from typing import Any
 
 import requests
 import urllib3
@@ -17,80 +17,117 @@ from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
 import xml_logger
 from api.errors import NoNovaResponseError
-from configuration import *
+from configuration import (
+    NOVA_BASE_URL,
+    NOVA_CLIENT_ID,
+    NOVA_CLIENT_SECRET,
+    NOVA_PREISAUSKUNFT_PATH,
+    NOVA_SCOPE,
+    NOVA_TOKEN_URL,
+    OJP_2_TOKEN,
+    OJP_2_URL_API,
+    OJP_TOKEN,
+    OJP_URL_API,
+)
 from map_nova_to_ojp import test_nova_to_ojp
 from map_nova_to_ojp2 import test_nova_to_ojp2
 from map_ojp2_to_nova import test_ojp2_fare_request_to_nova_request
-from map_ojp2_to_ojp2 import parse_ojp2, \
-    map_ojp2_trip_result_to_ojp2_fare_request  # , map_ojp_trip_result_to_ojp_refine_request
+from map_ojp2_to_ojp2 import (  # , map_ojp_trip_result_to_ojp_refine_request
+    map_ojp2_trip_result_to_ojp2_fare_request,
+    parse_ojp2,
+)
 from map_ojp_to_nova import test_ojp_fare_request_to_nova_request
-from map_ojp_to_ojp import parse_ojp, \
-    map_ojp_trip_result_to_ojp_fare_request  # , map_ojp_trip_result_to_ojp_refine_request
-from nova import PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunft, \
-    PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput
-from ojp import Ojp, OjpfareDelivery, FareParamStructure, FarePassengerStructure, FareAuthorityRef, \
-    PassengerCategoryEnumeration
-from ojp2 import Ojp as Ojp2, FareParamStructure as FareParamStructure2, \
-    FarePassengerStructure as FarePassengerStructure2, FareAuthorityRefStructure as FareAuthorityRefStructure2, \
-    PassengerCategoryEnumeration, FareClassEnumeration, EntitlementProductStructure, EntitlementProductListStructure
-from support import OJPError, inject_departure_datetime
-from support import is_version_2_0
+from map_ojp_to_ojp import (  # , map_ojp_trip_result_to_ojp_refine_request
+    map_ojp_trip_result_to_ojp_fare_request,
+    parse_ojp,
+)
+from nova import (
+    PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunft,
+    PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput,
+)
+from ojp import (
+    FareAuthorityRef,
+    FareParamStructure,
+    FarePassengerStructure,
+    Ojp,
+    OjpfareDelivery,
+)
+from ojp2 import (
+    EntitlementProductListStructure,
+    EntitlementProductStructure,
+    FareClassEnumeration,
+    PassengerCategoryEnumeration,
+)
+from ojp2 import (
+    FareAuthorityRefStructure as FareAuthorityRefStructure2,
+)
+from ojp2 import (
+    FareParamStructure as FareParamStructure2,
+)
+from ojp2 import (
+    FarePassengerStructure as FarePassengerStructure2,
+)
+from ojp2 import (
+    Ojp as Ojp2,
+)
+from support import OJPError, inject_departure_datetime, is_version_2_0
 
 logger = logging.getLogger(__name__)
 
 ns_map = {'': 'http://www.siri.org.uk/siri', 'ojp': 'http://www.vdv.de/ojp'}
 
 
-def call_ojp_2000(request_body:str) -> Tuple[int,str]:
+def call_ojp_2000(request_body: str) -> tuple[int, str]:
     try:
         access_token = OJP_TOKEN
-        headers = {'Authorization': 'Bearer ' + access_token, 'Content-Type': 'application/xml; charset=utf-8' }
+        headers = {'Authorization': 'Bearer ' + (access_token or ''), 'Content-Type': 'application/xml; charset=utf-8'}
         api_call_response = requests.post(OJP_URL_API, data=request_body.encode('utf-8'), headers=headers, verify=False)
         api_call_response.encoding = api_call_response.apparent_encoding
-        return api_call_response.status_code,api_call_response.text
+        return api_call_response.status_code, api_call_response.text
 
-    except Exception as e:
-        message = 'Failed: {:s}.'.format(str(e))
-        raise IOError(message, e)
+    except Exception as e:  # noqa: BLE001
+        message = f'Failed: {e!s:s}.'
+        raise OSError(message, e)
 
 
-def call_ojp_20(request_body:str) -> Tuple[int,str]:
+def call_ojp_20(request_body: str) -> tuple[int, str]:
     try:
         access_token = OJP_2_TOKEN
-        headers = {'Authorization': 'Bearer ' + access_token, 'Content-Type': 'application/xml; charset=utf-8' }
+        headers = {'Authorization': 'Bearer ' + (access_token or ''), 'Content-Type': 'application/xml; charset=utf-8'}
         api_call_response = requests.post(OJP_2_URL_API, data=request_body.encode('utf-8'), headers=headers, verify=False)
         api_call_response.encoding = api_call_response.apparent_encoding
-        return api_call_response.status_code,api_call_response.text
+        return api_call_response.status_code, api_call_response.text
 
-    except Exception as e:
-        message = 'Failed: {:s}.'.format(str(e))
-        raise IOError(message, e)
+    except Exception as e:  # noqa: BLE001
+        message = f'Failed: {e!s:s}.'
+        raise OSError(message, e)
+
 
 class OAuth2Helper:
     # Credits: https://developer.byu.edu/docs/consume-api/use-api/oauth-20/oauth-20-python-sample-code
 
-    def __init__(self, client_id:str, client_secret:str, scope:str):
+    def __init__(self, url: str, client_id: str, client_secret: str, scope: str):
         urllib3.disable_warnings()
+        self.url = url
         self.client_id = client_id
         self.client_secret = client_secret
         self.scope = scope
         self.current_token = None
 
-    def get_token(self, new_token:bool=False) ->Any:
+    def get_token(self, new_token: bool = False) -> Any:
         if new_token or not self.current_token:
             data = {'grant_type': 'client_credentials', 'scope': self.scope}
-            access_token_response = requests.post(NOVA_TOKEN_URL, data=data, verify=False, allow_redirects=False,
-                                                  auth=(self.client_id, self.client_secret))
+            access_token_response = requests.post(self.url, data=data, verify=False, allow_redirects=False, auth=(self.client_id, self.client_secret))
             self.current_token = json.loads(access_token_response.text)
         if self.current_token is None:
             return None
         return self.current_token['access_token']
 
+
 def get_nova_client() -> Client:
     # TODO: It might be more elegant to cache this client in some way, but we would need to handle the expiry of the token
-    oauth_helper = OAuth2Helper(client_id=NOVA_CLIENT_ID, client_secret=NOVA_CLIENT_SECRET, scope=NOVA_SCOPE)
-    access_token = oauth_helper.get_token()
-    headers = {'Authorization': 'Bearer ' + access_token, "User-Agent": "OJP2NOVA/0.2" }
+    oauth_helper = OAuth2Helper(NOVA_TOKEN_URL,client_id=NOVA_CLIENT_ID or "", client_secret=NOVA_CLIENT_SECRET or "", scope=NOVA_SCOPE or "")
+    oauth_helper.get_token()
 
     config = ParserConfig(
         base_url=None,
@@ -105,39 +142,40 @@ def get_nova_client() -> Client:
 
     return client
 
-def test_nova_request_reply(ojp: Ojp)->Optional[PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput]:
-    oauth_helper = OAuth2Helper(client_id=NOVA_CLIENT_ID, client_secret=NOVA_CLIENT_SECRET, scope=NOVA_SCOPE)
+
+def test_nova_request_reply(ojp: Ojp) -> PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput | None:
+    oauth_helper = OAuth2Helper(NOVA_TOKEN_URL,client_id=NOVA_CLIENT_ID or "", client_secret=NOVA_CLIENT_SECRET or "", scope=NOVA_SCOPE or "")
     access_token = oauth_helper.get_token()
     headers = {'Authorization': 'Bearer ' + access_token, "User-Agent": "OJP2NOVA/0.2"}
     nova_request = test_ojp_fare_request_to_nova_request(ojp)
     nova_client = get_nova_client()
-    nova_response :Optional[PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput] = nova_client.send(nova_request, headers=headers)
+    nova_response: PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput | None = nova_client.send(nova_request, headers=headers)
     if nova_response is None:
         raise NoNovaResponseError()
-    xml_logger.log_object_as_xml('nova_response.xml',nova_response)
+    xml_logger.log_object_as_xml('nova_response.xml', nova_response)
     return nova_response
 
 
-
-def test_nova_request_reply_for_ojp2(ojp: Ojp2)->Optional[PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput]:
-    oauth_helper = OAuth2Helper(client_id=NOVA_CLIENT_ID, client_secret=NOVA_CLIENT_SECRET, scope=NOVA_SCOPE)
+def test_nova_request_reply_for_ojp2(ojp: Ojp2) -> PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput | None:
+    oauth_helper = OAuth2Helper(NOVA_TOKEN_URL,client_id=NOVA_CLIENT_ID or "", client_secret=NOVA_CLIENT_SECRET or "", scope=NOVA_SCOPE or "")
     access_token = oauth_helper.get_token()
     headers = {'Authorization': 'Bearer ' + access_token, "User-Agent": "OJP2NOVA/0.2"}
     nova_request = test_ojp2_fare_request_to_nova_request(ojp)
     nova_client = get_nova_client()
-    nova_response : PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput = nova_client.send(nova_request, headers=headers)
+    nova_response: PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput = nova_client.send(nova_request, headers=headers)
     if nova_response is None:
         raise NoNovaResponseError()
-    xml_logger.log_object_as_xml('nova_response.xml',nova_response)
+    xml_logger.log_object_as_xml('nova_response.xml', nova_response)
     return nova_response
 
-def check_configuration() ->None:
-    if (len(NOVA_CLIENT_SECRET)==0):
+
+def check_configuration() -> None:
+    if len(NOVA_CLIENT_SECRET) == 0:
         logger.error("Nova client secret not set in the configuration")
-        exit(1)
+        sys.exit(1)
 
 
-def split_entitlements(value: Any) -> List[str]:
+def split_entitlements(value: Any) -> list[str]:
     """
     Convert entitlements field into a list of strings.
     - If value is None or empty string -> return empty list.
@@ -156,28 +194,27 @@ def split_entitlements(value: Any) -> List[str]:
     # Fallback: convert to string
     return str(value).split()
 
-def build_ojp2_fare_params(travellers, subscriptions, relationship) -> FareParamStructure2:
 
-    #travellers can't be empty. we already checked
+def build_ojp2_fare_params(travellers: list[dict[str, Any]], subscriptions: str | bool | None, relationship: Any) -> FareParamStructure2:
+
+    # travellers can't be empty. we already checked
     ojptravellers = []
     for t_idx, traveller in enumerate(travellers):
         if not isinstance(traveller, dict):
             continue
-        typ = traveller.get("typ")
-        tkid = traveller.get("tkid") # we cannot process this for the time being
         raw_ent = traveller.get("entitlements")
         ent_list = split_entitlements(raw_ent)
         entitlements = []
         for ent in ent_list:
-            entitlements.append(EntitlementProductStructure(fare_authority_ref="NOVA",entitlement_product_ref=ent,entitlement_product_name=ent))
-        entitlement_list=EntitlementProductListStructure(entitlement_product=entitlements)
+            entitlements.append(EntitlementProductStructure(fare_authority_ref="NOVA", entitlement_product_ref=ent, entitlement_product_name=ent))
+        entitlement_list = EntitlementProductListStructure(entitlement_product=entitlements)
         passenger_category = traveller.get("passenger_category")
-        birthday = traveller.get("birthday") #we cannot process this for the time being
+        traveller.get("birthday")  # we cannot process this for the time being
         age = traveller.get("age")
 
-        ojptraveller = FarePassengerStructure2(age=age,passenger_category=passenger_category,entitlement_products=entitlement_list)
+        ojptraveller = FarePassengerStructure2(age=age, passenger_category=passenger_category, entitlement_products=entitlement_list)
         ojptravellers.append(ojptraveller)
-    filters =[]
+    filters = []
     if subscriptions == "nodiscount":
         filters.append(FareAuthorityRefStructure2(value="NOVA-NoDiscount"))
     elif subscriptions == True:
@@ -186,45 +223,53 @@ def build_ojp2_fare_params(travellers, subscriptions, relationship) -> FareParam
     else:
         filters.append(FareAuthorityRefStructure2(value="NOVA"))
     if relationship:
-        #TODO we will have to process relationships, need to put this in extensions
+        # TODO we will have to process relationships, need to put this in extensions
         pass
-    return FareParamStructure2(fare_authority_filter=filters,traveller=ojptravellers,passenger_category=[PassengerCategoryEnumeration.ADULT],fare_class =FareClassEnumeration.SECOND_CLASS)
+    return FareParamStructure2(
+        fare_authority_filter=filters,
+        traveller=ojptravellers,
+        passenger_category=[PassengerCategoryEnumeration.ADULT],
+        fare_class=FareClassEnumeration.SECOND_CLASS,
+    )
 
 
+def build_ojp_fare_params(travellers: list[dict[str, Any]], subscriptions: str | bool | None, relationship: Any) -> FareParamStructure:
 
-def build_ojp_fare_params(travellers, subscriptions, relationship) -> FareParamStructure:
-
-    #travellers can't be empty. we already checked
+    # travellers can't be empty. we already checked
     ojptravellers = []
     for t_idx, traveller in enumerate(travellers):
         if not isinstance(traveller, dict):
             continue
-        typ = traveller.get("typ")
-        tkid = traveller.get("tkid") # we cannot process this for the time being
+        traveller.get("typ")
+        traveller.get("tkid")  # we cannot process this for the time being
         raw_ent = traveller.get("entitlements")
         ent_list = split_entitlements(raw_ent)
-        entitlements=[]
+        entitlements = []
         for ent in ent_list:
-            entitlements.append(EntitlementProductStructure(fare_authority_ref="NOVA",entitlement_product_ref=ent, entitlement_product_name=ent))
+            entitlements.append(EntitlementProductStructure(fare_authority_ref="NOVA", entitlement_product_ref=ent, entitlement_product_name=ent))
         passenger_category = traveller.get("passenger_category")
-        birthday = traveller.get("birthday") #we cannot process this for the time being
+        traveller.get("birthday")  # we cannot process this for the time being
         age = traveller.get("age")
 
-        ojptraveller = FarePassengerStructure(age=age,passenger_category=passenger_category,entitlement_product=entitlements)
+        ojptraveller = FarePassengerStructure(age=age, passenger_category=passenger_category, entitlement_product=entitlements)
         ojptravellers.append(ojptraveller)
-    filters =[]
+    filters = []
     if subscriptions:
         # we use subscriptions instead of regular tickets
         filters.append(FareAuthorityRef(value="NOVA-Subscription"))
     else:
         filters.append(FareAuthorityRef(value="NOVA"))
     if relationship:
-        #TODO we will have to process relationships, need to put this in extensions
+        # TODO we will have to process relationships, need to put this in extensions
         pass
 
+    return FareParamStructure(
+        fare_authority_filter=filters,
+        traveller=ojptravellers,
+        passenger_category=[PassengerCategoryEnumeration.ADULT],
+        travel_class=FareClassEnumeration.SECOND_CLASS,
+    )
 
-
-    return FareParamStructure(fare_authority_filter=filters,traveller=ojptravellers,passenger_category=[PassengerCategoryEnumeration.ADULT],travel_class =FareClassEnumeration.SECOND_CLASS)
 
 def non_negative_int(value: str) -> int:
     """argparse type function: ensures the provided value is a non-negative integer."""
@@ -236,30 +281,31 @@ def non_negative_int(value: str) -> int:
         raise argparse.ArgumentTypeError(f"value must be non-negative: {value}")
     return ivalue
 
-def parse_args(argv=None):
+
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run network flow tests.")
     # allow either --all or --id, or neither. If both provided prefer --id.
     parser.add_argument("--all", action="store_true", help="Run all tests")
     parser.add_argument("--id", type=non_negative_int, metavar="N", help="Run the test with the given id (non-negative integer)")
-    parser.add_argument('--abort', action='store_true', default=False,
-                   help='Abort after failure')
+    parser.add_argument('--abort', action='store_true', default=False, help='Abort after failure')
     return parser.parse_args(argv)
 
-def main(argv=None) ->int:
+
+def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
 
     number_of_failed_tests = 0
 
     # Priority: --id if provided, else --all, else default_action()
     if args.id is not None:
-        processing="id"+str(args.id)+"id"
+        processing = "id" + str(args.id) + "id"
     elif args.all:
-        processing="all"
+        processing = "all"
     else:
-        processing="active"
+        processing = "active"
 
-    #check configuration
-    ojp_trip_request_xml=''
+    # check configuration
+    ojp_trip_request_xml = ''
     check_configuration()
     serializer_config = SerializerConfig(ignore_default_attributes=True, pretty_print=True)
     serializer = XmlSerializer(config=serializer_config)
@@ -277,7 +323,7 @@ def main(argv=None) ->int:
     # test_run_dict is typically a list (as in your example). If it's a dict containing
     # the list under some key, adapt accordingly.
     if not isinstance(test_run_dict, list):
-        raise ValueError("Expected JSON top-level to be a list of test runs")
+        raise TypeError("Expected JSON top-level to be a list of test runs")
 
     # Loop through the elements
     for idx, element in enumerate(test_run_dict):
@@ -286,23 +332,21 @@ def main(argv=None) ->int:
             continue
 
         active = element.get("active", False)
-        if "all" in processing or "id"+str(element.get("id"))+"id" in processing or (active and "active" in processing):
-            id= element.get("id")
+        if "all" in processing or "id" + str(element.get("id")) + "id" in processing or (active and "active" in processing):
+            id = element.get("id")
             file_name = element.get("file")
             travellers = element.get("travellers", [])
             # subscriptions also incorporates nodiscounts
             subscriptions = element.get("subscriptions")
             if element.get("nodiscounts") is True:
-                subscriptions="nodiscount"
+                subscriptions = "nodiscount"
             relationship = element.get("relationship")
             start_time = element.get("start_time")
             daysinthefuture = element.get("future")
-            expectedstatus=element.get("result")
-            asserttext=element.get("assert")
+            expectedstatus = element.get("result")
+            asserttext = element.get("assert")
 
-
-            print(
-                f"\n**************************************************************************************\n")
+            print("\n**************************************************************************************\n")
             print(f"Active element #{idx}: file={file_name}")
             print(f"  id: {id}")
             print(f"  relationship: {relationship}")
@@ -316,23 +360,23 @@ def main(argv=None) ->int:
             if asserttext:
                 print(f"  assertion that the following string is in the response (usually a price): {asserttext}")
 
-
-            inputfile = open(file_name, 'r', encoding='utf-8')
-            ojp_trip_request_xml = inputfile.read()
-            inputfile.close()
-            #inject date if necessary
+            if file_name is None:
+                raise ValueError("file_name is None")
+            with open(file_name, "r", encoding="utf-8") as inputfile:
+                ojp_trip_request_xml = inputfile.read()
+            # inject date if necessary
             if daysinthefuture is not None or start_time is not None:
-                ojp_trip_request_xml=inject_departure_datetime(ojp_trip_request_xml,daysinthefuture,start_time)
+                ojp_trip_request_xml = inject_departure_datetime(ojp_trip_request_xml, daysinthefuture, start_time)
             xml_logger.log_serialized('ojp_trip_request.xml', ojp_trip_request_xml)
             try:
 
                 if is_version_2_0(ojp_trip_request_xml):
-                    print(f"  OJP version: 2.0")
+                    print("  OJP version: 2.0")
                     # We process an OJP 2 request
                     status, r = call_ojp_20(ojp_trip_request_xml)
                     if status != 200:
                         message = f"call returned a wrong status {status}"
-                        raise IOError(message)
+                        raise OSError(message)
                     ojp_trip_result = parse_ojp2(r)
 
                     ojp_trip_result_xml = serializer.render(ojp_trip_result, ns_map=ns_map)
@@ -358,21 +402,20 @@ def main(argv=None) ->int:
                                     print(fr.fare_product)
                                     print("\n")
                             xml_logger.log_serialized('ojp_fare_result.xml', ojp_fare_result_xml)
-                        if asserttext:
-                            if not (asserttext in ojp_fare_result_xml):
-                                print(f"Assertion from test case failed! {asserttext} not found.")
+                        if asserttext and not (asserttext in ojp_fare_result_xml):
+                            print(f"Assertion from test case failed! {asserttext} not found.")
                 else:
                     # We work on a OJP 1.0 request
-                    print(f"  OJP version: 1.0")
+                    print("  OJP version: 1.0")
                     status, r = call_ojp_2000(ojp_trip_request_xml)
                     if status != 200:
                         message = f"call returned a wrong status {status}:\n{r}"
-                        raise IOError(message)
+                        raise OSError(message)
                     ojp_trip_result1 = parse_ojp(r)
                     ojp_trip_result_xml1 = serializer.render(ojp_trip_result1, ns_map=ns_map)
                     xml_logger.log_serialized('ojp_trip_reply.xml', ojp_trip_result_xml1)
                     ojp_fare_params = build_ojp_fare_params(travellers, subscriptions, relationship)
-                    ojp_fare_request1 = map_ojp_trip_result_to_ojp_fare_request(ojp_trip_result1,ojp_fare_params)
+                    ojp_fare_request1 = map_ojp_trip_result_to_ojp_fare_request(ojp_trip_result1, ojp_fare_params)
                     ojp_fare_request_xml1 = serializer.render(ojp_fare_request1, ns_map=ns_map)
                     xml_logger.log_serialized('ojp_fare_request.xml', ojp_fare_request_xml1)
 
@@ -391,28 +434,30 @@ def main(argv=None) ->int:
                                 print(fr1.fare_product)
                                 print("\n")
                         xml_logger.log_serialized('ojp_fare_result.xml', ojp_fare_result_xml1)
-                        if asserttext:
-                            if not (asserttext in ojp_fare_result_xml1):
-                                print(f"Assertion from test casefailed! {asserttext} not found.")
+                        if asserttext and not (asserttext in ojp_fare_result_xml1):
+                            print(f"Assertion from test casefailed! {asserttext} not found.")
 
             except Exception as e:
                 # not yet really sophisticated handling of all other errors during the work (should be regular OJPDeliveries with OtherError set
-                logger.exception(e)
+                logger.exception("Error during test execution")
                 xml_logger.log_serialized('error_file.xml', str(e))
-                if not expectedstatus == "fail":
+                if expectedstatus != "fail":
                     traceback.print_exc()
                     if args.abort:
                         print("******************** ABORTING - TEST FAILED ********************")
                         return 1
                     else:
-                        number_of_failed_tests+=1
+                        number_of_failed_tests += 1
                 else:
                     print("-> *** Testcase failure expected. ***")
     print(f"Number of failed tests: {number_of_failed_tests}")
-    if number_of_failed_tests==0:
+    if number_of_failed_tests == 0:
         print("******************** TESTS SUCCEEDED ********************")
+        return 0
     else:
         print("******************** TEST FAILED ********************")
+        return 1
+
 
 if __name__ == '__main__':
     exit_code = main()

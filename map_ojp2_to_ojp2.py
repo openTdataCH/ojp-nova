@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 
-import datetime
-from typing import Optional
+from datetime import UTC, datetime
 
 from xsdata.formats.dataclass.parsers import XmlParser
 from xsdata.formats.dataclass.parsers.config import ParserConfig
 from xsdata.models.datatype import XmlDateTime
 
 import ojp2.ojp
+from configuration import USE_HTA
 from ojp2 import (
     EntitlementProductListStructure,
     EntitlementProductStructure,
@@ -25,8 +25,6 @@ from ojp2 import (
     TripFareRequestStructure,
     TripStructure,
 )
-from configuration import USE_HTA
-
 
 config = ParserConfig(
     base_url=None,
@@ -35,36 +33,37 @@ config = ParserConfig(
     fail_on_unknown_attributes=False,
 )
 
+
 def parse_ojp2(body: str) -> Ojp:
     parser = XmlParser(config)
     return parser.from_string(body, ojp2.ojp.Ojp)
 
-def map_to_individual_ojpfarerequest(trip: TripStructure, now: XmlDateTime, ojp_fare_params:FareParamStructure) -> OjpfareRequest:
+
+def map_to_individual_ojpfarerequest(trip: TripStructure, now: XmlDateTime, ojp_fare_params: FareParamStructure) -> OjpfareRequest:
     if ojp_fare_params is None:
-        travellers=[]
+        travellers = []
         if USE_HTA:
-            entitlementproduct = EntitlementProductStructure(fare_authority_ref=FareAuthorityRef("NOVA"),
-                                                             entitlement_product_name="HTA",
-                                                             entitlement_product_ref="HTA")  # TODO correct fare_authority_ref
+            entitlementproduct = EntitlementProductStructure(
+                fare_authority_ref=FareAuthorityRef("NOVA"), entitlement_product_name="HTA", entitlement_product_ref="HTA"
+            )  # TODO correct fare_authority_ref
 
             entitlementproducts = EntitlementProductListStructure(entitlement_product=[entitlementproduct])
             travellers.append(FarePassengerStructure(age=25, entitlement_products=entitlementproducts))
         else:
-            travellers.append(
-                FarePassengerStructure(passenger_category=PassengerCategoryEnumeration.ADULT, entitlement_products=[]))
+            travellers.append(FarePassengerStructure(passenger_category=PassengerCategoryEnumeration.ADULT, entitlement_products=[]))
 
-        ojp_fare_params=FareParamStructure(fare_authority_filter=[FareAuthorityRef("ch:1:NOVA")],
-                       passenger_category=[PassengerCategoryEnumeration.ADULT],
-                       fare_class=FareClassEnumeration.SECOND_CLASS,
-                       traveller=travellers)
+        ojp_fare_params = FareParamStructure(
+            fare_authority_filter=[FareAuthorityRef("ch:1:NOVA")],
+            passenger_category=[PassengerCategoryEnumeration.ADULT],
+            fare_class=FareClassEnumeration.SECOND_CLASS,
+            traveller=travellers,
+        )
     else:
         # the FareParamStructure is directly added
         # TODO: Perhaps we should check it in more details
         pass
-    return OjpfareRequest(
-        request_timestamp=RequestTimestamp(now),
-        params=ojp_fare_params,
-        trip_fare_request=TripFareRequestStructure(trip=trip))
+    return OjpfareRequest(request_timestamp=RequestTimestamp(now), params=ojp_fare_params, trip_fare_request=TripFareRequestStructure(trip=trip))
+
 
 # def map_to_individual_ojptriprefinerequest(trip_result: TripResultStructure, now: XmlDateTime) -> OjptripRefineRequest:
 #     return OjptripRefineRequest(
@@ -92,20 +91,20 @@ def map_to_individual_ojpfarerequest(trip: TripStructure, now: XmlDateTime, ojp_
 #                                  request_timestamp=now,
 #                                  ojprefinement_request=refinerequest)))
 
+
 def preprocess_stops_to_commercial_stops(delivery: OjptripDeliveryStructure) -> OjptripDeliveryStructure:
-    #prepocessing every StopPointRef is replaced with the highest most parent for the processing in fares
-    #parse context and create a dictionnary of the highest parent
-    #as this does not work if no context exists we will have to do the dictionnary also in sloid2didok
+    # prepocessing every StopPointRef is replaced with the highest most parent for the processing in fares
+    # parse context and create a dictionnary of the highest parent
+    # as this does not work if no context exists we will have to do the dictionnary also in sloid2didok
     parent = {}
-    #TODO we do it once only, but in future we might to change it
+    # TODO we do it once only, but in future we might to change it
     if not delivery.trip_response_context:
         return delivery
     for place in delivery.trip_response_context.places.place:
-        if place.stop_point is not None:
-            if place.stop_point.parent_ref is not None:
-                parent[place.stop_point.stop_point_ref.value]=place.stop_point.parent_ref.value
+        if place.stop_point is not None and place.stop_point.parent_ref is not None:
+            parent[place.stop_point.stop_point_ref.value] = place.stop_point.parent_ref.value
 
-    #foreach trip
+    # foreach trip
     for trip_result in delivery.trip_result:
         for leg in trip_result.trip.leg:
             if leg.timed_leg is None:
@@ -123,31 +122,27 @@ def preprocess_stops_to_commercial_stops(delivery: OjptripDeliveryStructure) -> 
                 # we can't deal with demandResponsive, carTransportRail and international coaches in NOVA currently.
                 continue
             ## only timed. we now replace the stop_point_ref with the parent
-            leg.timed_leg.leg_board.stop_point_ref.value = parent.get(leg.timed_leg.leg_board.stop_point_ref.value,"")
+            leg.timed_leg.leg_board.stop_point_ref.value = parent.get(leg.timed_leg.leg_board.stop_point_ref.value, "")
             leg.timed_leg.leg_alight.stop_point_ref.value = parent.get(leg.timed_leg.leg_alight.stop_point_ref.value, "")
             leg_intermediates = leg.timed_leg.leg_intermediate
             for leg_intermediate in leg_intermediates:
-                leg_intermediate.stop_point_ref.value = parent.get(leg_intermediate.stop_point_ref.value,"")
+                leg_intermediate.stop_point_ref.value = parent.get(leg_intermediate.stop_point_ref.value, "")
 
     return delivery
 
-def map_ojp2_trip_result_to_ojp2_fare_request(ojp: Ojp, ojp_fare_params: FareParamStructure) -> Optional[Ojp]:
+
+def map_ojp2_trip_result_to_ojp2_fare_request(ojp: Ojp, ojp_fare_params: FareParamStructure) -> Ojp | None:
     if len(ojp.ojpresponse.service_delivery.ojptrip_delivery) != 1:
         return None
 
-    now1 = datetime.datetime.utcnow()
+    now1 = datetime.now(UTC)
     now = XmlDateTime.from_datetime(now1)
-
 
     farerequest = []
     for ojptrip_delivery in ojp.ojpresponse.service_delivery.ojptrip_delivery:
-    #    # preprocess trip result to translate the quays to the commercial stop
-        ojptrip_delivery=preprocess_stops_to_commercial_stops(ojptrip_delivery)
+        #    # preprocess trip result to translate the quays to the commercial stop
+        ojptrip_delivery = preprocess_stops_to_commercial_stops(ojptrip_delivery)
         for trip_result in ojptrip_delivery.trip_result:
-            farerequest += [map_to_individual_ojpfarerequest(trip_result.trip, now,ojp_fare_params)]
+            farerequest += [map_to_individual_ojpfarerequest(trip_result.trip, now, ojp_fare_params)]
 
-    return Ojp(ojprequest=
-               Ojprequest(service_request=
-                   ServiceRequest(requestor_ref="OJP2NOVA",
-                                  request_timestamp=now,
-                                  ojpfare_request=farerequest)))
+    return Ojp(ojprequest=Ojprequest(service_request=ServiceRequest(requestor_ref="OJP2NOVA", request_timestamp=now, ojpfare_request=farerequest)))

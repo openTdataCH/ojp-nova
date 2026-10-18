@@ -1,5 +1,4 @@
 # CONFIGURATION:
-from typing import List
 import logging
 from os import getenv
 
@@ -11,26 +10,26 @@ NOVA_TOKEN_URL = getenv("NOVA_TOKEN_URL")
 NOVA_CLIENT_ID = getenv("NOVA_CLIENT_ID")
 NOVA_CLIENT_SECRET = getenv("NOVA_CLIENT_SECRET")
 NOVA_SCOPE = getenv("NOVA_SCOPE")
-NOVA_BASE_URL = getenv("NOVA_BASE_URL","https://nova-inte-int.api.sbb.ch")
+NOVA_BASE_URL = getenv("NOVA_BASE_URL", "https://nova-inte-int.api.sbb.ch")
 NOVA_PREISAUSKUNFT_PATH = "/novaan/vertrieb/public/v14/PreisauskunftService"
 NOVA_VERTRIEBS_PATH = "/novaan/vertrieb/public/v14/VertriebsService"
 NOVA_VERTRIEBSSTAMMDATEN_PATH = "/novaan/vertrieb/public/v14/VertriebsstammdatenService"
 
 # NOVA channel parameters
-NOVA_KANAL_CODE = int(getenv("NOVA_KANAL_CODE","41"))
-NOVA_LEISTUNGS_VERMITTLER = int(getenv("NOVA_LEISTUNGS_VERMITTLER","11"))
-NOVA_VERKAUFS_STELLE = int(getenv("NOVA_VERKAUFS_STELLE","16437"))
-NOVA_VERTRIEBS_PUNKT = int(getenv("NOVA_VERTRIEBS_PUNKT","16437"))
-NOVA_VERKAUFS_GERAETE_ID = getenv("NOVA_VERKAUFS_GERAETE_ID","236")
+NOVA_KANAL_CODE = int(getenv("NOVA_KANAL_CODE", "41"))
+NOVA_LEISTUNGS_VERMITTLER = int(getenv("NOVA_LEISTUNGS_VERMITTLER", "11"))
+NOVA_VERKAUFS_STELLE = int(getenv("NOVA_VERKAUFS_STELLE", "16437"))
+NOVA_VERTRIEBS_PUNKT = int(getenv("NOVA_VERTRIEBS_PUNKT", "16437"))
+NOVA_VERKAUFS_GERAETE_ID = getenv("NOVA_VERKAUFS_GERAETE_ID", "236")
 
 # OJP_Token can be obtained at: https://opentransportdata.swiss/dev-dashboard
-OJP_URL_API = getenv("OJP_BASE_URL","https://api.opentransportdata.swiss/ojp2020")
+OJP_URL_API = getenv("OJP_BASE_URL", "https://api.opentransportdata.swiss/ojp2020")
 OJP_TOKEN = getenv("OJP_TOKEN")
 
-OJP_2_URL_API = getenv("OJP2_BASE_URL","https://api.opentransportdata.swiss/ojp20")
+OJP_2_URL_API = getenv("OJP2_BASE_URL", "https://api.opentransportdata.swiss/ojp20")
 OJP_2_TOKEN = getenv("OJP2_TOKEN")
 
-OJP_FARE_TOKEN=""
+OJP_FARE_TOKEN = ""
 
 LOG_FILE_HANDLER_ENABLED = getenv("LOG_FILE_HANDLER_ENABLED", "true").lower() in _enabled_values
 LOG_DIR = getenv("LOG_DIR", "logs")
@@ -45,23 +44,23 @@ HTTPS = False
 SSL_KEYFILE = ''
 SSL_CERTFILE = ''
 HTTP_HOST = '127.0.0.1'
-HTTP_PORT = 8000
-HTTP_PORT_OJPFARE = 8081
+HTTP_PORT: str | int = 8000
+HTTP_PORT_OJPFARE: str | int = 8081
 HTTP_SLUG = "ojp2023"
 HTTP_SLUG_OJPFARE = "ojpfare"
 HTTP_SLUG_PUNKT = "PUNKT"
 READTRIPREQUESTFILE = True
-VATRATE= 8.1  # Percent
-USE_HTA = True # if in the tests half price should be used
-READFILE: List[str]  = [] # contains the test files to read
+VATRATE = 8.1  # Percent
+USE_HTA = True  # if in the tests half price should be used
+READFILE: list[str] = []  # contains the test files to read
 
 # if there exists a test_configuration it is loaded.
 try:
     from test_configuration import *
-except:
+except ImportError:
     pass
 # if there exists a local_configuration it is used.
 try:
     from local_configuration import *
-except:
+except ImportError:
     pass

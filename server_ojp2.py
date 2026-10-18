@@ -9,10 +9,10 @@ from api.ojp2 import FareServiceOjp2
 from configuration import (
     HTTP_HOST,
     HTTP_PORT,
+    HTTP_SLUG,
     HTTPS,
     SSL_CERTFILE,
     SSL_KEYFILE,
-    HTTP_SLUG,
 )
 
 app_logging.setup_logging()
@@ -21,31 +21,35 @@ app = FastAPI(title="ojp-fare API for OJP2")
 
 fare_service = FareServiceOjp2()
 
-@app.get("/health/liveness", tags=["Health"])
-async def liveness(fastapi_req: Request):
+
+@app.get("/health/liveness", tags=["Health"])  # type: ignore[untyped-decorator]
+async def liveness(fastapi_req: Request) -> Response:
     """
     Implements liveness probe.
     """
     logger.debug("Received liveness probe request: " + str(fastapi_req))
     return Response("Liveness: OK", media_type="text/plain; charset=utf-8")
 
+
 # implements basic readiness probe
-@app.get("/health/readiness", tags=["Health"])
-async def readiness(fastapi_req: Request):
+@app.get("/health/readiness", tags=["Health"])  # type: ignore[untyped-decorator]
+async def readiness(fastapi_req: Request) -> Response:
     """
     Implements readiness probe.
     """
     logger.debug("Received readiness probe request: " + str(fastapi_req))
     return Response("Readiness: OK", media_type="text/plain; charset=utf-8")
 
-@app.post("/" + HTTP_SLUG, tags=["Open Journey Planner"])
-async def post_request(fastapi_req: Request) ->Response:
+
+@app.post("/" + HTTP_SLUG, tags=["Open Journey Planner"])  # type: ignore[untyped-decorator]
+async def post_request(fastapi_req: Request) -> Response:
     """
     Handles OjpFare requests: for ojp2 only.
     """
     body = await fastapi_req.body()
     logger.debug("Received request: " + str(body))
     return fare_service.handle_request(body)
+
 
 if __name__ == "__main__":
     import uvicorn
