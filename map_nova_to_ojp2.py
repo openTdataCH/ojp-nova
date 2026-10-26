@@ -1,20 +1,29 @@
 #!/usr/bin/env python3
 
-import datetime
-import xml_logger
+from datetime import UTC, datetime
 from decimal import Decimal
-from typing import List, Optional, Dict
 
 from xsdata.models.datatype import XmlDateTime
 
+import xml_logger
 from api.errors import InvalidNovaResponseError
-from nova import ErstellePreisAuskunftResponse, KlassenTypCode, PreisAuspraegung, \
-    PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput
-from ojp2 import OjpfareDelivery, FareResultStructure, FareProductStructure, TripFareResultStructure, \
-    FareClassEnumeration
 from configuration import VATRATE
 from fare_products import products
-def map_klasse_to_fareclass(klasse: KlassenTypCode) -> Optional[FareClassEnumeration]:
+from nova import (
+    KlassenTypCode,
+    PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput,
+    PreisAuspraegung,
+)
+from ojp2 import (
+    FareClassEnumeration,
+    FareProductStructure,
+    FareResultStructure,
+    OjpfareDelivery,
+    TripFareResultStructure,
+)
+
+
+def map_klasse_to_fareclass(klasse: KlassenTypCode) -> FareClassEnumeration | None:
     if klasse == KlassenTypCode.KLASSE_1:
         return FareClassEnumeration.FIRST_CLASS
     elif klasse == KlassenTypCode.KLASSE_2:
@@ -22,38 +31,47 @@ def map_klasse_to_fareclass(klasse: KlassenTypCode) -> Optional[FareClassEnumera
     else:
         return None
 
-def map_preis_auspraegung_to_trip_fare_result(preis_auspraegungen: List[PreisAuspraegung]) -> FareResultStructure:
+
+def map_preis_auspraegung_to_trip_fare_result(preis_auspraegungen: list[PreisAuspraegung]) -> FareResultStructure:
     referenz = preis_auspraegungen[0].externe_verbindungs_referenz_id
     id, _, _ = referenz.split('_')
 
     tripfareresults = []
     for preis_auspraegung in preis_auspraegungen:
         _, from_leg_id, to_leg_id = preis_auspraegung.externe_verbindungs_referenz_id.split('_')
-        required_card=[]
-        if preis_auspraegung.produkt_einfluss_faktoren.kunden_segment.kunden_segment_code=="HALBTAX":
-            required_card=["HTA"]
-        fare_product_name=products.get(str(preis_auspraegung.produkt_nummer),str(preis_auspraegung.produkt_nummer)) # name or number if none
-        tripfareresults.append(TripFareResultStructure(from_leg_id_ref=from_leg_id, to_leg_id_ref=to_leg_id,
-                                fare_product=[FareProductStructure(fare_product_id=preis_auspraegung.produkt_nummer,
-                                                                   fare_product_name=fare_product_name,
-                                                                   fare_authority_ref='ch:1:sboid:101704',
-                                                                   fare_authority_text='Alliance SwissPass',
-                                                                   price=preis_auspraegung.preis.betrag,
-                                                                   net_price=round(float(preis_auspraegung.preis.betrag)*(1.0-VATRATE/100),2),
-                                                                   currency=preis_auspraegung.preis.waehrung,
-                                                                   required_card=required_card,
-                                                                   vat_rate=Decimal(VATRATE).quantize(Decimal("0.1")),
-                                                                   fare_class=map_klasse_to_fareclass(preis_auspraegung.produkt_einfluss_faktoren.klasse))]))
+        required_card = []
+        if preis_auspraegung.produkt_einfluss_faktoren.kunden_segment.kunden_segment_code == "HALBTAX":
+            required_card = ["HTA"]
+        fare_product_name = products.get(str(preis_auspraegung.produkt_nummer), str(preis_auspraegung.produkt_nummer))  # name or number if none
+        tripfareresults.append(
+            TripFareResultStructure(
+                from_leg_id_ref=from_leg_id,
+                to_leg_id_ref=to_leg_id,
+                fare_product=[
+                    FareProductStructure(
+                        fare_product_id=preis_auspraegung.produkt_nummer,
+                        fare_product_name=fare_product_name,
+                        fare_authority_ref='ch:1:sboid:101704',
+                        fare_authority_text='Alliance SwissPass',
+                        price=preis_auspraegung.preis.betrag,
+                        net_price=round(float(preis_auspraegung.preis.betrag) * (1.0 - VATRATE / 100), 2),
+                        currency=preis_auspraegung.preis.waehrung,
+                        required_card=required_card,
+                        vat_rate=Decimal(VATRATE).quantize(Decimal("0.1")),
+                        fare_class=map_klasse_to_fareclass(preis_auspraegung.produkt_einfluss_faktoren.klasse),
+                    )
+                ],
+            )
+        )
 
     return FareResultStructure(id=id, trip_fare_result=tripfareresults)
 
 
-
-def map_nova_reply_to_ojp_fare_delivery(soap: PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput) -> Optional[OjpfareDelivery]:
+def map_nova_reply_to_ojp_fare_delivery(soap: PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput) -> OjpfareDelivery | None:
     if not soap.body.erstelle_preis_auskunft_response.preis_auskunft_response.preis_auspraegung:
         raise InvalidNovaResponseError()
 
-    bonded_trips :Dict[str,PreisAuspraegung]= {}
+    bonded_trips: dict[str, PreisAuspraegung] = {}
     for preis_auspraegung in soap.body.erstelle_preis_auskunft_response.preis_auskunft_response.preis_auspraegung:
         if preis_auspraegung.produkt_einfluss_faktoren.klasse == KlassenTypCode.KLASSENWECHSEL:
             continue
@@ -66,11 +84,13 @@ def map_nova_reply_to_ojp_fare_delivery(soap: PreisAuskunftServicePortTypeSoapv1
 
     fareResults = [map_preis_auspraegung_to_trip_fare_result(x) for x in bonded_trips.values()]
 
-    return OjpfareDelivery(response_timestamp=XmlDateTime.from_datetime(datetime.datetime.utcnow()), status=True, fare_result=fareResults)
+    return OjpfareDelivery(response_timestamp=XmlDateTime.from_datetime(datetime.now(UTC)), status=True, fare_result=fareResults)
 
-def test_nova_to_ojp2(soap: PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput) -> Optional[OjpfareDelivery]:
+
+def test_nova_to_ojp2(soap: PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput) -> OjpfareDelivery | None:
     ojp_fare_delivery = map_nova_reply_to_ojp_fare_delivery(soap)
     return ojp_fare_delivery
+
 
 if __name__ == '__main__':
     from xsdata.formats.dataclass.parsers import XmlParser
