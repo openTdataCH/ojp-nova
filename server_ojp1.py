@@ -3,6 +3,7 @@
 import logging
 
 from fastapi import FastAPI, Request, Response
+from starlette.middleware.cors import CORSMiddleware
 
 import app_logging
 from api.ojp1 import FareServiceOjp1
@@ -13,6 +14,15 @@ app_logging.setup_logging()
 logger = logging.getLogger(__name__)
 app = FastAPI(title="ojp-fare API for OJP1")
 fare_service1 = FareServiceOjp1()
+
+origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/health/liveness", tags=["Health"])
 async def liveness(fastapi_req: Request):
