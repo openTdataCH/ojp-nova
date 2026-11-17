@@ -2,8 +2,6 @@
 
 import logging
 
-import certifi
-import urllib3
 from fastapi import FastAPI, Request, Response
 
 import app_logging
@@ -19,11 +17,6 @@ from configuration import (
     READINESS_PATH,
     SSL_CERTFILE,
     SSL_KEYFILE,
-)
-
-http = urllib3.PoolManager(
-    cert_reqs="CERT_REQUIRED",
-    ca_certs=certifi.where()
 )
 
 app_logging.setup_logging()
