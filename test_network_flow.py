@@ -450,9 +450,10 @@ def main(argv: list[str] | None = None) -> int:
                         number_of_failed_tests += 1
                 else:
                     print("-> *** Testcase failure expected. ***")
+    print(f"*********************************************************")
     print(f"Number of failed tests: {number_of_failed_tests}")
     if number_of_failed_tests == 0:
-        print("******************** TESTS SUCCEEDED ********************")
+        print("******************** TESTS SUCCEEDED *****************")
         return 0
     else:
         print("******************** TEST FAILED ********************")

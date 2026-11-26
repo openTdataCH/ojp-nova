@@ -907,5 +907,43 @@
 		"relationship": "KEINE_REISENDENBEZIEHUNG",
 		"active": true,
         "result": "pass"
+	},
+  {
+		"id": 52,
+		"description": "MobilityMap Problemfall2",
+		"file": "input/input_Problemfall_MM_2.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": true,
+        "nodiscounts" : false,
+		"start_time": "16:55:00",
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true,
+        "result": "pass"
+	},
+  {
+		"id": 53,
+		"description": "MobilityMap Problemfall 3",
+		"file": "input/input_Problemfall_MM_3.xml",
+		"travellers": [
+			{
+				"age": 25,
+				"entitlements": "HTA",
+				"typ": "PERSON",
+				"tkid": "123312312"
+			}
+		],
+		"subscriptions": true,
+        "nodiscounts" : false,
+		"start_time": "16:55:00",
+		"relationship": "KEINE_REISENDENBEZIEHUNG",
+		"active": true,
+        "result": "pass"
 	}
 ]
