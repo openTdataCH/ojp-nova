@@ -3,7 +3,6 @@ READFILE = []
 READFILE.append("input/input_sloid_test_with_didok_request.xml")
 
 
-
 '''
 ----------------------------------------------------------------
 Reservoir for tests
@@ -67,5 +66,3 @@ READFILE.append("input/input_demand_responsive_saturday_after_1500.xml")
 READFILE.append("input/input_sharing_intercity.xml")
 
 '''
-
-

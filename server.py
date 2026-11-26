@@ -55,8 +55,9 @@ async def readiness(fastapi_req: Request):
     logger.debug("Received readiness probe request: " + str(fastapi_req))
     return Response("Readiness: OK", media_type="text/plain; charset=utf-8")
 
-@app.post("/" + HTTP_SLUG, tags=["Open Journey Planner"])
-async def post_request(fastapi_req: Request) ->Response:
+
+@app.post("/" + HTTP_SLUG, tags=["Open Journey Planner"])  # type: ignore[untyped-decorator]
+async def post_request(fastapi_req: Request) -> Response:
     """
     Handles OjpFare requests: for ojp1 or ojp2.
     """
@@ -69,6 +70,7 @@ async def post_request(fastapi_req: Request) ->Response:
         return fare_service1.handle_request(body)
     else:
         return fare_service2.handle_request(body)
+
 
 if __name__ == "__main__":
     import uvicorn

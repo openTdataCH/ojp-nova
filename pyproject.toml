@@ -37,7 +37,7 @@ readme="README.md"
 packages = ["api", "ojp", "nova","logs","ojp2","xslt","input","service","generated"]
 
 [tool.black]
-exclude = "nova"
+exclude = "(.venv|nova|ojp|ojp2)"
 preview = true
 line-length = 160
 skip-string-normalization = true
@@ -45,7 +45,7 @@ skip-string-normalization = true
 [tool.mypy]
 strict = true
 ignore_missing_imports = true
-exclude = "nova/.*"
+exclude = "(.venv|nova|ojp|ojp2)"
 
 [tool.ruff]
-exclude = ["nova","ojp","ojp2"]
+exclude = [".venv", "nova", "ojp", "ojp2"]

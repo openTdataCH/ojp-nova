@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <OJP xmlns="http://www.vdv.de/ojp" xmlns:siri="http://www.siri.org.uk/siri" version="2.0">
+      <OJPRequest>
+        <siri:ServiceRequest>
+          <siri:RequestTimestamp>2026-10-02T14:06:49Z</siri:RequestTimestamp>
+          <siri:RequestorRef>mobilcheck</siri:RequestorRef>
+          <OJPTripRequest>
+            <siri:RequestTimestamp>2026-10-02T14:06:49Z</siri:RequestTimestamp>
+
+            <Origin>
+              <PlaceRef>
+                <GeoPosition>
+                  <siri:Longitude>9.47035</siri:Longitude>
+                  <siri:Latitude>47.17229</siri:Latitude>
+                </GeoPosition>
+                <Name>
+                  <Text>Bern, Bahnhof</Text>
+                </Name>
+              </PlaceRef>
+            </Origin>
+
+            <Destination>
+              <PlaceRef>
+                <GeoPosition>
+                  <siri:Longitude>9.44931</siri:Longitude>
+                  <siri:Latitude>47.17326</siri:Latitude>
+                </GeoPosition>
+                <Name>
+                  <Text>Zürich Hauptbahnhof</Text>
+                </Name>
+              </PlaceRef>
+            </Destination>
+
+            <Params>
+              <NumberOfResults>3</NumberOfResults>
+                          <IncludeIntermediateStops>true</IncludeIntermediateStops>
+
+            </Params>
+          </OJPTripRequest>
+        </siri:ServiceRequest>
+      </OJPRequest>
+    </OJP>

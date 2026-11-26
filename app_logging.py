@@ -48,25 +48,20 @@ class CustomFormatter(logging.Formatter):
             f"{logger_name} : {message}"
         )
 
-def setup_logging():
-    ''' Initializes the logging configuration for this application.'''
+def setup_logging() -> None:
+    '''Initializes the logging configuration for this application.'''
 
     # formatter = logging.Formatter(fmt=LOG_FORMAT, datefmt=LOG_DATE_FORMAT)
     console_handler = StreamHandler(stream=sys.stdout)
     console_handler.setLevel(LOG_LEVEL)
     console_handler.setFormatter(CustomFormatter())
     log_handlers = {console_handler}
-
     if LOG_FILE_HANDLER_ENABLED:
-        file_handler = RotatingFileHandler(
-            LOG_FILE,
-            maxBytes=LOG_FILE_MAX_BYTES,
-            backupCount=LOG_FILE_BACKUP_COUNT)
+        file_handler = RotatingFileHandler(LOG_FILE, maxBytes=LOG_FILE_MAX_BYTES, backupCount=LOG_FILE_BACKUP_COUNT)
         file_handler.setLevel(LOG_LEVEL)
         file_handler.setFormatter(CustomFormatter())
         log_handlers.add(file_handler)
         pathlib.Path(LOG_DIR).mkdir(parents=True, exist_ok=True)
-
     logging.basicConfig(
         format=LOG_FORMAT,
         datefmt=LOG_DATE_FORMAT,
@@ -75,4 +70,3 @@ def setup_logging():
 
     # prevent request logs on health endpoints
     logging.getLogger("uvicorn.access").addFilter(HealthCheckAccessFilter())
-
