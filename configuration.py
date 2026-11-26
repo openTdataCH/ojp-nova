@@ -4,6 +4,9 @@ from os import getenv
 
 _enabled_values = ['true', 'enabled']
 
+LIVENESS_PATH = "/health/liveness"
+READINESS_PATH = "/health/readiness"
+
 # For keys and connection to NOVA contact opendata@sbb.ch if necessary.
 # However, those access keys only are provided under special circumstances.
 NOVA_TOKEN_URL = getenv("NOVA_TOKEN_URL")

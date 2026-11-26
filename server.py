@@ -3,6 +3,7 @@
 import logging
 
 from fastapi import FastAPI, Request, Response
+from starlette.middleware.cors import CORSMiddleware
 
 import app_logging
 from api.ojp1 import FareServiceOjp1
@@ -13,6 +14,8 @@ from configuration import (
     HTTP_PORT,
     HTTP_SLUG,
     HTTPS,
+    LIVENESS_PATH,
+    READINESS_PATH,
     SSL_CERTFILE,
     SSL_KEYFILE,
 )
@@ -26,18 +29,26 @@ fare_service2 = FareServiceOjp2()
 
 version_parser = OjpVersionParser()
 
+origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-@app.get("/health/liveness", tags=["Health"])  # type: ignore[untyped-decorator]
-async def liveness(fastapi_req: Request) -> Response:
+@app.get(LIVENESS_PATH, tags=["Health"])
+
+async def liveness(fastapi_req: Request):
     """
     Implements liveness probe.
     """
     logger.debug("Received liveness probe request: " + str(fastapi_req))
     return Response("Liveness: OK", media_type="text/plain; charset=utf-8")
 
-
-@app.get("/health/readiness", tags=["Health"])  # type: ignore[untyped-decorator]
-async def readiness(fastapi_req: Request) -> Response:
+@app.get(READINESS_PATH, tags=["Health"])
+async def readiness(fastapi_req: Request):
     """
     Implements readiness probe.
     """
@@ -67,4 +78,4 @@ if __name__ == "__main__":
     if HTTPS:
         uvicorn.run(app, host=HTTP_HOST, port=HTTP_PORT, ssl_keyfile=SSL_KEYFILE, ssl_certfile=SSL_CERTFILE)
     else:
-        uvicorn.run(app, host=HTTP_HOST, port=HTTP_PORT)
+        uvicorn.run(app, host=HTTP_HOST, port=HTTP_PORT, log_config="uvicorn_log.yaml")

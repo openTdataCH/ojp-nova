@@ -2,10 +2,9 @@
 
 import argparse
 import json
-import logging
 import sys
 import traceback
-from typing import Any
+from typing import Any, Optional, Tuple
 
 import requests
 import urllib3
@@ -32,13 +31,13 @@ from configuration import (
 from map_nova_to_ojp import test_nova_to_ojp
 from map_nova_to_ojp2 import test_nova_to_ojp2
 from map_ojp2_to_nova import test_ojp2_fare_request_to_nova_request
-from map_ojp2_to_ojp2 import (  # , map_ojp_trip_result_to_ojp_refine_request
-    map_ojp2_trip_result_to_ojp2_fare_request,
+from map_ojp2_to_ojp2 import (
+    map_ojp2_trip_result_to_ojp2_fare_request,  # , map_ojp_trip_result_to_ojp_refine_request
     parse_ojp2,
 )
 from map_ojp_to_nova import test_ojp_fare_request_to_nova_request
-from map_ojp_to_ojp import (  # , map_ojp_trip_result_to_ojp_refine_request
-    map_ojp_trip_result_to_ojp_fare_request,
+from map_ojp_to_ojp import (
+    map_ojp_trip_result_to_ojp_fare_request,  # , map_ojp_trip_result_to_ojp_refine_request
     parse_ojp,
 )
 from nova import (
@@ -51,6 +50,7 @@ from ojp import (
     FarePassengerStructure,
     Ojp,
     OjpfareDelivery,
+    PassengerCategoryEnumeration,
 )
 from ojp2 import (
     EntitlementProductListStructure,
@@ -58,18 +58,10 @@ from ojp2 import (
     FareClassEnumeration,
     PassengerCategoryEnumeration,
 )
-from ojp2 import (
-    FareAuthorityRefStructure as FareAuthorityRefStructure2,
-)
-from ojp2 import (
-    FareParamStructure as FareParamStructure2,
-)
-from ojp2 import (
-    FarePassengerStructure as FarePassengerStructure2,
-)
-from ojp2 import (
-    Ojp as Ojp2,
-)
+from ojp2 import FareAuthorityRefStructure as FareAuthorityRefStructure2
+from ojp2 import FareParamStructure as FareParamStructure2
+from ojp2 import FarePassengerStructure as FarePassengerStructure2
+from ojp2 import Ojp as Ojp2
 from support import OJPError, inject_departure_datetime, is_version_2_0
 
 logger = logging.getLogger(__name__)
@@ -80,8 +72,8 @@ ns_map = {'': 'http://www.siri.org.uk/siri', 'ojp': 'http://www.vdv.de/ojp'}
 def call_ojp_2000(request_body: str) -> tuple[int, str]:
     try:
         access_token = OJP_TOKEN
-        headers = {'Authorization': 'Bearer ' + (access_token or ''), 'Content-Type': 'application/xml; charset=utf-8'}
-        api_call_response = requests.post(OJP_URL_API, data=request_body.encode('utf-8'), headers=headers, verify=False)
+        headers = {'Authorization': 'Bearer ' + access_token, 'Content-Type': 'application/xml; charset=utf-8' }
+        api_call_response = requests.post(OJP_URL_API, data=request_body.encode('utf-8'), headers=headers, verify=VERIFY_OJP_URL_API)
         api_call_response.encoding = api_call_response.apparent_encoding
         return api_call_response.status_code, api_call_response.text
 
@@ -93,8 +85,8 @@ def call_ojp_2000(request_body: str) -> tuple[int, str]:
 def call_ojp_20(request_body: str) -> tuple[int, str]:
     try:
         access_token = OJP_2_TOKEN
-        headers = {'Authorization': 'Bearer ' + (access_token or ''), 'Content-Type': 'application/xml; charset=utf-8'}
-        api_call_response = requests.post(OJP_2_URL_API, data=request_body.encode('utf-8'), headers=headers, verify=False)
+        headers = {'Authorization': 'Bearer ' + access_token, 'Content-Type': 'application/xml; charset=utf-8' }
+        api_call_response = requests.post(OJP_2_URL_API, data=request_body.encode('utf-8'), headers=headers, verify=VERIFY_OJP_2_URL_API)
         api_call_response.encoding = api_call_response.apparent_encoding
         return api_call_response.status_code, api_call_response.text
 
