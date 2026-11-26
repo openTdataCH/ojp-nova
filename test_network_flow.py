@@ -74,7 +74,8 @@ def call_ojp_2000(request_body: str) -> tuple[int, str]:
     try:
         access_token = OJP_TOKEN
         headers = {'Authorization': 'Bearer ' + access_token, 'Content-Type': 'application/xml; charset=utf-8' }
-        api_call_response = requests.post(OJP_URL_API, data=request_body.encode('utf-8'), headers=headers, verify=VERIFY_OJP_URL_API)
+        #api_call_response = requests.post(OJP_URL_API, data=request_body.encode('utf-8'), headers=headers, verify=VERIFY_OJP_URL_API)
+        api_call_response = requests.post(OJP_URL_API, data=request_body.encode('utf-8'), headers=headers)
         api_call_response.encoding = api_call_response.apparent_encoding
         return api_call_response.status_code, api_call_response.text
 
