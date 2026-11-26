@@ -1,14 +1,40 @@
+# Project file for ojp-nova.
+#
+# NOTE: This project file is still somewhat experimental
+# If you prefer the old approach, run "uv pip install -r requirements.txt" instead.
+
+# If you want to try the build with pyproject.toml, run:
+# uv pip install .
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ojp-nova"
 description = "A price service for Switzerland based on OJPFare for OJP v1.0 and v2.0"
-authors = ["Matthias Günter <matthias.guenter@sbb.ch>","Stefan de Konink <stefan@konink.de>"]
+authors = [
+    {name="Matthias Günter", email="matthias.guenter@sbb.ch"},
+    {name="Stefan de Konink", email="stefan@konink.de"},
+    {name="Urs Stöckli", email="urs.stoeckli@sbb.ch"},
+]
+
+# Make sure dependencies are in sync with requirements.txt
 dependencies = [
-"requests",
-"fastapi[all]",
-"uvicorn",
-    "dateutils",
-    "pyproj",
-    "xsdata[cli,soap,lxml]>=24.12",
+    "xsdata[cli,lxml,soap]~=26.10",
+    "requests~=2.34.2",
+    "fastapi[standard]",
+    "uvicorn~=0.54.0",
+    "urllib3~=2.8.0",
+    "lxml~=6.1.3",
 ]
 requires-python = ">=3.12"
+dynamic = ["version"]
+readme="README.md"
+
+[tool.setuptools]
+# To overcome the issue of multiple top-level packages
+packages = ["api", "ojp", "nova","logs","ojp2","xslt","input","service","generated"]
 
 [tool.black]
 exclude = "nova"

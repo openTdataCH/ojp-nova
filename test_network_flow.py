@@ -2,10 +2,9 @@
 
 import argparse
 import json
-import logging
 import sys
 import traceback
-from typing import Tuple, Any, Optional
+from typing import Any, Optional, Tuple
 
 import requests
 import urllib3
@@ -21,20 +20,38 @@ from configuration import *
 from map_nova_to_ojp import test_nova_to_ojp
 from map_nova_to_ojp2 import test_nova_to_ojp2
 from map_ojp2_to_nova import test_ojp2_fare_request_to_nova_request
-from map_ojp2_to_ojp2 import parse_ojp2, \
-    map_ojp2_trip_result_to_ojp2_fare_request  # , map_ojp_trip_result_to_ojp_refine_request
+from map_ojp2_to_ojp2 import (
+    map_ojp2_trip_result_to_ojp2_fare_request,  # , map_ojp_trip_result_to_ojp_refine_request
+    parse_ojp2,
+)
 from map_ojp_to_nova import test_ojp_fare_request_to_nova_request
-from map_ojp_to_ojp import parse_ojp, \
-    map_ojp_trip_result_to_ojp_fare_request  # , map_ojp_trip_result_to_ojp_refine_request
-from nova import PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunft, \
-    PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput
-from ojp import Ojp, OjpfareDelivery, FareParamStructure, FarePassengerStructure, FareAuthorityRef, \
-    PassengerCategoryEnumeration
-from ojp2 import Ojp as Ojp2, FareParamStructure as FareParamStructure2, \
-    FarePassengerStructure as FarePassengerStructure2, FareAuthorityRefStructure as FareAuthorityRefStructure2, \
-    PassengerCategoryEnumeration, FareClassEnumeration, EntitlementProductStructure, EntitlementProductListStructure
-from support import OJPError, inject_departure_datetime
-from support import is_version_2_0
+from map_ojp_to_ojp import (
+    map_ojp_trip_result_to_ojp_fare_request,  # , map_ojp_trip_result_to_ojp_refine_request
+    parse_ojp,
+)
+from nova import (
+    PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunft,
+    PreisAuskunftServicePortTypeSoapv14ErstellePreisAuskunftOutput,
+)
+from ojp import (
+    FareAuthorityRef,
+    FareParamStructure,
+    FarePassengerStructure,
+    Ojp,
+    OjpfareDelivery,
+    PassengerCategoryEnumeration,
+)
+from ojp2 import (
+    EntitlementProductListStructure,
+    EntitlementProductStructure,
+    FareClassEnumeration,
+    PassengerCategoryEnumeration,
+)
+from ojp2 import FareAuthorityRefStructure as FareAuthorityRefStructure2
+from ojp2 import FareParamStructure as FareParamStructure2
+from ojp2 import FarePassengerStructure as FarePassengerStructure2
+from ojp2 import Ojp as Ojp2
+from support import OJPError, inject_departure_datetime, is_version_2_0
 
 logger = logging.getLogger(__name__)
 
@@ -45,7 +62,7 @@ def call_ojp_2000(request_body:str) -> Tuple[int,str]:
     try:
         access_token = OJP_TOKEN
         headers = {'Authorization': 'Bearer ' + access_token, 'Content-Type': 'application/xml; charset=utf-8' }
-        api_call_response = requests.post(OJP_URL_API, data=request_body.encode('utf-8'), headers=headers, verify=False)
+        api_call_response = requests.post(OJP_URL_API, data=request_body.encode('utf-8'), headers=headers, verify=VERIFY_OJP_URL_API)
         api_call_response.encoding = api_call_response.apparent_encoding
         return api_call_response.status_code,api_call_response.text
 
@@ -58,7 +75,7 @@ def call_ojp_20(request_body:str) -> Tuple[int,str]:
     try:
         access_token = OJP_2_TOKEN
         headers = {'Authorization': 'Bearer ' + access_token, 'Content-Type': 'application/xml; charset=utf-8' }
-        api_call_response = requests.post(OJP_2_URL_API, data=request_body.encode('utf-8'), headers=headers, verify=False)
+        api_call_response = requests.post(OJP_2_URL_API, data=request_body.encode('utf-8'), headers=headers, verify=VERIFY_OJP_2_URL_API)
         api_call_response.encoding = api_call_response.apparent_encoding
         return api_call_response.status_code,api_call_response.text
 

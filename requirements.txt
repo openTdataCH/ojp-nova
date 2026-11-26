@@ -1,6 +1,12 @@
-xsdata[cli,lxml,soap]~=26.1
-requests~=2.31.0
-fastapi[standard]>=0.113.0,<0.114.0
-uvicorn~=0.23.2
-urllib3~=2.0.5
-lxml~=5.3.0
+# You may run "uv pip install -r requirements.txt" to install these dependencies.
+
+# NOTE:
+# With pyproject.toml, an alternative approach exists.
+
+# Make sure dependencies are in sync with pyproject.toml.
+xsdata[cli,lxml,soap]~=26.10
+requests~=2.34.2
+fastapi[standard]
+uvicorn~=0.54.0
+urllib3~=2.8.0
+lxml~=6.1.3
