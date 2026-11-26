@@ -9,8 +9,16 @@ import app_logging
 from api.ojp1 import FareServiceOjp1
 from api.ojp2 import FareServiceOjp2
 from api.versions import OjpVersionParser
-
-from configuration import HTTP_HOST, HTTP_PORT, HTTPS, SSL_CERTFILE, SSL_KEYFILE, HTTP_SLUG
+from configuration import (
+    HTTP_HOST,
+    HTTP_PORT,
+    HTTP_SLUG,
+    HTTPS,
+    LIVENESS_PATH,
+    READINESS_PATH,
+    SSL_CERTFILE,
+    SSL_KEYFILE,
+)
 
 app_logging.setup_logging()
 logger = logging.getLogger(__name__)
@@ -30,7 +38,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/health/liveness", tags=["Health"])
+@app.get(LIVENESS_PATH, tags=["Health"])
+
 async def liveness(fastapi_req: Request):
     """
     Implements liveness probe.
@@ -38,7 +47,7 @@ async def liveness(fastapi_req: Request):
     logger.debug("Received liveness probe request: " + str(fastapi_req))
     return Response("Liveness: OK", media_type="text/plain; charset=utf-8")
 
-@app.get("/health/readiness", tags=["Health"])
+@app.get(READINESS_PATH, tags=["Health"])
 async def readiness(fastapi_req: Request):
     """
     Implements readiness probe.
@@ -67,4 +76,4 @@ if __name__ == "__main__":
     if HTTPS:
         uvicorn.run(app, host=HTTP_HOST, port=HTTP_PORT, ssl_keyfile=SSL_KEYFILE, ssl_certfile=SSL_CERTFILE)
     else:
-        uvicorn.run(app, host=HTTP_HOST, port=HTTP_PORT)
+        uvicorn.run(app, host=HTTP_HOST, port=HTTP_PORT, log_config="uvicorn_log.yaml")
