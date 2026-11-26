@@ -3,6 +3,7 @@
 import logging
 
 from fastapi import FastAPI, Request, Response
+from starlette.middleware.cors import CORSMiddleware
 
 import app_logging
 from api.ojp2 import FareServiceOjp2
@@ -23,7 +24,17 @@ app = FastAPI(title="ojp-fare API for OJP2")
 
 fare_service = FareServiceOjp2()
 
+origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @app.get(LIVENESS_PATH, tags=["Health"])
+
 async def liveness(fastapi_req: Request):
     """
     Implements liveness probe.
